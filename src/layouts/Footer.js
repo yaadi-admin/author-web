@@ -25,7 +25,7 @@ const Footer = () => {
                 className="copyright-text align-center scrolla-element-anim-1 scroll-animate"
                 data-animate="active"
               >
-                © 2022 <strong>Luique</strong>. All rights reserved
+                © 2025 <strong>Zoe Miller</strong>. All rights reserved
               </div>
             </div>
             <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">
@@ -33,7 +33,7 @@ const Footer = () => {
                 className="copyright-text align-right scrolla-element-anim-1 scroll-animate"
                 data-animate="active"
               >
-                Developed by <strong>bslthemes</strong>
+                Designed by <strong onClick={() => window.open("https://corporate.thenarro.com/welcome", "_blank")}>Narro: Web Services</strong>
               </div>
             </div>
           </div>

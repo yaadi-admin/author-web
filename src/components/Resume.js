@@ -68,7 +68,7 @@ const Resume = () => {
               data-splitting="words"
               data-animate="active"
             >
-              <span> Resume </span>
+              <span> Zoe Miller </span>
             </h2>
             <div
               className="m-subtitle splitting-text-anim-1 scroll-animate"

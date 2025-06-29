@@ -48,15 +48,15 @@ const Index = () => {
                   </h1>
                   <div className="label lui-subtitle">
                     {" "}
-                    I am <strong>Web Developer</strong>
+                    I'm an <strong>Author</strong>
                   </div>
                 </div>
                 <div className="description">
                   <div>
                     <p>
-                      From France, Paris. I have rich experience in web design,
-                      also I am good at wordpress. I love to talk with you about
-                      our unique.
+                      I'm a writer and editor with a passion for storytelling. I
+                      love to create characters and worlds that readers can
+                      immerse themselves in.
                     </p>
                   </div>
                   <div className="social-links">
@@ -77,7 +77,7 @@ const Index = () => {
                     href="https://drive.google.com/"
                     className="btn"
                   >
-                    <span>Download CV</span>
+                    <span>My Books</span>
                   </a>
                   <a href="#skills-section" className="btn-lnk">
                     {" "}
@@ -120,13 +120,13 @@ const Index = () => {
                         12 <strong>+</strong>
                       </span>
                       <span className="value">
-                        Years of <strong>Experience</strong>
+                        Years of <strong>Writing</strong>
                       </span>
                     </li>
                     <li>
-                      <span className="num">330</span>
+                      <span className="num">5</span>
                       <span className="value">
-                        Completed <strong>Projects</strong>
+                        Completed <strong>Books</strong>
                       </span>
                     </li>
                   </ul>
@@ -134,7 +134,7 @@ const Index = () => {
               </div>
             </div>
             <div className="lui-bgtitle">
-              <span> Web Developer </span>
+              <span> Author </span>
             </div>
           </div>
         </div>
@@ -153,7 +153,7 @@ const Index = () => {
                 data-splitting="words"
                 data-animate="active"
               >
-                <span> What I Do </span>
+                <span> Publications </span>
               </h2>
               <div
                 className="m-subtitle splitting-text-anim-1 scroll-animate"
@@ -162,7 +162,7 @@ const Index = () => {
               >
                 <span>
                   {" "}
-                  my <b>Services</b>{" "}
+                  my <b>Books</b>{" "}
                 </span>
               </div>
             </div>
@@ -179,23 +179,23 @@ const Index = () => {
               <SwiperSlide className="swiper-slide">
                 <div className="services-item">
                   <div className="lui-subtitle">
-                    <span> Web Development </span>
+                    <span> The Last of Us </span>
                   </div>
                   <div className="icon" />
                   <h5 className="lui-title">
-                    <span> Web Design &amp; Logo </span>
+                    <span> A post-apocalyptic story </span>
                   </h5>
                   <div className="lui-text">
                     <div>
                       {" "}
-                      Web designers craft the overall vision &amp; plan for a
-                      website layout. Professional logo development: Business,
-                      Company, or Personal.{" "}
+                      A post-apocalyptic story about a group of survivors who
+                      must navigate a dangerous world filled with danger and
+                      uncertainty.{" "}
                     </div>
                   </div>
-                  <a href="#pricing-section" className="lnk">
+                  <a href="https://www.amazon.com/Last-Us-Zo%C3%A9-Miller/dp/B09Y9Y9Y9Y" className="lnk">
                     {" "}
-                    See Pricing{" "}
+                    Buy Now{" "}
                   </a>
                   <div
                     className="image"
@@ -205,7 +205,7 @@ const Index = () => {
                   />
                 </div>
               </SwiperSlide>
-              <SwiperSlide className="swiper-slide">
+              {/* <SwiperSlide className="swiper-slide">
                 <div className="services-item">
                   <div className="lui-subtitle">
                     <span> Apps Development </span>
@@ -234,8 +234,8 @@ const Index = () => {
                     }}
                   />
                 </div>
-              </SwiperSlide>
-              <SwiperSlide className="swiper-slide">
+              </SwiperSlide> */}
+              {/* <SwiperSlide className="swiper-slide">
                 <div className="services-item">
                   <div className="lui-subtitle">
                     <span> Game Development </span>
@@ -263,8 +263,8 @@ const Index = () => {
                     }}
                   />
                 </div>
-              </SwiperSlide>
-              <SwiperSlide className="swiper-slide">
+              </SwiperSlide> */}
+              {/* <SwiperSlide className="swiper-slide">
                 <div className="services-item">
                   <div className="lui-subtitle">
                     <span> Advertising </span>
@@ -321,19 +321,19 @@ const Index = () => {
                     }}
                   />
                 </div>
-              </SwiperSlide>
+              </SwiperSlide> */}
               <div className="swiper-pagination" />
             </Swiper>
             <div className="lui-bgtitle">
-              <span> Services </span>
+              <span> My Books </span>
             </div>
           </div>
         </div>
       </section>
       {/* Section - Skills */}
-      <section className="lui-section lui-gradient-center" id="skills-section">
+      {/* <section className="lui-section lui-gradient-center" id="skills-section"> */}
         {/* Heading */}
-        <div className="lui-heading">
+        {/* <div className="lui-heading">
           <div className="container">
             <div className="m-titles align-center">
               <h2
@@ -355,9 +355,9 @@ const Index = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* Skills */}
-        <div className="v-line v-line-left">
+        {/* <div className="v-line v-line-left">
           <div className="container">
             <div className="row">
               <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4">
@@ -539,8 +539,8 @@ const Index = () => {
               <span> Skills </span>
             </div>
           </div>
-        </div>
-      </section>
+        </div> */}
+      {/* </section> */}
 
       {/* Section - Works */}
       <section className="lui-section lui-gradient-top" id="works-section">
@@ -553,7 +553,7 @@ const Index = () => {
                 data-splitting="words"
                 data-animate="active"
               >
-                <span> Portfolio </span>
+                <span> Publications </span>
               </h2>
               <div
                 className="m-subtitle splitting-text-anim-1 scroll-animate"
@@ -562,7 +562,7 @@ const Index = () => {
               >
                 <span>
                   {" "}
-                  my <b>Cases</b>
+                  my <b>Books</b>
                 </span>
               </div>
             </div>
@@ -573,7 +573,7 @@ const Index = () => {
           <div className="container">
             <PortfolioIsotope />
             <div className="lui-bgtitle">
-              <span> Portfolio </span>
+              <span> Publications </span>
             </div>
           </div>
         </div>
@@ -595,7 +595,7 @@ const Index = () => {
                 data-splitting="words"
                 data-animate="active"
               >
-                <span> Testimonials </span>
+                <span> Reviews </span>
               </h2>
               <div
                 className="m-subtitle splitting-text-anim-1 scroll-animate"
@@ -604,7 +604,7 @@ const Index = () => {
               >
                 <span>
                   {" "}
-                  what <b>Customers Say</b>
+                  what <b>Readers Say</b>
                 </span>
               </div>
             </div>
@@ -877,9 +877,9 @@ const Index = () => {
         </div>
       </section>
       {/* Section - Pricing */}
-      <section className="lui-section lui-gradient-center" id="pricing-section">
+      {/* <section className="lui-section lui-gradient-center" id="pricing-section"> */}
         {/* Heading */}
-        <div className="lui-heading">
+        {/* <div className="lui-heading">
           <div className="container">
             <div className="m-titles align-center">
               <h2
@@ -901,9 +901,9 @@ const Index = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* Pricing */}
-        <div className="v-line v-line-left">
+        {/* <div className="v-line v-line-left">
           <div className="container">
             <div className="pricing-items row">
               <div className="pricing-col col-xs-12 col-sm-6 col-md-6 col-lg-4">
@@ -1085,8 +1085,8 @@ const Index = () => {
               <span> Pricing </span>
             </div>
           </div>
-        </div>
-      </section>
+        </div> */}
+      {/* </section> */}
       {/* Section - Blog */}
       <section className="lui-section lui-gradient-top" id="blog-section">
         {/* Heading */}

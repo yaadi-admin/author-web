@@ -110,10 +110,10 @@ const Header = () => {
                                 href="/#services-section"
                                 onClick={() => linkClick()}
                               >
-                                Services
+                                My Books
                               </a>
                             </li>
-                            <li className="menu-item">
+                            {/* <li className="menu-item">
                               <a
                                 className="splitting-text-anim-2"
                                 data-splitting="chars"
@@ -122,7 +122,7 @@ const Header = () => {
                               >
                                 Skills
                               </a>
-                            </li>
+                            </li> */}
                             <li className="menu-item">
                               <a
                                 className="splitting-text-anim-2"
@@ -130,7 +130,7 @@ const Header = () => {
                                 href="/#works-section"
                                 onClick={() => linkClick()}
                               >
-                                Works
+                                Publications
                               </a>
                             </li>
                             <li className="menu-item">
@@ -140,7 +140,7 @@ const Header = () => {
                                 href="/#resume-section"
                                 onClick={() => linkClick()}
                               >
-                                Resume
+                                My Story
                               </a>
                             </li>
                             <li className="menu-item">
@@ -150,10 +150,10 @@ const Header = () => {
                                 href="/#testimonials-sec
                                 onClick={() => linkClick()}tion"
                               >
-                                Testimonials
+                                Reviews
                               </a>
                             </li>
-                            <li className="menu-item">
+                            {/* <li className="menu-item">
                               <a
                                 className="splitting-text-anim-2"
                                 data-splitting="chars"
@@ -162,7 +162,7 @@ const Header = () => {
                               >
                                 Pricing
                               </a>
-                            </li>
+                            </li> */}
                             <li className="menu-item">
                               <a
                                 className="splitting-text-anim-2"
@@ -183,7 +183,7 @@ const Header = () => {
                                 Contact
                               </a>
                             </li>
-                            <li
+                            {/* <li
                               className={`menu-item menu-item-has-children has-children ${
                                 pageToggle ? "opened" : "closed"
                               }`}
@@ -255,7 +255,7 @@ const Header = () => {
                                   </Link>
                                 </li>
                               </ul>
-                            </li>
+                            </li> */}
                           </ul>
                         </div>
                         {/* social */}

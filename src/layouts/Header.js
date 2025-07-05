@@ -27,9 +27,9 @@ const Header = () => {
                 <Link href="/" legacyBehavior>
                   <a>
                     <img
-                      width={228}
-                      height={38}
-                      src="assets/images/logo2.png"
+                      width={300}
+                      height={300}
+                      src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/9994191c-66e4-4c9c-b0d1-235767bd9128_removalai_preview.png?alt=media&token=20dc1fc6-d5f4-4421-8029-6e1227f690b6"
                       alt=""
                     />
                   </a>

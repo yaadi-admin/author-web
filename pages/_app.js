@@ -13,12 +13,12 @@ const App = ({ Component, pageProps }) => {
   return (
     <Fragment>
       <Head>
-        <title>Luique - Personal Portfolio React NextJS Template</title>
+        <title>SueLyn Empowered Living</title>
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="HandheldFriendly" content="true" />
-        <meta name="author" content="bslthemes" />
+        <meta name="author" content="Narro: Web Services" />
         {/* Fonts */}
         <link
           rel="stylesheet"
@@ -82,8 +82,8 @@ const App = ({ Component, pageProps }) => {
           media="all"
         />
         {/* Favicon */}
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/Suelin_Favicon.png?alt=media&token=65ae9fd6-b30a-445b-80f5-b741e38928e2" type="image/x-icon" />
+        <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/Suelin_Favicon.png?alt=media&token=65ae9fd6-b30a-445b-80f5-b741e38928e2" type="image/x-icon" />
       </Head>
       {loader && <PreLoader />}
       <Component {...pageProps} />

@@ -43,31 +43,29 @@ const Index = () => {
                     data-animate="active"
                   >
                     <span>
-                      <b>Zoé</b> Miller{" "}
+                      <b>Sue</b>Lyn{" "}
                     </span>
                   </h1>
                   <div className="label lui-subtitle">
                     {" "}
-                    I'm an <strong>Author</strong>
+                    Planting Seeds of Hope, <strong>One Dream at a Time</strong>
                   </div>
                 </div>
                 <div className="description">
                   <div>
                     <p>
-                      I'm a writer and editor with a passion for storytelling. I
-                      love to create characters and worlds that readers can
-                      immerse themselves in.
+                    Suzanna Griffiths is the heart behind SueLyn Empowered Living - a faith-based space where healing, purpose, and identity come alive.
                     </p>
                   </div>
                   <div className="social-links">
-                    <a target="_blank" rel="nofollow" href="#">
-                      <i aria-hidden="true" className="fab fa-twitter" />
+                    <a target="_blank" rel="nofollow" href="https://www.instagram.com/suelyn.empoweredliving/">
+                      <i aria-hidden="true" className="fab fa-instagram" />
                     </a>
-                    <a target="_blank" rel="nofollow" href="#">
-                      <i aria-hidden="true" className="fab fa-dribbble" />
+                    <a target="_blank" rel="nofollow" href="https://www.facebook.com/suelyn.empoweredliving">
+                      <i aria-hidden="true" className="fab fa-facebook" />
                     </a>
-                    <a target="_blank" rel="nofollow" href="#">
-                      <i aria-hidden="true" className="fab fa-behance" />
+                    <a target="_blank" rel="nofollow" href="https://www.linkedin.com/in/suzanna-griffiths-761b1b260/">
+                      <i aria-hidden="true" className="fab fa-linkedin" />
                     </a>
                   </div>
                 </div>
@@ -91,8 +89,8 @@ const Index = () => {
               >
                 <img
                   decoding="async"
-                  src="assets/images/profile2.png"
-                  alt="<b>Zoé</b> Miller"
+                  src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/dfee8cfc-38ba-4989-a2dc-4db6237f6343_removalai_preview.png?alt=media&token=2595d0d3-fc66-481d-9840-2e9a49090e57"
+                  alt="<b>Sue</b>Lyn"
                 />
                 <span className="circle circle-1" />
                 <span

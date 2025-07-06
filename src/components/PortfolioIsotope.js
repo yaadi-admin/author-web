@@ -44,45 +44,45 @@ const PortfolioIsotope = ({ noViewMore }) => {
             onClick={handleFilterKeyChange("*")}
             data-href=".works-col"
           >
-            All
+            All Events
           </a>
           <a
             className={`c-pointer lui-subtitle ${activeBtn(
-              "sorting-ui-ux-design"
+              "sorting-spiritual"
             )}`}
-            onClick={handleFilterKeyChange("sorting-ui-ux-design")}
-            data-href=".sorting-ui-ux-design"
+            onClick={handleFilterKeyChange("sorting-spiritual")}
+            data-href=".sorting-spiritual"
           >
-            UI UX Design
+            Spiritual
           </a>
           <a
-            className={`c-pointer lui-subtitle ${activeBtn("sorting-photo")}`}
-            onClick={handleFilterKeyChange("sorting-photo")}
-            data-href=".sorting-photo"
+            className={`c-pointer lui-subtitle ${activeBtn("sorting-community")}`}
+            onClick={handleFilterKeyChange("sorting-community")}
+            data-href=".sorting-community"
           >
-            Photography
-          </a>
-          <a
-            className={`c-pointer lui-subtitle ${activeBtn(
-              "sorting-development"
-            )}`}
-            onClick={handleFilterKeyChange("sorting-development")}
-            data-href=".sorting-development"
-          >
-            Development
+            Community
           </a>
           <a
             className={`c-pointer lui-subtitle ${activeBtn(
-              "sorting-branding"
+              "sorting-education"
             )}`}
-            onClick={handleFilterKeyChange("sorting-branding")}
-            data-href=".sorting-branding"
+            onClick={handleFilterKeyChange("sorting-education")}
+            data-href=".sorting-education"
           >
-            Branding
+            Education
+          </a>
+          <a
+            className={`c-pointer lui-subtitle ${activeBtn(
+              "sorting-publication"
+            )}`}
+            onClick={handleFilterKeyChange("sorting-publication")}
+            data-href=".sorting-publication"
+          >
+            Publication
           </a>
         </div>
         <div className="works-items works-masonry-items row">
-          <div className="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-branding sorting-photo ">
+          <div className="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-spiritual">
             <div
               className="works-item scrolla-element-anim-1 scroll-animate"
               data-animate="active"
@@ -94,7 +94,7 @@ const PortfolioIsotope = ({ noViewMore }) => {
                       <img
                         decoding="async"
                         src="assets/images/work4.jpeg"
-                        alt="Zorro"
+                        alt="Prayer Board"
                       />
                       <span className="overlay" />
                     </a>
@@ -102,20 +102,20 @@ const PortfolioIsotope = ({ noViewMore }) => {
                 </div>
               </div>
               <div className="desc">
-                <span className="category"> Branding, Photography </span>
+                <span className="category">Spiritual</span>
                 <h5 className="name">
                   <Link legacyBehavior href="/work-single">
-                    <a>Zorro</a>
+                    <a>Prayer Board</a>
                   </Link>
                 </h5>
                 <div className="text">
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore.
+                    Join us for a special prayer session in December 2025. A time for reflection, 
+                    community prayer, and spiritual connection.
                   </p>
                 </div>
                 <Link legacyBehavior href="/work-single">
-                  <a className="lnk">See project</a>
+                  <a className="lnk">Learn More</a>
                 </Link>
               </div>
               <div
@@ -126,7 +126,7 @@ const PortfolioIsotope = ({ noViewMore }) => {
               />
             </div>
           </div>
-          <div className="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-branding sorting-ui-ux-design ">
+          <div className="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-spiritual">
             <div
               className="works-item scrolla-element-anim-1 scroll-animate"
               data-animate="active"
@@ -138,7 +138,7 @@ const PortfolioIsotope = ({ noViewMore }) => {
                       <img
                         decoding="async"
                         src="assets/images/work2.jpeg"
-                        alt="Gooir"
+                        alt="Couples Retreat"
                       />
                       <span className="overlay" />
                     </a>
@@ -146,20 +146,20 @@ const PortfolioIsotope = ({ noViewMore }) => {
                 </div>
               </div>
               <div className="desc">
-                <span className="category"> Branding, UI UX Design </span>
+                <span className="category">Spiritual</span>
                 <h5 className="name">
                   <Link legacyBehavior href="/work-single">
-                    <a>Gooir</a>
+                    <a>Couples Retreat</a>
                   </Link>
                 </h5>
                 <div className="text">
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore.
+                    A transformative couples retreat in February 2026. Strengthen your relationship 
+                    through guided sessions and spiritual practices.
                   </p>
                 </div>
                 <Link legacyBehavior href="/work-single">
-                  <a className="lnk">See project</a>
+                  <a className="lnk">Learn More</a>
                 </Link>
               </div>
               <div
@@ -170,7 +170,7 @@ const PortfolioIsotope = ({ noViewMore }) => {
               />
             </div>
           </div>
-          <div className="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-development sorting-ui-ux-design ">
+          <div className="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-education">
             <div
               className="works-item scrolla-element-anim-1 scroll-animate"
               data-animate="active"
@@ -182,7 +182,7 @@ const PortfolioIsotope = ({ noViewMore }) => {
                       <img
                         decoding="async"
                         src="assets/images/work7.jpg"
-                        alt="Explore"
+                        alt="Team Session: Build Your Identity"
                       />
                       <span className="overlay" />
                     </a>
@@ -190,20 +190,20 @@ const PortfolioIsotope = ({ noViewMore }) => {
                 </div>
               </div>
               <div className="desc">
-                <span className="category"> Development, UI UX Design </span>
+                <span className="category">Education</span>
                 <h5 className="name">
                   <Link legacyBehavior href="/work-single">
-                    <a>Explore</a>
+                    <a>Team Session: Build Your Identity</a>
                   </Link>
                 </h5>
                 <div className="text">
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore.
+                    Join our team session in April 2026 focused on building and strengthening 
+                    your personal and professional identity.
                   </p>
                 </div>
                 <Link legacyBehavior href="/work-single">
-                  <a className="lnk">See project</a>
+                  <a className="lnk">Learn More</a>
                 </Link>
               </div>
               <div
@@ -214,7 +214,7 @@ const PortfolioIsotope = ({ noViewMore }) => {
               />
             </div>
           </div>
-          <div className="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-branding sorting-photo ">
+          <div className="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-community">
             <div
               className="works-item scrolla-element-anim-1 scroll-animate"
               data-animate="active"
@@ -226,7 +226,7 @@ const PortfolioIsotope = ({ noViewMore }) => {
                       <img
                         decoding="async"
                         src="assets/images/work1.jpeg"
-                        alt="Mozar"
+                        alt="Community Social"
                       />
                       <span className="overlay" />
                     </a>
@@ -234,20 +234,20 @@ const PortfolioIsotope = ({ noViewMore }) => {
                 </div>
               </div>
               <div className="desc">
-                <span className="category"> Branding, Photography </span>
+                <span className="category">Community</span>
                 <h5 className="name">
                   <Link legacyBehavior href="/work-single">
-                    <a>Mozar</a>
+                    <a>Community Social</a>
                   </Link>
                 </h5>
                 <div className="text">
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore.
+                    A special community social event in December 2025 for the Foundation. 
+                    Connect, network, and celebrate with fellow community members.
                   </p>
                 </div>
                 <Link legacyBehavior href="/work-single">
-                  <a className="lnk">See project</a>
+                  <a className="lnk">Learn More</a>
                 </Link>
               </div>
               <div
@@ -258,7 +258,7 @@ const PortfolioIsotope = ({ noViewMore }) => {
               />
             </div>
           </div>
-          <div className="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-development sorting-ui-ux-design ">
+          <div className="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-publication">
             <div
               className="works-item scrolla-element-anim-1 scroll-animate"
               data-animate="active"
@@ -270,7 +270,7 @@ const PortfolioIsotope = ({ noViewMore }) => {
                       <img
                         decoding="async"
                         src="assets/images/single8.jpg"
-                        alt="Stay Fit"
+                        alt="Book Launch"
                       />
                       <span className="overlay" />
                     </a>
@@ -278,64 +278,20 @@ const PortfolioIsotope = ({ noViewMore }) => {
                 </div>
               </div>
               <div className="desc">
-                <span className="category"> Development, UI UX Design </span>
+                <span className="category">Publication</span>
                 <h5 className="name">
                   <Link legacyBehavior href="/work-single">
-                    <a>Stay Fit</a>
+                    <a>Book Launch</a>
                   </Link>
                 </h5>
                 <div className="text">
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore.
+                    Join us for an exciting book launch event in October 2025. 
+                    Celebrate the release of new literary work with the author and community.
                   </p>
                 </div>
                 <Link legacyBehavior href="/work-single">
-                  <a className="lnk">See project</a>
-                </Link>
-              </div>
-              <div
-                className="bg-img"
-                style={{
-                  backgroundImage: "url(assets/images/pat-2.png)",
-                }}
-              />
-            </div>
-          </div>
-          <div className="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-development sorting-photo ">
-            <div
-              className="works-item scrolla-element-anim-1 scroll-animate"
-              data-animate="active"
-            >
-              <div className="image">
-                <div className="img">
-                  <Link legacyBehavior href="/work-single">
-                    <a>
-                      <img
-                        decoding="async"
-                        src="assets/images/single6.jpg"
-                        alt="Kana"
-                      />
-                      <span className="overlay" />
-                    </a>
-                  </Link>
-                </div>
-              </div>
-              <div className="desc">
-                <span className="category"> Development, Photography </span>
-                <h5 className="name">
-                  <Link legacyBehavior href="/work-single">
-                    <a>Kana</a>
-                  </Link>
-                </h5>
-                <div className="text">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore.
-                  </p>
-                </div>
-                <Link legacyBehavior href="/work-single">
-                  <a className="lnk">See project</a>
+                  <a className="lnk">Learn More</a>
                 </Link>
               </div>
               <div
@@ -354,7 +310,7 @@ const PortfolioIsotope = ({ noViewMore }) => {
                 className="btn scrolla-element-anim-1 scroll-animate"
                 data-animate="active"
               >
-                <span>View More</span>
+                <span>View More Events</span>
               </a>
             </Link>
           </div>

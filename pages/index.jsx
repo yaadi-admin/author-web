@@ -137,6 +137,165 @@ const Index = () => {
           </div>
         </div>
       </section>
+      {/* Section - Foundation */}
+      <section
+        className="lui-section lui-gradient-center"
+        id="foundation-section"
+      >
+        {/* Heading */}
+        <div className="lui-heading">
+          <div className="container">
+            <div className="m-titles align-center">
+              <h2
+                className="m-title splitting-text-anim-1 scroll-animate"
+                data-splitting="words"
+                data-animate="active"
+              >
+                <span> SueLyn Empowered Living Foundation </span>
+              </h2>
+              <div
+                className="m-subtitle splitting-text-anim-1 scroll-animate"
+                data-splitting="words"
+                data-animate="active"
+              >
+                <span>
+                  {" "}
+                  Planting Seeds of Hope, <b>One Dream at a Time</b>{" "}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Foundation Content */}
+        <div className="v-line v-line-left">
+          <div className="container">
+            <div className="section hero-started" style={{ display: 'flex', alignItems: 'center', gap: '60px' }}>
+              <div
+                className="slide scrolla-element-anim-1 scroll-animate"
+                data-animate="active"
+                style={{ 
+                  position: 'relative', 
+                  left: '0', 
+                  right: 'auto', 
+                  marginTop: '0',
+                  width: '400px',
+                  height: '500px',
+                  flexShrink: 0
+                }}
+              >
+                <img
+                  decoding="async"
+                  src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/dfee8cfc-38ba-4989-a2dc-4db6237f6343_removalai_preview.png?alt=media&token=2595d0d3-fc66-481d-9840-2e9a49090e57"
+                  alt="SueLyn Empowered Living Foundation"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '200px' }}
+                />
+                <span className="circle circle-1" style={{ display: 'none' }} />
+                <span
+                  className="circle img-1"
+                  style={{
+                    backgroundImage: "url(assets/images/pat-1.png)",
+                    display: 'none'
+                  }}
+                />
+                <span
+                  className="circle img-2"
+                  style={{
+                    backgroundImage: "url(assets/images/pat-2.png)",
+                    display: 'none'
+                  }}
+                />
+                <span
+                  className="circle img-3"
+                  style={{
+                    backgroundImage: "url(assets/images/pat-2.png)",
+                    display: 'none'
+                  }}
+                />
+                <div className="info-list" style={{ display: 'none' }}>
+                  <ul>
+                    <li>
+                      <span className="num">
+                        Hope <strong>+</strong>
+                      </span>
+                      <span className="value">
+                        Seeds of <strong>Faith</strong>
+                      </span>
+                    </li>
+                    <li>
+                      <span className="num">Dreams</span>
+                      <span className="value">
+                        One <strong>Child</strong>
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                className="content scrolla-element-anim-1 scroll-animate"
+                data-animate="active"
+                style={{ flex: 1, paddingLeft: '0' }}
+              >
+                <div className="titles">
+                  <div className="lui-subtitle">
+                    <span>
+                      {" "}
+                      A <b>Divine Calling</b>
+                    </span>
+                  </div>
+                  <div className="lui-text">
+                    <h4 style={{ 
+                      fontSize: '28px', 
+                      lineHeight: '1.4', 
+                      marginBottom: '30px',
+                      fontWeight: '600',
+                      color: '#000'
+                    }}>
+                      The SueLyn Empowered Living Foundation was born from a quiet nudge that became a divine calling.
+                    </h4>
+                  </div>
+                </div>
+                <div className="description">
+                  <div>
+                    <p>
+                      The Lord laid it on Suzanna's heart to give back, to reach the children who carry big dreams but face real financial challenges.
+                    </p>
+                    <p>
+                      With a heart anchored in faith and compassion, Suzanna launched the foundation to support hardworking, purpose-driven children who excel academically or creatively, but simply need a helping hand to move forward.
+                    </p>
+                    <p>
+                      Through scholarships, mentorship, and practical support, the Foundation exists to remind these children that their dreams are valid, their future is bright, and they are not forgotten.
+                    </p>
+                    <p>
+                      This mission goes beyond academics - it's about restoring hope, sparking purpose, and building bridges to brighter tomorrows. Whether a child dreams of becoming a doctor, a teacher, a creator, or a leader, we want to be part of the village that helps get them there.
+                    </p>
+                    <p>
+                      At SueLyn Empowered Living Foundation, we believe in sowing into the next generation and watching God do the growing.
+                    </p>
+                    <p>
+                      <strong>Together, let's give. Let's empower. Let's transform.</strong>
+                    </p>
+                  </div>
+                </div>
+                <div className="bts">
+                  <a
+                    href="#contact-section"
+                    className="btn"
+                  >
+                    <span>Get Involved</span>
+                  </a>
+                  <a href="#services-section" className="btn-lnk">
+                    {" "}
+                    Upcoming Events{" "}
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="lui-bgtitle">
+              <span> Foundation </span>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* Section - Services */}
       <section
         className="lui-section lui-gradient-bottom"

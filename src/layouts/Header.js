@@ -261,28 +261,28 @@ const Header = () => {
                         {/* social */}
                         <div className="menu-social-links">
                           <a
-                            href="http://dribbble.com"
+                            href="https://www.facebook.com/suelyn.empoweredliving"
                             target="blank"
                             className="scrolla-element-anim-1"
-                            title="dribbble"
+                            title="facebook"
                           >
-                            <i className="fab fa-dribbble" />
+                            <i className="fab fa-facebook" />
                           </a>
                           <a
-                            href="http://twitter.com"
+                            href="https://www.instagram.com/suelyn.empoweredliving/"
                             target="blank"
                             className="scrolla-element-anim-1"
-                            title="twitter"
+                            title="instagram"
                           >
-                            <i className="fab fa-twitter" />
+                            <i className="fab fa-instagram" />
                           </a>
                           <a
-                            href="http://behance.com"
+                            href="https://www.linkedin.com/in/suzanna-griffiths-761b1b260/"
                             target="blank"
                             className="scrolla-element-anim-1"
-                            title="behance"
+                            title="linkedin"
                           >
-                            <i className="fab fa-behance" />
+                            <i className="fab fa-linkedin" />
                           </a>
                         </div>
                         <div className="v-line-block">

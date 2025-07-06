@@ -46,9 +46,14 @@ const Index = () => {
                       <b>Sue</b>Lyn{" "}
                     </span>
                   </h1>
+                  <span>Planting Seeds of Hope, </span>
                   <div className="label lui-subtitle">
                     {" "}
-                    Planting Seeds of Hope, <strong>One Dream at a Time</strong>
+                    <strong>
+                      {Array.from("One Dream at a Time").map((char, index) => (
+                        <span key={index + 25}>{char}</span>
+                      ))}
+                    </strong>
                   </div>
                 </div>
                 <div className="description">
@@ -94,19 +99,22 @@ const Index = () => {
                 />
                 <span className="circle circle-1" />
                 <span
-                  className="circle img-1"
+                  className="circle img-1 scrolla-element-anim-1 scroll-animate"
+                  data-animate="active"
                   style={{
                     backgroundImage: "url(assets/images/pat-1.png)",
                   }}
                 />
                 <span
-                  className="circle img-2"
+                  className="circle img-2 scrolla-element-anim-1 scroll-animate"
+                  data-animate="active"
                   style={{
                     backgroundImage: "url(assets/images/pat-2.png)",
                   }}
                 />
                 <span
-                  className="circle img-3"
+                  className="circle img-3 scrolla-element-anim-1 scroll-animate"
+                  data-animate="active"
                   style={{
                     backgroundImage: "url(assets/images/pat-2.png)",
                   }}
@@ -139,34 +147,10 @@ const Index = () => {
       </section>
       {/* Section - Foundation */}
       <section
-        className="lui-section lui-gradient-center"
-        id="foundation-section"
+       className="lui-section lui-gradient-bottom"
+        id="services-section"
       >
-        {/* Heading */}
-        <div className="lui-heading">
-          <div className="container">
-            <div className="m-titles align-center">
-              <h2
-                className="m-title splitting-text-anim-1 scroll-animate"
-                data-splitting="words"
-                data-animate="active"
-              >
-                <span> SueLyn Empowered Living Foundation </span>
-              </h2>
-              <div
-                className="m-subtitle splitting-text-anim-1 scroll-animate"
-                data-splitting="words"
-                data-animate="active"
-              >
-                <span>
-                  {" "}
-                  Planting Seeds of Hope, <b>One Dream at a Time</b>{" "}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* Foundation Content */}
+        {/* Get To Know Me Content */}
         <div className="v-line v-line-left">
           <div className="container">
             <div className="section hero-started" style={{ display: 'flex', alignItems: 'center', gap: '60px' }}>
@@ -185,8 +169,8 @@ const Index = () => {
               >
                 <img
                   decoding="async"
-                  src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/dfee8cfc-38ba-4989-a2dc-4db6237f6343_removalai_preview.png?alt=media&token=2595d0d3-fc66-481d-9840-2e9a49090e57"
-                  alt="SueLyn Empowered Living Foundation"
+                  src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/5c3969c6-62f0-4a9c-a6dd-b6e72ea77815_removalai_preview.png?alt=media&token=84095b7d-1715-4ae9-b197-39fb4dff39ad"
+                  alt="Suzanna Griffiths"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '200px' }}
                 />
                 <span className="circle circle-1" style={{ display: 'none' }} />
@@ -215,16 +199,16 @@ const Index = () => {
                   <ul>
                     <li>
                       <span className="num">
-                        Hope <strong>+</strong>
+                        Faith <strong>+</strong>
                       </span>
                       <span className="value">
-                        Seeds of <strong>Faith</strong>
+                        Based <strong>Living</strong>
                       </span>
                     </li>
                     <li>
-                      <span className="num">Dreams</span>
+                      <span className="num">Purpose</span>
                       <span className="value">
-                        One <strong>Child</strong>
+                        Driven <strong>Life</strong>
                       </span>
                     </li>
                   </ul>
@@ -239,7 +223,7 @@ const Index = () => {
                   <div className="lui-subtitle">
                     <span>
                       {" "}
-                      A <b>Divine Calling</b>
+                      Get To Know <b>Me</b>
                     </span>
                   </div>
                   <div className="lui-text">
@@ -250,29 +234,26 @@ const Index = () => {
                       fontWeight: '600',
                       color: '#000'
                     }}>
-                      The SueLyn Empowered Living Foundation was born from a quiet nudge that became a divine calling.
+                      Suzanna Griffiths is the heart behind SueLyn Empowered Living - a faith-based space where healing, purpose, and identity come alive.
                     </h4>
                   </div>
                 </div>
                 <div className="description">
                   <div>
                     <p>
-                      The Lord laid it on Suzanna's heart to give back, to reach the children who carry big dreams but face real financial challenges.
+                      As a personal development facilitator with a passion for helping people discover their God-given worth, Suzanna walks alongside others with compassion, truth, and unshakable hope.
                     </p>
                     <p>
-                      With a heart anchored in faith and compassion, Suzanna launched the foundation to support hardworking, purpose-driven children who excel academically or creatively, but simply need a helping hand to move forward.
+                      Though she grew up in church and always sensed God's presence, Suzanna kept Him at a distance, disheartened by the masks she saw religion sometimes wear. But when life brought her to a breaking point, she met Jesus in the most real and redeeming way. That moment of raw encounter didn't just change her - it launched her mission.
                     </p>
                     <p>
-                      Through scholarships, mentorship, and practical support, the Foundation exists to remind these children that their dreams are valid, their future is bright, and they are not forgotten.
+                      With a strong foundation in psychology, sociology, and human sexuality, Suzanna brings a unique, holistic perspective to her work. She empowers people to break free from shame, embrace their story, and step boldly into who they were created to be.
                     </p>
                     <p>
-                      This mission goes beyond academics - it's about restoring hope, sparking purpose, and building bridges to brighter tomorrows. Whether a child dreams of becoming a doctor, a teacher, a creator, or a leader, we want to be part of the village that helps get them there.
+                      Known for her authenticity, infectious joy, and deep faith, Suzanna is also a loving wife and proud mom of two. Her family life fuels her message of grace, restoration, and unshakable purpose.
                     </p>
                     <p>
-                      At SueLyn Empowered Living Foundation, we believe in sowing into the next generation and watching God do the growing.
-                    </p>
-                    <p>
-                      <strong>Together, let's give. Let's empower. Let's transform.</strong>
+                      At SueLyn Empowered Living, Suzanna isn't just offering tools - she's offering transformation. And she's here to remind you: You are seen, you are loved, and your life has purpose.
                     </p>
                   </div>
                 </div>
@@ -281,9 +262,9 @@ const Index = () => {
                     href="#contact-section"
                     className="btn"
                   >
-                    <span>Get Involved</span>
+                    <span>Connect With Me</span>
                   </a>
-                  <a href="#services-section" className="btn-lnk">
+                  <a href="#events-section" className="btn-lnk">
                     {" "}
                     Upcoming Events{" "}
                   </a>
@@ -291,15 +272,15 @@ const Index = () => {
               </div>
             </div>
             <div className="lui-bgtitle">
-              <span> Foundation </span>
+              <span> About Me </span>
             </div>
           </div>
         </div>
       </section>
       {/* Section - Services */}
       <section
-        className="lui-section lui-gradient-bottom"
-        id="services-section"
+        className="lui-section lui-gradient-center"
+        id="events-section"
       >
         {/* Heading */}
         <div className="lui-heading">

@@ -9,14 +9,14 @@ const Footer = () => {
                 className="social-links scrolla-element-anim-1 scroll-animate"
                 data-animate="active"
               >
-                <a target="_blank" rel="nofollow" href="http://twitter.com">
-                  <i aria-hidden="true" className="fab fa-twitter" />
+                <a target="_blank" rel="nofollow" href="https://www.facebook.com/suelyn.empoweredliving">
+                  <i aria-hidden="true" className="fab fa-facebook" />
                 </a>
-                <a target="_blank" rel="nofollow" href="http://dribble.com">
-                  <i aria-hidden="true" className="fab fa-dribbble" />
+                <a target="_blank" rel="nofollow" href="https://www.instagram.com/suelyn.empoweredliving/">
+                  <i aria-hidden="true" className="fab fa-instagram" />
                 </a>
-                <a target="_blank" rel="nofollow" href="http://behance.com">
-                  <i aria-hidden="true" className="fab fa-behance" />
+                <a target="_blank" rel="nofollow" href="https://www.linkedin.com/in/suzanna-griffiths-761b1b260/">
+                  <i aria-hidden="true" className="fab fa-linkedin" />
                 </a>
               </div>
             </div>
@@ -25,7 +25,7 @@ const Footer = () => {
                 className="copyright-text align-center scrolla-element-anim-1 scroll-animate"
                 data-animate="active"
               >
-                © 2025 <strong>Zoe Miller</strong>. All rights reserved
+                © 2025 <strong>SueLyn Empowered Living</strong>. All rights reserved
               </div>
             </div>
             <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">

@@ -29,7 +29,7 @@ const Header = () => {
                     <img
                       width={300}
                       height={300}
-                      src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/9994191c-66e4-4c9c-b0d1-235767bd9128_removalai_preview.png?alt=media&token=20dc1fc6-d5f4-4421-8029-6e1227f690b6"
+                      src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/3c877fbd-971a-4422-9d02-a097794a259c_removalai_preview.png?alt=media&token=05bec32b-754b-4a56-821b-08fa788359c1"
                       alt=""
                     />
                   </a>
@@ -107,10 +107,10 @@ const Header = () => {
                               <a
                                 className="splitting-text-anim-2"
                                 data-splitting="chars"
-                                href="/#services-section"
+                                href="/foundation"
                                 onClick={() => linkClick()}
                               >
-                                My Books
+                                Foundation
                               </a>
                             </li>
                             {/* <li className="menu-item">
@@ -127,20 +127,20 @@ const Header = () => {
                               <a
                                 className="splitting-text-anim-2"
                                 data-splitting="chars"
-                                href="/#works-section"
+                                href="/#events-section"
                                 onClick={() => linkClick()}
                               >
-                                Publications
+                                Events
                               </a>
                             </li>
                             <li className="menu-item">
                               <a
                                 className="splitting-text-anim-2"
                                 data-splitting="chars"
-                                href="/#resume-section"
+                                href="/#services-section"
                                 onClick={() => linkClick()}
                               >
-                                My Story
+                                Get To Know Me
                               </a>
                             </li>
                             <li className="menu-item">

@@ -19,7 +19,7 @@ const Works = () => {
               data-splitting="words"
               data-animate="active"
             >
-              <span> Portfolio </span>
+              <span> Upcoming Events </span>
             </h1>
             <div
               className="m-subtitle splitting-text-anim-1 scroll-animate"
@@ -28,7 +28,7 @@ const Works = () => {
             >
               <span>
                 {" "}
-                my <b>Cases</b>
+                by <b>SueLyn</b>
               </span>
             </div>
           </div>
@@ -41,7 +41,7 @@ const Works = () => {
           <div className="container">
             <PortfolioIsotope noViewMore />
             <div className="lui-bgtitle">
-              <span> Portfolio </span>
+              <span> Events </span>
             </div>
           </div>
         </div>

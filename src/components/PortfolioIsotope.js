@@ -84,6 +84,9 @@ const PortfolioIsotope = ({ noViewMore }) => {
         <div className="works-items works-masonry-items row">
           <div className="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-spiritual">
             <div
+              style={{
+                backgroundColor: "#741C82",
+              }}
               className="works-item scrolla-element-anim-1 scroll-animate"
               data-animate="active"
             >
@@ -102,20 +105,20 @@ const PortfolioIsotope = ({ noViewMore }) => {
                 </div>
               </div>
               <div className="desc">
-                <span className="category">Spiritual</span>
+                <span className="category" style={{color: "#fff"}}>Spiritual</span>
                 <h5 className="name">
                   <Link legacyBehavior href="/work-single">
-                    <a>Prayer Board</a>
+                    <a style={{color: "#fff"}}>Prayer Board</a>
                   </Link>
                 </h5>
                 <div className="text">
-                  <p>
+                  <p style={{color: "#fff"}}>
                     Join us for a special prayer session in December 2025. A time for reflection, 
                     community prayer, and spiritual connection.
                   </p>
                 </div>
                 <Link legacyBehavior href="/work-single">
-                  <a className="lnk">Learn More</a>
+                  <a className="lnk" style={{color: "#fff"}}>Learn More</a>
                 </Link>
               </div>
               <div
@@ -128,6 +131,9 @@ const PortfolioIsotope = ({ noViewMore }) => {
           </div>
           <div className="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-spiritual">
             <div
+              style={{
+                backgroundColor: "#741C82",
+              }}
               className="works-item scrolla-element-anim-1 scroll-animate"
               data-animate="active"
             >
@@ -146,20 +152,20 @@ const PortfolioIsotope = ({ noViewMore }) => {
                 </div>
               </div>
               <div className="desc">
-                <span className="category">Spiritual</span>
+                <span className="category" style={{color: "#fff"}}>Spiritual</span>
                 <h5 className="name">
                   <Link legacyBehavior href="/work-single">
-                    <a>Couples Retreat</a>
+                    <a style={{color: "#fff"}}>Couples Retreat</a>
                   </Link>
                 </h5>
                 <div className="text">
-                  <p>
+                  <p style={{color: "#fff"}}>
                     A transformative couples retreat in February 2026. Strengthen your relationship 
                     through guided sessions and spiritual practices.
                   </p>
                 </div>
                 <Link legacyBehavior href="/work-single">
-                  <a className="lnk">Learn More</a>
+                  <a className="lnk" style={{color: "#fff"}}>Learn More</a>
                 </Link>
               </div>
               <div
@@ -172,6 +178,9 @@ const PortfolioIsotope = ({ noViewMore }) => {
           </div>
           <div className="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-education">
             <div
+              style={{
+                backgroundColor: "#741C82",
+              }}
               className="works-item scrolla-element-anim-1 scroll-animate"
               data-animate="active"
             >
@@ -190,20 +199,20 @@ const PortfolioIsotope = ({ noViewMore }) => {
                 </div>
               </div>
               <div className="desc">
-                <span className="category">Education</span>
+                <span className="category" style={{color: "#fff"}}>Education</span>
                 <h5 className="name">
                   <Link legacyBehavior href="/work-single">
-                    <a>Team Session: Build Your Identity</a>
+                    <a style={{color: "#fff"}}>Team Session: Build Your Identity</a>
                   </Link>
                 </h5>
                 <div className="text">
-                  <p>
+                  <p style={{color: "#fff"}}>
                     Join our team session in April 2026 focused on building and strengthening 
                     your personal and professional identity.
                   </p>
                 </div>
                 <Link legacyBehavior href="/work-single">
-                  <a className="lnk">Learn More</a>
+                  <a className="lnk" style={{color: "#fff"}}>Learn More</a>
                 </Link>
               </div>
               <div
@@ -216,6 +225,9 @@ const PortfolioIsotope = ({ noViewMore }) => {
           </div>
           <div className="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-community">
             <div
+              style={{
+                backgroundColor: "#741C82",
+              }}
               className="works-item scrolla-element-anim-1 scroll-animate"
               data-animate="active"
             >
@@ -234,20 +246,20 @@ const PortfolioIsotope = ({ noViewMore }) => {
                 </div>
               </div>
               <div className="desc">
-                <span className="category">Community</span>
+                <span className="category" style={{color: "#fff"}}>Community</span>
                 <h5 className="name">
                   <Link legacyBehavior href="/work-single">
-                    <a>Community Social</a>
+                    <a style={{color: "#fff"}}>Community Social</a>
                   </Link>
                 </h5>
                 <div className="text">
-                  <p>
+                  <p style={{color: "#fff"}}>
                     A special community social event in December 2025 for the Foundation. 
                     Connect, network, and celebrate with fellow community members.
                   </p>
                 </div>
                 <Link legacyBehavior href="/work-single">
-                  <a className="lnk">Learn More</a>
+                  <a className="lnk" style={{color: "#fff"}}>Learn More</a>
                 </Link>
               </div>
               <div
@@ -260,6 +272,9 @@ const PortfolioIsotope = ({ noViewMore }) => {
           </div>
           <div className="works-col col-xs-12 col-sm-12 col-md-12 col-lg-12 sorting-publication">
             <div
+            style={{
+              backgroundColor: "#741C82",
+            }}
               className="works-item scrolla-element-anim-1 scroll-animate"
               data-animate="active"
             >
@@ -278,20 +293,20 @@ const PortfolioIsotope = ({ noViewMore }) => {
                 </div>
               </div>
               <div className="desc">
-                <span className="category">Publication</span>
+                <span className="category" style={{color: "#fff"}}>Publication</span>
                 <h5 className="name">
                   <Link legacyBehavior href="/work-single">
-                    <a>Book Launch</a>
+                    <a style={{color: "#fff"}}>Book Launch</a>
                   </Link>
                 </h5>
                 <div className="text">
-                  <p>
+                  <p style={{color: "#fff"}}>
                     Join us for an exciting book launch event in October 2025. 
                     Celebrate the release of new literary work with the author and community.
                   </p>
                 </div>
                 <Link legacyBehavior href="/work-single">
-                  <a className="lnk">Learn More</a>
+                  <a className="lnk" style={{color: "#fff"}}>Learn More</a>
                 </Link>
               </div>
               <div

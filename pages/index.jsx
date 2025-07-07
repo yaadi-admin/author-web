@@ -34,7 +34,7 @@ const Index = () => {
                   <div className="lui-subtitle">
                     <span>
                       {" "}
-                      Hello, <b>my name is</b>
+                      Hey, <b>I'm</b>
                     </span>
                   </div>
                   <h1
@@ -43,7 +43,7 @@ const Index = () => {
                     data-animate="active"
                   >
                     <span>
-                      <b>Sue</b>Lyn{" "}
+                      <b>Suz</b>anna{" "}
                     </span>
                   </h1>
                   <span>Planting Seeds of Hope, </span>
@@ -298,10 +298,10 @@ const Index = () => {
                 data-splitting="words"
                 data-animate="active"
               >
-                <span>
+                {/* <span>
                   {" "}
                   by <b>SueLyn</b>{" "}
-                </span>
+                </span> */}
               </div>
             </div>
           </div>
@@ -355,7 +355,9 @@ const Index = () => {
               data-animate="active"
             >
               <SwiperSlide className="swiper-slide">
-                <div className="testimonials-item">
+                <div style={{
+                backgroundColor: "#F84988",
+              }} className="testimonials-item">
                   <div className="image">
                     <img
                       decoding="async"
@@ -381,7 +383,7 @@ const Index = () => {
                   </div>
                   <div className="text lui-text">
                     <div>
-                      <p>
+                      <p style={{color: "#fff"}}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore
                         magna aliqua.
@@ -390,10 +392,10 @@ const Index = () => {
                   </div>
                   <div className="info">
                     <h6 className="name">
-                      <span>Barbara Wilson</span>
+                      <span style={{color: "#fff"}}>Barbara Wilson</span>
                     </h6>
                     <div className="author">
-                      <span>CEO Company</span>
+                      <span style={{color: "#fff"}}>CEO Company</span>
                     </div>
                   </div>
                   <div
@@ -405,7 +407,9 @@ const Index = () => {
                 </div>
               </SwiperSlide>
               <SwiperSlide className="swiper-slide">
-                <div className="testimonials-item">
+                <div style={{
+                backgroundColor: "#F84988",
+              }} className="testimonials-item">
                   <div className="image">
                     <img
                       decoding="async"
@@ -431,7 +435,7 @@ const Index = () => {
                   </div>
                   <div className="text lui-text">
                     <div>
-                      <p>
+                      <p style={{color: "#fff"}}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore
                         magna aliqua.
@@ -440,10 +444,10 @@ const Index = () => {
                   </div>
                   <div className="info">
                     <h6 className="name">
-                      <span>Charlie Smith</span>
+                      <span style={{color: "#fff"}}>Charlie Smith</span>
                     </h6>
                     <div className="author">
-                      <span>Designer</span>
+                      <span style={{color: "#fff"}}>Designer</span>
                     </div>
                   </div>
                   <div
@@ -455,7 +459,9 @@ const Index = () => {
                 </div>
               </SwiperSlide>
               <SwiperSlide className="swiper-slide">
-                <div className="testimonials-item">
+                <div style={{
+                backgroundColor: "#F84988",
+              }} className="testimonials-item">
                   <div className="image">
                     <img
                       decoding="async"
@@ -481,7 +487,7 @@ const Index = () => {
                   </div>
                   <div className="text lui-text">
                     <div>
-                      <p>
+                      <p style={{color: "#fff"}}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore
                         magna aliqua.
@@ -490,10 +496,10 @@ const Index = () => {
                   </div>
                   <div className="info">
                     <h6 className="name">
-                      <span>Roy Wang</span>
+                      <span style={{color: "#fff"}}>Roy Wang</span>
                     </h6>
                     <div className="author">
-                      <span>Manager GYM</span>
+                      <span style={{color: "#fff"}}>Manager GYM</span>
                     </div>
                   </div>
                   <div
@@ -505,7 +511,9 @@ const Index = () => {
                 </div>
               </SwiperSlide>
               <SwiperSlide className="swiper-slide">
-                <div className="testimonials-item">
+                <div style={{
+                backgroundColor: "#F84988",
+              }} className="testimonials-item">
                   <div className="image">
                     <img
                       decoding="async"
@@ -531,7 +539,7 @@ const Index = () => {
                   </div>
                   <div className="text lui-text">
                     <div>
-                      <p>
+                      <p style={{color: "#fff"}}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore
                         magna aliqua.
@@ -540,10 +548,10 @@ const Index = () => {
                   </div>
                   <div className="info">
                     <h6 className="name">
-                      <span>Jennifer Smith</span>
+                      <span style={{color: "#fff"}}>Jennifer Smith</span>
                     </h6>
                     <div className="author">
-                      <span>CEO &amp; Founder</span>
+                      <span style={{color: "#fff"}}>CEO &amp; Founder</span>
                     </div>
                   </div>
                   <div
@@ -555,7 +563,9 @@ const Index = () => {
                 </div>
               </SwiperSlide>
               <SwiperSlide className="swiper-slide">
-                <div className="testimonials-item">
+                <div style={{
+                backgroundColor: "#F84988",
+              }} className="testimonials-item">
                   <div className="image">
                     <img
                       decoding="async"
@@ -581,7 +591,7 @@ const Index = () => {
                   </div>
                   <div className="text lui-text">
                     <div>
-                      <p>
+                      <p style={{color: "#fff"}}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore
                         magna aliqua.
@@ -590,10 +600,10 @@ const Index = () => {
                   </div>
                   <div className="info">
                     <h6 className="name">
-                      <span>Paul Freeman</span>
+                      <span style={{color: "#fff"}}>Paul Freeman</span>
                     </h6>
                     <div className="author">
-                      <span>Photographer</span>
+                      <span style={{color: "#fff"}}>Photographer</span>
                     </div>
                   </div>
                   <div
@@ -855,6 +865,9 @@ const Index = () => {
             <div className="blog-items row">
               <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div
+                style={{
+                  backgroundColor: "#741C82",
+                }}
                   className="archive-item scrolla-element-anim-1 scroll-animate"
                   data-animate="active"
                 >
@@ -871,22 +884,22 @@ const Index = () => {
                   </div>
                   <div className="desc">
                     <div className="category lui-subtitle">
-                      <span>October 31, 2022</span>
+                      <span style={{color: "#fff"}}>October 31, 2022</span>
                     </div>
                     <h5 className="lui-title">
                       <Link legacyBehavior href="/blog-single">
-                        <a>The Main Thing For The Designer</a>
+                        <a style={{color: "#fff"}}>The Main Thing For The Designer</a>
                       </Link>
                     </h5>
                     <div className="lui-text">
-                      <p>
+                      <p style={{color: "#fff"}}>
                         Vivamus interdum suscipit lacus. Nunc ultrices accumsan
                         mattis. Aliquam vel sem vel velit efficitur malesuada.
                         Donec arcu lacus, ornare eget…{" "}
                       </p>
                       <div className="readmore">
                         <Link legacyBehavior href="/blog-single">
-                          <a className="lnk">Read more</a>
+                          <a className="lnk" style={{color: "#fff"}}>Read more</a>
                         </Link>
                       </div>
                     </div>
@@ -895,6 +908,9 @@ const Index = () => {
               </div>
               <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div
+                style={{
+                  backgroundColor: "#741C82",
+                }}
                   className="archive-item scrolla-element-anim-1 scroll-animate"
                   data-animate="active"
                 >
@@ -911,22 +927,22 @@ const Index = () => {
                   </div>
                   <div className="desc">
                     <div className="category lui-subtitle">
-                      <span>October 31, 2022</span>
+                      <span style={{color: "#fff"}}>October 31, 2022</span>
                     </div>
                     <h5 className="lui-title">
                       <Link legacyBehavior href="/blog-single">
-                        <a>Follow Your Own Design Process</a>
+                        <a style={{color: "#fff"}}>Follow Your Own Design Process</a>
                       </Link>
                     </h5>
                     <div className="lui-text">
-                      <p>
+                      <p style={{color: "#fff"}}>
                         Vivamus interdum suscipit lacus. Nunc ultrices accumsan
                         mattis. Aliquam vel sem vel velit efficitur malesuada.
                         Donec arcu lacus, ornare eget…{" "}
                       </p>
                       <div className="readmore">
                         <Link legacyBehavior href="/blog-single">
-                          <a className="lnk">Read more</a>
+                          <a className="lnk" style={{color: "#fff"}}>Read more</a>
                         </Link>
                       </div>
                     </div>
@@ -935,6 +951,9 @@ const Index = () => {
               </div>
               <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div
+                style={{
+                  backgroundColor: "#741C82",
+                }}
                   className="archive-item scrolla-element-anim-1 scroll-animate"
                   data-animate="active"
                 >
@@ -951,22 +970,22 @@ const Index = () => {
                   </div>
                   <div className="desc">
                     <div className="category lui-subtitle">
-                      <span>November 28, 2021</span>
+                      <span style={{color: "#fff"}}>November 28, 2021</span>
                     </div>
                     <h5 className="lui-title">
                       <Link legacyBehavior href="/blog-single">
-                        <a>Usability Secrets to Create Better Interfaces</a>
+                        <a style={{color: "#fff"}}>Usability Secrets to Create Better Interfaces</a>
                       </Link>
                     </h5>
                     <div className="lui-text">
-                      <p>
+                      <p style={{color: "#fff"}}>
                         Vivamus interdum suscipit lacus. Nunc ultrices accumsan
                         mattis. Aliquam vel sem vel velit efficitur malesuada.
                         Donec arcu lacus, ornare eget…{" "}
                       </p>
                       <div className="readmore">
                         <Link legacyBehavior href="/blog-single">
-                          <a className="lnk">Read more</a>
+                          <a className="lnk" style={{color: "#fff"}}>Read more</a>
                         </Link>
                       </div>
                     </div>

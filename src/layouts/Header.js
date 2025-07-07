@@ -29,7 +29,7 @@ const Header = () => {
                     <img
                       width={300}
                       height={300}
-                      src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/3c877fbd-971a-4422-9d02-a097794a259c_removalai_preview.png?alt=media&token=05bec32b-754b-4a56-821b-08fa788359c1"
+                      src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/c1c37cae-76b6-4394-b816-154828b2ca30_removalai_preview.png?alt=media&token=e49e3d07-bdf1-47e1-82c9-ce02e75bb4f3"
                       alt=""
                     />
                   </a>

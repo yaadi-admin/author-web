@@ -81,7 +81,7 @@ body {
 }
 
 body {
-	background-color: #F0EBE3;
+	background-color: #FFE4EE;
 }
 
 body.no-scroll {
@@ -2273,17 +2273,17 @@ hr {
 
 .lui-gradient-top {
 	background-color: transparent;
-	background-image: linear-gradient(0deg, #FFFFFF 0%, #F0EBE3 100%);
+	background-image: linear-gradient(0deg, #FFFFFF 0%, #FFE4EE 100%);
 }
 
 .lui-gradient-bottom {
 	background-color: transparent;
-	background-image: linear-gradient(180deg, #FFFFFF 0%, #F0EBE3 100%);
+	background-image: linear-gradient(180deg, #FFFFFF 0%, #FFE4EE 100%);
 }
 
 .lui-gradient-center {
 	background-color: transparent;
-	background-image: linear-gradient(180deg, #F0EBE3 0%, #F0EBE3 100%);
+	background-image: linear-gradient(180deg, #FFE4EE 0%, #FFE4EE 100%);
 }
 
 /**
@@ -2292,7 +2292,7 @@ hr {
 
 .section.section-inner {
 	padding: 0;
-	background: #F0EBE3;
+	background: #FFE4EE;
 }
 
 .portfolio-template .section.section-inner {
@@ -2312,7 +2312,7 @@ hr {
 .section.section-inner.started-heading {
 	padding-top: 220px;
 	padding-bottom: 120px;
-	background: linear-gradient(180deg, #FFFFFF 0%, #F0EBE3 100%);
+	background: linear-gradient(180deg, #FFFFFF 0%, #FFE4EE 100%);
 	z-index: 3;
 }
 
@@ -2927,7 +2927,7 @@ hr {
 
 .history-item .name.active:after {
 	content: '-';
-	background: #f0ebe3;
+	background: #FFE4EE;
 }
 
 .history-item .subname {
@@ -3122,7 +3122,7 @@ hr {
 	top: -10px;
 	width: 10px;
 	height: calc(100% + 20px);
-	background: #F0EBE3;
+	background: #FFE4EE;
 	z-index: 2;
 	pointer-events: none;
 	transition: all 0.6s cubic-bezier(0.3, 0, 0.3, 1);
@@ -3158,7 +3158,7 @@ hr {
 	top: -10px;
 	width: calc(100% + 20px);
 	height: 10px;
-	background: #F0EBE3;
+	background: #FFE4EE;
 	z-index: 2;
 	pointer-events: none;
 	transition: all 0.6s cubic-bezier(0.3, 0, 0.3, 1);

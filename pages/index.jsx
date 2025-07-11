@@ -55,7 +55,7 @@ const Index = () => {
                   <div className="lui-subtitle">
                     <span>
                       {" "}
-                      Hey, <b>I'm</b>
+                      Hey, I'm <b>Suz</b>anna{" "}
                     </span>
                   </div>
                   <h1
@@ -64,7 +64,7 @@ const Index = () => {
                     data-animate="active"
                   >
                     <span>
-                      <b>Suz</b>anna{" "}
+                      <b>Faith. Healing. </b>Identity. Purpose.{" "}
                     </span>
                   </h1>
                   <span>Planting Seeds of Hope, </span>

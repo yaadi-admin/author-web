@@ -202,19 +202,6 @@ export default function OtherPagesLayout({
       <main className="pt-20 md:pt-24 lg:pt-28 mx-[1%]"> {/* Added margin on both sides */}
         {children}
       </main>
-
-      {/* Scroll to top button - enhanced */}
-      {showScrollTopButton && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 bg-black text-black p-3 rounded-full 
-            hover:bg-black/90 transition-all duration-300 z-40 hover:scale-110 focus:outline-none 
-            focus:ring-2 focus:ring-black focus:ring-offset-2"
-          aria-label="Scroll to top"
-        >
-          <FaCircleArrowUp className="w-6 h-6" />
-        </button>
-      )}
     </>
   );
 }

@@ -1,100 +1,60 @@
 "use client";
-import React, { useEffect, useState, useRef, Suspense } from 'react';
-import { motion, Variants } from 'framer-motion';
-import ScrollProgressBar from './ScrollProgressBar';
-// import { HeroData } from './hero';
-// import Hero from './hero';
+import React, { Suspense } from 'react';
+import { motion } from 'framer-motion';
 import FooterWelcome from './footer';
-import { HeroOneMobile } from './hero-sections/mobile-section';
 import { HeroBanner } from './hero-sections/HeroBanner';
 import { HeroPanel } from './hero-sections/HeroPanel';
 import { HeroTwo } from './hero-sections/HeroTwo';
 import { HeroExperience } from './hero-sections/HeroExperience';
 import { HeroBooks } from './hero-sections/HeroBooks';
+import { HeroYoutube } from './hero-sections/HeroYoutube';
+import { HeroTestimonial } from './hero-sections/HeroTestimonial';
+import { HeroBlog } from './hero-sections/HeroBlog';
+import { HeroNewsletter } from './hero-sections/HeroNewsletter';
 
-// Desktop slide variants
-const slideInFromLeft: Variants = {
-  hidden: { x: -100, opacity: 0 },
-  visible: { x: 0, opacity: 1 },
-  exit: { x: 100, opacity: 0 },
-};
-const slideInFromRight: Variants = {
-  hidden: { x: 100, opacity: 0 },
-  visible: { x: 0, opacity: 1 },
-  exit: { x: -100, opacity: 0 },
-};
-const variants: { [key: string]: Variants } = {
-  slideInFromLeft,
-  slideInFromRight,
-};
-
-// Mobile vertical variants
-const mobileVariants: Variants = {
-  hidden: { y: 50, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
+// Simple fade-in animation
+const fadeInVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
 };
 
 export default function WelcomePage() {
-  const [isMobile, setIsMobile] = useState(false);
-  const [animationType, setAnimationType] = useState('slideInFromLeft');
-
-  useEffect(() => {
-    const checkMobile = () => {
-      if (typeof window !== 'undefined') {
-        const mobile = window.innerWidth < 768;
-        setIsMobile(mobile);
-        setAnimationType(window.innerWidth >= 1024 ? 'slideInFromLeft' : 'fadeUp');
-      }
-    };
-    checkMobile();
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', checkMobile);
-    }
-    return () => {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('resize', checkMobile);
-      }
-    };
-  }, []);
-
   return (
     <Suspense>
       <div className="w-full">
-        {/* <ScrollProgressBar /> */}
-
         {/* Header Banner Section */}
         <section className="hero-section">
           <motion.div
             initial="hidden"
             animate="visible"
-            variants={mobileVariants}
-            transition={{ duration: 0.5 }}
+            variants={fadeInVariants}
+            transition={{ duration: 0.6 }}
             className="relative"
           >
             <HeroBanner active={true} />
           </motion.div>
         </section>
 
-        {/* Top Hero Section */}
+        {/* Hero Panel Section */}
         <section className="hero-section">
           <motion.div
             initial="hidden"
             animate="visible"
-            variants={mobileVariants}
-            transition={{ duration: 0.5 }}
+            variants={fadeInVariants}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="relative"
           >
-          <HeroPanel active={true} />
+            <HeroPanel active={true} />
           </motion.div>
         </section>
 
-        {/* Products Section */}
+        {/* Services Section */}
         <section className="hero-section">
           <motion.div
             initial="hidden"
             animate="visible"
-            variants={mobileVariants}
-            transition={{ duration: 0.5 }}
+            variants={fadeInVariants}
+            transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
             <HeroTwo active={true} />
@@ -106,24 +66,76 @@ export default function WelcomePage() {
           <motion.div
             initial="hidden"
             animate="visible"
-            variants={mobileVariants}
-            transition={{ duration: 0.5 }}
+            variants={fadeInVariants}
+            transition={{ duration: 0.6, delay: 0.3 }}
             className="relative"
           >
             <HeroExperience active={true} />
           </motion.div>
         </section>
 
-        {/* Experience Section */}
+        {/* Books Section */}
         <section className="hero-section">
           <motion.div
             initial="hidden"
             animate="visible"
-            variants={mobileVariants}
-            transition={{ duration: 0.5 }}
+            variants={fadeInVariants}
+            transition={{ duration: 0.6, delay: 0.4 }}
             className="relative"
           >
             <HeroBooks active={true} />
+          </motion.div>
+        </section>
+
+        {/* YouTube Section */}
+        <section className="hero-section">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeInVariants}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="relative"
+          >
+            <HeroYoutube active={true} />
+          </motion.div>
+        </section>
+
+        {/* Testimonial Section */}
+        <section className="hero-section">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeInVariants}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="relative"
+          >
+            <HeroTestimonial active={true} />
+          </motion.div>
+        </section>
+
+        {/* Blog Section */}
+        <section className="hero-section">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeInVariants}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="relative"
+          >
+            <HeroBlog active={true} />
+          </motion.div>
+        </section>
+
+        {/* Newsletter Section */}
+        <section className="hero-section">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeInVariants}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="relative"
+          >
+            <HeroNewsletter active={true} />
           </motion.div>
         </section>
 
@@ -132,59 +144,14 @@ export default function WelcomePage() {
           <motion.div
             initial="hidden"
             animate="visible"
-            variants={mobileVariants}
-            transition={{ duration: 0.5 }}
+            variants={fadeInVariants}
+            transition={{ duration: 0.6, delay: 0.9 }}
             className="relative"
           >
-            <FooterWelcome  />
+            <FooterWelcome />
           </motion.div>
         </section>
       </div>
     </Suspense>
   );
 }
-
-type MotionWrapperProps = {
-  children: React.ReactNode;
-  variants: Variants | { [key: string]: Variants };
-  animation?: string;
-  threshold?: number;
-  isMobile?: boolean;
-};
-
-const MotionWrapper: React.FC<MotionWrapperProps> = ({
-  children,
-  variants,
-  animation = 'slideInFromLeft',
-  threshold = 0.1,
-  isMobile = false,
-}) => {
-  const [isInView, setIsInView] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsInView(entry.isIntersecting),
-      { threshold }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => {
-      if (ref.current) observer.unobserve(ref.current);
-    };
-  }, [threshold]);
-
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={isInView ? 'visible' : 'hidden'}
-      exit="exit"
-      variants={((variants as Record<string, Variants>)[animation] ?? variants) as Variants}
-      transition={{ duration: 0.5 }}
-      drag={isMobile ? 'y' : false}
-      dragConstraints={{ top: 0, bottom: 0 }}
-    >
-      {children}
-    </motion.div>
-  );
-};

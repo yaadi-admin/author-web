@@ -34,8 +34,8 @@ const Index = () => {
                   left: '0', 
                   right: 'auto', 
                   marginTop: '0',
-                  width: '400px',
-                  height: '500px',
+                  width: '700px',
+                  height: '800px',
                   flexShrink: 0
                 }}
               >
@@ -80,7 +80,10 @@ const Index = () => {
                 <div className="description">
                   <div>
                     <p>
-                    Suzanna Griffiths is the heart behind SueLyn Empowered Living - a faith-based space where healing, purpose, and identity come alive.
+                    Suzanna Griffiths is a woman of faith on a mission to help others
+heal, grow, and rediscover their God-given identity. Her life and
+voice are a testament that restoration is possible and purpose is real,
+no matter your story.
                     </p>
                   </div>
                   <div className="social-links">
@@ -98,7 +101,7 @@ const Index = () => {
                 <div className="bts">
                   <a
                     target="_blank"
-                    href="https://drive.google.com/"
+                    href="#books-section"
                     className="btn"
                   >
                     <span>My Books</span>

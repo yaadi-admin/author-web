@@ -21,58 +21,35 @@ const Index = () => {
       <section
         className="lui-section lui-section-hero lui-gradient-top"
         id="started-section"
-        style={{ 
-          marginTop: '0',
-          paddingTop: '0',
-          minHeight: '100vh'
-        }}
       >
-        <div className="container" style={{ maxWidth: '100%', padding: '0', marginTop: '-20' }}>
+        <div className="container">
           {/* Hero Started */}
-          <div className="lui-started v-line v-line-left" style={{ paddingTop: '0' }}>
-            <div className="section hero-started" style={{ 
-              display: 'grid', 
-              gridTemplateColumns: '1fr 1fr', 
-              minHeight: '100vh',
-              alignItems: 'center',
-              gap: '0',
-              marginTop: '0',
-              paddingTop: '0'
-            }}>
+          <div className="lui-started v-line v-line-left">
+            <div className="section hero-started" style={{ display: 'flex', alignItems: 'center', gap: '60px' }}>
               <div
                 className="slide scrolla-element-anim-1 scroll-animate"
                 data-animate="active"
                 style={{ 
                   position: 'relative', 
-                  width: '100%',
-                  height: '100vh',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
+                  left: '0', 
+                  right: 'auto', 
+                  marginTop: '0',
+                  width: '400px',
+                  height: '500px',
+                  flexShrink: 0
                 }}
               >
                 <img
                   decoding="async"
                   src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/dfee8cfc-38ba-4989-a2dc-4db6237f6343_removalai_preview.png?alt=media&token=2595d0d3-fc66-481d-9840-2e9a49090e57"
                   alt="Suzanna Griffiths"
-                  style={{ 
-                    width: '100%', 
-                    height: '100%', 
-                    objectFit: 'cover',
-                    objectPosition: 'center'
-                  }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '200px' }}
                 />
               </div>
               <div
                 className="content scrolla-element-anim-1 scroll-animate"
                 data-animate="active"
-                style={{ 
-                  padding: '60px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  height: '100vh'
-                }}
+                style={{ flex: 1, paddingLeft: '0' }}
               >
                 <div className="titles">
                   <div className="lui-subtitle">

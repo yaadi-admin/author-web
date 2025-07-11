@@ -1,0 +1,52 @@
+@media print {
+  .page {
+    box-shadow: none !important;
+    /* page-break-after: always; */
+    width: 99% !important;
+    height: 100% !important;
+    /* padding: 1rem !important; */
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .header {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+}
+
+.page {
+  position: relative;
+  width: 210mm;
+  height: auto;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+  /* Softer, lighter shadow */
+  padding: 0 10mm 10mm 10mm;
+  /* padding-top: 0; */
+  /* General padding */
+  display: flex;
+  flex-direction: column;
+}
+
+.owners {
+  position: relative;
+  display: flex;
+  gap: 10px;
+}
+
+.chart {
+  position: absolute;
+  top: 20mm;
+  width: 100%;
+  left: 55mm;
+}
+
+.footer {
+  width: 100%;
+  margin-top: 36px;
+}
+
+.header {
+  display: flex;
+  margin-top: 96px;
+}

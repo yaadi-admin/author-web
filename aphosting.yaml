@@ -1,0 +1,9 @@
+runConfig:
+  cpu: 4
+  memoryMiB: 8192
+  maxInstances: 3
+  minInstances: 0
+  concurrency: 5
+env:
+  - variable: OPENAI_API_KEY
+    secret: "sk-proj-xRzVlD7PtzHKqOIqkFkPT3BlbkFJuysTNvtA4QpH26RLQp0n"

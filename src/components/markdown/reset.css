@@ -1,0 +1,45 @@
+/* Apply reset to all elements */
+.reset-css * {
+  all: unset; /* Reset all properties for every element */
+  box-sizing: border-box; /* Ensure proper box-sizing */
+}
+
+.reset-css {
+  width: 200mm;
+}
+
+/* Revert table and related elements to Tailwind's default */
+.reset-css table,
+.reset-css th,
+.reset-css td,
+.reset-css thead,
+.reset-css tbody,
+.reset-css strong,
+.reset-css tr {
+  all: revert;
+   /* Revert to default Tailwind styles */
+  box-sizing: border-box; /* Ensure proper box-sizing */
+}
+
+/* If you need to specifically reapply Tailwind's table styles */
+.reset-css table {
+  @apply table-auto w-full border-collapse; /* Tailwind's table utilities */
+}
+
+.reset-css th,
+.reset-css td {
+  @apply px-4 py-2 border; /* Tailwind padding and border */
+}
+
+.reset-css th {
+  @apply bg-gray-100 text-left; /* Tailwind header styles */
+}
+
+/* Optional: Add hover effects and row striping */
+.reset-css tr:nth-child(even) {
+  @apply bg-gray-50; /* Add row striping */
+}
+
+.reset-css tr:hover {
+  @apply bg-gray-200; /* Hover effect on rows */
+}

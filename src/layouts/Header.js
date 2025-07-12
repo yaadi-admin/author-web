@@ -113,16 +113,16 @@ const Header = () => {
                                 Foundation
                               </a>
                             </li>
-                            {/* <li className="menu-item">
+                            <li className="menu-item">
                               <a
                                 className="splitting-text-anim-2"
                                 data-splitting="chars"
-                                href="/#skills-section"
+                                href="/books"
                                 onClick={() => linkClick()}
                               >
-                                Skills
+                                Books
                               </a>
-                            </li> */}
+                            </li>
                             <li className="menu-item">
                               <a
                                 className="splitting-text-anim-2"

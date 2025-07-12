@@ -123,9 +123,27 @@ no matter your story.
       <section
        className="lui-section lui-gradient-bottom"
         id="services-section"
+        style={{
+          position: "relative",
+          backgroundImage: "url(https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/5c3969c6-62f0-4a9c-a6dd-b6e72ea77815_removalai_preview.png?alt=media&token=84095b7d-1715-4ae9-b197-39fb4dff39ad)",
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed"
+        }}
       >
+        {/* Background Overlay */}
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: "rgba(255, 255, 255, 0.9)",
+          zIndex: 1
+        }}></div>
+        
         {/* Get To Know Me Content */}
-        <div className="v-line v-line-left">
+        <div className="v-line v-line-left" style={{ position: "relative", zIndex: 2 }}>
           <div className="container">
             <div className="section hero-started" style={{ display: 'flex', alignItems: 'center', gap: '60px' }}>
               <div
@@ -286,6 +304,231 @@ no matter your story.
             <PortfolioIsotope />
             <div className="lui-bgtitle">
               <span> Events </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section - Experience */}
+      <section
+        className="lui-section lui-gradient-center"
+        id="experience-section"
+        style={{
+          position: "relative",
+          backgroundImage: "url(https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/dfee8cfc-38ba-4989-a2dc-4db6237f6343_removalai_preview.png?alt=media&token=2595d0d3-fc66-481d-9840-2e9a49090e57)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed"
+        }}
+      >
+        {/* Background Overlay */}
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: "rgba(0, 0, 0, 0.7)",
+          zIndex: 1
+        }}></div>
+        
+        {/* Heading */}
+        <div className="lui-heading" style={{ position: "relative", zIndex: 2 }}>
+          <div className="container">
+            <div className="m-titles align-center">
+              <h2
+                className="m-title splitting-text-anim-1 scroll-animate"
+                data-splitting="words"
+                data-animate="active"
+                style={{ color: "#fff" }}
+              >
+                <span> My Journey of Impact </span>
+              </h2>
+              <div
+                className="m-subtitle splitting-text-anim-1 scroll-animate"
+                data-splitting="words"
+                data-animate="active"
+                style={{ color: "#fff" }}
+              >
+                <span>
+                  {" "}
+                  Over a decade of <b>Faith-Driven Ministry</b>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Experience */}
+        <div className="v-line v-line-left" style={{ position: "relative", zIndex: 2 }}>
+          <div className="container">
+            <div className="row">
+              <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <div
+                  className="experience-item scrolla-element-anim-1 scroll-animate"
+                  data-animate="active"
+                  style={{
+                    backgroundColor: "#741C82",
+                    padding: "40px 20px",
+                    borderRadius: "20px",
+                    textAlign: "center",
+                    height: "300px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    position: "relative",
+                    overflow: "hidden"
+                  }}
+                >
+                  <div className="icon" style={{ marginBottom: "20px" }}>
+                    <i aria-hidden="true" className="fas fa-star" style={{ fontSize: "48px", color: "#fff" }} />
+                  </div>
+                  <div className="number" style={{ fontSize: "48px", fontWeight: "bold", color: "#fff", marginBottom: "10px" }}>
+                    12+
+                  </div>
+                  <div className="label" style={{ fontSize: "18px", color: "#fff", fontWeight: "500" }}>
+                    Years of Ministry
+                  </div>
+                  <div
+                    className="bg-img"
+                    style={{
+                      backgroundImage: "url(assets/images/pat-2.png)",
+                      position: "absolute",
+                      top: "0",
+                      right: "0",
+                      width: "100px",
+                      height: "100px",
+                      opacity: "0.1"
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <div
+                  className="experience-item scrolla-element-anim-1 scroll-animate"
+                  data-animate="active"
+                  style={{
+                    backgroundColor: "#F84988",
+                    padding: "40px 20px",
+                    borderRadius: "20px",
+                    textAlign: "center",
+                    height: "300px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    position: "relative",
+                    overflow: "hidden"
+                  }}
+                >
+                  <div className="icon" style={{ marginBottom: "20px" }}>
+                    <i aria-hidden="true" className="fas fa-globe" style={{ fontSize: "48px", color: "#fff" }} />
+                  </div>
+                  <div className="number" style={{ fontSize: "48px", fontWeight: "bold", color: "#fff", marginBottom: "10px" }}>
+                    4
+                  </div>
+                  <div className="label" style={{ fontSize: "18px", color: "#fff", fontWeight: "500" }}>
+                    Continents Reached
+                  </div>
+                  <div
+                    className="bg-img"
+                    style={{
+                      backgroundImage: "url(assets/images/pat-1.png)",
+                      position: "absolute",
+                      top: "0",
+                      right: "0",
+                      width: "100px",
+                      height: "100px",
+                      opacity: "0.1"
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <div
+                  className="experience-item scrolla-element-anim-1 scroll-animate"
+                  data-animate="active"
+                  style={{
+                    backgroundColor: "#741C82",
+                    padding: "40px 20px",
+                    borderRadius: "20px",
+                    textAlign: "center",
+                    height: "300px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    position: "relative",
+                    overflow: "hidden"
+                  }}
+                >
+                  <div className="icon" style={{ marginBottom: "20px" }}>
+                    <i aria-hidden="true" className="fas fa-users" style={{ fontSize: "48px", color: "#fff" }} />
+                  </div>
+                  <div className="number" style={{ fontSize: "48px", fontWeight: "bold", color: "#fff", marginBottom: "10px" }}>
+                    1,500+
+                  </div>
+                  <div className="label" style={{ fontSize: "18px", color: "#fff", fontWeight: "500" }}>
+                    Lives Transformed
+                  </div>
+                  <div
+                    className="bg-img"
+                    style={{
+                      backgroundImage: "url(assets/images/pat-2.png)",
+                      position: "absolute",
+                      top: "0",
+                      right: "0",
+                      width: "100px",
+                      height: "100px",
+                      opacity: "0.1"
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                <div
+                  className="experience-item scrolla-element-anim-1 scroll-animate"
+                  data-animate="active"
+                  style={{
+                    backgroundColor: "#F84988",
+                    padding: "40px 20px",
+                    borderRadius: "20px",
+                    textAlign: "center",
+                    height: "300px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    position: "relative",
+                    overflow: "hidden"
+                  }}
+                >
+                  <div className="icon" style={{ marginBottom: "20px" }}>
+                    <i aria-hidden="true" className="fas fa-heart" style={{ fontSize: "48px", color: "#fff" }} />
+                  </div>
+                  <div className="number" style={{ fontSize: "48px", fontWeight: "bold", color: "#fff", marginBottom: "10px" }}>
+                    100%
+                  </div>
+                  <div className="label" style={{ fontSize: "18px", color: "#fff", fontWeight: "500" }}>
+                    Faith-Driven
+                  </div>
+                  <div
+                    className="bg-img"
+                    style={{
+                      backgroundImage: "url(assets/images/pat-1.png)",
+                      position: "absolute",
+                      top: "0",
+                      right: "0",
+                      width: "100px",
+                      height: "100px",
+                      opacity: "0.1"
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="lui-bgtitle">
+              <span> Experience </span>
             </div>
           </div>
         </div>

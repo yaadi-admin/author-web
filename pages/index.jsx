@@ -8,6 +8,17 @@ import {
   servicesSliderProps,
   testimonialsSliderProps,
 } from "../src/sliderProps";
+
+// Add CSS for hover effects
+const galleryStyles = `
+  .gallery-item:hover .hover-overlay {
+    opacity: 1 !important;
+  }
+  .gallery-item:hover img {
+    transform: scale(1.1) !important;
+  }
+`;
+
 const PortfolioIsotope = dynamic(
   () => import("../src/components/PortfolioIsotope"),
   {
@@ -17,6 +28,7 @@ const PortfolioIsotope = dynamic(
 const Index = () => {
   return (
     <Layout pageClassName={"home"}>
+      <style jsx>{galleryStyles}</style>
       {/* Section - Hero Started */}
       <section
         className="lui-section lui-section-hero lui-gradient-top"
@@ -130,6 +142,219 @@ no matter your story.
           </div>
         </div>
       </section>
+
+      {/* Section - Image Gallery */}
+      <section
+        className="lui-section lui-gradient-center"
+        id="gallery-section"
+        style={{
+          padding: "60px 0",
+          maxHeight: "400px",
+          overflow: "hidden"
+        }}
+      >
+        <div className="container">
+          <div className="row" style={{ margin: 0 }}>
+            <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" style={{ padding: 0 }}>
+              <div
+                className="gallery-item scrolla-element-anim-1 scroll-animate"
+                data-animate="active"
+                style={{
+                  position: "relative",
+                  height: "400px",
+                  overflow: "hidden",
+                  cursor: "pointer"
+                }}
+              >
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/dfee8cfc-38ba-4989-a2dc-4db6237f6343_removalai_preview.png?alt=media&token=2595d0d3-fc66-481d-9840-2e9a49090e57"
+                  alt="Faith & Healing"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    transition: "transform 0.3s ease"
+                  }}
+                />
+                <div
+                  className="hover-overlay"
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: "rgba(116, 28, 130, 0.8)",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    opacity: 0,
+                    transition: "opacity 0.3s ease",
+                    padding: "20px",
+                    textAlign: "center"
+                  }}
+                >
+                  <h3 style={{ color: "#fff", fontSize: "24px", fontWeight: "bold", marginBottom: "10px" }}>
+                    Faith & Healing
+                  </h3>
+                  <p style={{ color: "#fff", fontSize: "16px", lineHeight: "1.4" }}>
+                    Discovering God's love and finding healing through faith
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" style={{ padding: 0 }}>
+              <div
+                className="gallery-item scrolla-element-anim-1 scroll-animate"
+                data-animate="active"
+                style={{
+                  position: "relative",
+                  height: "400px",
+                  overflow: "hidden",
+                  cursor: "pointer"
+                }}
+              >
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/5c3969c6-62f0-4a9c-a6dd-b6e72ea77815_removalai_preview.png?alt=media&token=84095b7d-1715-4ae9-b197-39fb4dff39ad"
+                  alt="Identity & Purpose"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    transition: "transform 0.3s ease"
+                  }}
+                />
+                <div
+                  className="hover-overlay"
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: "rgba(248, 73, 136, 0.8)",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    opacity: 0,
+                    transition: "opacity 0.3s ease",
+                    padding: "20px",
+                    textAlign: "center"
+                  }}
+                >
+                  <h3 style={{ color: "#fff", fontSize: "24px", fontWeight: "bold", marginBottom: "10px" }}>
+                    Identity & Purpose
+                  </h3>
+                  <p style={{ color: "#fff", fontSize: "16px", lineHeight: "1.4" }}>
+                    Embracing your God-given identity and living with purpose
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" style={{ padding: 0 }}>
+              <div
+                className="gallery-item scrolla-element-anim-1 scroll-animate"
+                data-animate="active"
+                style={{
+                  position: "relative",
+                  height: "400px",
+                  overflow: "hidden",
+                  cursor: "pointer"
+                }}
+              >
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-06-30%20at%2012.26.26.jpeg?alt=media&token=ebeb7337-d062-437a-9224-e782611d7404"
+                  alt="Empowered Living"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    transition: "transform 0.3s ease"
+                  }}
+                />
+                <div
+                  className="hover-overlay"
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: "rgba(116, 28, 130, 0.8)",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    opacity: 0,
+                    transition: "opacity 0.3s ease",
+                    padding: "20px",
+                    textAlign: "center"
+                  }}
+                >
+                  <h3 style={{ color: "#fff", fontSize: "24px", fontWeight: "bold", marginBottom: "10px" }}>
+                    Empowered Living
+                  </h3>
+                  <p style={{ color: "#fff", fontSize: "16px", lineHeight: "1.4" }}>
+                    Breaking free from shame and stepping into your power
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" style={{ padding: 0 }}>
+              <div
+                className="gallery-item scrolla-element-anim-1 scroll-animate"
+                data-animate="active"
+                style={{
+                  position: "relative",
+                  height: "400px",
+                  overflow: "hidden",
+                  cursor: "pointer"
+                }}
+              >
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/dfee8cfc-38ba-4989-a2dc-4db6237f6343_removalai_preview.png?alt=media&token=2595d0d3-fc66-481d-9840-2e9a49090e57"
+                  alt="Transformation"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    transition: "transform 0.3s ease"
+                  }}
+                />
+                <div
+                  className="hover-overlay"
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: "rgba(248, 73, 136, 0.8)",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    opacity: 0,
+                    transition: "opacity 0.3s ease",
+                    padding: "20px",
+                    textAlign: "center"
+                  }}
+                >
+                  <h3 style={{ color: "#fff", fontSize: "24px", fontWeight: "bold", marginBottom: "10px" }}>
+                    Transformation
+                  </h3>
+                  <p style={{ color: "#fff", fontSize: "16px", lineHeight: "1.4" }}>
+                    Real change through God's grace and authentic connection
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Section - Foundation */}
       <section
        className="lui-section lui-gradient-bottom"
@@ -1257,7 +1482,7 @@ no matter your story.
               >
                 <span>
                   {" "}
-                  Let’s <b>Talk About Ideas</b>
+                  Let's <b>Talk About Ideas</b>
                 </span>
               </div>
             </div>

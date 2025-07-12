@@ -41,9 +41,9 @@ const Index = () => {
               >
                 <img
                   decoding="async"
-                  src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/dfee8cfc-38ba-4989-a2dc-4db6237f6343_removalai_preview.png?alt=media&token=2595d0d3-fc66-481d-9840-2e9a49090e57"
+                  src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-06-30%20at%2012.26.26.jpeg?alt=media&token=ebeb7337-d062-437a-9224-e782611d7404"
                   alt="Suzanna Griffiths"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '200px' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: '10px' }}
                 />
               </div>
               <div
@@ -55,10 +55,9 @@ const Index = () => {
                   <div className="lui-subtitle">
                     <span>
                       {" "}
-                      Hey, I'm <b>Suz</b>anna{" "}
                     </span>
                   </div>
-                  <h1
+                  <h3
                     className="title splitting-text-anim-1 scroll-animate"
                     data-splitting="chars"
                     data-animate="active"
@@ -66,16 +65,16 @@ const Index = () => {
                     <span>
                       <b>Faith. Healing. </b>Identity. Purpose.{" "}
                     </span>
-                  </h1>
-                  <span>Planting Seeds of Hope, </span>
-                  <div className="label lui-subtitle">
+                  </h3>
+                  {/* <span>Planting Seeds of Hope, </span> */}
+                  {/* <div className="label lui-subtitle">
                     {" "}
                     <strong>
                       {Array.from("One Dream at a Time").map((char, index) => (
                         <span key={index + 25}>{char}</span>
                       ))}
                     </strong>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="description">
                   <div>
@@ -87,13 +86,13 @@ no matter your story.
                     </p>
                   </div>
                   <div className="social-links">
-                    <a target="_blank" rel="nofollow" href="https://www.instagram.com/suelyn.empoweredliving/">
+                    <a target="_blank" rel="nofollow" href="http://www.instagram.com/suelyn.empoweredliving">
                       <i aria-hidden="true" className="fab fa-instagram" />
                     </a>
-                    <a target="_blank" rel="nofollow" href="https://www.facebook.com/suelyn.empoweredliving">
+                    <a target="_blank" rel="nofollow" href="https://www.facebook.com/suzanna.johnson.75">
                       <i aria-hidden="true" className="fab fa-facebook" />
                     </a>
-                    <a target="_blank" rel="nofollow" href="https://www.linkedin.com/in/suzanna-griffiths-761b1b260/">
+                    <a target="_blank" rel="nofollow" href="https://www.linkedin.com/in/suzanna-griffiths/">
                       <i aria-hidden="true" className="fab fa-linkedin" />
                     </a>
                   </div>
@@ -104,12 +103,24 @@ no matter your story.
                     href="#books-section"
                     className="btn"
                   >
-                    <span>My Books</span>
+                    <span>Work With Suzanna</span>
+                  </a>
+                  <a href="#skills-section" className="btn-lnk" style={{ marginTop: '10px' }}>
+                    {" "}
+                    Explore My Journey{" "}
+                  </a>
+                  <a
+                    target="_blank"
+                    href="#books-section"
+                    className="btn"
+                  >
+                    <span>Watch My Story</span>
                   </a>
                   <a href="#skills-section" className="btn-lnk">
                     {" "}
-                    Get To Know Me{" "}
+                    Book a Session{" "}
                   </a>
+                  
                 </div>
               </div>
             </div>

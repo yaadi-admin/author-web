@@ -1,6 +1,39 @@
 import Header from '../components/Header';
 import { useState, useEffect } from 'react';
 
+// Workshop data object
+const workshopData = [
+  {
+    id: 1,
+    date: "October 25th, 2025",
+    title: "Redeemed For a Purpose Workshop & Book Launch",
+    description: "Join us for an inspiring workshop and book launch as we explore the journey of healing, purpose, and transformation. This event is a must-attend for anyone looking to find their place in the world and live a life of purpose.",
+    image: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-03%20at%2015.16.00.jpeg?alt=media&token=51b15196-285d-4ee5-86c0-28acb23b9119",
+    isActive: true,
+    url: "https://caribtix.vbotickets.com/event/Redeemed_For_A_Purpose/167873"
+  },
+  {
+    id: 2,
+    date: "November 15th, 2025",
+    title: "This Event is Coming Soon",
+    description: "An exciting new workshop focused on building resilience and overcoming life's challenges. Details coming soon - stay tuned for more information.",
+    image: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/coming-soon-letter-hanging-door-600nw-2497993761.webp?alt=media&token=ab00d3a3-6e03-4828-9552-14cb58f298aa",
+    isActive: false,
+    comingSoon: true,
+    url: "#"
+  },
+  {
+    id: 3,
+    date: "December 5th, 2025",
+    title: "Another Amazing Workshop",
+    description: "A special end-of-year workshop designed to help you reflect, reset, and prepare for the new year ahead. Join us for this powerful session of transformation.",
+    image: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/coming-soon-letter-hanging-door-600nw-2497993761.webp?alt=media&token=ab00d3a3-6e03-4828-9552-14cb58f298aa",
+    isActive: false,
+    comingSoon: true,
+    url: "#"
+  }
+];
+
 export default function Workshops() {
   const [scrollY, setScrollY] = useState(0);
 
@@ -58,107 +91,50 @@ export default function Workshops() {
             Workshops
           </h2>
           
-          <div className="space-y-16 max-w-4xl mx-auto">
-            {/* Workshop 1 */}
-            <div className="flex flex-col md:flex-row gap-8 items-start">
-              <div className="flex-shrink-0">
-                <img 
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/9ef2ef4ab7707f0aa3dc051ca846715a652746d4?width=1206" 
-                  alt="Workshop 1"
-                  className="w-24 h-24 object-cover rounded-full border-2 border-[#F84988]"
-                />
-              </div>
-              <div className="flex-1">
-                <div className="text-[#F84988] font-montserrat text-lg font-semibold mb-2">
-                  October 10th, 2025
+          <div className="space-y-8 max-w-6xl mx-auto">
+            {workshopData.map((workshop, index) => (
+              <div 
+                key={workshop.id}
+                className={`relative flex flex-col lg:flex-row gap-8 items-stretch ${
+                  index === 0 ? 'opacity-100' : index === 1 ? 'opacity-50' : 'opacity-30'
+                } transition-opacity duration-500`}
+              >
+                <div className="flex-shrink-0 lg:w-80">
+                  <img 
+                    src={workshop.image}
+                    alt={workshop.title}
+                    className="w-full h-full object-cover rounded-lg border-2 border-[#F84988]"
+                    style={{ minHeight: '300px' }}
+                  />
                 </div>
-                <h3 className="font-playfair text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                  The Event Title Here
-                </h3>
-                <p className="font-montserrat text-lg text-gray-600 leading-relaxed mb-6">
-                  A transformative workshop focused on healing past wounds and discovering your divine purpose. 
-                  Join us for an intimate session of growth and empowerment.
-                </p>
-                <button className="bg-[#F84988] text-white px-6 py-3 rounded-lg hover:bg-[#e03a7a] transition-colors font-montserrat text-sm flex items-center gap-2">
-                  See More
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            {/* Workshop 2 - Coming Soon */}
-            <div className="flex flex-col md:flex-row gap-8 items-start relative">
-              <div className="flex-shrink-0">
-                <img 
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/3bcb43c2d08f89a125bec53b49f9f6707b3f05df?width=941" 
-                  alt="Workshop 2"
-                  className="w-24 h-24 object-cover rounded-full border-2 border-[#F84988]"
-                />
-              </div>
-              <div className="flex-1">
-                <div className="text-[#F84988] font-montserrat text-lg font-semibold mb-2">
-                  November 15th, 2025
+                <div className="flex-1 flex flex-col justify-center">
+                  <div className="text-[#F84988] font-montserrat text-lg font-semibold mb-2">
+                    {workshop.date}
+                  </div>
+                  <h3 className="font-playfair text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    {workshop.title}
+                  </h3>
+                  <p className="font-montserrat text-lg text-gray-600 leading-relaxed mb-6">
+                    {workshop.description}
+                  </p>
+                  {!workshop.comingSoon && <button onClick={() => window.open(workshop.url, '_blank')} className="bg-[#F84988] text-white px-6 py-3 rounded-lg hover:bg-[#e03a7a] transition-colors font-montserrat text-sm flex items-center gap-2 self-start">
+                    Buy Tickets
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>}
                 </div>
-                <h3 className="font-playfair text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                  This Event is Coming Soon
-                </h3>
-                <p className="font-montserrat text-lg text-gray-600 leading-relaxed mb-6">
-                  An exciting new workshop focused on building resilience and overcoming life's challenges. 
-                  Details coming soon - stay tuned for more information.
-                </p>
-                <button className="bg-[#F84988] text-white px-6 py-3 rounded-lg hover:bg-[#e03a7a] transition-colors font-montserrat text-sm flex items-center gap-2">
-                  See More
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
+                
+                {/* Coming Soon Badge */}
+                {workshop.comingSoon && (
+                  <div className="absolute top-0 right-0 bg-[#F84988] text-white px-4 py-2 rounded-full font-montserrat text-sm font-bold flex items-center gap-2 shadow-lg z-10">
+                    <span>★</span>
+                    COMING SOON
+                    <span>★</span>
+                  </div>
+                )}
               </div>
-              
-              {/* Coming Soon Badge */}
-              <div className="absolute -top-4 -right-4 bg-[#F84988] text-white px-4 py-2 rounded-full font-montserrat text-sm font-bold flex items-center gap-2 shadow-lg">
-                <span>★</span>
-                COMING SOON
-                <span>★</span>
-              </div>
-            </div>
-
-            {/* Workshop 3 - Coming Soon */}
-            <div className="flex flex-col md:flex-row gap-8 items-start relative">
-              <div className="flex-shrink-0">
-                <img 
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/cb8827ce947c674e0b468cb798d4e8d61410fc29?width=383" 
-                  alt="Workshop 3"
-                  className="w-24 h-24 object-cover rounded-full border-2 border-[#F84988]"
-                />
-              </div>
-              <div className="flex-1">
-                <div className="text-[#F84988] font-montserrat text-lg font-semibold mb-2">
-                  December 5th, 2025
-                </div>
-                <h3 className="font-playfair text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                  Another Amazing Workshop
-                </h3>
-                <p className="font-montserrat text-lg text-gray-600 leading-relaxed mb-6">
-                  A special end-of-year workshop designed to help you reflect, reset, and prepare for the new year ahead. 
-                  Join us for this powerful session of transformation.
-                </p>
-                <button className="bg-[#F84988] text-white px-6 py-3 rounded-lg hover:bg-[#e03a7a] transition-colors font-montserrat text-sm flex items-center gap-2">
-                  See More
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
-              
-              {/* Coming Soon Badge */}
-              <div className="absolute -top-4 -right-4 bg-[#F84988] text-white px-4 py-2 rounded-full font-montserrat text-sm font-bold flex items-center gap-2 shadow-lg">
-                <span>★</span>
-                COMING SOON
-                <span>★</span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -208,73 +184,107 @@ export default function Workshops() {
       </section>
 
       {/* Book Suzanna Section */}
-      <section className="py-24 px-4 bg-[#F1E6DB] relative">
-        {/* Curved Background */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-[#F1E6DB] rounded-t-[100px]"></div>
+      <section className="py-24 px-4 bg-gradient-to-b from-[#FFE4EE] via-[#F1E6DB] to-[#FFE4EE] relative overflow-hidden">
+        {/* Arch Background */}
+        <div className="absolute inset-0 w-full h-full">
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
+            <defs>
+              <linearGradient id="archGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#F1E6DB" />
+                <stop offset="50%" stopColor="#F84988" />
+                <stop offset="100%" stopColor="#F1E6DB" />
+              </linearGradient>
+            </defs>
+            <path d="M0 100 L0 60 Q50 0 100 60 L100 100 Z" fill="url(#archGradient)"/>
+          </svg>
+        </div>
         
-        <div className="container mx-auto">
-          <h2 className="font-playfair text-6xl md:text-7xl font-normal text-gray-700 text-center mb-16">
+        <div className="relative z-10 container mx-auto">
+          <h2 className="font-playfair text-6xl md:text-7xl font-normal text-black text-center mb-16">
             Book Suzanna
           </h2>
           
-          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
-            <div className="space-y-6">
-              <p className="font-montserrat text-xl md:text-2xl text-gray-700 leading-relaxed">
-                Ready to take the next step in your healing journey? Book a private session with Suzanna 
-                for personalized guidance and support tailored to your specific needs and goals.
-              </p>
-              <p className="font-montserrat text-xl md:text-2xl text-gray-700 leading-relaxed">
-                Whether you're seeking clarity on your purpose, working through past trauma, or ready to 
-                step into your next season, Suzanna is here to walk alongside you.
-              </p>
-              <button className="bg-[#F84988] text-white px-8 py-4 rounded-lg hover:bg-[#e03a7a] transition-colors font-montserrat text-lg flex items-center gap-2">
-                Get in touch
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
+          <div className="relative max-w-6xl mx-auto">
+            {/* Top Right Image */}
+            <div className="absolute top-0 right-0 z-20 hidden lg:block">
+              <img 
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-03%20at%2015.16.00.jpeg?alt=media&token=51b15196-285d-4ee5-86c0-28acb23b9119"
+                alt="Suzanna portrait"
+                className="w-48 h-48 object-cover border-4 border-white shadow-lg"
+              />
             </div>
             
-            <div className="flex gap-4">
+            {/* Bottom Left Image */}
+            <div className="absolute bottom-0 left-0 z-20 hidden lg:block">
               <img 
-                src="https://api.builder.io/api/v1/image/assets/TEMP/f23911c57b35c55b16a3da69d3df3ad19cbde001?width=1240" 
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/coming-soon-letter-hanging-door-600nw-2497993761.webp?alt=media&token=ab00d3a3-6e03-4828-9552-14cb58f298aa"
                 alt="Suzanna on couch"
-                className="w-64 h-80 object-cover rounded-lg"
+                className="w-44 h-60 object-cover rounded-lg shadow-lg"
               />
-              <img 
-                src="https://api.builder.io/api/v1/image/assets/TEMP/3bcb43c2d08f89a125bec53b49f9f6707b3f05df?width=941" 
-                alt="Suzanna portrait"
-                className="w-32 h-32 object-cover rounded-full border-4 border-white self-end"
-              />
+            </div>
+            
+            {/* Main Content */}
+            <div className="relative z-30 rounded-2xl p-12 lg:p-16 max-w-4xl mx-auto mt-[25%]">
+              <div className="space-y-8">
+                <p className="font-montserrat text-xl md:text-2xl text-gray-700 leading-relaxed text-white">
+                  Ready to take the next step in your healing journey? Book a private session with Suzanna 
+                  for personalized guidance and support tailored to your specific needs and goals.
+                </p>
+                <p className="font-montserrat text-xl md:text-2xl text-gray-700 leading-relaxed text-white">
+                  Whether you're seeking clarity on your purpose, working through past trauma, or ready to 
+                  step into your next season, Suzanna is here to walk alongside you.
+                </p>
+                <div className="pt-4">
+                  <button className="bg-white text-black px-8 py-4 rounded-lg hover:bg-[#e03a7a] transition-colors font-montserrat text-lg flex items-center gap-2 shadow-lg">
+                    Book Now
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Newsletter Signup Section */}
-      <section className="py-24 px-4 bg-[#F84988]">
-        <div className="container mx-auto text-center">
-          <h2 className="font-playfair text-5xl md:text-6xl font-bold text-white mb-8">
-            GROW, OVERCOME, and get BACK UP
-          </h2>
-          <p className="font-montserrat text-xl md:text-2xl text-white mb-12 max-w-3xl mx-auto">
-            Stay connected and receive updates about upcoming workshops, healing resources, and empowering content 
-            delivered straight to your inbox.
-          </p>
+      <section className="py-24 relative overflow-hidden w-full bg-gradient-to-t from-[#FFE4EE] to-[#F1E6DB]">
+        {/* Gradient curved background - full width arch */}
+        {/* <div className="absolute inset-0 w-screen left-1/2 transform -translate-x-1/2">
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
+            <defs>
+              <linearGradient id="subscriptionGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#F84988" />
+                <stop offset="50%" stopColor="#F84988" />
+                <stop offset="100%" stopColor="#FFAC24" />
+              </linearGradient>
+            </defs>
+            <path d="M0 100 L0 60 Q50 0 100 60 L100 100 Z" fill="url(#subscriptionGradient)"/>
+          </svg>
+        </div> */}
+
+        <div className="relative z-10 container mx-auto px-4 text-center pt-[12%]">
+          <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-normal text-black leading-none mb-12">
+          JOIN THE EMPOWERED SPACE
+          </h3>
           
-          <div className="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
-            <input
-              type="text"
-              placeholder="First Name"
-              className="flex-1 bg-transparent border-b-2 border-white text-white placeholder-white/70 px-4 py-3 text-lg focus:outline-none focus:border-white"
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              className="flex-1 bg-transparent border-b-2 border-white text-white placeholder-white/70 px-4 py-3 text-lg focus:outline-none focus:border-white"
-            />
-            <button className="bg-white text-[#F84988] px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors font-montserrat text-lg font-semibold whitespace-nowrap">
-              JOIN THE FUN
+          {/* Signup form */}
+          <div className="max-w-4xl mx-auto mb-12">
+            <div className="grid md:grid-cols-2 gap-4">
+              <input
+                type="text"
+                placeholder="Name"
+                className="bg-black/70 backdrop-blur-sm border border-white/30 rounded-lg px-6 py-4 text-black text-lg placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white"
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                className="bg-black/70 backdrop-blur-sm border border-white/30 rounded-lg px-6 py-4 text-black text-lg placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white"
+              />
+            </div>
+            <button className="bg-black text-white px-8 py-4 rounded-lg hover:bg-[#E6951A] transition-colors font-inter text-lg mt-6">
+              Join the Empowered Space
             </button>
           </div>
         </div>

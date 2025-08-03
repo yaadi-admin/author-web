@@ -116,7 +116,7 @@ export default function Author() {
                   Through raw honesty and heartfelt reflection, Suzanna D. Griffiths invites readers on a journey of healing, faith, and self-discovery. Redeemed From Inner Scars is a powerful testament to overcoming trauma, reclaiming identity, and finding purpose beyond pain. With biblical insights, personal stories, and guided activities, this book offers encouragement and tools to rise above the past and walk confidently into a life of restoration and hope.
                   </p>
                   <div className="flex gap-4">
-                    <button className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
+                    <button onClick={() => window.open('https://www.amazon.com/REDEEMED-INNER-SCARS-SUZANNA-GRIFFITHS-ebook/dp/B0FKVLZ8F6/ref=sr_1_1?crid=3A45E7FQ4WKC9&dib=eyJ2IjoiMSJ9.rz77Qwi99DGWC_U9arw8VQ.3vaMyr9uVTOoQ-HUD5dDpqGrKfLpm64n2tiHOBb52RY&dib_tag=se&keywords=Redeemed+From+Inner+Scars&qid=1754248429&s=books&sprefix=redeemed+from+inner+scars%2Cstripbooks%2C111&sr=1-1', '_blank')} className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
                       BUY NOW
                     </button>
                   </div>
@@ -294,35 +294,30 @@ export default function Author() {
           </div>
 
           {/* Retailers Grid */}
-          <div className="grid md:grid-cols-1 lg:grid-cols-1 gap-8 mb-16">
+          <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
             {/* Amazon */}
             <div className="bg-white/60 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-white/80 transition-all duration-300 shadow-lg">
-              <div className="w-16 h-16 mx-auto mb-4 bg-[#FFAC24]/20 rounded-full flex items-center justify-center">
-                <svg className="w-8 h-8 text-[#FFAC24]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M15.93 12.86c0-.55-.45-1-1-1H9.07c-.55 0-1 .45-1 1s.45 1 1 1h5.86c.55 0 1-.45 1-1zm-5.86-3c-.55 0-1 .45-1 1s.45 1 1 1h5.86c.55 0 1-.45 1-1s-.45-1-1-1H10.07z"/>
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-                </svg>
+              <div className="w-88 h-44 mx-auto mb-4 rounded-full flex items-center justify-center">
+                <img src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/Customer-logo_Amazon-1-1024x512.png.webp?alt=media&token=47ed2e79-b57c-4f92-93d7-13add26cbb76" alt="Amazon" className="w-88 h-44" />
               </div>
               <h3 className="font-playfair text-xl font-bold text-black mb-2">Amazon</h3>
               <p className="font-montserrat text-sm text-black/60 mb-4">Hardcover & Kindle</p>
-              <button className="bg-[#FFAC24] text-black px-6 py-2 rounded hover:bg-[#E6951A] transition-colors font-inter text-sm font-bold">
+              <button onClick={() => window.open('https://www.amazon.com/REDEEMED-INNER-SCARS-SUZANNA-GRIFFITHS-ebook/dp/B0FKVLZ8F6/ref=sr_1_1?crid=3A45E7FQ4WKC9&dib=eyJ2IjoiMSJ9.rz77Qwi99DGWC_U9arw8VQ.3vaMyr9uVTOoQ-HUD5dDpqGrKfLpm64n2tiHOBb52RY&dib_tag=se&keywords=Redeemed+From+Inner+Scars&qid=1754248429&s=books&sprefix=redeemed+from+inner+scars%2Cstripbooks%2C111&sr=1-1', '_blank')} className="bg-white text-black px-6 py-2 rounded hover:bg-[#E6951A] transition-colors font-inter text-sm font-bold">
                 SHOP NOW
               </button>
             </div>
 
             {/* Barnes & Noble */}
-            {/* <div className="bg-white/60 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-white/80 transition-all duration-300 shadow-lg">
-              <div className="w-16 h-16 mx-auto mb-4 bg-[#FFAC24]/20 rounded-full flex items-center justify-center">
-                <svg className="w-8 h-8 text-[#FFAC24]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-1.75-1z"/>
-                </svg>
+            <div className="bg-white/60 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-white/80 transition-all duration-300 shadow-lg">
+              <div className="w-88 h-44 mx-auto mb-4 rounded-full flex items-center justify-center">
+                <img src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/d554c6a6-fa21-42b4-9366-d88a26fd41af_removalai_preview.png?alt=media&token=b36b6586-3ef3-4ff2-9465-6bc0bd521d96" alt="Book Jungle Jamaica" className="w-88 h-44" />
               </div>
-              <h3 className="font-playfair text-xl font-bold text-black mb-2">Barnes & Noble</h3>
-              <p className="font-montserrat text-sm text-black/60 mb-4">Hardcover & Nook</p>
-              <button className="bg-[#FFAC24] text-black px-6 py-2 rounded hover:bg-[#E6951A] transition-colors font-inter text-sm font-bold">
+              <h3 className="font-playfair text-xl font-bold text-black mb-2">Book Jungle Jamaica</h3>
+              <p className="font-montserrat text-sm text-black/60 mb-4">Hardcover</p>
+              <button onClick={() => window.open('https://bookjunglejamaica.com/product/redeemed-from-inner-scars/', '_blank')} className="bg-white text-black px-6 py-2 rounded hover:bg-[#E6951A] transition-colors font-inter text-sm font-bold">
                 SHOP NOW
               </button>
-            </div> */}
+            </div>
 
             {/* Bookshop.org */}
             {/* <div className="bg-white/60 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-white/80 transition-all duration-300 shadow-lg">

@@ -1,50 +1,51 @@
 import Header from '../components/Header';
+import { useState, useEffect } from 'react';
 
 export default function About() {
+  const [scrollY, setScrollY] = useState(0);
+
+  // Parallax scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   return (
     <div className="bg-gradient-to-r from-[#F1E6DB] via-[#E0B2F1] to-[#FFE4EE]">
-      <Header />
+      <Header whiteText={true} />
       
       {/* Hero Section */}
-      <section className="relative min-h-full flex items-center justify-center overflow-hidden">
-        {/* Hero Background Image */}
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+        {/* Hero Background Image with Parallax */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://api.builder.io/api/v1/image/assets/TEMP/7cf07593ce043b7a08e4f1ca3e188ae94e312d73?width=3838" 
-            alt="Suzanna Griffiths"
-            className="w-full h-[60vh] object-cover"
+          <div 
+            className="absolute inset-0 w-full h-[120%] transform -translate-y-[10%]"
+            style={{
+              backgroundImage: 'url(https://api.builder.io/api/v1/image/assets/TEMP/7cf07593ce043b7a08e4f1ca3e188ae94e312d73?width=3838)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              transform: `translateY(${scrollY * 0.5}px)`,
+              willChange: 'transform'
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#F1E6DB]/30 via-[#E0B2F1]/20 to-[#FFE4EE]/10"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50"></div>
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 text-center px-4 mt-[20%] mb-[5%]">
-          <div className="flex justify-center items-center space-x-8 md:space-x-16 lg:space-x-24">
-            {/* Left Navigation */}
-            <ul className="flex gap-8">
-              <li>
-                <a href="/" className="font-montserrat text-base md:text-lg text-black hover:text-suelyn-pink transition">Home</a>
-              </li>
-              <li>
-                <a href="/author" className="font-montserrat text-base md:text-lg text-black hover:text-suelyn-pink transition">Author</a>
-              </li>
-            </ul>
-            <h1 className="font-charm text-6xl sm:text-8xl md:text-[200px] lg:text-[300px] xl:text-[350px] font-bold text-black leading-none mb-2 md:mb-4">
-              About
-            </h1>
-            {/* Right Navigation */}
-            <ul className="flex gap-8">
-              <li>
-                <a href="/blog" className="font-montserrat text-base md:text-lg text-black hover:text-suelyn-pink transition">Blog</a>
-              </li>
-              <li>
-                <a href="/workshops" className="font-montserrat text-base md:text-lg text-black hover:text-suelyn-pink transition">Workshops</a>
-              </li>
-            </ul>
+        <div className="relative z-10 text-center px-4 text-white">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex justify-center items-center">
+              <h1 className="font-charm text-[200px] md:text-[300px] font-bold text-white leading-none mb-2 md:mb-4">
+                About
+              </h1>
+            </div>
+            <h2 className="font-league-spartan text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-white ml-[-60%] mt-[-10%]">
+              Suzanna Griffiths
+            </h2>
           </div>
-          <h2 className="font-league-spartan text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-black ml-[-30%] mt-[-3%]">
-            Suzanna Griffiths
-          </h2>
         </div>
       </section>
 

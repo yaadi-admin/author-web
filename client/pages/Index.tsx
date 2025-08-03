@@ -17,11 +17,14 @@ export default function Index() {
 
   // Parallax effect for speaking section
   const [parallaxOffset, setParallaxOffset] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
 
   // Handle scroll for parallax effect
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.pageYOffset;
+      setScrollY(scrolled);
+      
       const speakingSection = document.querySelector('.speaking-section');
       if (speakingSection) {
         const rect = speakingSection.getBoundingClientRect();
@@ -36,7 +39,7 @@ export default function Index() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -96,18 +99,23 @@ export default function Index() {
 
       {/* Hero Section */}
       <section className="relative min-h-full flex items-center justify-center overflow-hidden">
-        {/* Hero Background Image */}
+        {/* Hero Background Image with Parallax */}
         <div className="absolute inset-0 z-0">
-          <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/76446e5c63513d5f64d77e22a7ca7d4dedb56319?width=3838"
-            alt="SueLyn hero image"
-            className="w-full h-[60vh] object-cover"
+          <div 
+            className="absolute inset-0 w-full h-[120%] transform -translate-y-[10%]"
+            style={{
+              backgroundImage: 'url(https://api.builder.io/api/v1/image/assets/TEMP/76446e5c63513d5f64d77e22a7ca7d4dedb56319?width=3838)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              transform: `translateY(${scrollY * 0.5}px)`,
+              willChange: 'transform'
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#F1E6DB]/30 via-[#E0B2F1]/20 to-[#FFE4EE]/10"></div>
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 text-center px-4 mt-[20%] mb-[5%]">
+        <div className="relative z-10 text-center px-4 mt-[10%] mb-[5%]">
           <div className="flex justify-center items-center space-x-8 md:space-x-16 lg:space-x-24">
             {/* Left Navigation */}
             <ul className="flex gap-8">
@@ -137,7 +145,6 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-t from-[#FFE4EE] via-[#FFE4EE] to-[#FFE4EE] h-[20vh] mt-[-20%] pb-[20%]"></section>
 
       {/* Mission Statement Section */}
       <section className="py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
@@ -459,86 +466,69 @@ export default function Index() {
 
       {/* Books Section */}
       <section className="py-24 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
-      <section className="relative z-10 container mx-auto px-4 text-center text-black mt-[-10%] mb-[8%]">
+      <section className="relative z-10 container mx-auto px-4 text-center text-black mt-[-10%]">
       <h2 className="font-playfair text-white text-8xl md:text-[180px] font-bold mb-[0%]">SPEAKING</h2>
       </section>
 
+      </section>
+
+      <section className="py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
         <div className="container mx-auto">
-          {/* First Book Section */}
-          <div className="mb-24">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="order-2 lg:order-1">
-                <div className="flex items-start gap-8 mb-3">
-                  {/* <span className="font-playfair text-4xl font-bold text-black">01</span> */}
-                  <div>
-                    <h3 className="font-playfair text-2xl md:text-5xl font-bold text-black leading-tight mb-4">
-                      GROW, OVERCOME,
-                      <br />
-                      BACK UP
-                    </h3>
-                  </div>
-                </div>
-                <h4 className="font-playfair text-2xl md:text-3xl font-normal text-black mb-6">
-                  Redeemed From Inner Scars
-                </h4>
-                <p className="font-montserrat text-2xl md:text-2xl text-black leading-relaxed mb-8">
-                Redeemed From Inner Scars tells the gripping story of a woman shaped by...
-                </p>
-                <div className="flex gap-4">
-                  <button className="bg-suelyn-cream text-black px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors font-inter text-sm">
-                    Purchase Books
-                  </button>
-                  <button className="bg-suelyn-cream text-black px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors font-inter text-sm">
-                    View Books
-                    <span className="ml-4">→</span>
-                  </button>
-                </div>
-              </div>
-              <div className="order-1 lg:order-2">
+
+          {/* Book Listings */}
+          <div className="grid lg:grid-cols-2 gap-16 mb-16">
+            {/* First Book */}
+            <div className="bg-white/50 rounded-lg p-8 backdrop-blur-sm">
+              <div className="flex gap-6 items-start">
                 <img
                   src="https://api.builder.io/api/v1/image/assets/TEMP/f4fb26806dcd9b009b5277358a543c628e3e9e97?width=484"
                   alt="Redeemed From Inner Scars book cover"
-                  className="w-64 mx-auto"
+                  className="w-32 h-auto flex-shrink-0"
                 />
-              </div>
-            </div>
-          </div>
-
-          {/* Second Book Section */}
-          <div className="mb-24">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/15038a927adb324e1f36cf74805e39703c06ec28?width=498"
-                  alt="Second book cover"
-                  className="w-64 mx-auto"
-                />
-              </div>
-              <div>
-                <div className="flex items-start gap-8 mb-3">
-                  {/* <span className="font-playfair text-4xl font-bold text-black">02</span> */}
-                  <div>
-                    <h3 className="font-playfair text-2xl md:text-4xl font-bold text-black leading-tight mb-4">
-                      GROW, OVERCOME,
-                      <br />
-                      BACK UP
-                    </h3>
+                <div className="flex-1">
+                  <h3 className="font-playfair text-2xl md:text-3xl font-bold text-black mb-4">
+                    Redeemed From Inner Scars
+                  </h3>
+                  <p className="font-montserrat text-lg text-black mb-6 leading-relaxed">
+                    Redeemed From Inner Scars tells the gripping story of a woman shaped by adversity, 
+                    who discovered that her pain was not her prison but her pathway to purpose.
+                  </p>
+                  <div className="flex gap-4">
+                    <button className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
+                      BUY NOW
+                    </button>
+                    {/* <button className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
+                      ADD TO CART
+                    </button> */}
                   </div>
                 </div>
-                <h4 className="font-playfair text-2xl md:text-3xl font-normal text-black mb-6">
-                  Build a Nation, Not Two Empires - A practical Marriage Guide
-                </h4>
-                <p className="font-montserrat text-2xl md:text-2xl text-black leading-relaxed mb-8">
-                Build a Nation, Not Two Empires - A practical Marriage Guide
-                </p>
-                <div className="flex gap-4">
-                  <button className="bg-suelyn-cream text-black px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors font-inter text-sm">
-                    Purchase Books
-                  </button>
-                  <button className="bg-suelyn-cream text-black px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors font-inter text-sm">
-                    View Books
-                    <span className="ml-4">→</span>
-                  </button>
+              </div>
+            </div>
+
+            {/* Second Book */}
+            <div className="bg-white/50 rounded-lg p-8 backdrop-blur-sm">
+              <div className="flex gap-6 items-start">
+                <img
+                  src="https://api.builder.io/api/v1/image/assets/TEMP/15038a927adb324e1f36cf74805e39703c06ec28?width=498"
+                  alt="Build a Nation book cover"
+                  className="w-32 h-auto flex-shrink-0"
+                />
+                <div className="flex-1">
+                  <h3 className="font-playfair text-2xl md:text-3xl font-bold text-black mb-4">
+                  Build a Nation, Not Two Empires - A Practical Marriage Guide
+                  </h3>
+                  <p className="font-montserrat text-lg text-black mb-6 leading-relaxed">
+                    A practical marriage guide that helps couples build strong foundations 
+                    and create lasting relationships based on faith and mutual respect.
+                  </p>
+                  <div className="flex gap-4">
+                    <button className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
+                      BUY NOW
+                    </button>
+                    <button className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
+                      ADD TO CART
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

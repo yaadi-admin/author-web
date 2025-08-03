@@ -42,7 +42,7 @@ export default function About() {
                 About
               </h1>
             </div>
-            <h2 className="font-league-spartan text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-white ml-[-60%] mt-[-10%]">
+            <h2 className="font-league-spartan text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-white ml-[-60%] mt-[-6%]">
               Suzanna Griffiths
             </h2>
           </div>

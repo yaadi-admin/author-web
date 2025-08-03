@@ -42,7 +42,7 @@ export default function Workshops() {
                 Workshops
               </h1>
             </div>
-            <h2 className="font-league-spartan text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-white ml-[-60%] mt-[-10%]">
+            <h2 className="font-league-spartan text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-white ml-[-60%] mt-[-6%]">
               Transformative Sessions
             </h2>
           </div>
@@ -52,7 +52,7 @@ export default function Workshops() {
       <section className="bg-gradient-to-t from-[#FFE4EE] via-[#FFE4EE] to-[#FFE4EE] h-[20vh] mt-[-20%] pb-[20%]"></section>
 
       {/* Workshops Listings Section */}
-      <section className="py-24 px-4 bg-[#F1E6DB]">
+      <section className="py-24 px-4 bg-[#FFE4EE]">
         <div className="container mx-auto">
           <h2 className="font-playfair text-6xl md:text-7xl font-normal text-gray-700 text-center mb-16">
             Workshops

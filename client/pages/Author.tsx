@@ -7,6 +7,9 @@ export default function Author() {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const [scrollY, setScrollY] = useState(0);
+  // State for managing the marquee animation
+  const [animationKey, setAnimationKey] = useState(0);
+  const marqueeText = "My Books ".repeat(20);
 
   // Auto-scroll reviews
   useEffect(() => {
@@ -73,7 +76,7 @@ export default function Author() {
                 Author
               </h1>
             </div>
-            <h2 className="font-league-spartan text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-white ml-[-60%] mt-[-10%]">
+            <h2 className="font-league-spartan text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-white ml-[-60%] mt-[-6%]">
               Suzanna Griffiths
             </h2>
           </div>
@@ -86,7 +89,7 @@ export default function Author() {
       <section className="py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
         <div className="container mx-auto">
           {/* Section Title with Orange Background */}
-          <div className="relative mb-16">
+          <div className="relative mb-[12%]">
             <div className="absolute inset-0 bg-[#FFAC24] h-24 transform -skew-y-1"></div>
             <div className="relative z-10 flex items-center h-24">
               <h2 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-normal text-black leading-none ml-8">
@@ -110,16 +113,12 @@ export default function Author() {
                     Redeemed From Inner Scars
                   </h3>
                   <p className="font-montserrat text-lg text-black mb-6 leading-relaxed">
-                    Redeemed From Inner Scars tells the gripping story of a woman shaped by adversity, 
-                    who discovered that her pain was not her prison but her pathway to purpose.
+                  Through raw honesty and heartfelt reflection, Suzanna D. Griffiths invites readers on a journey of healing, faith, and self-discovery. Redeemed From Inner Scars is a powerful testament to overcoming trauma, reclaiming identity, and finding purpose beyond pain. With biblical insights, personal stories, and guided activities, this book offers encouragement and tools to rise above the past and walk confidently into a life of restoration and hope.
                   </p>
                   <div className="flex gap-4">
                     <button className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
                       BUY NOW
                     </button>
-                    {/* <button className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
-                      ADD TO CART
-                    </button> */}
                   </div>
                 </div>
               </div>
@@ -135,18 +134,14 @@ export default function Author() {
                 />
                 <div className="flex-1">
                   <h3 className="font-playfair text-2xl md:text-3xl font-bold text-black mb-4">
-                    Build a Nation, Not Two Empires
+                    Build a Nation, Not Two Empires: A Practical Marriage Guide
                   </h3>
                   <p className="font-montserrat text-lg text-black mb-6 leading-relaxed">
-                    A practical marriage guide that helps couples build strong foundations 
-                    and create lasting relationships based on faith and mutual respect.
+                  What if marriage wasn’t just about two people but about building an entire nation? In Build A Nation, Not Two Empires, Suzanna D. Griffiths invites readers into a powerful, spirit-filled exploration of marriage that blends personal testimony with biblical truth. Through raw honesty, divine insight, and lessons learned from both brokenness and restoration, Suzanna challenges traditional views of relationships and offers a new framework rooted in purpose, prayer, and partnership.
                   </p>
                   <div className="flex gap-4">
                     <button className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
                       BUY NOW
-                    </button>
-                    <button className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
-                      ADD TO CART
                     </button>
                   </div>
                 </div>
@@ -155,13 +150,61 @@ export default function Author() {
           </div>
 
           {/* Background Text */}
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center justify-center opacity-10">
-              <span className="font-playfair text-[200px] font-bold text-black">My Books</span>
+        </div>
+      </section>
+
+
+      {/* Continuous Background Text Section */}
+      <section className="py-16 w-full marquee-container bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB] pb-[2%]">
+        <div className="w-full overflow-hidden">
+          <div className="relative w-full h-[180px] md:h-[240px]">
+            <div
+              className="absolute top-1/2 left-0 w-full"
+              style={{ transform: "translateY(-50%)" }}
+            >
+              <div className="w-full overflow-hidden">
+                <div
+                  key={animationKey}
+                  className="marquee-content whitespace-nowrap opacity-30 animate-continuous-marquee"
+                  style={{
+                    animationDuration: '30s',
+                    animationTimingFunction: 'linear',
+                    animationIterationCount: 'infinite',
+                  }}
+                >
+                  <span className="font-playfair text-8xl md:text-[150px] font-bold text-black leading-tight mx-8">
+                    {marqueeText}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <style>
+          {`
+            @keyframes continuous-marquee {
+              0% { 
+                transform: translateX(100%); 
+              }
+              100% { 
+                transform: translateX(-100%); 
+              }
+            }
+            
+            .animate-continuous-marquee {
+              animation-name: continuous-marquee;
+            }
+            
+            /* Ensure smooth rendering */
+            .marquee-content {
+              will-change: transform;
+              backface-visibility: hidden;
+              transform: translateZ(0);
+            }
+          `}
+        </style>
       </section>
+
 
       {/* Testimonial Section with Dark Background */}
       <section className="py-24 relative overflow-hidden bg-gray-800">
@@ -237,30 +280,135 @@ export default function Author() {
         </div>
       </section>
 
+      {/* Where to Buy Section */}
+      <section className="py-24 bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB]">
+        <div className="container mx-auto px-4">
+          {/* Section Title */}
+          <div className="text-center mb-16">
+            <h2 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-black leading-none mb-6">
+              Where to Buy
+            </h2>
+            <p className="font-montserrat text-xl text-black/70 max-w-2xl mx-auto">
+              Available in Hardcover and Kindle formats at your favorite retailers
+            </p>
+          </div>
+
+          {/* Retailers Grid */}
+          <div className="grid md:grid-cols-1 lg:grid-cols-1 gap-8 mb-16">
+            {/* Amazon */}
+            <div className="bg-white/60 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-white/80 transition-all duration-300 shadow-lg">
+              <div className="w-16 h-16 mx-auto mb-4 bg-[#FFAC24]/20 rounded-full flex items-center justify-center">
+                <svg className="w-8 h-8 text-[#FFAC24]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M15.93 12.86c0-.55-.45-1-1-1H9.07c-.55 0-1 .45-1 1s.45 1 1 1h5.86c.55 0 1-.45 1-1zm-5.86-3c-.55 0-1 .45-1 1s.45 1 1 1h5.86c.55 0 1-.45 1-1s-.45-1-1-1H10.07z"/>
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                </svg>
+              </div>
+              <h3 className="font-playfair text-xl font-bold text-black mb-2">Amazon</h3>
+              <p className="font-montserrat text-sm text-black/60 mb-4">Hardcover & Kindle</p>
+              <button className="bg-[#FFAC24] text-black px-6 py-2 rounded hover:bg-[#E6951A] transition-colors font-inter text-sm font-bold">
+                SHOP NOW
+              </button>
+            </div>
+
+            {/* Barnes & Noble */}
+            {/* <div className="bg-white/60 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-white/80 transition-all duration-300 shadow-lg">
+              <div className="w-16 h-16 mx-auto mb-4 bg-[#FFAC24]/20 rounded-full flex items-center justify-center">
+                <svg className="w-8 h-8 text-[#FFAC24]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-1.75-1z"/>
+                </svg>
+              </div>
+              <h3 className="font-playfair text-xl font-bold text-black mb-2">Barnes & Noble</h3>
+              <p className="font-montserrat text-sm text-black/60 mb-4">Hardcover & Nook</p>
+              <button className="bg-[#FFAC24] text-black px-6 py-2 rounded hover:bg-[#E6951A] transition-colors font-inter text-sm font-bold">
+                SHOP NOW
+              </button>
+            </div> */}
+
+            {/* Bookshop.org */}
+            {/* <div className="bg-white/60 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-white/80 transition-all duration-300 shadow-lg">
+              <div className="w-16 h-16 mx-auto mb-4 bg-[#FFAC24]/20 rounded-full flex items-center justify-center">
+                <svg className="w-8 h-8 text-[#FFAC24]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+              <h3 className="font-playfair text-xl font-bold text-black mb-2">Bookshop.org</h3>
+              <p className="font-montserrat text-sm text-black/60 mb-4">Support Local Bookstores</p>
+              <button className="bg-[#FFAC24] text-black px-6 py-2 rounded hover:bg-[#E6951A] transition-colors font-inter text-sm font-bold">
+                SHOP NOW
+              </button>
+            </div> */}
+
+            {/* Direct from Author */}
+            {/* <div className="bg-white/60 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-white/80 transition-all duration-300 shadow-lg">
+              <div className="w-16 h-16 mx-auto mb-4 bg-[#FFAC24]/20 rounded-full flex items-center justify-center">
+                <svg className="w-8 h-8 text-[#FFAC24]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </div>
+              <h3 className="font-playfair text-xl font-bold text-black mb-2">Signed Copies</h3>
+              <p className="font-montserrat text-sm text-black/60 mb-4">Direct from Author</p>
+              <button className="bg-[#FFAC24] text-black px-6 py-2 rounded hover:bg-[#E6951A] transition-colors font-inter text-sm font-bold">
+                ORDER NOW
+              </button>
+            </div> */}
+          </div>
+
+          {/* Format Availability */}
+          <div className="bg-white/60 backdrop-blur-sm rounded-lg p-8 text-center shadow-lg">
+            <h3 className="font-playfair text-3xl font-bold text-black mb-6">Available Formats</h3>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="flex items-center justify-center space-x-4">
+                <div className="w-12 h-12 bg-[#FFAC24]/20 rounded-full flex items-center justify-center">
+                  <svg className="w-6 h-6 text-[#FFAC24]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-1.75-1z"/>
+                  </svg>
+                </div>
+                <div className="text-left">
+                  <h4 className="font-playfair text-xl font-bold text-black">Hardcover</h4>
+                  <p className="font-montserrat text-sm text-black/60">Premium quality, perfect for collectors</p>
+                </div>
+              </div>
+              <div className="flex items-center justify-center space-x-4">
+                <div className="w-12 h-12 bg-[#FFAC24]/20 rounded-full flex items-center justify-center">
+                  <svg className="w-6 h-6 text-[#FFAC24]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
+                  </svg>
+                </div>
+                <div className="text-left">
+                  <h4 className="font-playfair text-xl font-bold text-black">Kindle</h4>
+                  <p className="font-montserrat text-sm text-black/60">Instant digital access, read anywhere</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Email Subscription Section with Gradient Arch */}
-      <section className="py-24 relative overflow-hidden w-full">
+      <section className="py-24 relative overflow-hidden w-full bg-gradient-to-t from-[#FFE4EE] to-[#F1E6DB]">
         {/* Gradient curved background - full width arch */}
         <div className="absolute inset-0 w-screen left-1/2 transform -translate-x-1/2">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
             <defs>
               <linearGradient id="subscriptionGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#FFAC24" />
+                <stop offset="0%" stopColor="#F84988" />
                 <stop offset="50%" stopColor="#F84988" />
-                <stop offset="100%" stopColor="#F84988" />
+                <stop offset="100%" stopColor="#FFAC24" />
               </linearGradient>
             </defs>
             <path d="M0 100 L0 60 Q50 0 100 60 L100 100 Z" fill="url(#subscriptionGradient)"/>
           </svg>
         </div>
 
-        <div className="relative z-10 container mx-auto px-4 text-center">
+        <div className="relative z-10 container mx-auto px-4 text-center pt-[12%]">
           <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-normal text-white leading-none mb-12">
-            Author
+          JOIN THE EMPOWERED
+          SPACE
           </h3>
           
           {/* Signup form */}
           <div className="max-w-4xl mx-auto mb-12">
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 gap-4">
               <input
                 type="text"
                 placeholder="Name"
@@ -271,14 +419,9 @@ export default function Author() {
                 placeholder="Email"
                 className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-6 py-4 text-white text-lg placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white"
               />
-              <input
-                type="text"
-                placeholder="Message"
-                className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-6 py-4 text-white text-lg placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white"
-              />
             </div>
-            <button className="bg-[#8B5CF6] text-white px-8 py-4 rounded-lg hover:bg-[#7C3AED] transition-colors font-inter text-lg mt-6">
-              Subscribe
+            <button className="bg-white text-black px-8 py-4 rounded-lg hover:bg-[#E6951A] transition-colors font-inter text-lg mt-6">
+              Join the Empowered Space
             </button>
           </div>
         </div>

@@ -490,16 +490,15 @@ export default function Index() {
                     Redeemed From Inner Scars
                   </h3>
                   <p className="font-montserrat text-lg text-black mb-6 leading-relaxed">
-                    Redeemed From Inner Scars tells the gripping story of a woman shaped by adversity, 
-                    who discovered that her pain was not her prison but her pathway to purpose.
+                  Through raw honesty and heartfelt reflection, Suzanna D. Griffiths invites readers on a journey of healing, faith, and self-discovery. Redeemed From Inner Scars is a powerful testament to overcoming trauma, reclaiming identity, and finding purpose beyond pain
                   </p>
-                  <div className="flex gap-4">
-                    <button className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
+                  <div className="flex gap-4 mt-10">
+                    <button onClick={() => window.location.href = '/author'} className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
                       BUY NOW
                     </button>
-                    {/* <button className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
-                      ADD TO CART
-                    </button> */}
+                    <button onClick={() => window.location.href = '/author'} className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
+                      VIEW MORE
+                    </button>
                   </div>
                 </div>
               </div>
@@ -515,18 +514,17 @@ export default function Index() {
                 />
                 <div className="flex-1">
                   <h3 className="font-playfair text-2xl md:text-3xl font-bold text-black mb-4">
-                  Build a Nation, Not Two Empires - A Practical Marriage Guide
+                  Build a Nation, Not Two Empires: A Practical Marriage Guide
                   </h3>
                   <p className="font-montserrat text-lg text-black mb-6 leading-relaxed">
-                    A practical marriage guide that helps couples build strong foundations 
-                    and create lasting relationships based on faith and mutual respect.
+                  What if marriage wasn’t just about two people but about building an entire nation? In Build A Nation, Not Two Empires, Suzanna D. Griffiths invites readers...
                   </p>
                   <div className="flex gap-4">
-                    <button className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
+                  <button className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
                       BUY NOW
                     </button>
                     <button className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
-                      ADD TO CART
+                      VIEW MORE
                     </button>
                   </div>
                 </div>

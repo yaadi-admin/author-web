@@ -6,6 +6,7 @@
   "homepage": "https://suelynempoweredliving.com",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.5.2",
   "pkg": {
     "assets": [
       "dist/spa/*"
@@ -16,7 +17,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:client && npm run build:server",
+    "build": "pnpm run build:client && pnpm run build:server",
     "build:client": "vite build",
     "build:server": "vite build --config vite.config.server.ts",
     "start": "node dist/server/node-build.mjs",

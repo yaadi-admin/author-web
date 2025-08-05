@@ -16,12 +16,12 @@ export default function About() {
   return (
     <div className="bg-gradient-to-r from-[#F1E6DB] via-[#E0B2F1] to-[#FFE4EE]">
       <Header whiteText={true} />
-      
+
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
         {/* Hero Background Image with Parallax */}
         <div className="absolute inset-0 z-0">
-          <div 
+          <div
             className="absolute inset-0 w-full h-[120%] transform -translate-y-[10%]"
             style={{
               backgroundImage: 'url(https://api.builder.io/api/v1/image/assets/TEMP/7cf07593ce043b7a08e4f1ca3e188ae94e312d73?width=3838)',
@@ -54,10 +54,8 @@ export default function About() {
       {/* Mission Statement Section */}
       <section className="py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
         <div className="container mx-auto text-center">
-          <p className="font-playfair text-lg sm:text-xl md:text-3xl lg:text-4xl font-normal text-black/70 leading-tight max-w-4xl mx-auto mb-8">
-            A bold storyteller, certified leader, and faith-fueled mentor who has turned trials into testimonies
-          </p>
-          <div className="mb-12">
+
+          {/* <div className="mb-12">
             <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-normal text-black leading-none">
               GROW, OVERCOME
             </h3>
@@ -67,7 +65,7 @@ export default function About() {
             <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-normal text-black leading-none ml-4 sm:ml-8 md:ml-24 lg:ml-48">
               BACK UP
             </h3>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -89,24 +87,88 @@ export default function About() {
                   className="w-50 h-50 object-cover rounded-lg mt-[-30%] ml-[-15%]"
                 />
               </div>
+
+              {/* We Serve Section */}
+              <div>
+                <h3 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-normal text-black mb-4 mt-[10%]">
+                  We Serve
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-3"></div>
+                    <p className="font-montserrat text-base md:text-lg text-black leading-relaxed">
+                      <span className="">Christian couples & married women</span> seeking deeper connection and spiritual growth
+                    </p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-3"></div>
+                    <p className="font-montserrat text-base md:text-lg text-black leading-relaxed">
+                      <span className="">Men seeking emotional and spiritual healing</span> to break free from past wounds
+                    </p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-3"></div>
+                    <p className="font-montserrat text-base md:text-lg text-black leading-relaxed">
+                      <span className="">Pastors, counselors, and psychologists</span> looking for biblical wisdom in their practice
+                    </p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-3"></div>
+                    <p className="font-montserrat text-base md:text-lg text-black leading-relaxed">
+                      <span className="">Anyone seeking clarity, restoration, and biblical truth</span> in their journey
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Call-to-Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                <button className="group bg-black text-white px-6 py-3 rounded-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 font-inter text-sm font-semibold flex items-center space-x-2">
+                  <span>Explore My Book</span>
+                </button>
+                <button className="group bg-suelyn-cream text-black px-6 py-3 rounded-lg border border-black/20 hover:bg-black hover:text-white transition-all duration-300 transform hover:-translate-y-1 font-inter text-sm font-semibold flex items-center space-x-2">
+                  <span>Book Suzanna to Speak</span>
+                </button>
+              </div>
+
             </div>
 
-            {/* Right side - Text */}
-            <div className="mt-[-20%]">
-              <p className="font-montserrat text-2xl text-black mb-4 font-normal leading-8">
-                Suzanna D. Griffiths is the kind of woman who lights up a room, not just with her smile, but with purpose, passion, and power.
-              </p>
-              <p className="font-montserrat text-2xl text-black mb-8 font-normal leading-8">
-                A bold storyteller, certified leader, and faith-fueled mentor, Suzanna has turned her trials into testimonies and her healing journey into a mission to uplift others. Her life is proof that brokenness can be transformed into beauty, and purpose can be found even in the deepest pain.
-              </p>
-              <button className="bg-suelyn-cream text-gray-600 px-6 py-3 rounded border border-gray-300 hover:bg-gray-100 transition-colors text-lg font-inter">
-                LEARN MORE
-              </button>
+            {/* Right side - Text and Mission Content */}
+            <div className="space-y-8">
+              {/* Original personal text */}
+              <div>
+                <p className="font-playfair text-lg sm:text-xl md:text-3xl lg:text-4xl font-normal text-black/70 leading-tight max-w-4xl mx-auto mb-8">
+                  Why SueLyn Empowered Living Was Born
+                </p>
+                <p className="font-montserrat text-2xl text-black mb-4 font-normal leading-8">
+                  SueLyn Empowered Living was born from real-life conversations — late-night talks, quiet tears, and breakthrough moments. Suzanna's transparency brings healing, hope, and connection. She doesn't hide her scars; she shows her healing.
+                </p>
+                <p className="font-montserrat text-2xl text-black mb-8 font-normal leading-8">
+                  This is more than a platform - it's a <b>movement</b> of truth-telling, healing, and purpose.
+                </p>
+                <button className="group bg-suelyn-cream text-black px-6 py-3 rounded-lg border border-black/20 hover:bg-black hover:text-white transition-all duration-300 transform hover:-translate-y-1 font-inter text-sm font-semibold flex items-center space-x-2">
+                  LEARN MORE
+                </button>
+              </div>
+
+              {/* Mission Statement */}
+              <div className="pt-8 border-t border-black/10">
+                <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-black leading-none mb-6">
+                  OUR MISSION
+                </h2>
+                <p className="font-playfair text-lg sm:text-xl md:text-2xl font-normal text-black/80 leading-tight italic mb-8">
+                  "SueLyn Empowered Living exists to help individuals overcome shame, doubt, and fear by rediscovering their God-given greatness through biblical truth and personal testimony."
+                </p>
+
+
+
+
+              </div>
             </div>
           </div>
 
           {/* Side image */}
-          <div className="mt-[-5%] flex justify-end">
+          <div className="mt-[0%] flex justify-end mr-[20%]">
             <img
               src="https://api.builder.io/api/v1/image/assets/TEMP/cb8827ce947c674e0b468cb798d4e8d61410fc29?width=383"
               alt="Suzanna empowerment"
@@ -115,6 +177,8 @@ export default function About() {
           </div>
         </div>
       </section>
+
+
 
       {/* Continuous Background Text Section */}
       <section className="py-16 w-full marquee-container bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
@@ -186,14 +250,14 @@ export default function About() {
                 src="https://api.builder.io/api/v1/image/assets/TEMP/7cf07593ce043b7a08e4f1ca3e188ae94e312d73?width=3838"
                 alt="Suzanna Griffiths"
                 className="w-full h-[900px] object-cover rounded-lg"
-                // Curve at the top removed: no extra styling or SVG
+              // Curve at the top removed: no extra styling or SVG
               />
-              <img
+              {/* <img
                 src="https://api.builder.io/api/v1/image/assets/TEMP/7cf07593ce043b7a08e4f1ca3e188ae94e312d73?width=3838"
                 alt="Suzanna Griffiths"
                 className="w-full h-[400px] object-cover rounded-lg"
                 // Curve at the top removed: no extra styling or SVG
-              />
+              /> */}
             </div>
 
             {/* Right side - Text Content */}
@@ -223,23 +287,23 @@ export default function About() {
               {/* Bio Text */}
               <div className="space-y-6">
                 <p className="font-montserrat text-lg md:text-2xl leading-relaxed">
-                From the deep hills of rural Portland, Jamaica, hails a powerhouse of purpose, passion, and transformation. Suzanna Griffiths has suffered many forms of abuse, but with a resolute mind has cancelled evil words, healed emotionally, reidentified herself in Christ, and used all the courage inside her to soar past naysayers' expectations.
+                  From the deep hills of rural Portland, Jamaica, hails a powerhouse of purpose, passion, and transformation. Suzanna Griffiths has suffered many forms of abuse, but with a resolute mind has cancelled evil words, healed emotionally, reidentified herself in Christ, and used all the courage inside her to soar past naysayers' expectations.
                 </p>
                 <p className="font-montserrat text-lg md:text-2xl leading-relaxed">
-                She has a belief that greatness is on the inside of all of us and has taken that passion into her corporate role where she has over 20 years of experience as an Environmental, Occupational Safety and Health (EOSH) leader. 
+                  She has a belief that greatness is on the inside of all of us and has taken that passion into her corporate role where she has over 20 years of experience as an Environmental, Occupational Safety and Health (EOSH) leader.
                 </p>
                 <p className="font-montserrat text-lg md:text-2xl leading-relaxed">
-                Suzanna predominantly uses coaching, mentorship and training to drive behavioural change, which is critical for the success of a positive workplace EOSH culture.
+                  Suzanna predominantly uses coaching, mentorship and training to drive behavioural change, which is critical for the success of a positive workplace EOSH culture.
                 </p>
                 <p className="font-montserrat text-lg md:text-2xl leading-relaxed">
-                Suzanna believes that humans as a whole are a composite being of physical, emotional, spiritual, and social elements that must align with the Word of God to ensure a fruitful, empowered, and purposeful life.
+                  Suzanna believes that humans as a whole are a composite being of physical, emotional, spiritual, and social elements that must align with the Word of God to ensure a fruitful, empowered, and purposeful life.
                 </p>
                 <p className="font-montserrat text-lg md:text-2xl leading-relaxed">
-                Suzanna studied Psychology, Sociology and Human Sexuality as she desired to understand human behaviours. She holds a BSc in Environmental Health and a plethora of post graduate international certifications.
+                  Suzanna studied Psychology, Sociology and Human Sexuality as she desired to understand human behaviours. She holds a BSc in Environmental Health and a plethora of post graduate international certifications.
                 </p>
 
                 <p className="font-montserrat text-lg md:text-2xl leading-relaxed">
-                In order to walk in her calling of helping others to heal, realign and refocus their lives she enrolled for a MA in Counselling Psychology, however she has paused to be certified in Family Counselling, Marriage and Couples Therapy, Professional Emotion Coach and as an Empowerment Specialist.
+                  In order to walk in her calling of helping others to heal, realign and refocus their lives she enrolled for a MA in Counselling Psychology, however she has paused to be certified in Family Counselling, Marriage and Couples Therapy, Professional Emotion Coach and as an Empowerment Specialist.
                 </p>
               </div>
 
@@ -256,14 +320,234 @@ export default function About() {
               THE FUN STUFF
             </h2>
             <p className="font-playfair text-lg sm:text-xl md:text-3xl lg:text-4xl font-normal text-black/70 leading-tight max-w-4xl mx-auto">
-              "This is what it looks like to live it out, every day."
+              "Suzanna Says…Everything that has happened to us, the Lord would have loaded with purpose - to shape and prepare us for a greater calling."
             </p>
+          </div>
+
+          {/* Instagram-style Cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12 max-w-2xl mb-[-45%] ">
+            {/* Hidden Talent Card */}
+            <div className="bg-gradient-to-br from-[#FFE4EE] to-[#F1E6DB] rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-full lg:w-80">
+              {/* Card Header */}
+              <div className="p-3 border-b border-gray-100">
+                <div className="flex items-center space-x-2">
+                  <div className="w-8 h-8 bg-gradient-to-r from-[#F84988] to-[#FFAC24] rounded-full flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-inter text-xs font-semibold text-gray-900">Hidden Talent</h4>
+                    <p className="font-inter text-xs text-gray-500">Suzanna Griffiths</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card Content */}
+              <div className="p-4">
+                <div className="bg-gradient-to-br from-[#FFE4EE] to-[#F1E6DB] rounded-lg p-3 mb-3">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-gradient-to-r from-[#F84988] to-[#FFAC24] rounded-full flex items-center justify-center">
+                      <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h5 className="font-playfair text-sm font-semibold text-gray-900">Sangria Master</h5>
+                      <p className="font-montserrat text-xs text-gray-600">Crafting the perfect blend</p>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="font-montserrat text-sm text-black leading-relaxed">
+                  She makes a mean sangria that brings people together and creates unforgettable moments of joy and connection.
+                </p>
+
+                {/* Card Footer */}
+                <div className="mt-3 pt-3 border-t border-gray-100">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-1">
+                        <svg className="w-3 h-3 text-[#F84988]" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                        </svg>
+                        <span className="font-inter text-xs text-gray-500">Talent</span>
+                      </div>
+                    </div>
+                    <span className="font-inter text-xs text-gray-400">Just now</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Fun Fact Card */}
+            <div className="bg-gradient-to-br from-[#FFE4EE] to-[#F1E6DB] rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-full lg:w-80">
+              {/* Card Header */}
+              <div className="p-3 border-b border-gray-100">
+                <div className="flex items-center space-x-2">
+                  <div className="w-8 h-8 bg-gradient-to-r from-[#FFAC24] to-[#F84988] rounded-full flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-inter text-xs font-semibold text-gray-900">Fun Fact</h4>
+                    <p className="font-inter text-xs text-gray-500">Suzanna Griffiths</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card Content */}
+              <div className="p-4">
+                <div className="bg-gradient-to-br from-[#F1E6DB] to-[#FFE4EE] rounded-lg p-3 mb-3">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-gradient-to-r from-[#FFAC24] to-[#F84988] rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h5 className="font-playfair text-sm font-semibold text-gray-900">Fiercely Loyal</h5>
+                      <p className="font-montserrat text-xs text-gray-600">Protector of souls</p>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="font-montserrat text-sm text-black leading-relaxed">
+                  Once you're her people, she protects your soul and spirit with unwavering dedication and fierce loyalty.
+                </p>
+
+                {/* Card Footer */}
+                <div className="mt-3 pt-3 border-t border-gray-100">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-1">
+                        <svg className="w-3 h-3 text-[#FFAC24]" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                        </svg>
+                        <span className="font-inter text-xs text-gray-500">Loyalty</span>
+                      </div>
+                    </div>
+                    <span className="font-inter text-xs text-black">Just now</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Fun Fact Card */}
+            <div className="bg-gradient-to-br from-[#FFE4EE] to-[#F1E6DB] rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-full lg:w-80">
+              {/* Card Header */}
+              <div className="p-3 border-b border-gray-100">
+                <div className="flex items-center space-x-2">
+                  <div className="w-8 h-8 bg-gradient-to-r from-[#FFAC24] to-[#F84988] rounded-full flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-inter text-xs font-semibold text-gray-900">Fun Fact</h4>
+                    <p className="font-inter text-xs text-black">Suzanna Griffiths</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card Content */}
+              <div className="p-4">
+                <div className="bg-gradient-to-br from-[#F1E6DB] to-[#FFE4EE] rounded-lg p-3 mb-3">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-gradient-to-r from-[#FFAC24] to-[#F84988] rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h5 className="font-playfair text-sm font-semibold text-gray-900">Fiercely Loyal</h5>
+                      <p className="font-montserrat text-xs text-black">Protector of souls</p>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="font-montserrat text-sm text-black leading-relaxed">
+                  Once you're her people, she protects your soul and spirit with unwavering dedication and fierce loyalty.
+                </p>
+
+                {/* Card Footer */}
+                <div className="mt-3 pt-3 border-t border-gray-100">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-1">
+                        <svg className="w-3 h-3 text-[#FFAC24]" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                        </svg>
+                        <span className="font-inter text-xs text-black">Loyalty</span>
+                      </div>
+                    </div>
+                    <span className="font-inter text-xs text-black">Just now</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Fun Fact Card */}
+            <div className="bg-gradient-to-br from-[#FFE4EE] to-[#F1E6DB] rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-full lg:w-80">
+              {/* Card Header */}
+              <div className="p-3 border-b border-gray-100">
+                <div className="flex items-center space-x-2">
+                  <div className="w-8 h-8 bg-gradient-to-r from-[#FFAC24] to-[#F84988] rounded-full flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-inter text-xs font-semibold text-gray-900">Fun Fact</h4>
+                    <p className="font-inter text-xs text-black">Suzanna Griffiths</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card Content */}
+              <div className="p-4">
+                <div className="bg-gradient-to-br from-[#F1E6DB] to-[#FFE4EE] rounded-lg p-3 mb-3">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-gradient-to-r from-[#FFAC24] to-[#F84988] rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h5 className="font-playfair text-sm font-semibold text-black">Fiercely Loyal</h5>
+                      <p className="font-montserrat text-xs text-black">Protector of souls</p>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="font-montserrat text-sm text-black leading-relaxed">
+                  Once you're her people, she protects your soul and spirit with unwavering dedication and fierce loyalty.
+                </p>
+
+                {/* Card Footer */}
+                <div className="mt-3 pt-3 border-t border-gray-100">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-1">
+                        <svg className="w-3 h-3 text-[#FFAC24]" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                        </svg>
+                        <span className="font-inter text-xs text-black">Loyalty</span>
+                      </div>
+                    </div>
+                    <span className="font-inter text-xs text-black">Just now</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
 
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left side - Text */}
             <div className="space-y-6">
-              <p className="font-montserrat text-2xl text-black leading-relaxed">
+              {/* <p className="font-montserrat text-2xl text-black leading-relaxed">
                 Led by Suzanna Griffiths, this space is designed to help men and women heal from emotional wounds, align with God's Word, and walk in their divine purpose - boldly and whole.
               </p>
               <p className="font-montserrat text-2xl text-black leading-relaxed">
@@ -271,7 +555,7 @@ export default function About() {
               </p>
               <p className="font-montserrat text-2xl text-black leading-relaxed">
                 Through heartbreak, setbacks, and deep soul work, I discovered that pain doesn't disqualify you — it positions you.
-              </p>
+              </p> */}
               <div className="flex gap-4 mt-8">
                 <button className="bg-suelyn-cream text-black px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors font-inter text-sm">
                   Join Community
@@ -327,7 +611,7 @@ export default function About() {
                   <stop offset="100%" stopColor="#F84988" />
                 </linearGradient>
               </defs>
-              <path d="M0 0 L0 40 Q50 100 100 40 L100 0 Z" fill="url(#flippedGradient)"/>
+              <path d="M0 0 L0 40 Q50 100 100 40 L100 0 Z" fill="url(#flippedGradient)" />
             </svg>
           </div>
 

@@ -116,7 +116,28 @@ export default function Index() {
 
         {/* Hero Content */}
         <div className="relative z-10 text-center px-4 mt-[10%] mb-[5%]">
-          <div className="flex justify-center items-center space-x-8 md:space-x-16 lg:space-x-24">
+          {/* Mobile Navigation - Stacked */}
+          <div className="block md:hidden mb-8">
+            <ul className="flex justify-center gap-6 mb-4">
+              <li>
+                <a href="/about" className="font-montserrat text-sm text-black hover:text-suelyn-pink transition">About</a>
+              </li>
+              <li>
+                <a href="/author" className="font-montserrat text-sm text-black hover:text-suelyn-pink transition">Author</a>
+              </li>
+            </ul>
+            <ul className="flex justify-center gap-6">
+              <li>
+                <a href="/blog" className="font-montserrat text-sm text-black hover:text-suelyn-pink transition">Blog</a>
+              </li>
+              <li>
+                <a href="/workshops" className="font-montserrat text-sm text-black hover:text-suelyn-pink transition">Workshops</a>
+              </li>
+            </ul>
+          </div>
+          
+          {/* Desktop Navigation - Side by side */}
+          <div className="hidden md:flex justify-center items-center space-x-8 md:space-x-16 lg:space-x-24">
             {/* Left Navigation */}
             <ul className="flex gap-8">
               <li>
@@ -139,7 +160,15 @@ export default function Index() {
               </li>
             </ul>
           </div>
-          <h2 className="font-league-spartan text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-black ml-[-30%] mt-[-3%]">
+          
+          {/* Mobile Title */}
+          <div className="md:hidden">
+            <h1 className="font-charm text-5xl sm:text-6xl font-bold text-black leading-none mb-2">
+              SueLyn
+            </h1>
+          </div>
+          
+          <h2 className="font-league-spartan text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-normal text-black md:ml-[-30%] md:mt-[-3%] mt-2">
             Empowered Living
           </h2>
         </div>
@@ -147,19 +176,19 @@ export default function Index() {
 
 
       {/* Mission Statement Section */}
-      <section className="py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
+      <section className="py-8 md:py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
         <div className="container mx-auto text-center">
-          <p className="font-playfair text-lg sm:text-xl md:text-3xl lg:text-4xl font-normal text-black/70 leading-tight max-w-4xl mx-auto mb-8">
+          <p className="font-playfair text-base sm:text-lg md:text-xl lg:text-3xl xl:text-4xl font-normal text-black/70 leading-tight max-w-4xl mx-auto mb-6 md:mb-8 px-2">
           Life may have knocked you down, but God has already made a way for you to rise again. This blog is a space to
           </p>
-          <div className="mb-12">
-            <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-normal text-black leading-none">
+          <div className="mb-8 md:mb-12">
+            <h3 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-normal text-black leading-none">
               BREATHE, REFLECT
             </h3>
-            <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-6xl font-light italic text-black leading-tight max-w-2xl mt-[2%] mb-[-5%] ml-[-3%]">
+            <p className="font-playfair text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-light italic text-black leading-tight max-w-2xl mt-1 md:mt-[2%] mb-[-2%] md:mb-[-5%] ml-[-1%] md:ml-[-3%]">
               reclaim
             </p>
-            <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-normal text-black leading-none ml-4 sm:ml-8 md:ml-24 lg:ml-48">
+            <h3 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-normal text-black leading-none ml-2 sm:ml-4 md:ml-8 lg:ml-24 xl:ml-48">
               YOUR IDENTITY
             </h3>
           </div>
@@ -167,28 +196,28 @@ export default function Index() {
       </section>
 
       {/* Personal Section with Images */}
-      <section className="py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
+      <section className="py-8 md:py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left side - Images */}
-            <div className="relative">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="relative order-2 lg:order-1">
+              <div className="grid grid-cols-2 gap-2 md:gap-4">
                 <img
                   src="https://api.builder.io/api/v1/image/assets/TEMP/e8f417c43b988ed96cbc2d90894f47bf5c1fd1e9?width=1204"
                   alt="SueLyn lifestyle image"
-                  className="w-full h-80 object-cover rounded-lg"
+                  className="w-full h-48 md:h-80 object-cover rounded-lg"
                 />
                 <img
                   src="https://api.builder.io/api/v1/image/assets/TEMP/f79060608cf36612dadf8770194eb8fc5c178010?width=490"
                   alt="SueLyn portrait"
-                  className="w-50 h-50 object-cover rounded-lg mt-[-30%] ml-[-15%]"
+                  className="w-32 h-32 md:w-50 md:h-50 object-cover rounded-lg mt-[-20%] md:mt-[-30%] ml-[-10%] md:ml-[-15%]"
                 />
               </div>
             </div>
 
             {/* Right side - Text */}
-            <div className="mt-[-20%]">
-              <p className="font-montserrat text-2xl text-black mb-4 font-normal leading-8">
+            <div className="order-1 lg:order-2 mt-0 lg:mt-[-20%] mb-6 lg:mb-0">
+              <p className="font-montserrat text-base md:text-xl lg:text-2xl text-black mb-3 md:mb-4 font-normal leading-6 md:leading-8">
               You were never meant to stay broken. You were made to be Restored, Realigned, and Reborn.
               </p>
               <p className="font-montserrat text-2xl text-black mb-8 font-normal leading-8">
@@ -198,27 +227,27 @@ export default function Index() {
               you owe it to yourself to live aligned, whole, and fully free.
               Because you’re not just surviving - you’re becoming.
               </p>
-              <button className="bg-suelyn-cream text-gray-600 px-6 py-3 rounded border border-gray-300 hover:bg-gray-100 transition-colors text-lg font-inter">
+              <button className="bg-suelyn-cream text-gray-600 px-4 md:px-6 py-2 md:py-3 rounded border border-gray-300 hover:bg-gray-100 transition-colors text-sm md:text-lg font-inter">
                 JUMP RIGHT IN
               </button>
             </div>
           </div>
 
           {/* Side image */}
-          <div className="mt-[-5%] flex justify-end">
+          <div className="mt-4 md:mt-[-5%] flex justify-center lg:justify-end">
             <img
               src="https://api.builder.io/api/v1/image/assets/TEMP/6f79502e1785bd966aaee7c1022f0c3c9b1a1110?width=892"
               alt="SueLyn empowerment"
-              className="w-96 h-auto rounded-lg"
+              className="w-64 md:w-96 h-auto rounded-lg"
             />
           </div>
         </div>
       </section>
 
       {/* Continuous Background Text Section */}
-      <section className="py-16 w-full marquee-container bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB] pb-[20%]">
+      <section className="py-8 md:py-16 w-full marquee-container bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB] pb-[10%] md:pb-[20%]">
         <div className="w-full overflow-hidden">
-          <div className="relative w-full h-[180px] md:h-[240px]">
+          <div className="relative w-full h-[120px] md:h-[180px] lg:h-[240px]">
             <div
               className="absolute top-1/2 left-0 w-full"
               style={{ transform: "translateY(-50%)" }}
@@ -233,7 +262,7 @@ export default function Index() {
                     animationIterationCount: 'infinite',
                   }}
                 >
-                  <span className="font-playfair text-8xl md:text-[150px] font-bold text-black leading-tight mx-8">
+                  <span className="font-playfair text-4xl sm:text-6xl md:text-8xl lg:text-[150px] font-bold text-black leading-tight mx-4 md:mx-8">
                     {marqueeText}
                   </span>
                 </div>
@@ -268,7 +297,7 @@ export default function Index() {
 
 
       {/* About Section with Pink Background */}
-      <section className="relative py-24 overflow-hidden w-full mt-[-40%]">
+      <section className="relative py-12 md:py-24 overflow-hidden w-full mt-[-20%] md:mt-[-40%]">
         {/* Gradient curved background - full width arch */}
         <div className="absolute inset-0 w-screen left-1/2 transform -translate-x-1/2">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
@@ -285,62 +314,107 @@ export default function Index() {
 
         <div className="relative z-10 container mx-auto px-4">
           {/* Image positioned at top center of arch */}
-          <div className="flex justify-center mb-16">
+          <div className="flex justify-center mb-8 md:mb-16">
             <img
               src="https://api.builder.io/api/v1/image/assets/TEMP/9ef2ef4ab7707f0aa3dc051ca846715a652746d4?width=1206"
               alt="Suzanna Griffiths"
-              className="w-96 h-96 object-cover rounded-t-[64px]"
+              className="w-64 h-64 md:w-96 md:h-96 object-cover rounded-t-[32px] md:rounded-t-[64px]"
             />
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
             {/* Left side - About Text */}
-            <div className="text-white pt-[10%]">
-              <h3 className="font-playfair text-4xl md:text-3xl font-normal mb-6 ml-[10%]">
+            <div className="text-white pt-[5%] md:pt-[10%]">
+              <h3 className="font-playfair text-2xl md:text-3xl lg:text-4xl font-normal mb-4 md:mb-6 ml-[5%] md:ml-[10%]">
                 I'M SUZANNA
               </h3>
-              <div className="mb-12">
-              <div className="mb-1 flex flex-row">
-              <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[2%] mb-[1%] ml-[10%]">
-            I'm
-            </p>
-            <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none ml-[1%]">
-            Called
-            </h3>
-            <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[2%] mb-[1%] ml-[2%]">
-            to
-            </p>
-            <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none ml-[1%]">
-            Help
-            </h3>
-            <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[2%] mb-[1%] ml-[1%]">
-            You
-            </p>
-            </div>
+              <div className="mb-8 md:mb-12">
+              {/* Mobile Layout - Stacked */}
+              <div className="block md:hidden text-center">
+                <div className="mb-2">
+                  <p className="font-playfair text-lg font-light italic text-white leading-tight">
+                    I'm
+                  </p>
+                  <h3 className="font-playfair text-2xl font-normal text-white leading-none">
+                    Called
+                  </h3>
+                  <p className="font-playfair text-lg font-light italic text-white leading-tight">
+                    to
+                  </p>
+                  <h3 className="font-playfair text-2xl font-normal text-white leading-none">
+                    Help
+                  </h3>
+                  <p className="font-playfair text-lg font-light italic text-white leading-tight">
+                    You
+                  </p>
+                </div>
+                <div className="mb-2">
+                  <h3 className="font-playfair text-2xl font-normal text-white leading-none">
+                    Heal
+                  </h3>
+                  <p className="font-playfair text-lg font-light italic text-white leading-tight">
+                    Rise and
+                  </p>
+                </div>
+                <div className="mb-2">
+                  <h3 className="font-playfair text-2xl font-normal text-white leading-none">
+                    Walk
+                  </h3>
+                  <p className="font-playfair text-lg font-light italic text-white leading-tight">
+                    in
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-playfair text-2xl font-normal text-white leading-none">
+                    Wholeness
+                  </h3>
+                </div>
+              </div>
+              
+              {/* Desktop Layout - Original flex rows */}
+              <div className="hidden md:block">
+                <div className="mb-1 flex flex-row">
+                  <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[2%] mb-[1%] ml-[10%]">
+                    I'm
+                  </p>
+                  <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none ml-[1%]">
+                    Called
+                  </h3>
+                  <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[2%] mb-[1%] ml-[2%]">
+                    to
+                  </p>
+                  <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none ml-[1%]">
+                    Help
+                  </h3>
+                  <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[2%] mb-[1%] ml-[1%]">
+                    You
+                  </p>
+                </div>
 
-            <div className="mb-1 flex flex-row">
-            <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none">
-            Heal
-            </h3>
-            <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[0%] mb-[0%] ml-[2%]">
-            Rise and
-            </p>
-            </div>
+                <div className="mb-1 flex flex-row">
+                  <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none">
+                    Heal
+                  </h3>
+                  <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[0%] mb-[0%] ml-[2%]">
+                    Rise and
+                  </p>
+                </div>
 
-            <div className="mb-1 flex flex-row">
-            <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none ml-4 sm:ml-8 md:ml-24 lg:ml-64 mt-[-8%]">
-            Walk
-            </h3>
-            <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[-7%] mb-[0%] ml-[2%]">
-            in
-            </p>
-            </div>
-            <div className="mb-12 flex flex-row">
-            <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none ml-4 sm:ml-8 md:ml-24 lg:ml-72 mt-[0%]">
-            Wholeness
-            </h3>
-            </div>
-          </div>
+                <div className="mb-1 flex flex-row">
+                  <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none ml-4 sm:ml-8 md:ml-24 lg:ml-64 mt-[-8%]">
+                    Walk
+                  </h3>
+                  <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[-7%] mb-[0%] ml-[2%]">
+                    in
+                  </p>
+                </div>
+                <div className="mb-12 flex flex-row">
+                  <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none ml-4 sm:ml-8 md:ml-24 lg:ml-72 mt-[0%]">
+                    Wholeness
+                  </h3>
+                </div>
+              </div>
+              </div>
               <p className="font-montserrat text-lg md:text-2xl leading-relaxed">
                 I’ve heard the lies that say “you’re too broken” or “you’re not enough.” But I also heard the still, small voice of God calling me to more - to healing, to wholeness, to purpose.
                 <br />
@@ -377,7 +451,7 @@ export default function Index() {
 
 
             {/* Speaking Section with Parallax */}
-      <section className="py-24 relative speaking-section overflow-hidden">
+      <section className="py-12 md:py-24 relative speaking-section overflow-hidden">
         {/* Parallax Background */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -391,7 +465,7 @@ export default function Index() {
         
         <div className="relative z-10 container mx-auto px-4 text-center text-white">
           {/* Review Carousel */}
-          <div className="mb-12 relative h-[450px]">
+          <div className="mb-8 md:mb-12 relative h-[350px] md:h-[450px]">
             <div className="flex items-center justify-center">
               {/* Left Arrow */}
               <button 
@@ -405,20 +479,20 @@ export default function Index() {
               </button>
 
               {/* Review Content */}
-              <div className="max-w-4xl mx-auto px-8 transition-all duration-500 ease-in-out">
+              <div className="max-w-4xl mx-auto px-4 md:px-8 transition-all duration-500 ease-in-out">
                 <img 
                   src={speakingReviews[currentReviewIndex].image}
                   alt={`${speakingReviews[currentReviewIndex].name} testimonial`}
-                  className="w-32 h-32 rounded-full mx-auto mb-8 object-cover transition-all duration-500 ease-in-out"
+                  className="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 md:mb-8 object-cover transition-all duration-500 ease-in-out"
                 />
-                <h3 className="font-playfair text-3xl md:text-4xl text-white font-bold mb-6 transition-all duration-500 ease-in-out">"GROW, OVERCOME"</h3>
-                <p className="font-playfair text-xl md:text-2xl text-white font-bold leading-normal max-w-3xl mx-auto mb-6 transition-all duration-500 ease-in-out">
+                <h3 className="font-playfair text-xl md:text-3xl lg:text-4xl text-white font-bold mb-4 md:mb-6 transition-all duration-500 ease-in-out">"GROW, OVERCOME"</h3>
+                <p className="font-playfair text-base md:text-xl lg:text-2xl text-white font-bold leading-normal max-w-3xl mx-auto mb-4 md:mb-6 transition-all duration-500 ease-in-out">
                   {speakingReviews[currentReviewIndex].quote}
                 </p>
-                <div className="font-playfair text-2xl text-white transition-all duration-500 ease-in-out">
+                <div className="font-playfair text-lg md:text-2xl text-white transition-all duration-500 ease-in-out">
                   <p className="font-bold">- {speakingReviews[currentReviewIndex].name}</p>
                   {speakingReviews[currentReviewIndex].role && speakingReviews[currentReviewIndex].company && (
-                    <p className="text-lg opacity-80 mt-2">
+                    <p className="text-sm md:text-lg opacity-80 mt-2">
                       {speakingReviews[currentReviewIndex].role}, {speakingReviews[currentReviewIndex].company}
                     </p>
                   )}
@@ -465,38 +539,38 @@ export default function Index() {
       
 
       {/* Books Section */}
-      <section className="py-24 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
-      <section className="relative z-10 container mx-auto px-4 text-center text-black mt-[-10%]">
-      <h2 className="font-playfair text-white text-8xl md:text-[180px] font-bold mb-[0%]">SPEAKING</h2>
+      <section className="py-12 md:py-24 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
+      <section className="relative z-10 container mx-auto px-4 text-center text-black mt-[-5%] md:mt-[-10%]">
+      <h2 className="font-playfair text-white text-4xl md:text-6xl lg:text-8xl xl:text-[180px] font-bold mb-[0%]">SPEAKING</h2>
       </section>
 
       </section>
 
-      <section className="py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
+      <section className="py-8 md:py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
         <div className="container mx-auto">
 
           {/* Book Listings */}
-          <div className="grid lg:grid-cols-2 gap-16 mb-16">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-16 mb-8 md:mb-16">
             {/* First Book */}
-            <div className="bg-white/50 rounded-lg p-8 backdrop-blur-sm">
-              <div className="flex gap-6 items-start">
+            <div className="bg-white/50 rounded-lg p-4 md:p-8 backdrop-blur-sm">
+              <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-start">
                 <img
                   src="https://api.builder.io/api/v1/image/assets/TEMP/f4fb26806dcd9b009b5277358a543c628e3e9e97?width=484"
                   alt="Redeemed From Inner Scars book cover"
-                  className="w-32 h-auto flex-shrink-0"
+                  className="w-24 h-auto md:w-32 flex-shrink-0 mx-auto md:mx-0"
                 />
-                <div className="flex-1">
-                  <h3 className="font-playfair text-2xl md:text-3xl font-bold text-black mb-4">
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="font-playfair text-xl md:text-2xl lg:text-3xl font-bold text-black mb-3 md:mb-4">
                     Redeemed From Inner Scars
                   </h3>
-                  <p className="font-montserrat text-lg text-black mb-6 leading-relaxed">
+                  <p className="font-montserrat text-sm md:text-lg text-black mb-4 md:mb-6 leading-relaxed">
                   Through raw honesty and heartfelt reflection, Suzanna D. Griffiths invites readers on a journey of healing, faith, and self-discovery. Redeemed From Inner Scars is a powerful testament to overcoming trauma, reclaiming identity, and finding purpose beyond pain
                   </p>
-                  <div className="flex gap-4 mt-10">
-                    <button onClick={() => window.location.href = '/author'} className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
+                  <div className="flex flex-col sm:flex-row gap-2 md:gap-4 mt-6 md:mt-10">
+                    <button onClick={() => window.location.href = '/author'} className="bg-white text-black px-4 md:px-6 py-2 md:py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-xs md:text-sm">
                       BUY NOW
                     </button>
-                    <button onClick={() => window.location.href = '/author'} className="bg-white text-black px-6 py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-sm">
+                    <button onClick={() => window.location.href = '/author'} className="bg-white text-black px-4 md:px-6 py-2 md:py-3 rounded border border-black hover:bg-gray-100 transition-colors font-inter text-xs md:text-sm">
                       VIEW MORE
                     </button>
                   </div>
@@ -505,12 +579,12 @@ export default function Index() {
             </div>
 
             {/* Second Book */}
-            <div className="bg-white/50 rounded-lg p-8 backdrop-blur-sm">
-              <div className="flex gap-6 items-start">
+            <div className="bg-white/50 rounded-lg p-4 md:p-8 backdrop-blur-sm">
+              <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-start">
                 <img
                   src="https://api.builder.io/api/v1/image/assets/TEMP/15038a927adb324e1f36cf74805e39703c06ec28?width=498"
                   alt="Build a Nation book cover"
-                  className="w-32 h-auto flex-shrink-0"
+                  className="w-24 h-auto md:w-32 flex-shrink-0 mx-auto md:mx-0"
                 />
                 <div className="flex-1">
                   <h3 className="font-playfair text-2xl md:text-3xl font-bold text-black mb-4">
@@ -538,8 +612,8 @@ export default function Index() {
       <section className="py-5 px-4 bg-gradient-to-l from-[#E0B2F1] to-[#FFE4EE]"></section>
 
       {/* Book Gallery with Flipped Arch Background */}
-      <section className="py-24 mt-[-7%]">
-      <div className="relative py-24 overflow-hidden w-full">
+      <section className="py-12 md:py-24 mt-[-3%] md:mt-[-7%]">
+      <div className="relative py-12 md:py-24 overflow-hidden w-full">
             {/* Flipped arch background - full width */}
             <div className="absolute inset-0 w-screen left-1/2 transform -translate-x-1/2 h-screen">
               <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
@@ -554,15 +628,15 @@ export default function Index() {
               </svg>
             </div>
 
-            <div className="relative z-10 container mx-auto px-4 mt-[-100px]">
-              <div className="text-center mb-[5%]">
-              <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none mt-[5%]">
+            <div className="relative z-10 container mx-auto px-4 mt-[-50px] md:mt-[-100px]">
+              <div className="text-center mb-[3%] md:mb-[5%]">
+              <h3 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-normal text-white leading-none mt-[3%] md:mt-[5%]">
               RESTORED, REALIGNED,
             </h3>
-            <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[0%] mb-[0%] ml-[20%]">
+            <p className="font-playfair text-base sm:text-lg md:text-xl lg:text-4xl xl:text-5xl font-light italic text-white leading-tight max-w-2xl mt-[0%] mb-[0%] ml-[10%] md:ml-[20%]">
               REBORN
             </p>
-            <p className="font-playfair text-lg sm:text-xl md:text-3xl lg:text-3xl font-normal text-white leading-tight max-w-4xl mx-auto mb-8 mt-5">
+            <p className="font-playfair text-sm sm:text-base md:text-lg lg:text-xl xl:text-3xl font-normal text-white leading-tight max-w-4xl mx-auto mb-4 md:mb-8 mt-3 md:mt-5">
           "this is what it looks like to live it out, every day."
           </p>
               </div>
@@ -573,7 +647,7 @@ export default function Index() {
                     key={index}
                     src="https://api.builder.io/api/v1/image/assets/TEMP/1179b95de6107e5b5b214d0f2ee7366adaac0a3d?width=586"
                     alt={`Book ${index + 1}`}
-                    className="w-100 h-100 object-cover flex-shrink-0 border-2 border-white rounded-lg"
+                    className="w-20 h-20 md:w-100 md:h-100 object-cover flex-shrink-0 border-2 border-white rounded-lg"
                   />
                 ))}
               </div>
@@ -582,9 +656,9 @@ export default function Index() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-black/10 py-16 bg-gradient-to-b from-[#F84988] to-[#FFAC24]">
+      <footer className="border-t border-black/10 py-8 md:py-16 bg-gradient-to-b from-[#F84988] to-[#FFAC24]">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-8">
             {/* Social Links */}
             <div className="flex gap-6">
               <a href="#" className="text-black hover:text-suelyn-pink transition-colors">
@@ -612,14 +686,14 @@ export default function Index() {
 
             {/* Copyright */}
             <div className="text-center">
-              <p className="font-jost text-sm font-bold text-black uppercase tracking-wider">
+              <p className="font-jost text-xs md:text-sm font-bold text-black uppercase tracking-wider">
                 © 2025 <span className="text-suelyn-purple">SueLyn Empowered Living</span>. All rights reserved
               </p>
             </div>
 
             {/* Design Credit */}
-            <div className="text-right">
-              <p className="font-jost text-sm font-bold text-black uppercase tracking-wider">
+            <div className="text-center md:text-right">
+              <p className="font-jost text-xs md:text-sm font-bold text-black uppercase tracking-wider">
                 Designed by <span className="text-suelyn-purple">Narro: Web Services</span>
               </p>
             </div>

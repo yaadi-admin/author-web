@@ -94,11 +94,11 @@ export default function Index() {
   }, [handleAnimationError, cleanupAnimation]);
 
   return (
-    <div className="bg-gradient-to-r from-[#F1E6DB] via-[#E0B2F1] to-[#FFE4EE]">
+    <div className="bg-gradient-to-b from-[#FFE4EE] via-[#FFE4EE] to-[#FFE4EE]">
       <Header />
 
       {/* Hero Section */}
-      <section className="relative min-h-full flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-full flex items-center justify-center overflow-hidden h-[40vh] xs:h-[50vh] sm:h-[50vh] md:h-[45vh] lg:h-[50vh] xl:h-[60vh]">
         {/* Hero Background Image with Parallax */}
         <div className="absolute inset-0 z-0">
           <div 
@@ -114,81 +114,63 @@ export default function Index() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#F1E6DB]/30 via-[#E0B2F1]/20 to-[#FFE4EE]/10"></div>
         </div>
 
-        {/* Hero Content */}
-        <div className="relative z-10 text-center px-4 mt-[10%] mb-[5%]">
-          {/* Mobile Navigation - Stacked */}
-          <div className="block md:hidden mb-8">
-            <ul className="flex justify-center gap-6 mb-4">
-              <li>
-                <a href="/about" className="font-montserrat text-sm text-black hover:text-suelyn-pink transition">About</a>
-              </li>
-              <li>
-                <a href="/author" className="font-montserrat text-sm text-black hover:text-suelyn-pink transition">Author</a>
-              </li>
-            </ul>
-            <ul className="flex justify-center gap-6">
-              <li>
-                <a href="/blog" className="font-montserrat text-sm text-black hover:text-suelyn-pink transition">Blog</a>
-              </li>
-              <li>
-                <a href="/workshops" className="font-montserrat text-sm text-black hover:text-suelyn-pink transition">Workshops</a>
-              </li>
-            </ul>
-          </div>
+      </section>
+
+      {/* Hero Content */}
+      <div className="relative z-10 text-center px-4 mt-[-8%] sm:mt-[-10%] md:mt-[-12%] lg:mt-[-15%] xl:mt-[-8%]">
           
-          {/* Desktop Navigation - Side by side */}
-          <div className="hidden md:flex justify-center items-center space-x-8 md:space-x-16 lg:space-x-24">
+          {/* Medium and Desktop Navigation - Side by side */}
+          <div className="hidden sm:flex justify-center items-center space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8 xl:space-x-12 2xl:space-x-16">
             {/* Left Navigation */}
-            <ul className="flex gap-8">
+            <ul className="flex gap-2 sm:gap-4 md:gap-6 lg:gap-8">
               <li>
-                <a href="/about" className="font-montserrat text-base md:text-lg text-black hover:text-suelyn-pink transition">About</a>
+                <a href="/about" className="font-montserrat text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-black hover:text-suelyn-pink transition">About</a>
               </li>
               <li>
-                <a href="/author" className="font-montserrat text-base md:text-lg text-black hover:text-suelyn-pink transition">Author</a>
+                <a href="/author" className="font-montserrat text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-black hover:text-suelyn-pink transition">Author</a>
               </li>
             </ul>
-            <h1 className="font-charm text-6xl sm:text-8xl md:text-[200px] lg:text-[300px] xl:text-[350px] font-bold text-black leading-none mb-2 md:mb-4">
+            <h1 className="font-charm text-3xl sm:text-5xl md:text-7xl lg:text-[120px] xl:text-[180px] 2xl:text-[300px] font-bold text-black leading-none mb-2 md:mb-4">
               SueLyn
             </h1>
             {/* Right Navigation */}
-            <ul className="flex gap-8">
+            <ul className="flex gap-2 sm:gap-4 md:gap-6 lg:gap-8">
               <li>
-                <a href="/blog" className="font-montserrat text-base md:text-lg text-black hover:text-suelyn-pink transition">Blog</a>
+                <a href="/blog" className="font-montserrat text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-black hover:text-suelyn-pink transition">Blog</a>
               </li>
               <li>
-                <a href="/workshops" className="font-montserrat text-base md:text-lg text-black hover:text-suelyn-pink transition">Workshops</a>
+                <a href="/workshops" className="font-montserrat text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-black hover:text-suelyn-pink transition">Workshops</a>
               </li>
             </ul>
           </div>
           
           {/* Mobile Title */}
-          <div className="md:hidden">
-            <h1 className="font-charm text-5xl sm:text-6xl font-bold text-black leading-none mb-2">
+          <div className="sm:hidden">
+            <h1 className="font-charm text-4xl sm:text-5xl font-bold text-black leading-none mb-2">
               SueLyn
             </h1>
           </div>
           
-          <h2 className="font-league-spartan text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-normal text-black md:ml-[-30%] md:mt-[-3%] mt-2">
+          <h2 className="font-league-spartan text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-normal text-black sm:ml-[-10%] md:ml-[-15%] lg:ml-[-20%] xl:ml-[-25%] 2xl:ml-[-30%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-2%] mt-2">
             Empowered Living
           </h2>
         </div>
-      </section>
 
 
       {/* Mission Statement Section */}
-      <section className="py-8 md:py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
+      <section className="py-6 sm:py-8 md:py-12 lg:py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
         <div className="container mx-auto text-center">
-          <p className="font-playfair text-base sm:text-lg md:text-xl lg:text-3xl xl:text-4xl font-normal text-black/70 leading-tight max-w-4xl mx-auto mb-6 md:mb-8 px-2">
+          <p className="font-playfair text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl 2xl:text-4xl font-normal text-black/70 leading-tight max-w-3xl sm:max-w-4xl mx-auto mb-4 sm:mb-6 md:mb-8 px-2">
           Life may have knocked you down, but God has already made a way for you to rise again. This blog is a space to
           </p>
-          <div className="mb-8 md:mb-12">
-            <h3 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-normal text-black leading-none">
+          <div className="mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+            <h3 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-normal text-black leading-none">
               BREATHE, REFLECT
             </h3>
-            <p className="font-playfair text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-light italic text-black leading-tight max-w-2xl mt-1 md:mt-[2%] mb-[-2%] md:mb-[-5%] ml-[-1%] md:ml-[-3%]">
+            <p className="font-playfair text-base sm:text-lg md:text-xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-light italic text-black leading-tight max-w-xl sm:max-w-2xl mt-1 md:mt-[2%] mb-[-2%] md:mb-[-5%] ml-[-1%] md:ml-[-10%] lg:ml-[-15%] xl:ml-[-3%]">
               reclaim
             </p>
-            <h3 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-normal text-black leading-none ml-2 sm:ml-4 md:ml-8 lg:ml-24 xl:ml-48">
+            <h3 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-normal text-black leading-none ml-1 sm:ml-2 md:ml-4 lg:ml-16 xl:ml-32 2xl:ml-48">
               YOUR IDENTITY
             </h3>
           </div>
@@ -196,28 +178,28 @@ export default function Index() {
       </section>
 
       {/* Personal Section with Images */}
-      <section className="py-8 md:py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
+      <section className="py-6 sm:py-8 md:py-12 lg:py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center">
             {/* Left side - Images */}
             <div className="relative order-2 lg:order-1">
               <div className="grid grid-cols-2 gap-2 md:gap-4">
                 <img
                   src="https://api.builder.io/api/v1/image/assets/TEMP/e8f417c43b988ed96cbc2d90894f47bf5c1fd1e9?width=1204"
                   alt="SueLyn lifestyle image"
-                  className="w-full h-48 md:h-80 object-cover rounded-lg"
+                  className="w-full h-40 sm:h-48 md:h-64 lg:h-80 object-cover rounded-lg"
                 />
                 <img
                   src="https://api.builder.io/api/v1/image/assets/TEMP/f79060608cf36612dadf8770194eb8fc5c178010?width=490"
                   alt="SueLyn portrait"
-                  className="w-32 h-32 md:w-50 md:h-50 object-cover rounded-lg mt-[-20%] md:mt-[-30%] ml-[-10%] md:ml-[-15%]"
+                  className="w-24 h-24 sm:w-28 sm:h-28 md:w-40 md:h-40 lg:w-50 lg:h-50 object-cover rounded-lg mt-[-15%] sm:mt-[-20%] md:mt-[-25%] lg:mt-[-30%] ml-[-8%] sm:ml-[-10%] md:ml-[-12%] lg:ml-[-15%]"
                 />
               </div>
             </div>
 
             {/* Right side - Text */}
             <div className="order-1 lg:order-2 mt-0 lg:mt-[-20%] mb-6 lg:mb-0">
-              <p className="font-montserrat text-base md:text-xl lg:text-2xl text-black mb-3 md:mb-4 font-normal leading-6 md:leading-8">
+              <p className="font-montserrat text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-black mb-3 md:mb-4 font-normal leading-5 sm:leading-6 md:leading-7 lg:leading-8">
               You were never meant to stay broken. You were made to be Restored, Realigned, and Reborn.
               </p>
               <p className="font-montserrat text-2xl text-black mb-8 font-normal leading-8">
@@ -227,27 +209,27 @@ export default function Index() {
               you owe it to yourself to live aligned, whole, and fully free.
               Because you’re not just surviving - you’re becoming.
               </p>
-              <button className="bg-suelyn-cream text-gray-600 px-4 md:px-6 py-2 md:py-3 rounded border border-gray-300 hover:bg-gray-100 transition-colors text-sm md:text-lg font-inter">
+              <button className="bg-suelyn-cream text-gray-600 px-3 sm:px-4 md:px-6 py-2 md:py-3 rounded border border-gray-300 hover:bg-gray-100 transition-colors text-xs sm:text-sm md:text-lg font-inter">
                 JUMP RIGHT IN
               </button>
             </div>
           </div>
 
           {/* Side image */}
-          <div className="mt-4 md:mt-[-5%] flex justify-center lg:justify-end">
+          <div className="mt-4 md:mt-[-3%] lg:mt-[-5%] flex justify-center lg:justify-end">
             <img
               src="https://api.builder.io/api/v1/image/assets/TEMP/6f79502e1785bd966aaee7c1022f0c3c9b1a1110?width=892"
               alt="SueLyn empowerment"
-              className="w-64 md:w-96 h-auto rounded-lg"
+              className="w-48 sm:w-56 md:w-64 lg:w-80 xl:w-96 h-auto rounded-lg"
             />
           </div>
         </div>
       </section>
 
       {/* Continuous Background Text Section */}
-      <section className="py-8 md:py-16 w-full marquee-container bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB] pb-[10%] md:pb-[20%]">
+      <section className="py-6 sm:py-8 md:py-12 lg:py-16 w-full marquee-container bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB] pb-[8%] sm:pb-[10%] md:pb-[15%] lg:pb-[20%]">
         <div className="w-full overflow-hidden">
-          <div className="relative w-full h-[120px] md:h-[180px] lg:h-[240px]">
+          <div className="relative w-full h-[80px] sm:h-[120px] md:h-[150px] lg:h-[180px] xl:h-[240px]">
             <div
               className="absolute top-1/2 left-0 w-full"
               style={{ transform: "translateY(-50%)" }}
@@ -262,7 +244,7 @@ export default function Index() {
                     animationIterationCount: 'infinite',
                   }}
                 >
-                  <span className="font-playfair text-4xl sm:text-6xl md:text-8xl lg:text-[150px] font-bold text-black leading-tight mx-4 md:mx-8">
+                  <span className="font-playfair text-2xl sm:text-4xl md:text-6xl lg:text-8xl xl:text-[120px] 2xl:text-[150px] font-bold text-black leading-tight mx-2 sm:mx-4 md:mx-6 lg:mx-8">
                     {marqueeText}
                   </span>
                 </div>
@@ -308,10 +290,15 @@ export default function Index() {
                 <stop offset="100%" stopColor="#FFAC24" />
               </linearGradient>
             </defs>
-            <path d="M0 100 L0 60 Q50 0 100 60 L100 100 Z" fill="url(#pinkGradient)"/>
+            {/* Mobile arch - less curved */}
+            <path className="block md:hidden" d="M0 100 L0 65 Q50 50 100 65 L100 100 Z" fill="url(#pinkGradient)"/>
+            {/* Desktop arch - original steep */}
+            <path className="hidden md:block" d="M0 100 L0 60 Q50 0 100 60 L100 100 Z" fill="url(#pinkGradient)"/>
           </svg>
+          
         </div>
 
+          {/* Arch content */}
         <div className="relative z-10 container mx-auto px-4">
           {/* Image positioned at top center of arch */}
           <div className="flex justify-center mb-8 md:mb-16">
@@ -329,48 +316,6 @@ export default function Index() {
                 I'M SUZANNA
               </h3>
               <div className="mb-8 md:mb-12">
-              {/* Mobile Layout - Stacked */}
-              <div className="block md:hidden text-center">
-                <div className="mb-2">
-                  <p className="font-playfair text-lg font-light italic text-white leading-tight">
-                    I'm
-                  </p>
-                  <h3 className="font-playfair text-2xl font-normal text-white leading-none">
-                    Called
-                  </h3>
-                  <p className="font-playfair text-lg font-light italic text-white leading-tight">
-                    to
-                  </p>
-                  <h3 className="font-playfair text-2xl font-normal text-white leading-none">
-                    Help
-                  </h3>
-                  <p className="font-playfair text-lg font-light italic text-white leading-tight">
-                    You
-                  </p>
-                </div>
-                <div className="mb-2">
-                  <h3 className="font-playfair text-2xl font-normal text-white leading-none">
-                    Heal
-                  </h3>
-                  <p className="font-playfair text-lg font-light italic text-white leading-tight">
-                    Rise and
-                  </p>
-                </div>
-                <div className="mb-2">
-                  <h3 className="font-playfair text-2xl font-normal text-white leading-none">
-                    Walk
-                  </h3>
-                  <p className="font-playfair text-lg font-light italic text-white leading-tight">
-                    in
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-playfair text-2xl font-normal text-white leading-none">
-                    Wholeness
-                  </h3>
-                </div>
-              </div>
-              
               {/* Desktop Layout - Original flex rows */}
               <div className="hidden md:block">
                 <div className="mb-1 flex flex-row">
@@ -428,7 +373,7 @@ export default function Index() {
           </div>
             </div>
 
-            <div className="text-white">
+            <div className="text-white hidden md:block">
               <p className="font-montserrat text-lg md:text-2xl mb-6 leading-relaxed">
               And now, I’ve made it my mission to remind women like you: your story is not over.
               You can be restored. You can realign. You can be reborn - again and again.

@@ -96,25 +96,25 @@ export default function About() {
                 <div className="space-y-3 sm:space-y-4">
                   <div className="flex items-start space-x-2 sm:space-x-3">
                     <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
-                    <p className="font-montserrat text-sm sm:text-base md:text-lg text-black leading-relaxed">
+                    <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed">
                       <span className="">Christian couples & married women</span> seeking deeper connection and spiritual growth
                     </p>
                   </div>
                   <div className="flex items-start space-x-2 sm:space-x-3">
                     <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
-                    <p className="font-montserrat text-sm sm:text-base md:text-lg text-black leading-relaxed">
+                    <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed">
                       <span className="">Men seeking emotional and spiritual healing</span> to break free from past wounds
                     </p>
                   </div>
                   <div className="flex items-start space-x-2 sm:space-x-3">
                     <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
-                    <p className="font-montserrat text-sm sm:text-base md:text-lg text-black leading-relaxed">
+                    <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed">
                       <span className="">Pastors, counselors, and psychologists</span> looking for biblical wisdom in their practice
                     </p>
                   </div>
                   <div className="flex items-start space-x-2 sm:space-x-3">
                     <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
-                    <p className="font-montserrat text-sm sm:text-base md:text-lg text-black leading-relaxed">
+                    <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed">
                       <span className="">Anyone seeking clarity, restoration, and biblical truth</span> in their journey
                     </p>
                   </div>
@@ -140,10 +140,10 @@ export default function About() {
                 <p className="font-playfair text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-normal text-black/70 leading-tight max-w-4xl mx-auto mb-4 sm:mb-6 md:mb-8">
                   Why SueLyn Empowered Living Was Born
                 </p>
-                <p className="font-montserrat text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-black mb-3 sm:mb-4 font-normal leading-6 sm:leading-7 md:leading-8">
+                <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-black mb-3 sm:mb-4 font-normal leading-6 sm:leading-7 md:leading-8">
                   SueLyn Empowered Living was born from real-life conversations — late-night talks, quiet tears, and breakthrough moments. Suzanna's transparency brings healing, hope, and connection. She doesn't hide her scars; she shows her healing.
                 </p>
-                <p className="font-montserrat text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-black mb-6 sm:mb-8 font-normal leading-6 sm:leading-7 md:leading-8">
+                <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-black mb-6 sm:mb-8 font-normal leading-6 sm:leading-7 md:leading-8">
                   This is more than a platform - it's a <b>movement</b> of truth-telling, healing, and purpose.
                 </p>
                 <button className="group bg-suelyn-cream text-black px-4 sm:px-6 py-2 sm:py-3 rounded-lg border border-black/20 hover:bg-black hover:text-white transition-all duration-300 transform hover:-translate-y-1 font-inter text-xs sm:text-sm font-semibold flex items-center space-x-2">
@@ -293,23 +293,23 @@ export default function About() {
 
               {/* Bio Text */}
               <div className="space-y-4 sm:space-y-6">
-                <p className="font-montserrat text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed">
+                <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed">
                   From the deep hills of rural Portland, Jamaica, hails a powerhouse of purpose, passion, and transformation. Suzanna Griffiths has suffered many forms of abuse, but with a resolute mind has cancelled evil words, healed emotionally, reidentified herself in Christ, and used all the courage inside her to soar past naysayers' expectations.
                 </p>
-                <p className="font-montserrat text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed">
+                <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed">
                   She has a belief that greatness is on the inside of all of us and has taken that passion into her corporate role where she has over 20 years of experience as an Environmental, Occupational Safety and Health (EOSH) leader.
                 </p>
-                <p className="font-montserrat text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed">
+                <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed">
                   Suzanna predominantly uses coaching, mentorship and training to drive behavioural change, which is critical for the success of a positive workplace EOSH culture.
                 </p>
-                <p className="font-montserrat text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed">
+                <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed">
                   Suzanna believes that humans as a whole are a composite being of physical, emotional, spiritual, and social elements that must align with the Word of God to ensure a fruitful, empowered, and purposeful life.
                 </p>
-                <p className="font-montserrat text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed">
+                <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed">
                   Suzanna studied Psychology, Sociology and Human Sexuality as she desired to understand human behaviours. She holds a BSc in Environmental Health and a plethora of post graduate international certifications.
                 </p>
 
-                <p className="font-montserrat text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed">
+                <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed">
                   In order to walk in her calling of helping others to heal, realign and refocus their lives she enrolled for a MA in Counselling Psychology, however she has paused to be certified in Family Counselling, Marriage and Couples Therapy, Professional Emotion Coach and as an Empowerment Specialist.
                 </p>
               </div>
@@ -363,12 +363,12 @@ export default function About() {
                       </div>
                       <div>
                         <h5 className="font-playfair text-xs sm:text-sm font-semibold text-gray-900">Sangria Master</h5>
-                        <p className="font-montserrat text-xs text-gray-600">Crafting the perfect blend</p>
+                        <p className="font-helvetica text-xs text-gray-600">Crafting the perfect blend</p>
                       </div>
                     </div>
                   </div>
 
-                  <p className="font-montserrat text-xs sm:text-sm text-black leading-relaxed">
+                  <p className="font-helvetica text-xs sm:text-sm text-black leading-relaxed">
                     She makes a mean sangria that brings people together and creates unforgettable moments of joy and connection.
                   </p>
 
@@ -417,12 +417,12 @@ export default function About() {
                       </div>
                       <div>
                         <h5 className="font-playfair text-xs sm:text-sm font-semibold text-gray-900">Fiercely Loyal</h5>
-                        <p className="font-montserrat text-xs text-black">Protector of souls</p>
+                        <p className="font-helvetica text-xs text-black">Protector of souls</p>
                       </div>
                     </div>
                   </div>
 
-                  <p className="font-montserrat text-xs sm:text-sm text-black leading-relaxed">
+                  <p className="font-helvetica text-xs sm:text-sm text-black leading-relaxed">
                     Once you're her people, she protects your soul and spirit with unwavering dedication and fierce loyalty.
                   </p>
 
@@ -471,12 +471,12 @@ export default function About() {
                       </div>
                       <div>
                         <h5 className="font-playfair text-xs sm:text-sm font-semibold text-black">Fiercely Loyal</h5>
-                        <p className="font-montserrat text-xs text-black">Protector of souls</p>
+                        <p className="font-helvetica text-xs text-black">Protector of souls</p>
                       </div>
                     </div>
                   </div>
 
-                  <p className="font-montserrat text-xs sm:text-sm text-black leading-relaxed">
+                  <p className="font-helvetica text-xs sm:text-sm text-black leading-relaxed">
                     Once you're her people, she protects your soul and spirit with unwavering dedication and fierce loyalty.
                   </p>
 
@@ -525,12 +525,12 @@ export default function About() {
                       </div>
                       <div>
                         <h5 className="font-playfair text-xs sm:text-sm font-semibold text-black">Fiercely Loyal</h5>
-                        <p className="font-montserrat text-xs text-black">Protector of souls</p>
+                        <p className="font-helvetica text-xs text-black">Protector of souls</p>
                       </div>
                     </div>
                   </div>
 
-                  <p className="font-montserrat text-xs sm:text-sm text-black leading-relaxed">
+                  <p className="font-helvetica text-xs sm:text-sm text-black leading-relaxed">
                     Once you're her people, she protects your soul and spirit with unwavering dedication and fierce loyalty.
                   </p>
 

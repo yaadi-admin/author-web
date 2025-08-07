@@ -12,7 +12,7 @@ export default function Index() {
 
   // Memoized text content to prevent unnecessary re-renders
   const marqueeText = useMemo(() => {
-    return "Empowered Living ".repeat(20); // Repeat text to ensure smooth loop
+    return "EMPOWERED LIVING ".repeat(20); // Repeat text to ensure smooth loop
   }, []);
 
   // Parallax effect for speaking section
@@ -117,29 +117,29 @@ export default function Index() {
       </section>
 
       {/* Hero Content */}
-      <div className="relative z-10 text-center px-4 mt-[-8%] sm:mt-[-10%] md:mt-[-12%] lg:mt-[-15%] xl:mt-[-8%]">
+      <div className="relative z-10 text-center px-4 mt-[-8%] sm:mt-[-10%] md:mt-[-12%] lg:mt-[-15%] xl:mt-[-2%]">
           
           {/* Medium and Desktop Navigation - Side by side */}
           <div className="hidden sm:flex justify-center items-center space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8 xl:space-x-12 2xl:space-x-16">
             {/* Left Navigation */}
-            <ul className="flex gap-2 sm:gap-4 md:gap-6 lg:gap-8">
+            <ul className="flex gap-2 sm:gap-4 md:gap-6 lg:gap-[100px]">
               <li>
-                <a href="/about" className="font-montserrat text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-black hover:text-suelyn-pink transition">About</a>
+                <a href="/about" className="font-helvetica text-md sm:text-sm md:text-lg lg:text-xl xl:text-4xl text-black hover:text-suelyn-pink transition">ABOUT</a>
               </li>
               <li>
-                <a href="/author" className="font-montserrat text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-black hover:text-suelyn-pink transition">Author</a>
+                <a href="/author" className="font-helvetica text-md sm:text-sm md:text-lg lg:text-xl xl:text-4xl text-black hover:text-suelyn-pink transition">AUTHOR</a>
               </li>
             </ul>
-            <h1 className="font-charm text-3xl sm:text-5xl md:text-7xl lg:text-[120px] xl:text-[180px] 2xl:text-[300px] font-bold text-black leading-none mb-2 md:mb-4">
+            <h1 className="font-charm text-3xl sm:text-5xl md:text-7xl lg:text-[120px] xl:text-[180px] 2xl:text-[300px] font-bold text-black leading-none mb-2 md:mb-4 mt-[-5%]">
               SueLyn
             </h1>
             {/* Right Navigation */}
-            <ul className="flex gap-2 sm:gap-4 md:gap-6 lg:gap-8">
+            <ul className="flex gap-2 sm:gap-4 md:gap-6 lg:gap-[100px]">
               <li>
-                <a href="/blog" className="font-montserrat text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-black hover:text-suelyn-pink transition">Blog</a>
+                <a href="/blog" className="font-helvetica text-md sm:text-sm md:text-lg lg:text-xl xl:text-4xl text-black hover:text-suelyn-pink transition">BLOG</a>
               </li>
               <li>
-                <a href="/workshops" className="font-montserrat text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-black hover:text-suelyn-pink transition">Workshops</a>
+                <a href="/workshops" className="font-helvetica text-md sm:text-sm md:text-lg lg:text-xl xl:text-4xl text-black hover:text-suelyn-pink transition">WORKSHOPS</a>
               </li>
             </ul>
           </div>
@@ -151,16 +151,16 @@ export default function Index() {
             </h1>
           </div>
           
-          <h2 className="font-league-spartan text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-normal text-black sm:ml-[-10%] md:ml-[-15%] lg:ml-[-20%] xl:ml-[-25%] 2xl:ml-[-30%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-2%] mt-2">
+          <h2 className="font-league-spartan text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-normal text-black sm:ml-[-4%] md:ml-[-2%] lg:ml-[-5%] xl:ml-[-8%] 2xl:ml-[-12%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-2%] mt-2">
             Empowered Living
           </h2>
         </div>
 
 
       {/* Mission Statement Section */}
-      <section className="py-6 sm:py-8 md:py-12 lg:py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
+      <section className="py-6 sm:py-8 md:py-12 lg:py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE] mt-[5%]">
         <div className="container mx-auto text-center">
-          <p className="font-playfair text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl 2xl:text-4xl font-normal text-black/70 leading-tight max-w-3xl sm:max-w-4xl mx-auto mb-4 sm:mb-6 md:mb-8 px-2">
+          <p className="font-playfair text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl 2xl:text-4xl font-normal text-black/70 leading-tight max-w-5xl sm:max-w-6xl mx-auto mb-4 sm:mb-6 md:mb-8 px-2">
           Life may have knocked you down, but God has already made a way for you to rise again. This blog is a space to
           </p>
           <div className="mb-6 sm:mb-8 md:mb-10 lg:mb-12">
@@ -180,56 +180,56 @@ export default function Index() {
       {/* Personal Section with Images */}
       <section className="py-6 sm:py-8 md:py-12 lg:py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center">
-            {/* Left side - Images */}
-            <div className="relative order-2 lg:order-1">
-              <div className="grid grid-cols-2 gap-2 md:gap-4">
-                <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/e8f417c43b988ed96cbc2d90894f47bf5c1fd1e9?width=1204"
-                  alt="SueLyn lifestyle image"
-                  className="w-full h-40 sm:h-48 md:h-64 lg:h-80 object-cover rounded-lg"
-                />
-                <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/f79060608cf36612dadf8770194eb8fc5c178010?width=490"
-                  alt="SueLyn portrait"
-                  className="w-24 h-24 sm:w-28 sm:h-28 md:w-40 md:h-40 lg:w-50 lg:h-50 object-cover rounded-lg mt-[-15%] sm:mt-[-20%] md:mt-[-25%] lg:mt-[-30%] ml-[-8%] sm:ml-[-10%] md:ml-[-12%] lg:ml-[-15%]"
-                />
-              </div>
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-10 lg:gap-12">
+            {/* Left Image */}
+            <div className="flex flex-col items-start flex-shrink-0 w-full lg:w-1/4 order-2 lg:order-1 lg:pl-0 mr-[5%]">
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-44-37.jpg?alt=media&token=daaa56dc-96aa-4e0d-af3f-dea87a39a8ff"
+                alt="SueLyn lifestyle image"
+                className="w-[800px] h-[700px] object-cover rounded-lg mb-4 lg:ml-[-120px] xl:ml-[-180px]"
+              />
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-49-44.jpg?alt=media&token=b3f5ee65-37b7-4db0-a9a5-41145eb1e6ce"
+                alt="SueLyn portrait"
+                className="w-[400px] h-[500px] object-cover rounded-lg mt-[-50%] ml-8 sm:ml-12 md:ml-20 lg:ml-28"
+                style={{ marginTop: '-80%', width: '400px', height: '500px' }}
+              />
             </div>
 
-            {/* Right side - Text */}
-            <div className="order-1 lg:order-2 mt-0 lg:mt-[-20%] mb-6 lg:mb-0">
-              <p className="font-montserrat text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-black mb-3 md:mb-4 font-normal leading-5 sm:leading-6 md:leading-7 lg:leading-8">
-              You were never meant to stay broken. You were made to be Restored, Realigned, and Reborn.
+            {/* Center Text */}
+            <div className="flex-1 order-1 lg:order-2 text-center lg:text-left px-2" style={{ marginTop: '-40%', marginLeft: '-15%' }}>
+              <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-black mb-3 md:mb-4 font-normal leading-5 sm:leading-6 md:leading-7 lg:leading-8">
+                You were never meant to stay broken. You were made to be Restored, Realigned, and Reborn.
               </p>
-              <p className="font-montserrat text-2xl text-black mb-8 font-normal leading-8">
-              Life may have knocked you down, but God has already made a way for you to rise again.
-              This blog is a space to breathe, reflect, and reclaim your identity - not in the world's definition, but in truth.
-              Whether you're walking through healing, rediscovering your purpose, or learning to love yourself again,
-              you owe it to yourself to live aligned, whole, and fully free.
-              Because you’re not just surviving - you’re becoming.
+              <p className="font-helvetica text-2xl text-black mb-8 font-normal leading-8">
+                Life may have knocked you down, but God has already made a way for you to rise again.
+                This blog is a space to breathe, reflect, and reclaim your identity - not in the world's definition, but in truth.
+                Whether you're walking through healing, rediscovering your purpose, or learning to love yourself again,
+                you owe it to yourself to live aligned, whole, and fully free.
+                Because you’re not just surviving - you’re becoming.
               </p>
               <button className="bg-suelyn-cream text-gray-600 px-3 sm:px-4 md:px-6 py-2 md:py-3 rounded border border-gray-300 hover:bg-gray-100 transition-colors text-xs sm:text-sm md:text-lg font-inter">
                 JUMP RIGHT IN
               </button>
             </div>
-          </div>
 
-          {/* Side image */}
-          <div className="mt-4 md:mt-[-3%] lg:mt-[-5%] flex justify-center lg:justify-end">
-            <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/6f79502e1785bd966aaee7c1022f0c3c9b1a1110?width=892"
-              alt="SueLyn empowerment"
-              className="w-48 sm:w-56 md:w-64 lg:w-80 xl:w-96 h-auto rounded-lg"
-            />
+            {/* Right Image */}
+            <div className="flex flex-col items-center flex-shrink-0 w-full lg:w-1/4 order-3" style={{ marginLeft: '-15%', marginTop: '20%' }}>
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-36-43.jpg?alt=media&token=b3c94eb0-895f-47c7-862c-c81e1048d8e5"
+                alt="SueLyn empowerment"
+                className="w-64 sm:w-80 md:w-96 lg:w-[50rem] xl:w-[50rem] h-auto rounded-lg"
+              />
+            </div>
           </div>
         </div>
       </section>
 
       {/* Continuous Background Text Section */}
-      <section className="py-6 sm:py-8 md:py-12 lg:py-16 w-full marquee-container bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB] pb-[8%] sm:pb-[10%] md:pb-[15%] lg:pb-[20%]">
-        <div className="w-full overflow-hidden">
-          <div className="relative w-full h-[80px] sm:h-[120px] md:h-[150px] lg:h-[180px] xl:h-[240px]">
+      <section className="py-6 sm:py-8 md:py-12 lg:py-16 w-full marquee-container bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB] pb-[8%] sm:pb-[10%] md:pb-[15%] lg:pb-[40%] relative">
+        <div className="w-full overflow-hidden relative">
+          {/* Marquee background */}
+          <div className="relative w-full h-[80px] sm:h-[120px] md:h-[150px] lg:h-[180px] xl:h-[400px]">
             <div
               className="absolute top-1/2 left-0 w-full"
               style={{ transform: "translateY(-50%)" }}
@@ -244,11 +244,17 @@ export default function Index() {
                     animationIterationCount: 'infinite',
                   }}
                 >
-                  <span className="font-playfair text-2xl sm:text-4xl md:text-6xl lg:text-8xl xl:text-[120px] 2xl:text-[150px] font-bold text-black leading-tight mx-2 sm:mx-4 md:mx-6 lg:mx-8">
+                  <span className="font-playfair text-4xl sm:text-4xl md:text-8xl lg:text-10xl xl:text-[180px] 2xl:text-[400px] font-bold text-black/30 leading-tight mx-2 sm:mx-4 md:mx-6 lg:mx-8">
                     {marqueeText}
                   </span>
                 </div>
               </div>
+            </div>
+            {/* Centered white text component */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+              <span className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-white text-center drop-shadow-lg px-4">
+                RESTORED. REALIGNED. REBORN.
+              </span>
             </div>
           </div>
         </div>
@@ -302,11 +308,13 @@ export default function Index() {
         <div className="relative z-10 container mx-auto px-4">
           {/* Image positioned at top center of arch */}
           <div className="flex justify-center mb-8 md:mb-16">
+            <div className="w-80 pl-2 pr-2 pt-2  h-115 md:w-96 md:h-115 object-cover rounded-t-[32px] md:rounded-t-[200px] bg-white">
             <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/9ef2ef4ab7707f0aa3dc051ca846715a652746d4?width=1206"
+              src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/977f9571-0464-494c-bea2-9fdf217477ba_removalai_preview.png?alt=media&token=927f7d1d-fa3a-4ecf-a9af-566bbeafc803"
               alt="Suzanna Griffiths"
-              className="w-64 h-64 md:w-96 md:h-96 object-cover rounded-t-[32px] md:rounded-t-[64px]"
+              className="w-64 h-115 md:w-96 md:h-115 object-cover rounded-t-[32px] md:rounded-t-[200px]"
             />
+            </div>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
@@ -360,7 +368,7 @@ export default function Index() {
                 </div>
               </div>
               </div>
-              <p className="font-montserrat text-lg md:text-2xl leading-relaxed">
+              <p className="font-helvetica text-lg md:text-2xl leading-relaxed">
                 I’ve heard the lies that say “you’re too broken” or “you’re not enough.” But I also heard the still, small voice of God calling me to more - to healing, to wholeness, to purpose.
                 <br />
                 <br />
@@ -374,14 +382,14 @@ export default function Index() {
             </div>
 
             <div className="text-white hidden md:block">
-              <p className="font-montserrat text-lg md:text-2xl mb-6 leading-relaxed">
+              <p className="font-helvetica text-lg md:text-2xl mb-6 leading-relaxed">
               And now, I’ve made it my mission to remind women like you: your story is not over.
               You can be restored. You can realign. You can be reborn - again and again.
               <br />
               <br />
                 Your healing is holy. Your voice is needed. Your purpose is still alive.
               </p>
-              <p className="font-montserrat text-lg md:text-2xl leading-relaxed">
+              <p className="font-helvetica text-lg md:text-2xl leading-relaxed">
               As a certified leader, faith-fueled mentor, and bold storyteller, 
               I don’t just write — I walk this out every day. This blog is a reflection of my heart: unfiltered truths, 
               Spirit-led encouragement, and practical tools to help you rise. If you’ve ever felt stuck, overlooked, or 
@@ -396,16 +404,17 @@ export default function Index() {
 
 
             {/* Speaking Section with Parallax */}
-      <section className="py-12 md:py-24 relative speaking-section overflow-hidden">
+      <section className="py-12 md:py-52 relative speaking-section overflow-hidden">
         {/* Parallax Background */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('https://api.builder.io/api/v1/image/assets/TEMP/f53757928a5a05a2e847f8303de8b35462232b17?width=3852')`,
-            transform: `translateY(${parallaxOffset * 0.5}px)`,
+            backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-16-49-51.jpg?alt=media&token=a6c4fcef-211f-409b-a770-55987a2fdea6')`,
+            transform: `translateY(${parallaxOffset * 0}px)`,
             willChange: 'transform'
           }}
         ></div>
+        
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/80 to-black/80"></div>
         
         <div className="relative z-10 container mx-auto px-4 text-center text-white">
@@ -485,8 +494,8 @@ export default function Index() {
 
       {/* Books Section */}
       <section className="py-12 md:py-24 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
-      <section className="relative z-10 container mx-auto px-4 text-center text-black mt-[-5%] md:mt-[-10%]">
-      <h2 className="font-playfair text-white text-4xl md:text-6xl lg:text-8xl xl:text-[180px] font-bold mb-[0%]">SPEAKING</h2>
+      <section className="relative z-10 container mx-auto px-4 text-center text-black mt-[-5%] md:mt-[-14%]">
+      <h2 className="font-playfair text-white text-6xl md:text-8xl lg:text-10xl xl:text-[300px] font-bold mb-[0%]">SPEAKING</h2>
       </section>
 
       </section>
@@ -508,7 +517,7 @@ export default function Index() {
                   <h3 className="font-playfair text-xl md:text-2xl lg:text-3xl font-bold text-black mb-3 md:mb-4">
                     Redeemed From Inner Scars
                   </h3>
-                  <p className="font-montserrat text-sm md:text-lg text-black mb-4 md:mb-6 leading-relaxed">
+                  <p className="font-helvetica text-sm md:text-lg text-black mb-4 md:mb-6 leading-relaxed">
                   Through raw honesty and heartfelt reflection, Suzanna D. Griffiths invites readers on a journey of healing, faith, and self-discovery. Redeemed From Inner Scars is a powerful testament to overcoming trauma, reclaiming identity, and finding purpose beyond pain
                   </p>
                   <div className="flex flex-col sm:flex-row gap-2 md:gap-4 mt-6 md:mt-10">
@@ -535,7 +544,7 @@ export default function Index() {
                   <h3 className="font-playfair text-2xl md:text-3xl font-bold text-black mb-4">
                   Build a Nation, Not Two Empires: A Practical Marriage Guide
                   </h3>
-                  <p className="font-montserrat text-lg text-black mb-6 leading-relaxed">
+                  <p className="font-helvetica text-lg text-black mb-6 leading-relaxed">
                   What if marriage wasn’t just about two people but about building an entire nation? In Build A Nation, Not Two Empires, Suzanna D. Griffiths invites readers...
                   </p>
                   <div className="flex gap-4">

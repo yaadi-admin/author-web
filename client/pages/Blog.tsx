@@ -110,7 +110,7 @@ export default function Blog() {
                         className="w-full h-64 object-cover"
                       />
                       <div className="absolute top-4 left-4">
-                        <span className="bg-[#F84988] text-white px-3 py-1 rounded-full text-sm font-montserrat font-semibold">
+                        <span className="bg-[#F84988] text-white px-3 py-1 rounded-full text-sm font-helvetica font-semibold">
                           {post.category}
                         </span>
                       </div>
@@ -123,19 +123,19 @@ export default function Blog() {
                           className="w-10 h-10 rounded-full object-cover"
                         />
                         <div>
-                          <p className="font-montserrat text-sm text-black/70">{post.author}</p>
-                          <p className="font-montserrat text-xs text-black/50">{formatDate(post.publishDate)} • {post.readTime}</p>
+                          <p className="font-helvetica text-sm text-black/70">{post.author}</p>
+                          <p className="font-helvetica text-xs text-black/50">{formatDate(post.publishDate)} • {post.readTime}</p>
                         </div>
                       </div>
                       <h3 className="font-playfair text-xl md:text-2xl font-bold text-black mb-3 group-hover:text-[#F84988] transition-colors">
                         {post.title}
                       </h3>
-                      <p className="font-montserrat text-black/70 leading-relaxed mb-4">
+                      <p className="font-helvetica text-black/70 leading-relaxed mb-4">
                         {post.excerpt}
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {post.tags.slice(0, 3).map((tag) => (
-                          <span key={tag} className="bg-[#F84988]/10 text-[#F84988] px-2 py-1 rounded text-xs font-montserrat">
+                          <span key={tag} className="bg-[#F84988]/10 text-[#F84988] px-2 py-1 rounded text-xs font-helvetica">
                             #{tag}
                           </span>
                         ))}
@@ -175,7 +175,7 @@ export default function Blog() {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full font-montserrat text-sm font-semibold transition-all duration-300 ${
+                  className={`px-4 py-2 rounded-full font-helvetica text-sm font-semibold transition-all duration-300 ${
                     selectedCategory === category
                       ? 'bg-[#F84988] text-white'
                       : 'bg-white/50 text-black hover:bg-white/70'
@@ -215,7 +215,7 @@ export default function Blog() {
                           className="w-full h-48 object-cover"
                         />
                         <div className="absolute top-4 left-4">
-                          <span className="bg-[#F84988] text-white px-3 py-1 rounded-full text-sm font-montserrat font-semibold">
+                          <span className="bg-[#F84988] text-white px-3 py-1 rounded-full text-sm font-helvetica font-semibold">
                             {post.category}
                           </span>
                         </div>
@@ -228,19 +228,19 @@ export default function Blog() {
                             className="w-8 h-8 rounded-full object-cover"
                           />
                           <div>
-                            <p className="font-montserrat text-xs text-black/70">{post.author}</p>
-                            <p className="font-montserrat text-xs text-black/50">{formatDate(post.publishDate)} • {post.readTime}</p>
+                            <p className="font-helvetica text-xs text-black/70">{post.author}</p>
+                            <p className="font-helvetica text-xs text-black/50">{formatDate(post.publishDate)} • {post.readTime}</p>
                           </div>
                         </div>
                         <h3 className="font-playfair text-lg md:text-xl font-bold text-black mb-3 group-hover:text-[#F84988] transition-colors line-clamp-2">
                           {post.title}
                         </h3>
-                        <p className="font-montserrat text-sm text-black/70 leading-relaxed mb-4 line-clamp-3">
+                        <p className="font-helvetica text-sm text-black/70 leading-relaxed mb-4 line-clamp-3">
                           {post.excerpt}
                         </p>
                         <div className="flex flex-wrap gap-1">
                           {post.tags.slice(0, 2).map((tag) => (
-                            <span key={tag} className="bg-[#F84988]/10 text-[#F84988] px-2 py-1 rounded text-xs font-montserrat">
+                            <span key={tag} className="bg-[#F84988]/10 text-[#F84988] px-2 py-1 rounded text-xs font-helvetica">
                               #{tag}
                             </span>
                           ))}
@@ -258,7 +258,7 @@ export default function Blog() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
                 <h3 className="font-playfair text-xl font-bold text-black mb-2">No articles found</h3>
-                <p className="font-montserrat text-black/70">Try adjusting your search or filter criteria.</p>
+                <p className="font-helvetica text-black/70">Try adjusting your search or filter criteria.</p>
               </div>
             </div>
           )}
@@ -286,7 +286,7 @@ export default function Blog() {
               placeholder="Email"
               className="flex-1 bg-white/50 backdrop-blur-sm border border-black/20 rounded-lg px-6 py-4 text-black placeholder-black/50 focus:outline-none focus:ring-2 focus:ring-[#F84988]"
             />
-            <button className="bg-[#F84988] text-white px-8 py-4 rounded-lg hover:bg-[#e03a7a] transition-colors font-montserrat text-lg font-semibold whitespace-nowrap">
+            <button className="bg-[#F84988] text-white px-8 py-4 rounded-lg hover:bg-[#e03a7a] transition-colors font-helvetica text-lg font-semibold whitespace-nowrap">
               SUBSCRIBE
             </button>
           </div>

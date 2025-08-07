@@ -91,7 +91,7 @@ export default function Foundation() {
             <p className="font-playfair text-lg sm:text-4xl md:text-4xl font-light italic text-black leading-tight mb-4">
             Empowered to Rise. Inspired to Give.
               </p>
-              <p className="font-montserrat text-2xl text-black leading-relaxed">
+              <p className="font-helvetica text-2xl text-black leading-relaxed">
                 At SueLyn Empowered Living Foundation, our mission is born from a heart that listens to God and a passion to see lives transformed. We believe that when one person is empowered, entire communities can be uplifted. This foundation stands as a testament to faith in action, meeting real needs, inspiring hope, and creating space for others to rise.&nbsp;
                 <br /><br />
                 With every step, we are committed to nurturing potential and walking alongside those who simply need a chance.

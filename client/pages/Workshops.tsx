@@ -107,16 +107,16 @@ export default function Workshops() {
                   />
                 </div>
                 <div className="flex-1 flex flex-col justify-center">
-                  <div className="text-[#F84988] font-montserrat text-sm sm:text-base md:text-lg font-semibold mb-2">
+                  <div className="text-[#F84988] font-helvetica text-sm sm:text-base md:text-lg font-semibold mb-2">
                     {workshop.date}
                   </div>
                   <h3 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4">
                     {workshop.title}
                   </h3>
-                  <p className="font-montserrat text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6">
+                  <p className="font-helvetica text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6">
                     {workshop.description}
                   </p>
-                  {!workshop.comingSoon && <button onClick={() => window.open(workshop.url, '_blank')} className="bg-[#F84988] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:bg-[#e03a7a] transition-colors font-montserrat text-xs sm:text-sm flex items-center gap-2 self-start">
+                  {!workshop.comingSoon && <button onClick={() => window.open(workshop.url, '_blank')} className="bg-[#F84988] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:bg-[#e03a7a] transition-colors font-helvetica text-xs sm:text-sm flex items-center gap-2 self-start">
                     Buy Tickets
                     <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -126,7 +126,7 @@ export default function Workshops() {
                 
                 {/* Coming Soon Badge */}
                 {workshop.comingSoon && (
-                  <div className="absolute top-0 right-0 bg-[#F84988] text-white px-2 sm:px-3 md:px-4 py-1 sm:py-2 rounded-full font-montserrat text-xs sm:text-sm font-bold flex items-center gap-1 sm:gap-2 shadow-lg z-10">
+                  <div className="absolute top-0 right-0 bg-[#F84988] text-white px-2 sm:px-3 md:px-4 py-1 sm:py-2 rounded-full font-helvetica text-xs sm:text-sm font-bold flex items-center gap-1 sm:gap-2 shadow-lg z-10">
                     <span>★</span>
                     <span className="hidden sm:inline">COMING SOON</span>
                     <span className="sm:hidden">SOON</span>
@@ -158,7 +158,7 @@ export default function Workshops() {
             <h3 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
               GROW, OVERCOME
             </h3>
-            <p className="font-montserrat text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white leading-relaxed mb-6 sm:mb-8 max-w-3xl mx-auto">
+            <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white leading-relaxed mb-6 sm:mb-8 max-w-3xl mx-auto">
               This space is designed to help you heal from past wounds, discover your divine purpose, 
               and walk boldly in your calling. Every workshop is crafted with love and intention.
             </p>
@@ -229,16 +229,16 @@ export default function Workshops() {
             {/* Main Content */}
             <div className="relative z-30 rounded-2xl p-6 sm:p-8 md:p-12 lg:p-16 max-w-4xl mx-auto mt-[10%] sm:mt-[15%] md:mt-[20%] lg:mt-[25%]">
               <div className="space-y-4 sm:space-y-6 md:space-y-8">
-                <p className="font-montserrat text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-700 leading-relaxed text-white">
+                <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-700 leading-relaxed text-white">
                   Ready to take the next step in your healing journey? Book a private session with Suzanna 
                   for personalized guidance and support tailored to your specific needs and goals.
                 </p>
-                <p className="font-montserrat text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-700 leading-relaxed text-white">
+                <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-700 leading-relaxed text-white">
                   Whether you're seeking clarity on your purpose, working through past trauma, or ready to 
                   step into your next season, Suzanna is here to walk alongside you.
                 </p>
                 <div className="pt-2 sm:pt-3 md:pt-4">
-                  <button className="bg-white text-black px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-lg hover:bg-[#e03a7a] transition-colors font-montserrat text-sm sm:text-base md:text-lg flex items-center gap-2 shadow-lg">
+                  <button className="bg-white text-black px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-lg hover:bg-[#e03a7a] transition-colors font-helvetica text-sm sm:text-base md:text-lg flex items-center gap-2 shadow-lg">
                     Book Now
                     <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

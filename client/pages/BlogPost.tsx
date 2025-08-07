@@ -78,8 +78,8 @@ export default function BlogPost() {
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <h1 className="font-playfair text-4xl font-bold text-black mb-4">Post Not Found</h1>
-            <p className="font-montserrat text-black/70 mb-8">The blog post you're looking for doesn't exist.</p>
-            <Link to="/blog" className="bg-[#F84988] text-white px-6 py-3 rounded-lg hover:bg-[#e03a7a] transition-colors font-montserrat">
+            <p className="font-helvetica text-black/70 mb-8">The blog post you're looking for doesn't exist.</p>
+            <Link to="/blog" className="bg-[#F84988] text-white px-6 py-3 rounded-lg hover:bg-[#e03a7a] transition-colors font-helvetica">
               Back to Blog
             </Link>
           </div>
@@ -112,13 +112,13 @@ export default function BlogPost() {
         {/* Hero Content */}
         <div className="relative z-10 text-center px-4 text-white">
           <div className="max-w-4xl mx-auto">
-            <span className="bg-[#F84988] text-white px-4 py-2 rounded-full text-sm font-montserrat font-semibold mb-6 inline-block">
+            <span className="bg-[#F84988] text-white px-4 py-2 rounded-full text-sm font-helvetica font-semibold mb-6 inline-block">
               {post.category}
             </span>
             <h1 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
               {post.title}
             </h1>
-            <p className="font-montserrat text-lg md:text-xl text-white/90 leading-relaxed mb-8 max-w-3xl mx-auto">
+            <p className="font-helvetica text-lg md:text-xl text-white/90 leading-relaxed mb-8 max-w-3xl mx-auto">
               {post.excerpt}
             </p>
             <div className="flex items-center justify-center gap-6">
@@ -128,8 +128,8 @@ export default function BlogPost() {
                 className="w-12 h-12 rounded-full object-cover"
               />
               <div className="text-left">
-                <p className="font-montserrat font-semibold">{post.author}</p>
-                <p className="font-montserrat text-sm text-white/70">{formatDate(post.publishDate)} • {post.readTime}</p>
+                <p className="font-helvetica font-semibold">{post.author}</p>
+                <p className="font-helvetica text-sm text-white/70">{formatDate(post.publishDate)} • {post.readTime}</p>
               </div>
             </div>
           </div>
@@ -149,8 +149,8 @@ export default function BlogPost() {
                   className="w-12 h-12 rounded-full object-cover"
                 />
                 <div>
-                  <p className="font-montserrat font-semibold text-black">{post.author}</p>
-                  <p className="font-montserrat text-sm text-black/70">{formatDate(post.publishDate)} • {post.readTime}</p>
+                  <p className="font-helvetica font-semibold text-black">{post.author}</p>
+                  <p className="font-helvetica text-sm text-black/70">{formatDate(post.publishDate)} • {post.readTime}</p>
                 </div>
               </div>
               
@@ -198,7 +198,7 @@ export default function BlogPost() {
             {/* Article Content */}
             <article className="prose prose-lg max-w-none">
               <div 
-                className="font-montserrat text-lg leading-relaxed text-black"
+                className="font-helvetica text-lg leading-relaxed text-black"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             </article>
@@ -208,7 +208,7 @@ export default function BlogPost() {
               <h3 className="font-playfair text-xl font-bold text-black mb-4">Tags:</h3>
               <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
-                  <span key={tag} className="bg-[#F84988]/10 text-[#F84988] px-3 py-1 rounded-full text-sm font-montserrat">
+                  <span key={tag} className="bg-[#F84988]/10 text-[#F84988] px-3 py-1 rounded-full text-sm font-helvetica">
                     #{tag}
                   </span>
                 ))}
@@ -231,11 +231,11 @@ export default function BlogPost() {
                 />
                 <div>
                   <h3 className="font-playfair text-2xl font-bold text-black mb-4">About {post.author}</h3>
-                  <p className="font-montserrat text-black/70 leading-relaxed mb-4">
+                  <p className="font-helvetica text-black/70 leading-relaxed mb-4">
                     Suzanna Griffiths is a bold storyteller, certified leader, and faith-fueled mentor who has turned trials into testimonies. 
                     Through heartbreak, setbacks, and deep soul work, she discovered that pain doesn't disqualify you — it positions you.
                   </p>
-                  <p className="font-montserrat text-black/70 leading-relaxed">
+                  <p className="font-helvetica text-black/70 leading-relaxed">
                     Now, she's made it her mission to remind women that their story is not over. You can be restored. You can realign. 
                     You can be reborn - again and again.
                   </p>
@@ -271,7 +271,7 @@ export default function BlogPost() {
                           className="w-full h-48 object-cover"
                         />
                         <div className="absolute top-4 left-4">
-                          <span className="bg-[#F84988] text-white px-3 py-1 rounded-full text-sm font-montserrat font-semibold">
+                          <span className="bg-[#F84988] text-white px-3 py-1 rounded-full text-sm font-helvetica font-semibold">
                             {relatedPost.category}
                           </span>
                         </div>
@@ -280,7 +280,7 @@ export default function BlogPost() {
                         <h3 className="font-playfair text-lg font-bold text-black mb-3 group-hover:text-[#F84988] transition-colors line-clamp-2">
                           {relatedPost.title}
                         </h3>
-                        <p className="font-montserrat text-sm text-black/70 leading-relaxed mb-4 line-clamp-3">
+                        <p className="font-helvetica text-sm text-black/70 leading-relaxed mb-4 line-clamp-3">
                           {relatedPost.excerpt}
                         </p>
                         <div className="flex items-center gap-2 text-xs text-black/50">
@@ -319,7 +319,7 @@ export default function BlogPost() {
               placeholder="Email"
               className="flex-1 bg-white/50 backdrop-blur-sm border border-black/20 rounded-lg px-6 py-4 text-black placeholder-black/50 focus:outline-none focus:ring-2 focus:ring-[#F84988]"
             />
-            <button className="bg-[#F84988] text-white px-8 py-4 rounded-lg hover:bg-[#e03a7a] transition-colors font-montserrat text-lg font-semibold whitespace-nowrap">
+            <button className="bg-[#F84988] text-white px-8 py-4 rounded-lg hover:bg-[#e03a7a] transition-colors font-helvetica text-lg font-semibold whitespace-nowrap">
               SUBSCRIBE
             </button>
           </div>

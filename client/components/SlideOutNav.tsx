@@ -75,7 +75,7 @@ export default function SlideOutNav({ whiteText = false }: SlideOutNavProps) {
                 <Link 
                   to="/" 
                   onClick={closeNav}
-                  className="font-montserrat text-2xl font-bold text-white hover:text-suelyn-pink transition-colors block py-2"
+                  className="font-helvetica text-2xl font-bold text-white hover:text-suelyn-pink transition-colors block py-2"
                 >
                   Home
                 </Link>
@@ -84,7 +84,7 @@ export default function SlideOutNav({ whiteText = false }: SlideOutNavProps) {
                 <Link 
                   to="/about" 
                   onClick={closeNav}
-                  className="font-montserrat text-2xl font-bold text-white hover:text-suelyn-pink transition-colors block py-2"
+                  className="font-helvetica text-2xl font-bold text-white hover:text-suelyn-pink transition-colors block py-2"
                 >
                   About
                 </Link>
@@ -93,7 +93,7 @@ export default function SlideOutNav({ whiteText = false }: SlideOutNavProps) {
                 <Link 
                   to="/author" 
                   onClick={closeNav}
-                  className="font-montserrat text-2xl font-bold text-white hover:text-suelyn-pink transition-colors block py-2"
+                  className="font-helvetica text-2xl font-bold text-white hover:text-suelyn-pink transition-colors block py-2"
                 >
                   Author
                 </Link>
@@ -102,7 +102,7 @@ export default function SlideOutNav({ whiteText = false }: SlideOutNavProps) {
                 <Link 
                   to="/blog" 
                   onClick={closeNav}
-                  className="font-montserrat text-2xl font-bold text-white hover:text-suelyn-pink transition-colors block py-2"
+                  className="font-helvetica text-2xl font-bold text-white hover:text-suelyn-pink transition-colors block py-2"
                 >
                   Blog
                 </Link>
@@ -111,7 +111,7 @@ export default function SlideOutNav({ whiteText = false }: SlideOutNavProps) {
                 <Link 
                   to="/workshops" 
                   onClick={closeNav}
-                  className="font-montserrat text-2xl font-bold text-white hover:text-suelyn-pink transition-colors block py-2"
+                  className="font-helvetica text-2xl font-bold text-white hover:text-suelyn-pink transition-colors block py-2"
                 >
                   Workshops
                 </Link>
@@ -120,7 +120,7 @@ export default function SlideOutNav({ whiteText = false }: SlideOutNavProps) {
                 <Link 
                   to="/foundation" 
                   onClick={closeNav}
-                  className="font-montserrat text-2xl font-bold text-white hover:text-suelyn-pink transition-colors block py-2"
+                  className="font-helvetica text-2xl font-bold text-white hover:text-suelyn-pink transition-colors block py-2"
                 >
                   Foundation
                 </Link>

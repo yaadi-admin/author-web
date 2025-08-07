@@ -112,7 +112,7 @@ export default function Author() {
                   <h3 className="font-playfair text-xl sm:text-2xl md:text-3xl font-bold text-black mb-3 sm:mb-4">
                     Redeemed From Inner Scars
                   </h3>
-                  <p className="font-montserrat text-sm sm:text-base md:text-lg text-black mb-4 sm:mb-6 leading-relaxed">
+                  <p className="font-helvetica text-sm sm:text-base md:text-lg text-black mb-4 sm:mb-6 leading-relaxed">
                   Through raw honesty and heartfelt reflection, Suzanna D. Griffiths invites readers on a journey of healing, faith, and self-discovery. Redeemed From Inner Scars is a powerful testament to overcoming trauma, reclaiming identity, and finding purpose beyond pain. With biblical insights, personal stories, and guided activities, this book offers encouragement and tools to rise above the past and walk confidently into a life of restoration and hope.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
@@ -136,7 +136,7 @@ export default function Author() {
                   <h3 className="font-playfair text-xl sm:text-2xl md:text-3xl font-bold text-black mb-3 sm:mb-4">
                     Build a Nation, Not Two Empires: A Practical Marriage Guide
                   </h3>
-                  <p className="font-montserrat text-sm sm:text-base md:text-lg text-black mb-4 sm:mb-6 leading-relaxed">
+                  <p className="font-helvetica text-sm sm:text-base md:text-lg text-black mb-4 sm:mb-6 leading-relaxed">
                   What if marriage wasn't just about two people but about building an entire nation? In Build A Nation, Not Two Empires, Suzanna D. Griffiths invites readers into a powerful, spirit-filled exploration of marriage that blends personal testimony with biblical truth. Through raw honesty, divine insight, and lessons learned from both brokenness and restoration, Suzanna challenges traditional views of relationships and offers a new framework rooted in purpose, prayer, and partnership.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
@@ -288,7 +288,7 @@ export default function Author() {
             <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal text-black leading-none mb-4 sm:mb-6">
               Where to Buy
             </h2>
-            <p className="font-montserrat text-base sm:text-lg md:text-xl text-black/70 max-w-2xl mx-auto">
+            <p className="font-helvetica text-base sm:text-lg md:text-xl text-black/70 max-w-2xl mx-auto">
               Available in Hardcover and Kindle formats at your favorite retailers
             </p>
           </div>
@@ -301,7 +301,7 @@ export default function Author() {
                 <img src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/Customer-logo_Amazon-1-1024x512.png.webp?alt=media&token=47ed2e79-b57c-4f92-93d7-13add26cbb76" alt="Amazon" className="w-16 h-8 sm:w-20 sm:h-10 md:w-24 md:h-12" />
               </div>
               <h3 className="font-playfair text-lg sm:text-xl font-bold text-black mb-2">Amazon</h3>
-              <p className="font-montserrat text-xs sm:text-sm text-black/60 mb-4">Hardcover & Kindle</p>
+              <p className="font-helvetica text-xs sm:text-sm text-black/60 mb-4">Hardcover & Kindle</p>
               <button onClick={() => window.open('https://www.amazon.com/REDEEMED-INNER-SCARS-SUZANNA-GRIFFITHS-ebook/dp/B0FKVLZ8F6/ref=sr_1_1?crid=3A45E7FQ4WKC9&dib=eyJ2IjoiMSJ9.rz77Qwi99DGWC_U9arw8VQ.3vaMyr9uVTOoQ-HUD5dDpqGrKfLpm64n2tiHOBb52RY&dib_tag=se&keywords=Redeemed+From+Inner+Scars&qid=1754248429&s=books&sprefix=redeemed+from+inner+scars%2Cstripbooks%2C111&sr=1-1', '_blank')} className="bg-white text-black px-4 sm:px-6 py-2 rounded hover:bg-[#E6951A] transition-colors font-inter text-xs sm:text-sm font-bold">
                 SHOP NOW
               </button>
@@ -313,7 +313,7 @@ export default function Author() {
                 <img src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/d554c6a6-fa21-42b4-9366-d88a26fd41af_removalai_preview.png?alt=media&token=b36b6586-3ef3-4ff2-9465-6bc0bd521d96" alt="Book Jungle Jamaica" className="w-16 h-8 sm:w-20 sm:h-10 md:w-24 md:h-12" />
               </div>
               <h3 className="font-playfair text-lg sm:text-xl font-bold text-black mb-2">Book Jungle Jamaica</h3>
-              <p className="font-montserrat text-xs sm:text-sm text-black/60 mb-4">Hardcover</p>
+              <p className="font-helvetica text-xs sm:text-sm text-black/60 mb-4">Hardcover</p>
               <button onClick={() => window.open('https://bookjunglejamaica.com/product/redeemed-from-inner-scars/', '_blank')} className="bg-white text-black px-4 sm:px-6 py-2 rounded hover:bg-[#E6951A] transition-colors font-inter text-xs sm:text-sm font-bold">
                 SHOP NOW
               </button>
@@ -332,7 +332,7 @@ export default function Author() {
                 </div>
                 <div className="text-left">
                   <h4 className="font-playfair text-lg sm:text-xl font-bold text-black">Hardcover</h4>
-                  <p className="font-montserrat text-xs sm:text-sm text-black/60">Premium quality, perfect for collectors</p>
+                  <p className="font-helvetica text-xs sm:text-sm text-black/60">Premium quality, perfect for collectors</p>
                 </div>
               </div>
               <div className="flex items-center justify-center space-x-3 sm:space-x-4">
@@ -343,7 +343,7 @@ export default function Author() {
                 </div>
                 <div className="text-left">
                   <h4 className="font-playfair text-lg sm:text-xl font-bold text-black">Kindle</h4>
-                  <p className="font-montserrat text-xs sm:text-sm text-black/60">Instant digital access, read anywhere</p>
+                  <p className="font-helvetica text-xs sm:text-sm text-black/60">Instant digital access, read anywhere</p>
                 </div>
               </div>
             </div>

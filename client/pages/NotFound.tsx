@@ -41,7 +41,7 @@ const NotFound = () => {
               Page Not Found
             </h2>
             <div className="mt-8">
-              <Link to="/" className="bg-[#F84988] text-white px-8 py-4 rounded-lg hover:bg-[#e03a7a] transition-colors font-montserrat text-lg font-semibold">
+              <Link to="/" className="bg-[#F84988] text-white px-8 py-4 rounded-lg hover:bg-[#e03a7a] transition-colors font-helvetica text-lg font-semibold">
                 Return to Home
               </Link>
             </div>

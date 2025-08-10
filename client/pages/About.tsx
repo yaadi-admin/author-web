@@ -1,5 +1,6 @@
 import Header from '../components/Header';
 import { useState, useEffect } from 'react';
+import { footerPictures } from './Index';
 
 export default function About() {
   const [scrollY, setScrollY] = useState(0);
@@ -24,7 +25,7 @@ export default function About() {
           <div
             className="absolute inset-0 w-full h-[120%] transform -translate-y-[10%]"
             style={{
-              backgroundImage: 'url(https://api.builder.io/api/v1/image/assets/TEMP/7cf07593ce043b7a08e4f1ca3e188ae94e312d73?width=3838)',
+              backgroundImage: 'url(https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-07-20-15-57-01.jpg?alt=media&token=d42bae63-e21c-4399-af29-15dfffa22460)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               transform: `translateY(${scrollY * 0.5}px)`,
@@ -35,7 +36,7 @@ export default function About() {
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 text-center px-4 text-white">
+        {/* <div className="relative z-10 text-center px-4 text-white">
           <div className="max-w-4xl mx-auto">
             <div className="flex justify-center items-center">
               <h1 className="font-charm text-4xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[180px] 2xl:text-[300px] font-bold text-white leading-none mb-2 md:mb-4">
@@ -46,8 +47,24 @@ export default function About() {
               Suzanna Griffiths
             </h2>
           </div>
-        </div>
+        </div> */}
       </section>
+
+      {/* Hero Content */}
+      <div className="relative z-10 text-center px-4 mt-[-15%] sm:mt-[-12%] md:mt-[-15%] lg:mt-[-20%] xl:mt-[-10.5%]">
+        <div className="relative z-10 text-center px-4 text-white">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex justify-center items-center">
+              <h1 className="font-charm text-4xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[180px] 2xl:text-[300px] font-bold text-white leading-none mb-2 md:mb-4">
+                About
+              </h1>
+            </div>
+            <h2 className="font-league-spartan text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-normal text-black sm:ml-[-10%] md:ml-[-20%] lg:ml-[-30%] xl:ml-[-40%] 2xl:ml-[-60%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-4%] 2xl:mt-[-6%]">
+              Suzanna Griffiths
+            </h2>
+          </div>
+        </div>
+      </div>
 
       <section className="bg-gradient-to-t from-[#FFE4EE] via-[#FFE4EE] to-[#FFE4EE] h-[10vh] sm:h-[15vh] md:h-[20vh] mt-[-10%] sm:mt-[-15%] md:mt-[-20%] pb-[10%] sm:pb-[15%] md:pb-[20%]"></section>
 
@@ -77,12 +94,12 @@ export default function About() {
             <div className="relative order-2 lg:order-1">
               <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                 <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/f23911c57b35c55b16a3da69d3df3ad19cbde001?width=1240"
+                  src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-16-27-44%202.jpg?alt=media&token=4a2c7d9d-6807-41a2-baf7-bc87b5910f41"
                   alt="Suzanna Griffiths"
                   className="w-full h-40 sm:h-48 md:h-64 lg:h-80 object-cover rounded-lg"
                 />
                 <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/3bcb43c2d08f89a125bec53b49f9f6707b3f05df?width=941"
+                  src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-49-44.jpg?alt=media&token=b3f5ee65-37b7-4db0-a9a5-41145eb1e6ce"
                   alt="Suzanna portrait"
                   className="w-24 h-24 sm:w-28 sm:h-28 md:w-40 md:h-40 lg:w-50 lg:h-50 object-cover rounded-lg mt-[-15%] sm:mt-[-20%] md:mt-[-25%] lg:mt-[-30%] ml-[-8%] sm:ml-[-10%] md:ml-[-12%] lg:ml-[-15%]"
                 />
@@ -166,7 +183,7 @@ export default function About() {
           {/* Side image */}
           <div className="mt-4 sm:mt-6 md:mt-8 flex justify-center lg:justify-end">
             <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/cb8827ce947c674e0b468cb798d4e8d61410fc29?width=383"
+              src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-18-00-54.jpg?alt=media&token=00f0e840-f8fa-408e-9277-d564ed5bb947"
               alt="Suzanna empowerment"
               className="w-48 sm:w-56 md:w-64 lg:w-80 xl:w-96 h-auto rounded-lg"
             />
@@ -241,11 +258,11 @@ export default function About() {
           {/* Main Content Grid */}
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
             {/* Left side - Long Image */}
-            <div className="order-2 lg:order-1">
+            <div className="order-2 lg:order-1 mt-[27%]">
               <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/7cf07593ce043b7a08e4f1ca3e188ae94e312d73?width=3838"
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-07-20-15-57-01.jpg?alt=media&token=94c8f484-890c-4b50-b9cf-6f771d271f78"
                 alt="Suzanna Griffiths"
-                className="w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] xl:h-[800px] 2xl:h-[900px] object-cover rounded-lg"
+                className="w-full min-h-full object-contain rounded-lg"
               />
             </div>
 
@@ -555,7 +572,7 @@ export default function About() {
             {/* Right side - Buttons and Image gallery */}
             <div className="space-y-6 sm:space-y-8">
               {/* Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              {/* <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <button className="bg-suelyn-cream text-black px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:bg-gray-100 transition-colors font-inter text-xs sm:text-sm">
                   Join Community
                 </button>
@@ -563,30 +580,30 @@ export default function About() {
                   Learn More
                   <span className="ml-2 sm:ml-4">→</span>
                 </button>
-              </div>
+              </div> */}
 
               {/* Image gallery */}
               <div className="grid grid-cols-2 gap-2 sm:gap-4">
                 <div className="space-y-2 sm:space-y-4">
                   <img
-                    src="https://api.builder.io/api/v1/image/assets/TEMP/3bcb43c2d08f89a125bec53b49f9f6707b3f05df?width=941"
+                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-16-27-44%202.jpg?alt=media&token=4a2c7d9d-6807-41a2-baf7-bc87b5910f41"
                     alt="Suzanna"
                     className="w-full h-auto rounded-lg"
                   />
                   <img
-                    src="https://api.builder.io/api/v1/image/assets/TEMP/cb8827ce947c674e0b468cb798d4e8d61410fc29?width=383"
+                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-18-00-54.jpg?alt=media&token=00f0e840-f8fa-408e-9277-d564ed5bb947"
                     alt="Suzanna"
                     className="w-full h-auto rounded-lg"
                   />
                 </div>
                 <div className="space-y-2 sm:space-y-4 pt-4 sm:pt-8">
                   <img
-                    src="https://api.builder.io/api/v1/image/assets/TEMP/40d6bfce6b71d50c24fdb15e3287730608df80de?width=383"
+                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-36-43.jpg?alt=media&token=b3c94eb0-895f-47c7-862c-c81e1048d8e5"
                     alt="Suzanna"
                     className="w-full h-auto rounded-lg"
                   />
                   <img
-                    src="https://api.builder.io/api/v1/image/assets/TEMP/40d6bfce6b71d50c24fdb15e3287730608df80de?width=383"
+                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-49-44.jpg?alt=media&token=b3f5ee65-37b7-4db0-a9a5-41145eb1e6ce"
                     alt="Suzanna"
                     className="w-full h-auto rounded-lg"
                   />
@@ -647,16 +664,16 @@ export default function About() {
             </div>
 
             {/* Image gallery row */}
-            <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 overflow-x-auto pb-4">
-              {[1, 2, 3, 4, 5].map((_, index) => (
-                <img
-                  key={index}
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/1179b95de6107e5b5b214d0f2ee7366adaac0a3d?width=586"
-                  alt={`Gallery ${index + 1}`}
-                  className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 object-cover flex-shrink-0 border-2 border-white rounded-lg"
-                />
-              ))}
-            </div>
+            <div className="flex justify-center gap-1 overflow-x-auto pb-4">
+                {footerPictures.map((_, index) => (
+                  <img
+                    key={index}
+                    src={footerPictures[index]}
+                    alt={`Book ${index + 1}`}
+                    className="w-60 h-100 object-contain flex-shrink-0 border-2 border-white rounded-lg"
+                  />
+                ))}
+              </div>
           </div>
         </div>
       </section>

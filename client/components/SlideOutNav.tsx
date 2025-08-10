@@ -98,7 +98,7 @@ export default function SlideOutNav({ whiteText = false, isScrolled = false }: S
                   onClick={closeNav}
                   className="font-helvetica text-2xl font-bold text-white hover:text-suelyn-pink transition-colors block py-2"
                 >
-                  Author
+                  Resources
                 </Link>
               </li>
               <li>

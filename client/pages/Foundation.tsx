@@ -28,7 +28,7 @@ export default function Foundation() {
           <div 
             className="absolute inset-0 w-full h-[120%] transform -translate-y-[10%]"
             style={{
-              backgroundImage: 'url(https://api.builder.io/api/v1/image/assets/TEMP/7cf07593ce043b7a08e4f1ca3e188ae94e312d73?width=3838)',
+              backgroundImage: 'url(https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-07-20-15-57-01.jpg?alt=media&token=d42bae63-e21c-4399-af29-15dfffa22460)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               transform: `translateY(${scrollY * 0.5}px)`,

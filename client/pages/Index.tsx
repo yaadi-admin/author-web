@@ -2,6 +2,13 @@ import Header from '../components/Header';
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { speakingReviews, Review } from '../data/reviews';
 
+export const footerPictures = [
+  "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-16-27-44%202.jpg?alt=media&token=4a2c7d9d-6807-41a2-baf7-bc87b5910f41",
+  "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-18-00-54.jpg?alt=media&token=00f0e840-f8fa-408e-9277-d564ed5bb947",
+  "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-36-43.jpg?alt=media&token=b3c94eb0-895f-47c7-862c-c81e1048d8e5",
+  "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-49-44.jpg?alt=media&token=b3f5ee65-37b7-4db0-a9a5-41145eb1e6ce",
+];
+
 export default function Index() {
   // State for managing the marquee animation
   const [animationKey, setAnimationKey] = useState(0);
@@ -10,9 +17,11 @@ export default function Index() {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
 
+ 
+
   // Memoized text content to prevent unnecessary re-renders
   const marqueeText = useMemo(() => {
-    return "EMPOWERED LIVING ".repeat(20); // Repeat text to ensure smooth loop
+    return "EMPOWERED LIVING ".repeat(100); // Repeat text to ensure smooth loop
   }, []);
 
   // Parallax effect for speaking section
@@ -94,7 +103,7 @@ export default function Index() {
   }, [handleAnimationError, cleanupAnimation]);
 
   return (
-    <div className="bg-gradient-to-b from-[#FFE4EE] via-[#FFE4EE] to-[#FFE4EE]">
+    <div className="bg-gradient-to-b from-[#FFE4EE] via-[#FFE4EE] to-[#FFE4EE] overflow-x-hidden">
       <Header />
 
       {/* Hero Section */}
@@ -104,7 +113,7 @@ export default function Index() {
           <div 
             className="absolute inset-0 w-full h-[120%] transform -translate-y-[10%]"
             style={{
-              backgroundImage: 'url(https://api.builder.io/api/v1/image/assets/TEMP/76446e5c63513d5f64d77e22a7ca7d4dedb56319?width=3838)',
+              backgroundImage: 'url(https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-07-20-15-57-01.jpg?alt=media&token=d42bae63-e21c-4399-af29-15dfffa22460)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               transform: `translateY(${scrollY * 0.5}px)`,
@@ -120,14 +129,14 @@ export default function Index() {
       <div className="relative z-10 text-center px-4 mt-[-8%] sm:mt-[-10%] md:mt-[-12%] lg:mt-[-15%] xl:mt-[-2%]">
           
           {/* Medium and Desktop Navigation - Side by side */}
-          <div className="hidden sm:flex justify-center items-center space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8 xl:space-x-12 2xl:space-x-16">
+          <div className="hidden sm:flex justify-center items-center space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8 xl:space-x-12 2xl:space-x-16 max-w-full">
             {/* Left Navigation */}
             <ul className="flex gap-2 sm:gap-4 md:gap-6 lg:gap-[100px]">
               <li>
                 <a href="/about" className="font-helvetica text-md sm:text-sm md:text-lg lg:text-xl xl:text-4xl text-black hover:text-suelyn-pink transition">ABOUT</a>
               </li>
               <li>
-                <a href="/author" className="font-helvetica text-md sm:text-sm md:text-lg lg:text-xl xl:text-4xl text-black hover:text-suelyn-pink transition">AUTHOR</a>
+                <a href="/author" className="font-helvetica text-md sm:text-sm md:text-lg lg:text-xl xl:text-4xl text-black hover:text-suelyn-pink transition">RESOURCES</a>
               </li>
             </ul>
             <h1 className="font-charm text-3xl sm:text-5xl md:text-7xl lg:text-[120px] xl:text-[180px] 2xl:text-[300px] font-bold text-black leading-none mb-2 md:mb-4 mt-[-5%]">
@@ -151,7 +160,7 @@ export default function Index() {
             </h1>
           </div>
           
-          <h2 className="font-league-spartan text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-normal text-black sm:ml-[-4%] md:ml-[-2%] lg:ml-[-5%] xl:ml-[-8%] 2xl:ml-[-12%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-2%] mt-2">
+          <h2 className="font-league-spartan text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-normal text-black sm:ml-[-3%] md:ml-[-5%] lg:ml-[-8%] xl:ml-[-16%] 2xl:ml-[-15%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-2%] mt-2">
             Empowered Living
           </h2>
         </div>
@@ -164,69 +173,83 @@ export default function Index() {
           Life may have knocked you down, but God has already made a way for you to rise again. This blog is a space to
           </p>
           <div className="mb-6 sm:mb-8 md:mb-10 lg:mb-12">
-            <h3 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-normal text-black leading-none">
+            <h3 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-bold text-black leading-none">
               BREATHE, REFLECT
             </h3>
-            <p className="font-playfair text-base sm:text-lg md:text-xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-light italic text-black leading-tight max-w-xl sm:max-w-2xl mt-1 md:mt-[2%] mb-[-2%] md:mb-[-5%] ml-[-1%] md:ml-[-10%] lg:ml-[-15%] xl:ml-[-3%]">
-              reclaim
-            </p>
-            <h3 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-normal text-black leading-none ml-1 sm:ml-2 md:ml-4 lg:ml-16 xl:ml-32 2xl:ml-48">
-              YOUR IDENTITY
+            <h3 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-bold text-black leading-none mt-[1.5%]">
+            RECLAIM YOUR IDENTITY
             </h3>
           </div>
         </div>
       </section>
 
       {/* Personal Section with Images */}
-      <section className="py-6 sm:py-8 md:py-12 lg:py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
+      <section className="py-6 sm:py-8 md:py-12 lg:py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE] overflow-hidden">
         <div className="container mx-auto">
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-10 lg:gap-12">
-            {/* Left Image */}
-            <div className="flex flex-col items-start flex-shrink-0 w-full lg:w-1/4 order-2 lg:order-1 lg:pl-0 mr-[5%]">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center">
+            {/* Left Images */}
+            <div className="items-start w-full">
               <img
                 src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-44-37.jpg?alt=media&token=daaa56dc-96aa-4e0d-af3f-dea87a39a8ff"
                 alt="SueLyn lifestyle image"
-                className="w-[800px] h-[700px] object-cover rounded-lg mb-4 lg:ml-[-120px] xl:ml-[-180px]"
+                className="w-full max-w-[400px] h-auto object-cover rounded-lg mb-4 mx-auto"
+                style={{ marginTop: '-60%', marginBottom: '-50%', marginLeft: '-18%' }}
               />
               <img
                 src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-49-44.jpg?alt=media&token=b3f5ee65-37b7-4db0-a9a5-41145eb1e6ce"
                 alt="SueLyn portrait"
-                className="w-[400px] h-[500px] object-cover rounded-lg mt-[-50%] ml-8 sm:ml-12 md:ml-20 lg:ml-28"
-                style={{ marginTop: '-80%', width: '400px', height: '500px' }}
+                className="w-[200px] h-[250px] object-cover rounded-lg mx-auto"
+                style={{ marginTop: '-130%', marginBottom: '-50%', marginRight: '-10%' }}
               />
             </div>
 
-            {/* Center Text */}
-            <div className="flex-1 order-1 lg:order-2 text-center lg:text-left px-2" style={{ marginTop: '-40%', marginLeft: '-15%' }}>
-              <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-black mb-3 md:mb-4 font-normal leading-5 sm:leading-6 md:leading-7 lg:leading-8">
+                         {/* Center Text */}
+             <div
+               className="flex flex-col items-center justify-center text-center lg:text-left px-2"
+               style={{ marginRight: '-35%', paddingLeft: '20px', marginLeft: '10%' }}
+             >
+              <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-black mb-3 md:mb-4 font-light leading-5 sm:leading-6 md:leading-7 lg:leading-8">
                 You were never meant to stay broken. You were made to be Restored, Realigned, and Reborn.
               </p>
-              <p className="font-helvetica text-3xl text-black mb-8 font-normal leading-8">
-                Life may have knocked you down, but God has already made a way for you to rise again.
-                This blog is a space to breathe, reflect, and reclaim your identity - not in the world's definition, but in truth.
-                Whether you're walking through healing, rediscovering your purpose, or learning to love yourself again,
-                you owe it to yourself to live aligned, whole, and fully free.
-                Because you’re not just surviving - you’re becoming.
+              <p className="font-helvetica text-2xl text-black mb-8 font-light leading-8">
+                Life may have knocked you down, but God has made a way for you to rise.
+                This is your space to breathe, reflect, and rediscover your true identity.
+                Here, you’ll find strength for healing, purpose, and self-love.
+                You’re not just surviving—you’re becoming whole and free.
               </p>
-              <button className="bg-suelyn-cream text-gray-600 px-3 sm:px-4 md:px-6 py-2 md:py-3 rounded border border-gray-300 hover:bg-gray-100 transition-colors text-xs sm:text-sm md:text-lg font-inter">
+                                 <button
+                 className="bg-white text-gray-600 px-8 py-1 md:py-2 rounded-lg border border-gray-500 hover:bg-gray-100 transition-colors text-lg sm:text-xl md:text-2xl font-light font-inter flex items-center gap-2 whitespace-nowrap"
+                 style={{ marginRight: '-40%', marginTop: '10%' }}
+               >
                 JUMP RIGHT IN
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="inline-block w-4 h-4 md:w-5 md:h-5 ml-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
               </button>
             </div>
 
-            {/* Right Image */}
-            <div className="flex flex-col items-center flex-shrink-0 w-full lg:w-1/4 order-3" style={{ marginLeft: '-15%', marginTop: '20%' }}>
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-36-43.jpg?alt=media&token=b3c94eb0-895f-47c7-862c-c81e1048d8e5"
-                alt="SueLyn empowerment"
-                className="w-64 sm:w-80 md:w-96 lg:w-[50rem] xl:w-[50rem] h-auto rounded-lg"
-              />
-            </div>
+                         {/* Right Image */}
+             <div className="flex flex-col items-center w-full" style={{ paddingLeft: '20px', marginLeft: '15%' }}>
+                                <img
+                   src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-36-43.jpg?alt=media&token=b3c94eb0-895f-47c7-862c-c81e1048d8e5"
+                   alt="SueLyn empowerment"
+                   className="w-full max-w-[320px] h-auto rounded-lg mx-auto"
+                   style={{ marginTop: '40%', marginBottom: '-50%', marginRight: '-1%' }}
+                 />
+             </div>
           </div>
         </div>
       </section>
 
       {/* Continuous Background Text Section */}
-      <section className="py-6 sm:py-8 md:py-12 lg:py-16 w-full marquee-container bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB] pb-[8%] sm:pb-[10%] md:pb-[15%] lg:pb-[40%] relative">
+      <section className="py-1 w-full marquee-container pb-[2%] sm:pb-[3%] md:pb-[2%] lg:pb-[10%] mt-[2.5%] relative overflow-hidden">
         <div className="w-full overflow-hidden relative">
           {/* Marquee background */}
           <div className="relative w-full h-[80px] sm:h-[120px] md:h-[150px] lg:h-[180px] xl:h-[400px]">
@@ -285,7 +308,7 @@ export default function Index() {
 
 
       {/* Gradient Curve Section - Top Part */}
-      <section className="relative overflow-hidden w-full mt-[-20%] md:mt-[-20%] h-32 md:h-48">
+      <section className="relative overflow-hidden w-full mt-[-20%] md:mt-[2.5%] h-32 md:h-48 mb-[-1%]">
         {/* Gradient curved background - full width arch */}
         <div className="absolute inset-0 w-full h-full">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
@@ -309,9 +332,9 @@ export default function Index() {
         <div className="container mx-auto px-4">
           {/* Image positioned at top center of arch */}
           <div className="flex justify-center mb-8 md:mb-16 mt-[-40%]">
-            <div className="w-80 pl-2 pr-2 pt-2  h-115 md:w-96 md:h-115 object-cover rounded-t-[32px] md:rounded-t-[200px] bg-white">
+            <div className="w-80 pl-2 pr-2 pt-2  h-115 md:w-96 md:h-115 object-cover rounded-t-[32px] md:rounded-t-[200px] bg-transparent">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-18-00-54.jpg?alt=media&token=00f0e840-f8fa-408e-9277-d564ed5bb947"
+              src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-16-27-44.jpg?alt=media&token=1f61da2d-744d-4caa-8554-e6bed7955288"
               alt="Suzanna Griffiths"
               className="w-64 h-115 md:w-96 md:h-115 object-cover rounded-t-[32px] md:rounded-t-[200px]"
             />
@@ -329,44 +352,10 @@ export default function Index() {
               <div className="hidden md:block">
                 <div className="mb-1 flex flex-row">
                   <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[2%] mb-[1%] ml-[10%]">
-                    I'm
-                  </p>
-                  <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none ml-[1%]">
-                    Called
-                  </h3>
-                  <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[2%] mb-[1%] ml-[2%]">
-                    to
-                  </p>
-                  <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none ml-[1%]">
-                    Help
-                  </h3>
-                  <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[2%] mb-[1%] ml-[1%]">
-                    You
+                    I'm Called to Help You, Heal, Rise, and Walk in Wholeness While You Enjoy a Fulfilling Relationship and Marriage
                   </p>
                 </div>
 
-                <div className="mb-1 flex flex-row">
-                  <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none">
-                    Heal
-                  </h3>
-                  <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[0%] mb-[0%] ml-[2%]">
-                    Rise and
-                  </p>
-                </div>
-
-                <div className="mb-1 flex flex-row">
-                  <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none ml-4 sm:ml-8 md:ml-24 lg:ml-64 mt-[-8%]">
-                    Walk
-                  </h3>
-                  <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[-7%] mb-[0%] ml-[2%]">
-                    in
-                  </p>
-                </div>
-                <div className="mb-12 flex flex-row">
-                  <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none ml-4 sm:ml-8 md:ml-24 lg:ml-72 mt-[0%]">
-                    Wholeness
-                  </h3>
-                </div>
               </div>
               </div>
               <p className="font-helvetica text-lg md:text-2xl leading-relaxed">
@@ -405,69 +394,78 @@ export default function Index() {
 
 
             {/* Speaking Section with Parallax */}
-      <section className="py-12 md:py-52 relative speaking-section overflow-hidden">
-        {/* Parallax Background */}
+      <section className="relative speaking-section overflow-hidden min-h-[140vh]">
+        {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-16-49-51.jpg?alt=media&token=a6c4fcef-211f-409b-a770-55987a2fdea6')`,
-            transform: `translateY(${parallaxOffset * 0}px)`,
-            willChange: 'transform'
+            backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-07%20at%2018.00.54.jpeg?alt=media&token=29bccf0b-c40f-40f1-abb0-aea30d22f568')`
           }}
         ></div>
         
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/80 to-black/80"></div>
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/80 to-black/70"></div>
         
-        <div className="relative z-10 container mx-auto px-4 text-center text-white">
-          {/* Review Carousel */}
-          <div className="mb-8 md:mb-12 relative h-[350px] md:h-[450px]">
-            <div className="flex items-center justify-center">
-              {/* Left Arrow */}
-              <button 
-                onClick={prevReview}
-                className="absolute left-4 md:left-8 lg:left-16 z-20 p-2 rounded-full bg-black/20 hover:bg-black/30 transition-colors duration-300 backdrop-blur-sm"
-                aria-label="Previous review"
-              >
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
+        {/* Content */}
+        <div className="relative z-10 py-12 md:py-24 lg:py-32">
+          <div className="container mx-auto px-4 text-center text-white">
+            {/* Review Carousel */}
+            <div className="mb-8 md:mb-12 relative min-h-[400px] md:min-h-[500px] flex items-center">
+              <div className="w-full">
+                {/* Left Arrow */}
+                <button 
+                  onClick={prevReview}
+                  className="absolute left-4 md:left-8 lg:left-16 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm border border-white/20"
+                  aria-label="Previous review"
+                >
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
 
-              {/* Review Content */}
-              <div className="max-w-4xl mx-auto px-4 md:px-8 transition-all duration-500 ease-in-out">
-                <img 
-                  src={speakingReviews[currentReviewIndex].image}
-                  alt={`${speakingReviews[currentReviewIndex].name} testimonial`}
-                  className="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 md:mb-8 object-cover transition-all duration-500 ease-in-out"
-                />
-                <h3 className="font-playfair text-xl md:text-3xl lg:text-4xl text-white font-bold mb-4 md:mb-6 transition-all duration-500 ease-in-out">"GROW, OVERCOME"</h3>
-                <p className="font-playfair text-base md:text-xl lg:text-2xl text-white font-bold leading-normal max-w-3xl mx-auto mb-4 md:mb-6 transition-all duration-500 ease-in-out">
-                  {speakingReviews[currentReviewIndex].quote}
-                </p>
-                <div className="font-playfair text-lg md:text-2xl text-white transition-all duration-500 ease-in-out">
-                  <p className="font-bold">- {speakingReviews[currentReviewIndex].name}</p>
-                  {speakingReviews[currentReviewIndex].role && speakingReviews[currentReviewIndex].company && (
-                    <p className="text-sm md:text-lg opacity-80 mt-2">
-                      {speakingReviews[currentReviewIndex].role}, {speakingReviews[currentReviewIndex].company}
-                    </p>
-                  )}
+                {/* Review Content */}
+                <div className="max-w-4xl mx-auto px-16 md:px-24 transition-all duration-700 ease-in-out">
+                  <div className="mb-6 md:mb-8">
+                    <img 
+                      src={speakingReviews[currentReviewIndex].image}
+                      alt={`${speakingReviews[currentReviewIndex].name} testimonial`}
+                      className="w-28 h-28 md:w-36 md:h-36 rounded-full mx-auto object-cover transition-all duration-700 ease-in-out shadow-2xl border-4 border-white/20"
+                    />
+                  </div>
+                  
+                  <h3 className="font-playfair text-2xl md:text-4xl lg:text-5xl text-white font-bold mb-6 md:mb-8 transition-all duration-700 ease-in-out">
+                    "GROW, OVERCOME"
+                  </h3>
+                  
+                  <p className="font-playfair text-lg md:text-2xl lg:text-3xl text-white font-medium leading-relaxed max-w-4xl mx-auto mb-6 md:mb-8 transition-all duration-700 ease-in-out">
+                    {speakingReviews[currentReviewIndex].quote}
+                  </p>
+                  
+                  <div className="font-playfair text-xl md:text-2xl text-white transition-all duration-700 ease-in-out">
+                    <p className="font-bold mb-2">- {speakingReviews[currentReviewIndex].name}</p>
+                    {speakingReviews[currentReviewIndex].role && speakingReviews[currentReviewIndex].company && (
+                      <p className="text-lg md:text-xl opacity-80">
+                        {speakingReviews[currentReviewIndex].role}, {speakingReviews[currentReviewIndex].company}
+                      </p>
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              {/* Right Arrow */}
-              <button 
-                onClick={nextReview}
-                className="absolute right-4 md:right-8 lg:right-16 z-20 p-2 rounded-full bg-black/20 hover:bg-black/30 transition-colors duration-300 backdrop-blur-sm"
-                aria-label="Next review"
-              >
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
+                {/* Right Arrow */}
+                <button 
+                  onClick={nextReview}
+                  className="absolute right-4 md:right-8 lg:right-16 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm border border-white/20"
+                  aria-label="Next review"
+                >
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
             {/* Review Indicators */}
-            <div className="flex justify-center mt-8 space-x-2">
+            {/* <div className="flex justify-center space-x-3">
               {speakingReviews.map((_, index) => (
                 <button
                   key={index}
@@ -477,17 +475,16 @@ export default function Index() {
                     // Resume auto-scroll after 10 seconds of inactivity
                     setTimeout(() => setIsAutoScrolling(true), 10000);
                   }}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`w-4 h-4 rounded-full transition-all duration-300 ${
                     index === currentReviewIndex 
-                      ? 'bg-white scale-125' 
-                      : 'bg-white/40 hover:bg-white/60'
+                      ? 'bg-white scale-125 shadow-lg' 
+                      : 'bg-white/40 hover:bg-white/60 hover:scale-110'
                   }`}
                   aria-label={`Go to review ${index + 1}`}
                 />
               ))}
-            </div>
+            </div> */}
           </div>
-          
         </div>
       </section>
 
@@ -495,8 +492,8 @@ export default function Index() {
 
       {/* Books Section */}
       <section className="py-12 md:py-24 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
-      <section className="relative z-10 container mx-auto px-4 text-center text-black mt-[-5%] md:mt-[-14%]">
-      <h2 className="font-playfair text-white text-6xl md:text-8xl lg:text-10xl xl:text-[300px] font-bold mb-[0%]">SPEAKING</h2>
+      <section className="relative z-10 container mx-auto px-4 text-center text-black mt-[-5%] md:mt-[-22%]">
+      <h2 className="font-playfair text-white text-6xl md:text-8xl lg:text-10xl xl:text-[280px] font-bold mb-[0%]">SPEAKING</h2>
       </section>
 
       </section>
@@ -569,7 +566,7 @@ export default function Index() {
       <section className="py-24 mt-[-7%]">
       <div className="relative py-24 overflow-hidden w-full">
             {/* Flipped arch background - full width */}
-            <div className="absolute inset-0 w-screen left-1/2 transform -translate-x-1/2 h-screen">
+            <div className="absolute inset-0 w-full h-screen">
               <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
                 <defs>
                   <linearGradient id="flippedGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -596,12 +593,12 @@ export default function Index() {
               </div>
 
               <div className="flex justify-center gap-1 overflow-x-auto pb-4">
-                {[1, 2, 3, 4].map((_, index) => (
+                {footerPictures.map((_, index) => (
                   <img
                     key={index}
-                    src="https://api.builder.io/api/v1/image/assets/TEMP/1179b95de6107e5b5b214d0f2ee7366adaac0a3d?width=586"
+                    src={footerPictures[index]}
                     alt={`Book ${index + 1}`}
-                    className="w-100 h-100 object-cover flex-shrink-0 border-2 border-white rounded-lg"
+                    className="w-60 h-100 object-contain flex-shrink-0 border-2 border-white rounded-lg"
                   />
                 ))}
               </div>

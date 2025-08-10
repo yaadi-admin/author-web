@@ -52,7 +52,7 @@ export default function Author() {
       <Header whiteText={true} />
 
       {/* Hero Section */}
-      <section className="relative min-h-[40vh] sm:min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[40vh] sm:min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden pt-24">
         {/* Hero Background Image with Parallax */}
         <div className="absolute inset-0 z-0">
           <div 
@@ -352,20 +352,7 @@ export default function Author() {
       </section>
 
       {/* Email Subscription Section with Gradient Arch */}
-      <section className="py-12 sm:py-16 md:py-24 relative overflow-hidden w-full bg-gradient-to-t from-[#FFE4EE] to-[#F1E6DB]">
-        {/* Gradient curved background - full width arch */}
-        <div className="absolute inset-0 w-screen left-1/2 transform -translate-x-1/2">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
-            <defs>
-              <linearGradient id="subscriptionGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#F84988" />
-                <stop offset="50%" stopColor="#F84988" />
-                <stop offset="100%" stopColor="#FFAC24" />
-              </linearGradient>
-            </defs>
-            <path d="M0 100 L0 60 Q50 0 100 60 L100 100 Z" fill="url(#subscriptionGradient)"/>
-          </svg>
-        </div>
+      <section className="py-12 sm:py-16 md:py-24 relative overflow-hidden w-full bg-gradient-to-b from-[#F1E6DB] to-[#FFAC24]">
 
         <div className="relative z-10 container mx-auto px-4 text-center pt-[8%] sm:pt-[10%] md:pt-[12%]">
           <h3 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-normal text-white leading-none mb-8 sm:mb-10 md:mb-12">
@@ -395,8 +382,8 @@ export default function Author() {
       </section>
 
       {/* "GROW, OVERCOME, and get BACK UP" Section */}
-      <section className="py-12 sm:py-16 md:py-24 mt-[-5%] sm:mt-[-6%] md:mt-[-7%]">
-      <div className="relative py-12 sm:py-16 md:py-24 overflow-hidden w-full">
+      <section className="py-24 mt-[-7%]">
+      <div className="relative py-24 overflow-hidden w-full">
             {/* Flipped arch background - full width */}
             <div className="absolute inset-0 w-screen left-1/2 transform -translate-x-1/2 h-screen">
               <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
@@ -407,19 +394,19 @@ export default function Author() {
                     <stop offset="100%" stopColor="#F84988" />
                   </linearGradient>
                 </defs>
-                <path d="M0 0 L0 40 Q50 100 100 40 L100 0 Z" fill="url(#flippedGradient)"/>
+                <path d="M0 0 L0 60 Q50 100 100 60 L100 0 Z" fill="url(#flippedGradient)"/>
               </svg>
             </div>
 
-            <div className="relative z-10 container mx-auto px-4 mt-[-50px] sm:mt-[-75px] md:mt-[-100px]">
-              <div className="text-center mb-[3%] sm:mb-[4%] md:mb-[5%]">
-              <h3 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-normal text-white leading-none mt-[3%] sm:mt-[4%] md:mt-[5%]">
+            <div className="relative z-10 container mx-auto px-4 mt-[-100px]">
+              <div className="text-center mb-[5%]">
+              <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none mt-[5%]">
               RESTORED, REALIGNED,
             </h3>
-            <p className="font-playfair text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-light italic text-white leading-tight max-w-2xl mt-[0%] mb-[0%] ml-[10%] sm:ml-[15%] md:ml-[20%]">
+            <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[0%] mb-[0%] ml-[20%]">
               REBORN
             </p>
-            <p className="font-playfair text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-normal text-white leading-tight max-w-4xl mx-auto mb-6 sm:mb-8 mt-3 sm:mt-4 md:mt-5">
+            <p className="font-playfair text-lg sm:text-xl md:text-3xl lg:text-3xl font-normal text-white leading-tight max-w-4xl mx-auto mb-8 mt-5">
           "this is what it looks like to live it out, every day."
           </p>
               </div>
@@ -430,7 +417,7 @@ export default function Author() {
                     key={index}
                     src="https://api.builder.io/api/v1/image/assets/TEMP/1179b95de6107e5b5b214d0f2ee7366adaac0a3d?width=586"
                     alt={`Book ${index + 1}`}
-                    className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 object-cover flex-shrink-0 border-2 border-white rounded-lg"
+                    className="w-100 h-100 object-cover flex-shrink-0 border-2 border-white rounded-lg"
                   />
                 ))}
               </div>

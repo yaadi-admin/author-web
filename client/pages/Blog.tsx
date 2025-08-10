@@ -52,7 +52,7 @@ export default function Blog() {
       <Header whiteText={true} />
 
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-24">
         {/* Hero Background Image with Parallax */}
         <div className="absolute inset-0 z-0">
           <div 

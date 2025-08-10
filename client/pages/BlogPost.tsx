@@ -75,7 +75,7 @@ export default function BlogPost() {
     return (
       <div className="bg-gradient-to-r from-[#F1E6DB] via-[#E0B2F1] to-[#FFE4EE] min-h-screen">
         <Header whiteText={true} />
-        <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="flex items-center justify-center min-h-[60vh] pt-24">
           <div className="text-center">
             <h1 className="font-playfair text-4xl font-bold text-black mb-4">Post Not Found</h1>
             <p className="font-helvetica text-black/70 mb-8">The blog post you're looking for doesn't exist.</p>
@@ -93,7 +93,7 @@ export default function BlogPost() {
       <Header whiteText={true} />
 
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-24">
         {/* Hero Background Image with Parallax */}
         <div className="absolute inset-0 z-0">
           <div 

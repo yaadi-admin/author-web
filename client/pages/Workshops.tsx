@@ -51,7 +51,7 @@ export default function Workshops() {
       <Header whiteText={true} />
       
       {/* Hero Section */}
-      <section className="relative min-h-[40vh] sm:h-[50vh] md:h-[45vh] lg:h-[50vh] xl:h-[60vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[40vh] sm:h-[50vh] md:h-[45vh] lg:h-[50vh] xl:h-[60vh] flex items-center justify-center overflow-hidden pt-24">
         {/* Hero Background Image with Parallax */}
         <div className="absolute inset-0 z-0">
           <div 
@@ -184,7 +184,7 @@ export default function Workshops() {
       </section>
 
       {/* Book Suzanna Section */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 bg-gradient-to-b from-[#FFE4EE] via-[#F1E6DB] to-[#FFE4EE] relative overflow-hidden">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 bg-gradient-to-b from-[#F1E6DB] to-[#FFE4EE] relative overflow-hidden">
         {/* Arch Background */}
         <div className="absolute inset-0 w-full h-full">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
@@ -192,7 +192,7 @@ export default function Workshops() {
               <linearGradient id="archGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#F1E6DB" />
                 <stop offset="50%" stopColor="#F84988" />
-                <stop offset="100%" stopColor="#F1E6DB" />
+                <stop offset="100%" stopColor="#FFAC24" />
               </linearGradient>
             </defs>
             {/* Mobile arch - less curved */}
@@ -252,7 +252,7 @@ export default function Workshops() {
       </section>
 
       {/* Newsletter Signup Section */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden w-full bg-gradient-to-t from-[#FFE4EE] to-[#F1E6DB]">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden w-full bg-gradient-to-b from-[#FFAC24] to-[#FFAC24]">
         <div className="relative z-10 container mx-auto px-4 text-center pt-[6%] sm:pt-[8%] md:pt-[10%] lg:pt-[12%]">
           <h3 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-normal text-black leading-none mb-8 sm:mb-10 md:mb-12">
           JOIN THE EMPOWERED SPACE
@@ -280,8 +280,8 @@ export default function Workshops() {
       </section>
 
       {/* "GROW, OVERCOME, and get BACK UP" Section */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 mt-[-3%] sm:mt-[-5%] md:mt-[-7%]">
-      <div className="relative py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden w-full">
+      <section className="py-24 mt-[-7%]">
+      <div className="relative py-24 overflow-hidden w-full">
             {/* Flipped arch background - full width */}
             <div className="absolute inset-0 w-screen left-1/2 transform -translate-x-1/2 h-screen">
               <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
@@ -292,22 +292,19 @@ export default function Workshops() {
                     <stop offset="100%" stopColor="#F84988" />
                   </linearGradient>
                 </defs>
-                {/* Mobile arch - less curved */}
-                <path className="block md:hidden" d="M0 0 L0 30 Q50 70 100 30 L100 0 Z" fill="url(#flippedGradient)"/>
-                {/* Desktop arch - original steep */}
-                <path className="hidden md:block" d="M0 0 L0 40 Q50 100 100 40 L100 0 Z" fill="url(#flippedGradient)"/>
+                <path d="M0 0 L0 60 Q50 100 100 60 L100 0 Z" fill="url(#flippedGradient)"/>
               </svg>
             </div>
 
-            <div className="relative z-10 container mx-auto px-4 mt-[-50px] sm:mt-[-75px] md:mt-[-100px]">
-              <div className="text-center mb-[3%] sm:mb-[4%] md:mb-[5%]">
-              <h3 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-normal text-white leading-none mt-[3%] sm:mt-[4%] md:mt-[5%]">
+            <div className="relative z-10 container mx-auto px-4 mt-[-100px]">
+              <div className="text-center mb-[5%]">
+              <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none mt-[5%]">
               RESTORED, REALIGNED,
             </h3>
-            <p className="font-playfair text-sm sm:text-base md:text-lg lg:text-xl xl:text-4xl 2xl:text-5xl font-light italic text-white leading-tight max-w-2xl mt-[0%] mb-[0%] ml-[5%] sm:ml-[10%] md:ml-[20%]">
+            <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[0%] mb-[0%] ml-[20%]">
               REBORN
             </p>
-            <p className="font-playfair text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-3xl font-normal text-white leading-tight max-w-4xl mx-auto mb-4 sm:mb-6 md:mb-8 mt-2 sm:mt-3 md:mt-5">
+            <p className="font-playfair text-lg sm:text-xl md:text-3xl lg:text-3xl font-normal text-white leading-tight max-w-4xl mx-auto mb-8 mt-5">
           "this is what it looks like to live it out, every day."
           </p>
               </div>
@@ -318,7 +315,7 @@ export default function Workshops() {
                     key={index}
                     src="https://api.builder.io/api/v1/image/assets/TEMP/1179b95de6107e5b5b214d0f2ee7366adaac0a3d?width=586"
                     alt={`Book ${index + 1}`}
-                    className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 xl:w-40 xl:h-40 2xl:w-100 2xl:h-100 object-cover flex-shrink-0 border-2 border-white rounded-lg"
+                    className="w-100 h-100 object-cover flex-shrink-0 border-2 border-white rounded-lg"
                   />
                 ))}
               </div>

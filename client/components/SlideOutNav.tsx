@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 
 interface SlideOutNavProps {
   whiteText?: boolean;
+  isScrolled?: boolean;
 }
 
-export default function SlideOutNav({ whiteText = false }: SlideOutNavProps) {
+export default function SlideOutNav({ whiteText = false, isScrolled = false }: SlideOutNavProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleNav = () => {
@@ -16,8 +17,10 @@ export default function SlideOutNav({ whiteText = false }: SlideOutNavProps) {
     setIsOpen(false);
   };
 
-  const textColor = whiteText ? 'text-white' : 'text-black';
-  const hoverColor = whiteText ? 'hover:text-white/80' : 'hover:text-suelyn-pink';
+  // When scrolled, always use black text for contrast against white background
+  // When not scrolled, use the prop value (whiteText)
+  const textColor = isScrolled ? 'text-black' : (whiteText ? 'text-white' : 'text-black');
+  const hoverColor = isScrolled ? 'hover:text-suelyn-pink' : (whiteText ? 'hover:text-white/80' : 'hover:text-suelyn-pink');
 
   return (
     <>

@@ -98,7 +98,7 @@ export default function Index() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative min-h-full flex items-center justify-center overflow-hidden h-[40vh] xs:h-[50vh] sm:h-[50vh] md:h-[45vh] lg:h-[50vh] xl:h-[60vh]">
+      <section className="relative min-h-full flex items-center justify-center overflow-hidden h-[40vh] xs:h-[50vh] sm:h-[50vh] md:h-[45vh] lg:h-[50vh] xl:h-[60vh] pt-24">
         {/* Hero Background Image with Parallax */}
         <div className="absolute inset-0 z-0">
           <div 
@@ -201,7 +201,7 @@ export default function Index() {
               <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-black mb-3 md:mb-4 font-normal leading-5 sm:leading-6 md:leading-7 lg:leading-8">
                 You were never meant to stay broken. You were made to be Restored, Realigned, and Reborn.
               </p>
-              <p className="font-helvetica text-2xl text-black mb-8 font-normal leading-8">
+              <p className="font-helvetica text-3xl text-black mb-8 font-normal leading-8">
                 Life may have knocked you down, but God has already made a way for you to rise again.
                 This blog is a space to breathe, reflect, and reclaim your identity - not in the world's definition, but in truth.
                 Whether you're walking through healing, rediscovering your purpose, or learning to love yourself again,
@@ -284,33 +284,34 @@ export default function Index() {
       </section>
 
 
-      {/* About Section with Pink Background */}
-      <section className="relative py-12 md:py-24 overflow-hidden w-full mt-[-20%] md:mt-[-40%]">
+      {/* Gradient Curve Section - Top Part */}
+      <section className="relative overflow-hidden w-full mt-[-20%] md:mt-[-20%] h-32 md:h-48">
         {/* Gradient curved background - full width arch */}
-        <div className="absolute inset-0 w-screen left-1/2 transform -translate-x-1/2">
+        <div className="absolute inset-0 w-full h-full">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
             <defs>
               <linearGradient id="pinkGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#F84988" />
                 <stop offset="70%" stopColor="#F84988" />
-                <stop offset="100%" stopColor="#FFAC24" />
+                <stop offset="100%" stopColor="#F84988" />
               </linearGradient>
             </defs>
-            {/* Mobile arch - less curved */}
-            <path className="block md:hidden" d="M0 100 L0 65 Q50 50 100 65 L100 100 Z" fill="url(#pinkGradient)"/>
-            {/* Desktop arch - original steep */}
-            <path className="hidden md:block" d="M0 100 L0 60 Q50 0 100 60 L100 100 Z" fill="url(#pinkGradient)"/>
+            {/* Mobile arch - 60% more curved */}
+            <path className="block md:hidden" d="M0 100 L0 80 Q50 20 100 80 L100 100 Z" fill="url(#pinkGradient)"/>
+            {/* Desktop arch - 60% more steep */}
+            <path className="hidden md:block" d="M0 100 L0 80 Q50 -80 100 80 L100 100 Z" fill="url(#pinkGradient)"/>
           </svg>
-          
         </div>
+      </section>
 
-          {/* Arch content */}
-        <div className="relative z-10 container mx-auto px-4">
+      {/* About Section Content - Bottom Part */}
+      <section className="relative py-12 md:py-24 bg-gradient-to-b from-[#F84988] to-[#FFAC24]">
+        <div className="container mx-auto px-4">
           {/* Image positioned at top center of arch */}
-          <div className="flex justify-center mb-8 md:mb-16">
+          <div className="flex justify-center mb-8 md:mb-16 mt-[-40%]">
             <div className="w-80 pl-2 pr-2 pt-2  h-115 md:w-96 md:h-115 object-cover rounded-t-[32px] md:rounded-t-[200px] bg-white">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/977f9571-0464-494c-bea2-9fdf217477ba_removalai_preview.png?alt=media&token=927f7d1d-fa3a-4ecf-a9af-566bbeafc803"
+              src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-18-00-54.jpg?alt=media&token=00f0e840-f8fa-408e-9277-d564ed5bb947"
               alt="Suzanna Griffiths"
               className="w-64 h-115 md:w-96 md:h-115 object-cover rounded-t-[32px] md:rounded-t-[200px]"
             />
@@ -563,11 +564,10 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="py-5 px-4 bg-gradient-to-l from-[#E0B2F1] to-[#FFE4EE]"></section>
 
-      {/* Book Gallery with Flipped Arch Background */}
-      <section className="py-12 md:py-24 mt-[-3%] md:mt-[-7%]">
-      <div className="relative py-12 md:py-24 overflow-hidden w-full">
+      {/* "GROW, OVERCOME, and get BACK UP" Section */}
+      <section className="py-24 mt-[-7%]">
+      <div className="relative py-24 overflow-hidden w-full">
             {/* Flipped arch background - full width */}
             <div className="absolute inset-0 w-screen left-1/2 transform -translate-x-1/2 h-screen">
               <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
@@ -578,19 +578,19 @@ export default function Index() {
                     <stop offset="100%" stopColor="#F84988" />
                   </linearGradient>
                 </defs>
-                <path d="M0 0 L0 40 Q50 100 100 40 L100 0 Z" fill="url(#flippedGradient)"/>
+                <path d="M0 0 L0 60 Q50 100 100 60 L100 0 Z" fill="url(#flippedGradient)"/>
               </svg>
             </div>
 
-            <div className="relative z-10 container mx-auto px-4 mt-[-50px] md:mt-[-100px]">
-              <div className="text-center mb-[3%] md:mb-[5%]">
-              <h3 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-normal text-white leading-none mt-[3%] md:mt-[5%]">
+            <div className="relative z-10 container mx-auto px-4 mt-[-100px]">
+              <div className="text-center mb-[5%]">
+              <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none mt-[5%]">
               RESTORED, REALIGNED,
             </h3>
-            <p className="font-playfair text-base sm:text-lg md:text-xl lg:text-4xl xl:text-5xl font-light italic text-white leading-tight max-w-2xl mt-[0%] mb-[0%] ml-[10%] md:ml-[20%]">
+            <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[0%] mb-[0%] ml-[20%]">
               REBORN
             </p>
-            <p className="font-playfair text-sm sm:text-base md:text-lg lg:text-xl xl:text-3xl font-normal text-white leading-tight max-w-4xl mx-auto mb-4 md:mb-8 mt-3 md:mt-5">
+            <p className="font-playfair text-lg sm:text-xl md:text-3xl lg:text-3xl font-normal text-white leading-tight max-w-4xl mx-auto mb-8 mt-5">
           "this is what it looks like to live it out, every day."
           </p>
               </div>
@@ -601,7 +601,7 @@ export default function Index() {
                     key={index}
                     src="https://api.builder.io/api/v1/image/assets/TEMP/1179b95de6107e5b5b214d0f2ee7366adaac0a3d?width=586"
                     alt={`Book ${index + 1}`}
-                    className="w-20 h-20 md:w-100 md:h-100 object-cover flex-shrink-0 border-2 border-white rounded-lg"
+                    className="w-100 h-100 object-cover flex-shrink-0 border-2 border-white rounded-lg"
                   />
                 ))}
               </div>

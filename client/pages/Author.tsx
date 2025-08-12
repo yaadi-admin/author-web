@@ -158,10 +158,12 @@ export default function Author() {
       </section>
 
 
+
       {/* Continuous Background Text Section */}
-      <section className="py-8 sm:py-12 md:py-16 w-full marquee-container bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB] pb-[2%]">
-        <div className="w-full overflow-hidden">
-          <div className="relative w-full h-[120px] sm:h-[150px] md:h-[180px] lg:h-[240px]">
+      <section className="py-1 w-full marquee-container pb-[2%] sm:pb-[3%] md:pb-[2%] lg:pb-[10%] relative overflow-hidden bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB]">
+        <div className="w-full overflow-hidden relative">
+          {/* Marquee background */}
+          <div className="relative w-full h-[80px] sm:h-[120px] md:h-[150px] lg:h-[180px] xl:h-[400px]">
             <div
               className="absolute top-1/2 left-0 w-full"
               style={{ transform: "translateY(-50%)" }}
@@ -176,11 +178,17 @@ export default function Author() {
                     animationIterationCount: 'infinite',
                   }}
                 >
-                  <span className="font-playfair text-4xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[150px] font-bold text-black leading-tight mx-4 sm:mx-6 md:mx-8">
-                    {marqueeText}
+                  <span className="font-playfair text-3xl sm:text-4xl md:text-6xl lg:text-8xl xl:text-[120px] 2xl:text-[200px] font-bold text-black/30 leading-tight mx-2 sm:mx-4 md:mx-6 lg:mx-8">
+                  {marqueeText}
                   </span>
                 </div>
               </div>
+            </div>
+            {/* Centered white text component */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+              <span className="font-playfair text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-white text-center drop-shadow-lg px-4">
+                RESTORED. REALIGNED. REBORN.
+              </span>
             </div>
           </div>
         </div>

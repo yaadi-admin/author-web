@@ -132,4 +132,20 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  /* Responsive margin utilities for better scaling */
+  .margin-responsive-sm {
+    margin-left: clamp(-5%, -10%, -10%);
+    margin-right: clamp(-5%, -10%, -10%);
+  }
+
+  .margin-responsive-md {
+    margin-left: clamp(-8%, -15%, -15%);
+    margin-right: clamp(-8%, -15%, -15%);
+  }
+
+  .margin-responsive-lg {
+    margin-left: clamp(-10%, -18%, -18%);
+    margin-right: clamp(-10%, -18%, -18%);
+  }
 }

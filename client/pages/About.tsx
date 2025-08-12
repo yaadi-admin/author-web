@@ -1,9 +1,26 @@
 import Header from '../components/Header';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { footerPictures } from './Index';
 
 export default function About() {
   const [scrollY, setScrollY] = useState(0);
+  // State for managing the marquee animation
+  const [animationKey, setAnimationKey] = useState(0);
+
+
+  // Error handling for animation
+  const handleAnimationError = useCallback(() => {
+    console.warn('Marquee animation encountered an error, restarting...');
+    setAnimationKey(prev => prev + 1);
+  }, []);
+
+  // Cleanup function for animation
+  const cleanupAnimation = useCallback(() => {
+    const marqueeElement = document.querySelector('.marquee-content');
+    if (marqueeElement) {
+      marqueeElement.removeEventListener('animationend', handleAnimationError);
+    }
+  }, [handleAnimationError]);
 
   // Parallax scroll effect
   useEffect(() => {
@@ -14,6 +31,16 @@ export default function About() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Setup animation event listeners
+  useEffect(() => {
+    const marqueeElement = document.querySelector('.marquee-content');
+    if (marqueeElement) {
+      marqueeElement.addEventListener('animationend', handleAnimationError);
+    }
+    return cleanupAnimation;
+  }, [handleAnimationError, cleanupAnimation]);
+
   return (
     <div className="bg-gradient-to-r from-[#F1E6DB] via-[#E0B2F1] to-[#FFE4EE]">
       <Header whiteText={true} />
@@ -192,17 +219,18 @@ export default function About() {
       </section>
 
 
-
       {/* Continuous Background Text Section */}
-      <section className="py-8 sm:py-12 md:py-16 w-full marquee-container bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
-        <div className="w-full overflow-hidden">
-          <div className="relative w-full h-[80px] sm:h-[120px] md:h-[150px] lg:h-[180px] xl:h-[240px]">
+      <section className="py-1 w-full marquee-container pb-[2%] sm:pb-[3%] md:pb-[2%] lg:pb-[10%] relative overflow-hidden bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
+        <div className="w-full overflow-hidden relative">
+          {/* Marquee background */}
+          <div className="relative w-full h-[80px] sm:h-[120px] md:h-[150px] lg:h-[180px] xl:h-[400px]">
             <div
               className="absolute top-1/2 left-0 w-full"
               style={{ transform: "translateY(-50%)" }}
             >
               <div className="w-full overflow-hidden">
                 <div
+                  key={animationKey}
                   className="marquee-content whitespace-nowrap opacity-30 animate-continuous-marquee"
                   style={{
                     animationDuration: '30s',
@@ -210,11 +238,17 @@ export default function About() {
                     animationIterationCount: 'infinite',
                   }}
                 >
-                  <span className="font-playfair text-2xl sm:text-4xl md:text-6xl lg:text-8xl xl:text-[120px] 2xl:text-[150px] font-bold text-black leading-tight mx-2 sm:mx-4 md:mx-6 lg:mx-8">
-                    {"Grow Overcome Back Up ".repeat(20)}
+                  <span className="font-playfair text-3xl sm:text-4xl md:text-6xl lg:text-8xl xl:text-[120px] 2xl:text-[200px] font-bold text-black/30 leading-tight mx-2 sm:mx-4 md:mx-6 lg:mx-8">
+                  {"Grow Overcome Back Up ".repeat(20)}
                   </span>
                 </div>
               </div>
+            </div>
+            {/* Centered white text component */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+              <span className="font-playfair text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-white text-center drop-shadow-lg px-4">
+                RESTORED. REALIGNED. REBORN.
+              </span>
             </div>
           </div>
         </div>
@@ -233,6 +267,7 @@ export default function About() {
               animation-name: continuous-marquee;
             }
             
+            /* Ensure smooth rendering */
             .marquee-content {
               will-change: transform;
               backface-visibility: hidden;
@@ -241,6 +276,8 @@ export default function About() {
           `}
         </style>
       </section>
+
+
 
       {/* Official Bio Section */}
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">

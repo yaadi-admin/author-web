@@ -113,74 +113,11 @@ export default function About() {
         </div>
       </section>
 
-      {/* Personal Section with Images */}
-      <section className="py-8 sm:py-12 md:py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center">
-            {/* Left side - Images */}
-            <div className="relative order-2 lg:order-1">
-              <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
-                <img
-                  src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-16-27-44%202.jpg?alt=media&token=4a2c7d9d-6807-41a2-baf7-bc87b5910f41"
-                  alt="Suzanna Griffiths"
-                  className="w-full h-40 sm:h-48 md:h-64 lg:h-80 object-cover rounded-lg"
-                />
-                <img
-                  src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-49-44.jpg?alt=media&token=b3f5ee65-37b7-4db0-a9a5-41145eb1e6ce"
-                  alt="Suzanna portrait"
-                  className="w-24 h-24 sm:w-28 sm:h-28 md:w-40 md:h-40 lg:w-50 lg:h-50 object-cover rounded-lg mt-[-15%] sm:mt-[-20%] md:mt-[-25%] lg:mt-[-30%] ml-[-8%] sm:ml-[-10%] md:ml-[-12%] lg:ml-[-15%]"
-                />
-              </div>
 
-              {/* We Serve Section */}
-              <div>
-                <h3 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal text-black mb-4 mt-[5%] sm:mt-[8%] md:mt-[10%]">
-                  We Serve
-                </h3>
-                <div className="space-y-3 sm:space-y-4">
-                  <div className="flex items-start space-x-2 sm:space-x-3">
-                    <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
-                    <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed">
-                      <span className="">Christian couples & married women</span> seeking deeper connection and spiritual growth
-                    </p>
-                  </div>
-                  <div className="flex items-start space-x-2 sm:space-x-3">
-                    <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
-                    <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed">
-                      <span className="">Men seeking emotional and spiritual healing</span> to break free from past wounds
-                    </p>
-                  </div>
-                  <div className="flex items-start space-x-2 sm:space-x-3">
-                    <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
-                    <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed">
-                      <span className="">Pastors, counselors, and psychologists</span> looking for biblical wisdom in their practice
-                    </p>
-                  </div>
-                  <div className="flex items-start space-x-2 sm:space-x-3">
-                    <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
-                    <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed">
-                      <span className="">Anyone seeking clarity, restoration, and biblical truth</span> in their journey
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Call-to-Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-8">
-                <button className="group bg-black text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 font-inter text-xs sm:text-sm font-semibold flex items-center space-x-2">
-                  <span>Explore My Book</span>
-                </button>
-                <button className="group bg-suelyn-cream text-black px-4 sm:px-6 py-2 sm:py-3 rounded-lg border border-black/20 hover:bg-black hover:text-white transition-all duration-300 transform hover:-translate-y-1 font-inter text-xs sm:text-sm font-semibold flex items-center space-x-2">
-                  <span>Book Suzanna to Speak</span>
-                </button>
-              </div>
-
-            </div>
-
-            {/* Right side - Text and Mission Content */}
-            <div className="order-1 lg:order-2 space-y-6 sm:space-y-8">
-              {/* Original personal text */}
-              <div>
+      <section className="py-8 sm:py-12 md:py-16 md:mt-[-8%] px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
+        <div className="container mx-auto text-center">
+          {/* We Serve Section */}
+          <div>
                 <p className="font-playfair text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-normal text-black/70 leading-tight max-w-4xl mx-auto mb-4 sm:mb-6 md:mb-8">
                   Why SueLyn Empowered Living Was Born
                 </p>
@@ -190,13 +127,86 @@ export default function About() {
                 <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-black mb-6 sm:mb-8 font-normal leading-6 sm:leading-7 md:leading-8">
                   This is more than a platform - it's a <b>movement</b> of truth-telling, healing, and purpose.
                 </p>
-                <button className="group bg-suelyn-cream text-black px-4 sm:px-6 py-2 sm:py-3 rounded-lg border border-black/20 hover:bg-black hover:text-white transition-all duration-300 transform hover:-translate-y-1 font-inter text-xs sm:text-sm font-semibold flex items-center space-x-2">
-                  LEARN MORE
-                </button>
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mt-4">
+                  <button className="group bg-black text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 font-inter text-xs sm:text-sm font-semibold flex items-center space-x-2">
+                    <span>Explore My Book</span>
+                  </button>
+                  <button className="group bg-suelyn-cream text-black px-4 sm:px-6 py-2 sm:py-3 rounded-lg border border-black/20 hover:bg-black hover:text-white transition-all duration-300 transform hover:-translate-y-1 font-inter text-xs sm:text-sm font-semibold flex items-center space-x-2">
+                    <span>Book Suzanna to Speak</span>
+                  </button>
+                  <button className="group bg-suelyn-cream text-black px-4 sm:px-6 py-2 sm:py-3 rounded-lg border border-black/20 hover:bg-black hover:text-white transition-all duration-300 transform hover:-translate-y-1 font-inter text-xs sm:text-sm font-semibold flex items-center space-x-2">
+                    LEARN MORE
+                  </button>
+                </div>
               </div>
+        </div>
+      </section>
 
-              {/* Mission Statement */}
-              <div className="pt-6 sm:pt-8 border-t border-black/10">
+      {/* Personal Section with Images */}
+      <section className="py-8 sm:py-12 md:py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
+        <div className="container mx-auto">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-16">
+            {/* Left Image */}
+            <div className="flex-1 flex flex-col items-center lg:items-end">
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-16-27-44%202.jpg?alt=media&token=4a2c7d9d-6807-41a2-baf7-bc87b5910f41"
+                alt="Suzanna Griffiths"
+                className="w-40 sm:w-48 md:w-64 lg:w-80 object-cover rounded-lg mb-4"
+              />
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-49-44.jpg?alt=media&token=b3f5ee65-37b7-4db0-a9a5-41145eb1e6ce"
+                alt="Suzanna portrait"
+                className="w-24 h-24 sm:w-28 sm:h-28 md:w-40 md:h-40 object-cover rounded-lg mt-[-15%] sm:mt-[-20%] md:mt-[-25%] ml-[-8%] sm:ml-[-10%] md:ml-[-12%]"
+              />
+            </div>
+
+            {/* Center Text and Buttons */}
+            <div className="flex-1 flex flex-col items-center text-left space-y-6 sm:space-y-8">
+              
+
+
+            <div className="flex flex-col items-center text-center">
+            <h3 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal text-black mb-4 mt-[5%] sm:mt-[8%] md:mt-[10%]">
+              We Serve
+            </h3>
+            <div className="space-y-3 sm:space-y-4 w-full max-w-7xl">
+              <div className="flex flex-col items-center">
+                <div className="flex items-center justify-center space-x-2 sm:space-x-3 w-full">
+                  <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
+                  <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed text-center">
+                    <span>Christian couples & married women</span> seeking deeper connection and spiritual growth
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="flex items-center justify-center space-x-2 sm:space-x-3 w-full">
+                  <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
+                  <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed text-center">
+                    <span>Men seeking emotional and spiritual healing</span> to break free from past wounds
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="flex items-center justify-center space-x-2 sm:space-x-3 w-full">
+                  <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
+                  <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed text-center">
+                    <span>Pastors, counselors, and psychologists</span> looking for biblical wisdom in their practice
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="flex items-center justify-center space-x-2 sm:space-x-3 w-full">
+                  <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
+                  <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed text-center">
+                    <span>Anyone seeking clarity, restoration, and biblical truth</span> in their journey
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+              <div className="pt-6 sm:pt-8 border-t border-black/10 w-full">
                 <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-normal text-black leading-none mb-4 sm:mb-6">
                   OUR MISSION
                 </h2>
@@ -205,22 +215,22 @@ export default function About() {
                 </p>
               </div>
             </div>
-          </div>
 
-          {/* Side image */}
-          <div className="mt-4 sm:mt-6 md:mt-8 flex justify-center lg:justify-end">
-            <img
-              src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-18-00-54.jpg?alt=media&token=00f0e840-f8fa-408e-9277-d564ed5bb947"
-              alt="Suzanna empowerment"
-              className="w-48 sm:w-56 md:w-64 lg:w-80 xl:w-96 h-auto rounded-lg"
-            />
+            {/* Right Image */}
+            <div className="flex-1 flex flex-col items-center lg:items-start">
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-18-00-54.jpg?alt=media&token=00f0e840-f8fa-408e-9277-d564ed5bb947"
+                alt="Suzanna empowerment"
+                className="w-48 sm:w-56 md:w-64 lg:w-80 xl:w-96 h-auto rounded-lg"
+              />
+            </div>
           </div>
         </div>
       </section>
 
 
       {/* Continuous Background Text Section */}
-      <section className="py-1 w-full marquee-container pb-[2%] sm:pb-[3%] md:pb-[2%] lg:pb-[10%] relative overflow-hidden bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
+      <section className="py-1 w-full marquee-container mt-[-5%] relative overflow-hidden bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
         <div className="w-full overflow-hidden relative">
           {/* Marquee background */}
           <div className="relative w-full h-[80px] sm:h-[120px] md:h-[150px] lg:h-[180px] xl:h-[400px]">
@@ -239,7 +249,7 @@ export default function About() {
                   }}
                 >
                   <span className="font-playfair text-3xl sm:text-4xl md:text-6xl lg:text-8xl xl:text-[120px] 2xl:text-[200px] font-bold text-black/30 leading-tight mx-2 sm:mx-4 md:mx-6 lg:mx-8">
-                  {"Grow Overcome Back Up ".repeat(20)}
+                  {"GROW, OVERCOME, AND GET BACK UP ".repeat(20)}
                   </span>
                 </div>
               </div>
@@ -280,14 +290,14 @@ export default function About() {
 
 
       {/* Official Bio Section */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 bg-gradient-to-b from-[#E0B2F1] to-[#E0B2F1]">
         <div className="container mx-auto">
           {/* Section Title */}
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
             <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-9xl font-normal text-black leading-none mb-4 sm:mb-6 md:mb-8">
               OFFICIAL BIO
             </h2>
-            <p className="font-playfair text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-normal text-black/90 leading-tight max-w-4xl mx-auto">
+            <p className="font-playfair text-sm sm:text-base md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-5xl font-normal text-black/90 leading-tight max-w-4xl mx-auto">
               About Suzanna Griffiths
             </p>
           </div>
@@ -297,7 +307,7 @@ export default function About() {
             {/* Left side - Long Image */}
             <div className="order-2 lg:order-1 mt-[27%]">
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-07-20-15-57-01.jpg?alt=media&token=94c8f484-890c-4b50-b9cf-6f771d271f78"
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-12-16-35-31.jpg?alt=media&token=a619ee82-a06b-409b-b13e-b114bdf4a349"
                 alt="Suzanna Griffiths"
                 className="w-full min-h-full object-contain rounded-lg"
               />
@@ -623,24 +633,24 @@ export default function About() {
               <div className="grid grid-cols-2 gap-2 sm:gap-4">
                 <div className="space-y-2 sm:space-y-4">
                   <img
-                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-16-27-44%202.jpg?alt=media&token=4a2c7d9d-6807-41a2-baf7-bc87b5910f41"
+                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.19.43.jpeg?alt=media&token=df10e00b-621e-4ef8-89af-b5908fde612c"
                     alt="Suzanna"
                     className="w-full h-auto rounded-lg"
                   />
                   <img
-                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-18-00-54.jpg?alt=media&token=00f0e840-f8fa-408e-9277-d564ed5bb947"
+                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.13.57.jpeg?alt=media&token=5e60e899-8e01-41fc-9679-c26ce9ceaa74"
                     alt="Suzanna"
                     className="w-full h-auto rounded-lg"
                   />
                 </div>
                 <div className="space-y-2 sm:space-y-4 pt-4 sm:pt-8">
                   <img
-                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-36-43.jpg?alt=media&token=b3c94eb0-895f-47c7-862c-c81e1048d8e5"
+                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.20.55.jpeg?alt=media&token=a0118b95-1f15-47d0-aa75-0104f07bad0e"
                     alt="Suzanna"
                     className="w-full h-auto rounded-lg"
                   />
                   <img
-                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-49-44.jpg?alt=media&token=b3f5ee65-37b7-4db0-a9a5-41145eb1e6ce"
+                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.14.55.jpeg?alt=media&token=0becff48-6d3c-4d19-9233-fa210f8f1c91"
                     alt="Suzanna"
                     className="w-full h-auto rounded-lg"
                   />

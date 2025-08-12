@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { speakingReviews, Review } from '../data/reviews';
 
 export const footerPictures = [
-  "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-16-27-44%202.jpg?alt=media&token=4a2c7d9d-6807-41a2-baf7-bc87b5910f41",
+  "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.13.42.jpeg?alt=media&token=b8d6e1a3-f9c8-4f9f-9922-e1845f387b52",
   "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-18-00-54.jpg?alt=media&token=00f0e840-f8fa-408e-9277-d564ed5bb947",
   "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-36-43.jpg?alt=media&token=b3c94eb0-895f-47c7-862c-c81e1048d8e5",
   "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-49-44.jpg?alt=media&token=b3f5ee65-37b7-4db0-a9a5-41145eb1e6ce",
@@ -268,16 +268,16 @@ export default function Index() {
 
                          {/* Center Text */}
              <div className="flex flex-col items-center justify-center text-center lg:text-left px-2 lg:pr-8 xl:pr-12 2xl:pr-16">
-              <p className="font-helvetica text-lg lg:text-xl xl:text-2xl text-black mb-3 md:mb-4 font-light leading-6 sm:leading-7 md:leading-8">
+              <p className="font-helvetica text-lg lg:text-xl xl:text-2xl text-black mb-3 md:mb-4 font-light leading-6 sm:leading-7 md:leading-8 mr-[-40%]">
                 You were never meant to stay broken. You were made to be Restored, Realigned, and Reborn.
               </p>
-              <p className="font-helvetica text-lg lg:text-xl xl:text-2xl text-black mb-6 md:mb-8 font-light leading-6 sm:leading-7 md:leading-8">
+              <p className="font-helvetica text-lg lg:text-xl xl:text-2xl text-black mb-6 md:mb-8 font-light leading-6 sm:leading-7 md:leading-8 mr-[-40%]">
                 Life may have knocked you down, but God has made a way for you to rise.
                 This is your space to breathe, reflect, and rediscover your true identity.
                 Here, you’ll find strength for healing, purpose, and self-love.
                 You’re not just surviving—you’re becoming whole and free.
               </p>
-              <button className="bg-white text-gray-600 px-6 sm:px-8 py-2 md:py-3 rounded-lg border border-gray-500 hover:bg-gray-100 transition-colors text-base sm:text-lg md:text-xl xl:text-2xl font-light font-inter flex items-center gap-2 whitespace-nowrap">
+              <button className="bg-white text-gray-600 px-6 sm:px-8 py-2 md:py-3 rounded-lg border border-gray-500 hover:bg-gray-100 transition-colors text-base sm:text-lg md:text-xl xl:text-2xl font-light font-inter flex items-center gap-2 whitespace-nowrap mr-[-100%]">
                 JUMP RIGHT IN
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -393,9 +393,9 @@ export default function Index() {
         <div className="container mx-auto px-4">
           {/* Image positioned at top center of arch */}
           <div className="flex justify-center mb-8 md:mb-16 mt-[-15%] sm:mt-[-25%] md:mt-[-40%]">
-            <div className="w-64 sm:w-72 md:w-80 lg:w-96 h-80 sm:h-96 md:h-115 object-cover rounded-t-[24px] sm:rounded-t-[28px] md:rounded-t-[32px] lg:rounded-t-[100px] xl:rounded-t-[200px] bg-transparent">
+            <div className="w-64 sm:w-72 md:w-120 lg:w-120 h-120 sm:h-120 md:h-120 object-cover rounded-t-[24px] sm:rounded-t-[28px] md:rounded-t-[32px] lg:rounded-t-[100px] xl:rounded-t-[200px] bg-transparent">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-16-27-44.jpg?alt=media&token=1f61da2d-744d-4caa-8554-e6bed7955288"
+              src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.15.39%20copy.jpeg?alt=media&token=25f9f13a-c9ba-4be8-ac2d-f553c22d688f"
               alt="Suzanna Griffiths"
               className="w-full h-full object-cover rounded-t-[24px] sm:rounded-t-[28px] md:rounded-t-[32px] lg:rounded-t-[100px] xl:rounded-t-[200px]"
             />
@@ -553,7 +553,7 @@ export default function Index() {
 
       {/* Books Section */}
       <section className="py-12 md:py-24 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
-      <section className="relative z-10 container mx-auto px-4 text-center text-black mt-[-5%] md:mt-[-22%]">
+      <section className="relative z-10 container mx-auto px-4 text-center text-black mt-[5%] md:mt-[-18%]">
       <h2 className="font-playfair text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-[200px] font-bold mb-[0%]">SPEAKING</h2>
       </section>
 
@@ -653,13 +653,13 @@ export default function Index() {
           </p>
               </div>
 
-              <div className="flex justify-center gap-1 sm:gap-2 md:gap-3 overflow-x-auto pb-4">
+              <div className="flex justify-center gap-1 overflow-x-auto pb-4">
                 {footerPictures.map((_, index) => (
                   <img
                     key={index}
                     src={footerPictures[index]}
                     alt={`Book ${index + 1}`}
-                    className="w-40 sm:w-48 md:w-56 lg:w-60 h-60 sm:h-80 md:h-90 lg:h-100 object-contain flex-shrink-0 border-2 border-white rounded-lg"
+                    className="w-40 sm:w-48 md:w-56 lg:w-60 h-60 sm:h-80 md:h-90 lg:h-100 object-cover flex-shrink-0 border-1 border-white rounded-lg"
                   />
                 ))}
               </div>

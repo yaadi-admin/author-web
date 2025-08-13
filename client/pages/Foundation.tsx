@@ -1,11 +1,12 @@
 import Header from '../components/Header';
 import { useState, useEffect } from 'react';
+import { footerPictures } from './Index';
 
 export default function Foundation() {
   const [scrollY, setScrollY] = useState(0);
   // State for managing the marquee animation
   const [animationKey, setAnimationKey] = useState(0);
-  const marqueeText = "SueLyn Empowered Living Foundation ".repeat(20);
+  const marqueeText = "SUELYN EMPOWERED LIVING FOUNDATION ".repeat(20);
 
   // Parallax scroll effect
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function Foundation() {
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-24">
         {/* Hero Background Image with Parallax */}
         <div className="absolute inset-0 z-0">
-          <div 
+          <div
             className="absolute inset-0 w-full h-[120%] transform -translate-y-[10%]"
             style={{
               backgroundImage: 'url(https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-07-20-15-57-01.jpg?alt=media&token=d42bae63-e21c-4399-af29-15dfffa22460)',
@@ -41,16 +42,16 @@ export default function Foundation() {
       </section>
 
       {/* Hero Content */}
-      <div className="relative z-10 text-center px-4 mt-[-15%] sm:mt-[-12%] md:mt-[-15%] lg:mt-[-20%] xl:mt-[-10.5%]">
+      <div className="relative z-10 text-center px-4 mt-[-15%] sm:mt-[-12%] md:mt-[-15%] lg:mt-[-20%] xl:mt-[-15%]">
         <div className="relative z-10 text-center px-4 text-white">
           <div className="max-w-4xl mx-auto">
             <div className="flex justify-center items-center">
-              <h1 className="font-charm text-4xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[180px] 2xl:text-[300px] font-bold text-white leading-none mb-2 md:mb-4">
-              Foundation
+              <h1 className="font-charm text-4xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[180px] 2xl:text-[250px] font-bold text-white leading-none mb-2 md:mb-4">
+                Foundation
               </h1>
             </div>
-            <h2 className="font-league-spartan text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-normal text-black sm:ml-[-10%] md:ml-[-20%] lg:ml-[-30%] xl:ml-[-40%] 2xl:ml-[-60%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-4%] 2xl:mt-[-6%]">
-            Inspired to Give
+            <h2 className="font-league-spartan text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-normal text-black sm:ml-[-10%] md:ml-[-20%] lg:ml-[-30%] xl:ml-[-40%] 2xl:ml-[42%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-4%] 2xl:mt-[-5%]">
+              Inspired to Give
             </h2>
           </div>
         </div>
@@ -61,37 +62,37 @@ export default function Foundation() {
       {/* About/Mission Section */}
       <section className="py-24 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE] mt-[-3%]">
         <div className="container mx-auto">
-        <section className="py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
-        <div className="container mx-auto text-center">
-          <div className="relative">
-            {/* Background faded text */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-20">
-              <p className="font-playfair text-6xl md:text-8xl lg:text-9xl font-bold text-black/30 transform rotate-[-5deg] mt-[20%]">
-                Foundation
-              </p>
-            </div>
-            
-            {/* Main motto */}
-            <div className="relative z-10">
-              <h2 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-black leading-none mb-4">
-                SueLyn 
-              </h2>
-              <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-6xl font-light italic text-black leading-tight mb-4">
-                Empowered Living
-              </p>
-              {/* <h2 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-black leading-none">
+          <section className="py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
+            <div className="container mx-auto text-center">
+              <div className="relative">
+                {/* Background faded text */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-20">
+                  <p className="font-playfair text-6xl md:text-8xl lg:text-9xl font-bold text-black/30 transform rotate-[-5deg] mt-[20%]">
+                    Foundation
+                  </p>
+                </div>
+
+                {/* Main motto */}
+                <div className="relative z-10">
+                  <h2 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-black leading-none mb-4">
+                    SueLyn
+                  </h2>
+                  <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-6xl font-light italic text-black leading-tight mb-4">
+                    Empowered Living
+                  </p>
+                  {/* <h2 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-black leading-none">
                 Empowered Living
               </h2> */}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-center mt-6">
             {/* Left side - Text */}
             <div className="space-y-6">
-            <p className="font-playfair text-lg sm:text-4xl md:text-4xl font-light italic text-black leading-tight mb-4">
-            Empowered to Rise. Inspired to Give.
+              <p className="font-playfair text-lg sm:text-4xl md:text-4xl font-light italic text-black leading-tight mb-4">
+                Empowered to Rise. Inspired to Give.
               </p>
               <p className="font-helvetica text-2xl text-black leading-relaxed">
                 At SueLyn Empowered Living Foundation, our mission is born from a heart that listens to God and a passion to see lives transformed. We believe that when one person is empowered, entire communities can be uplifted. This foundation stands as a testament to faith in action, meeting real needs, inspiring hope, and creating space for others to rise.&nbsp;
@@ -101,20 +102,20 @@ export default function Foundation() {
             </div>
 
             {/* Right side - Image gallery */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               <div className="space-y-4">
-                <img
+                {/* <img
                   src="https://api.builder.io/api/v1/image/assets/TEMP/3bcb43c2d08f89a125bec53b49f9f6707b3f05df?width=941"
                   alt="Suzanna"
                   className="w-full h-auto rounded-lg"
-                />
+                /> */}
                 <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/cb8827ce947c674e0b468cb798d4e8d61410fc29?width=383"
+                  src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.14.23.jpeg?alt=media&token=404c0109-03c1-46f2-93f4-5d6dbc3a69ad"
                   alt="Suzanna"
                   className="w-full h-auto rounded-lg"
                 />
               </div>
-              <div className="space-y-4 pt-8">
+              {/* <div className="space-y-4 pt-8">
                 <img
                   src="https://api.builder.io/api/v1/image/assets/TEMP/40d6bfce6b71d50c24fdb15e3287730608df80de?width=383"
                   alt="Suzanna"
@@ -125,16 +126,17 @@ export default function Foundation() {
                   alt="Suzanna"
                   className="w-full h-auto rounded-lg"
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
       </section>
 
-     {/* Continuous Background Text Section */}
-     <section className="py-16 w-full marquee-container bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE] pb-[2%]">
-        <div className="w-full overflow-hidden">
-          <div className="relative w-full h-[180px] md:h-[240px]">
+      {/* Continuous Background Text Section */}
+      <section className="py-1 w-full marquee-container relative overflow-hidden bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
+        <div className="w-full overflow-hidden relative">
+          {/* Marquee background */}
+          <div className="relative w-full h-[80px] sm:h-[120px] md:h-[150px] lg:h-[180px] xl:h-[400px]">
             <div
               className="absolute top-1/2 left-0 w-full"
               style={{ transform: "translateY(-50%)" }}
@@ -149,11 +151,17 @@ export default function Foundation() {
                     animationIterationCount: 'infinite',
                   }}
                 >
-                  <span className="font-playfair text-8xl md:text-[150px] font-bold text-black leading-tight mx-8">
+                  <span className="font-playfair text-3xl sm:text-4xl md:text-6xl lg:text-8xl xl:text-[120px] 2xl:text-[200px] font-bold text-black/30 leading-tight mx-2 sm:mx-4 md:mx-6 lg:mx-8">
                     {marqueeText}
                   </span>
                 </div>
               </div>
+            </div>
+            {/* Centered white text component */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+              <span className="font-playfair text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-white text-center drop-shadow-lg px-4">
+                RESTORED. REALIGNED. REBORN.
+              </span>
             </div>
           </div>
         </div>
@@ -182,48 +190,119 @@ export default function Foundation() {
         </style>
       </section>
 
-      {/* "GROW, OVERCOME, and get BACK UP" Section */}
-      <section className="py-24 mt-[-7%]">
-      <div className="relative py-24 overflow-hidden w-full">
-            {/* Flipped arch background - full width */}
-            <div className="absolute inset-0 w-screen left-1/2 transform -translate-x-1/2 h-screen">
-              <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
-                <defs>
-                  <linearGradient id="flippedGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#FFAC24" />
-                    <stop offset="50%" stopColor="#F84988" />
-                    <stop offset="100%" stopColor="#F84988" />
-                  </linearGradient>
-                </defs>
-                <path d="M0 0 L0 40 Q50 100 100 40 L100 0 Z" fill="url(#flippedGradient)"/>
-              </svg>
+      <section className="py-20 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {/* Education */}
+            <div className="rounded-2xl flex flex-col items-center text-center">
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-12-23-10-00.jpg?alt=media&token=0a48ed69-8dfd-4fcf-a929-85fb1d40df47"
+                alt="Education Foundation"
+                className="w-full h-84 object-cover rounded-2xl mb-4"
+              />
+              <button
+                onClick={() => alert("portal closed")}
+                className="bg-[#F84988] text-white font-bold px-8 rounded-lg hover:bg-[#e03a7a] transition-colors text-lg shadow-md p-2 mb-2"
+              >
+                Learn More
+              </button>
             </div>
-
-            <div className="relative z-10 container mx-auto px-4 mt-[-100px]">
-              <div className="text-center mb-[5%]">
-              <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none mt-[5%]">
-              RESTORED, REALIGNED,
-            </h3>
-            <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[0%] mb-[0%] ml-[20%]">
-              REBORN
-            </p>
-            <p className="font-playfair text-lg sm:text-xl md:text-3xl lg:text-3xl font-normal text-white leading-tight max-w-4xl mx-auto mb-8 mt-5">
-          "this is what it looks like to live it out, every day."
-          </p>
-              </div>
-
-              <div className="flex justify-center gap-1 overflow-x-auto pb-4">
-                {[1, 2, 3, 4].map((_, index) => (
-                  <img
-                    key={index}
-                    src="https://api.builder.io/api/v1/image/assets/TEMP/1179b95de6107e5b5b214d0f2ee7366adaac0a3d?width=586"
-                    alt={`Book ${index + 1}`}
-                    className="w-100 h-100 object-cover flex-shrink-0 border-2 border-white rounded-lg"
-                  />
-                ))}
-              </div>
+            {/* Skills Development */}
+            <div className="bg-white rounded-2xl shadow-lg flex flex-col items-center p-8 text-center border-2 border-[#FFAC24]">
+              <h3 className="font-playfair text-3xl font-bold text-[#FFAC24] mb-4">Skills Development</h3>
+              <p className="font-helvetica text-gray-700 mb-6">
+                Providing training and support to enhance employability and promote independence.
+              </p>
+              {/* <button
+                className="bg-[#FFAC24] text-white font-bold px-8 py-3 rounded-lg hover:bg-[#e6951a] transition-colors text-lg shadow-md"
+              >
+                DONATE NOW
+              </button> */}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Email Subscription Section with Gradient Arch */}
+      <section className="py-12 sm:py-16 md:py-24 relative overflow-hidden w-full bg-gradient-to-b from-[#F1E6DB] to-[#FFAC24]">
+
+        <div className="relative z-10 container mx-auto px-4 text-center pt-[8%] sm:pt-[10%] md:pt-[2%]">
+          <h3 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-normal text-black leading-none mb-8 sm:mb-10 md:mb-12">
+          CONTACT US
+          </h3>
+          <p className="font-playfair text-2xl max-w-4xl mx-auto font-normal text-black leading-none mb-8 sm:mb-10 md:mb-12">
+          Get in Touch
+Have a question or an idea for collaboration? We’d love to hear from you. Together, we can create opportunities and shape a brighter future.
+          </p>
+          
+          {/* Signup form */}
+          <div className="max-w-7xl mx-auto mb-8 sm:mb-10 md:mb-12">
+            <div className="grid md:grid-cols-3 gap-3 sm:gap-4">
+              <input
+                type="text"
+                placeholder="Name"
+                className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 sm:px-6 py-3 sm:py-4 text-black text-base sm:text-lg placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white"
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 sm:px-6 py-3 sm:py-4 text-black text-base sm:text-lg placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white"
+              />
+               <input
+                type="text"
+                placeholder="Message"
+                className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 sm:px-6 py-3 sm:py-4 text-black text-base sm:text-lg placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white"
+              />
+            </div>
+            <button className="bg-white text-black px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-[#E6951A] transition-colors font-inter text-base sm:text-lg mt-4 sm:mt-6">
+              Contact Us
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* "GROW, OVERCOME, and get BACK UP" Section */}
+      <section className="py-24 mt-[-7%]">
+        <div className="relative py-24 overflow-hidden w-full">
+          {/* Flipped arch background - full width */}
+          <div className="absolute inset-0 w-screen left-1/2 transform -translate-x-1/2 h-screen">
+            <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
+              <defs>
+                <linearGradient id="flippedGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#FFAC24" />
+                  <stop offset="50%" stopColor="#F84988" />
+                  <stop offset="100%" stopColor="#F84988" />
+                </linearGradient>
+              </defs>
+              <path d="M0 0 L0 30 Q50 80 100 30 L100 0 Z" fill="url(#flippedGradient)" />
+            </svg>
+          </div>
+
+          <div className="relative z-10 container mx-auto px-4 mt-[-70px]">
+            <div className="text-center mb-[5%]">
+              <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none mt-[5%]">
+                RESTORED, REALIGNED,
+              </h3>
+              <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[0%] mb-[0%] ml-[20%]">
+                REBORN
+              </p>
+              <p className="font-playfair text-lg sm:text-xl md:text-3xl lg:text-3xl font-normal text-white leading-tight max-w-4xl mx-auto mb-8 mt-5">
+                "this is what it looks like to live it out, every day."
+              </p>
+            </div>
+
+            <div className="flex justify-center gap-1 overflow-x-auto">
+              {footerPictures.map((picture, index) => (
+                <img
+                  key={index}
+                  src={picture}
+                  alt={`Book ${index + 1}`}
+                  className="w-40 sm:w-48 md:w-56 lg:w-60 h-60 sm:h-80 md:h-90 lg:h-100 object-cover flex-shrink-0 border-1 border-white rounded-lg"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Footer */}

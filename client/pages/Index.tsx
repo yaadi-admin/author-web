@@ -122,10 +122,13 @@ export default function Index() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#F1E6DB]/30 via-[#E0B2F1]/20 to-[#FFE4EE]/10"></div>
         </div>
+        
+       
       </section>
 
-      {/* Hero Content */}
-      <div className="relative z-10 text-center px-4 mt-[-8%] sm:mt-[-10%] md:mt-[-12%] lg:mt-[-15%] xl:mt-[-2%] max-w-[95vw] mx-auto">
+
+       {/* Hero Content - Positioned above background */}
+       <div className="relative z-10 text-center px-4 mt-[-8%] sm:mt-[-10%] md:mt-[-12%] lg:mt-[-15%] xl:mt-[-6%] max-w-[95vw] mx-auto">
           
           {/* Medium and Desktop Navigation - Side by side */}
           <div className="hidden sm:flex justify-center items-center space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8 xl:space-x-8 2xl:space-x-10 3xl:space-x-8 max-w-full overflow-hidden">
@@ -138,7 +141,7 @@ export default function Index() {
                 <a href="/author" className="font-helvetica text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl text-black hover:text-suelyn-pink transition">RESOURCES</a>
               </li>
             </ul>
-            <h1 className="font-charm text-3xl sm:text-5xl md:text-7xl lg:text-[80px] xl:text-[100px] 2xl:text-[140px] 3xl:text-[160px] font-bold text-black leading-none mb-2 md:mb-4 mt-[-5%]">
+            <h1 className="font-charm text-3xl sm:text-5xl md:text-7xl lg:text-[80px] xl:text-[100px] 2xl:text-[140px] 3xl:text-[160px] font-bold text-black leading-none mb-2 md:mb-12">
               SueLyn
             </h1>
             {/* Right Navigation */}
@@ -159,7 +162,7 @@ export default function Index() {
             </h1>
           </div>
           
-          <h2 className="font-league-spartan text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl 3xl:text-5xl font-normal text-black sm:ml-[-2%] md:ml-[-3%] lg:ml-[-4%] xl:ml-[-6%] 2xl:ml-[-8%] 3xl:ml-[-10%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-2%] mt-2">
+          <h2 className="font-league-spartan text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl 3xl:text-5xl font-normal text-black sm:ml-[-2%] md:ml-[-3%] lg:ml-[-4%] xl:ml-[-6%] 2xl:ml-[-8%] 3xl:ml-[-22%] mt-[-4%]">
             Empowered Living
           </h2>
         </div>
@@ -625,46 +628,46 @@ export default function Index() {
 
       {/* "GROW, OVERCOME, and get BACK UP" Section */}
       <section className="py-24 mt-[-7%]">
-      <div className="relative py-24 overflow-hidden w-full">
-            {/* Flipped arch background - full width */}
-            <div className="absolute inset-0 w-full h-screen">
-              <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
-                <defs>
-                  <linearGradient id="flippedGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#FFAC24" />
-                    <stop offset="50%" stopColor="#F84988" />
-                    <stop offset="100%" stopColor="#F84988" />
-                  </linearGradient>
-                </defs>
-                <path d="M0 0 L0 60 Q50 100 100 60 L100 0 Z" fill="url(#flippedGradient)"/>
-              </svg>
+        <div className="relative py-24 overflow-hidden w-full">
+          {/* Flipped arch background - full width */}
+          <div className="absolute inset-0 w-screen left-1/2 transform -translate-x-1/2 h-screen">
+            <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
+              <defs>
+                <linearGradient id="flippedGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#FFAC24" />
+                  <stop offset="50%" stopColor="#F84988" />
+                  <stop offset="100%" stopColor="#F84988" />
+                </linearGradient>
+              </defs>
+              <path d="M0 0 L0 30 Q50 80 100 30 L100 0 Z" fill="url(#flippedGradient)" />
+            </svg>
+          </div>
+
+          <div className="relative z-10 container mx-auto px-4 mt-[-70px]">
+            <div className="text-center mb-[5%]">
+              <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none mt-[5%]">
+                RESTORED, REALIGNED,
+              </h3>
+              <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[0%] mb-[0%] ml-[20%]">
+                REBORN
+              </p>
+              <p className="font-playfair text-lg sm:text-xl md:text-3xl lg:text-3xl font-normal text-white leading-tight max-w-4xl mx-auto mb-8 mt-5">
+                "this is what it looks like to live it out, every day."
+              </p>
             </div>
 
-            <div className="relative z-10 container mx-auto px-4 mt-[-100px]">
-              <div className="text-center mb-[5%]">
-              <h3 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-5xl font-normal text-white leading-none mt-[5%]">
-              RESTORED, REALIGNED,
-            </h3>
-            <p className="font-playfair text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[0%] mb-[0%] ml-[10%] sm:ml-[15%] md:ml-[20%]">
-              REBORN
-            </p>
-            <p className="font-playfair text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-normal text-white leading-tight max-w-4xl mx-auto mb-8 mt-5">
-          "this is what it looks like to live it out, every day."
-          </p>
-              </div>
-
-              <div className="flex justify-center gap-1 overflow-x-auto pb-4">
-                {footerPictures.map((_, index) => (
-                  <img
-                    key={index}
-                    src={footerPictures[index]}
-                    alt={`Book ${index + 1}`}
-                    className="w-40 sm:w-48 md:w-56 lg:w-60 h-60 sm:h-80 md:h-90 lg:h-100 object-cover flex-shrink-0 border-1 border-white rounded-lg"
-                  />
-                ))}
-              </div>
+            <div className="flex justify-center gap-1 overflow-x-auto">
+              {footerPictures.map((picture, index) => (
+                <img
+                  key={index}
+                  src={picture}
+                  alt={`Book ${index + 1}`}
+                  className="w-40 sm:w-48 md:w-56 lg:w-60 h-60 sm:h-80 md:h-90 lg:h-100 object-cover flex-shrink-0 border-1 border-white rounded-lg"
+                />
+              ))}
             </div>
           </div>
+        </div>
       </section>
 
       {/* Footer */}

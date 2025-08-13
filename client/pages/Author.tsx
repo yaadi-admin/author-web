@@ -10,7 +10,7 @@ export default function Author() {
   const [scrollY, setScrollY] = useState(0);
   // State for managing the marquee animation
   const [animationKey, setAnimationKey] = useState(0);
-  const marqueeText = "My Books ".repeat(20);
+  const marqueeText = "MY BOOKS ".repeat(20);
 
   // Auto-scroll reviews
   useEffect(() => {
@@ -72,15 +72,15 @@ export default function Author() {
       </section>
 
       {/* Hero Content */}
-      <div className="relative z-10 text-center px-4 mt-[-15%] sm:mt-[-12%] md:mt-[-15%] lg:mt-[-20%] xl:mt-[-10.5%]">
+      <div className="relative z-10 text-center px-4 mt-[-15%] sm:mt-[-12%] md:mt-[-15%] lg:mt-[-20%] xl:mt-[-15%]">
         <div className="relative z-10 text-center px-4 text-white">
           <div className="max-w-4xl mx-auto">
             <div className="flex justify-center items-center">
-              <h1 className="font-charm text-4xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[180px] 2xl:text-[300px] font-bold text-white leading-none mb-2 md:mb-4">
+              <h1 className="font-charm text-4xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[150px] 2xl:text-[250px] font-bold text-white leading-none mb-2 md:mb-4">
                 Resources
               </h1>
             </div>
-            <h2 className="font-league-spartan text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-normal text-black sm:ml-[-10%] md:ml-[-20%] lg:ml-[-30%] xl:ml-[-40%] 2xl:ml-[-60%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-4%] 2xl:mt-[-6%]">
+            <h2 className="font-league-spartan text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-5xl pt-2 font-normal text-black sm:ml-[-10%] md:ml-[-20%] lg:ml-[-30%] xl:ml-[-40%] 2xl:ml-[-60%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-4%] 2xl:mt-[-6%]">
               Suzanna Griffiths
             </h2>
           </div>
@@ -160,7 +160,7 @@ export default function Author() {
 
 
       {/* Continuous Background Text Section */}
-      <section className="py-1 w-full marquee-container pb-[2%] sm:pb-[3%] md:pb-[2%] lg:pb-[10%] relative overflow-hidden bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB]">
+      <section className="py-1 w-full marquee-container pb-[2%] sm:pb-[3%] md:pb-[2%] lg:pb-[1%] mt-[-10%] relative overflow-hidden bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB]">
         <div className="w-full overflow-hidden relative">
           {/* Marquee background */}
           <div className="relative w-full h-[80px] sm:h-[120px] md:h-[150px] lg:h-[180px] xl:h-[400px]">
@@ -219,57 +219,78 @@ export default function Author() {
 
 
       {/* Testimonial Section with Dark Background */}
-      <section className="py-12 sm:py-16 md:py-24 relative overflow-hidden bg-gray-800">
-        <div className="container mx-auto px-4 text-center text-white">
-          {/* Review Carousel */}
-          <div className="mb-8 sm:mb-10 md:mb-12 relative h-[300px] sm:h-[350px] md:h-[450px]">
-            <div className="flex items-center justify-center">
-              {/* Left Arrow */}
-              <button 
-                onClick={prevReview}
-                className="absolute left-2 sm:left-4 md:left-8 lg:left-16 z-20 p-2 rounded-full bg-black/20 hover:bg-black/30 transition-colors duration-300 backdrop-blur-sm"
-                aria-label="Previous review"
-              >
-                <svg className="w-4 h-4 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
+      <section className="relative speaking-section overflow-hidden min-h-[50vh]">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-07%20at%2018.00.54.jpeg?alt=media&token=29bccf0b-c40f-40f1-abb0-aea30d22f568')`
+          }}
+        ></div>
+        
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/80 to-black/70"></div>
+        
+        {/* Content */}
+        <div className="relative z-10 py-12 md:py-24 lg:py-32">
+          <div className="container mx-auto px-4 text-center text-white">
+            {/* Review Carousel */}
+            <div className="mb-8 md:mb-12 relative min-h-[400px] md:min-h-[500px] flex items-center">
+              <div className="w-full">
+                {/* Left Arrow */}
+                <button 
+                  onClick={prevReview}
+                  className="absolute left-4 md:left-8 lg:left-16 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm border border-white/20"
+                  aria-label="Previous review"
+                >
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
 
-              {/* Review Content */}
-              <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 transition-all duration-500 ease-in-out">
-                <img 
-                  src={speakingReviews[currentReviewIndex].image}
-                  alt={`${speakingReviews[currentReviewIndex].name} testimonial`}
-                  className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 sm:mb-6 md:mb-8 object-cover transition-all duration-500 ease-in-out"
-                />
-                <h3 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6 transition-all duration-500 ease-in-out">"GROW, OVERCOME"</h3>
-                <p className="font-playfair text-base sm:text-lg md:text-xl lg:text-2xl text-white font-bold leading-normal max-w-3xl mx-auto mb-4 sm:mb-6 transition-all duration-500 ease-in-out">
-                  {speakingReviews[currentReviewIndex].quote}
-                </p>
-                <div className="font-playfair text-lg sm:text-xl md:text-2xl text-white transition-all duration-500 ease-in-out">
-                  <p className="font-bold">- {speakingReviews[currentReviewIndex].name}</p>
-                  {speakingReviews[currentReviewIndex].role && speakingReviews[currentReviewIndex].company && (
-                    <p className="text-sm sm:text-base md:text-lg opacity-80 mt-2">
-                      {speakingReviews[currentReviewIndex].role}, {speakingReviews[currentReviewIndex].company}
-                    </p>
-                  )}
+                {/* Review Content */}
+                <div className="max-w-4xl mx-auto px-16 md:px-24 transition-all duration-700 ease-in-out">
+                  <div className="mb-6 md:mb-8">
+                    <img 
+                      src={speakingReviews[currentReviewIndex].image}
+                      alt={`${speakingReviews[currentReviewIndex].name} testimonial`}
+                      className="w-28 h-28 md:w-36 md:h-36 rounded-full mx-auto object-cover transition-all duration-700 ease-in-out shadow-2xl border-4 border-white/20"
+                    />
+                  </div>
+                  
+                  <h3 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-white font-bold mb-6 md:mb-8 transition-all duration-700 ease-in-out">
+                    "GROW, OVERCOME"
+                  </h3>
+                  
+                  <p className="font-playfair text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white font-medium leading-relaxed max-w-4xl mx-auto mb-6 md:mb-8 transition-all duration-700 ease-in-out">
+                    {speakingReviews[currentReviewIndex].quote}
+                  </p>
+                  
+                  <div className="font-playfair text-lg sm:text-xl md:text-xl xl:text-2xl text-white transition-all duration-700 ease-in-out">
+                    <p className="font-bold mb-2">- {speakingReviews[currentReviewIndex].name}</p>
+                    {speakingReviews[currentReviewIndex].role && speakingReviews[currentReviewIndex].company && (
+                      <p className="text-lg md:text-xl opacity-80">
+                        {speakingReviews[currentReviewIndex].role}, {speakingReviews[currentReviewIndex].company}
+                      </p>
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              {/* Right Arrow */}
-              <button 
-                onClick={nextReview}
-                className="absolute right-2 sm:right-4 md:right-8 lg:right-16 z-20 p-2 rounded-full bg-black/20 hover:bg-black/30 transition-colors duration-300 backdrop-blur-sm"
-                aria-label="Next review"
-              >
-                <svg className="w-4 h-4 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
+                {/* Right Arrow */}
+                <button 
+                  onClick={nextReview}
+                  className="absolute right-4 md:right-8 lg:right-16 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm border border-white/20"
+                  aria-label="Next review"
+                >
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
             {/* Review Indicators */}
-            <div className="flex justify-center mt-6 sm:mt-8 space-x-2">
+            {/* <div className="flex justify-center space-x-3">
               {speakingReviews.map((_, index) => (
                 <button
                   key={index}
@@ -279,15 +300,15 @@ export default function Author() {
                     // Resume auto-scroll after 10 seconds of inactivity
                     setTimeout(() => setIsAutoScrolling(true), 10000);
                   }}
-                  className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                  className={`w-4 h-4 rounded-full transition-all duration-300 ${
                     index === currentReviewIndex 
-                      ? 'bg-white scale-125' 
-                      : 'bg-white/40 hover:bg-white/60'
+                      ? 'bg-white scale-125 shadow-lg' 
+                      : 'bg-white/40 hover:bg-white/60 hover:scale-110'
                   }`}
                   aria-label={`Go to review ${index + 1}`}
                 />
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -398,7 +419,7 @@ export default function Author() {
       <div className="relative py-24 overflow-hidden w-full">
             {/* Flipped arch background - full width */}
             <div className="absolute inset-0 w-screen left-1/2 transform -translate-x-1/2 h-screen">
-              <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
+              <svg className="w-full h-full" viewBox="0 0 100 120" preserveAspectRatio="none" fill="none">
                 <defs>
                   <linearGradient id="flippedGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                     <stop offset="0%" stopColor="#FFAC24" />
@@ -406,7 +427,7 @@ export default function Author() {
                     <stop offset="100%" stopColor="#F84988" />
                   </linearGradient>
                 </defs>
-                <path d="M0 0 L0 60 Q50 100 100 60 L100 0 Z" fill="url(#flippedGradient)"/>
+                <path d="M0 0 L0 50 Q50 95 100 50 L100 0 Z" fill="url(#flippedGradient)"/>
               </svg>
             </div>
 

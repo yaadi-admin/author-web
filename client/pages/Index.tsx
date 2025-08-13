@@ -455,7 +455,7 @@ export default function Index() {
 
 
             {/* Speaking Section with Parallax */}
-      <section className="relative speaking-section overflow-hidden min-h-[140vh]">
+      <section className="relative speaking-section overflow-hidden min-h-[80vh]">
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"

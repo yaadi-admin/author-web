@@ -1,5 +1,6 @@
 import Header from '../components/Header';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { speakingReviews, Review } from '../data/reviews';
 import { footerPictures } from './Index';
 
 // Workshop data object
@@ -9,7 +10,7 @@ const workshopData = [
     date: "October 25th, 2025",
     title: "Redeemed For a Purpose Workshop & Book Launch",
     description: "Join us for an inspiring workshop and book launch as we explore the journey of healing, purpose, and transformation. This event is a must-attend for anyone looking to find their place in the world and live a life of purpose.",
-    image: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-03%20at%2015.16.00.jpeg?alt=media&token=51b15196-285d-4ee5-86c0-28acb23b9119",
+    image: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-12-22-41-35.jpg?alt=media&token=26d01e57-7952-4fa4-a118-6d4d30056501",
     isActive: true,
     url: "https://caribtix.vbotickets.com/event/Redeemed_For_A_Purpose/167873"
   },
@@ -37,6 +38,8 @@ const workshopData = [
 
 export default function Workshops() {
   const [scrollY, setScrollY] = useState(0);
+  const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
 
   // Parallax scroll effect
   useEffect(() => {
@@ -47,6 +50,45 @@ export default function Workshops() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+
+  // Auto-scroll reviews
+  useEffect(() => {
+    if (!isAutoScrolling) return;
+    
+    const interval = setInterval(() => {
+      setCurrentReviewIndex((prev) => (prev + 1) % speakingReviews.length);
+    }, 5000); // Change review every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [isAutoScrolling]);
+
+  // Parallax scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Review carousel navigation
+  const nextReview = useCallback(() => {
+    setIsAutoScrolling(false);
+    setCurrentReviewIndex((prev) => (prev + 1) % speakingReviews.length);
+    // Resume auto-scroll after 10 seconds of inactivity
+    setTimeout(() => setIsAutoScrolling(true), 10000);
+  }, []);
+
+  const prevReview = useCallback(() => {
+    setIsAutoScrolling(false);
+    setCurrentReviewIndex((prev) => (prev - 1 + speakingReviews.length) % speakingReviews.length);
+    // Resume auto-scroll after 10 seconds of inactivity
+    setTimeout(() => setIsAutoScrolling(true), 10000);
+  }, []);
+
+
   return (
     <div className="bg-gradient-to-r from-[#F1E6DB] via-[#E0B2F1] to-[#FFE4EE]">
       <Header whiteText={true} />
@@ -71,15 +113,15 @@ export default function Workshops() {
       </section>
 
       {/* Hero Content */}
-      <div className="relative z-10 text-center px-4 mt-[-15%] sm:mt-[-12%] md:mt-[-15%] lg:mt-[-20%] xl:mt-[-10.5%]">
+      <div className="relative z-10 text-center px-4 mt-[-15%] sm:mt-[-12%] md:mt-[-15%] lg:mt-[-20%] xl:mt-[-14%]">
         <div className="relative z-10 text-center px-4 text-white">
           <div className="max-w-4xl mx-auto">
             <div className="flex justify-center items-center">
-              <h1 className="font-charm text-4xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[180px] 2xl:text-[300px] font-bold text-white leading-none mb-2 md:mb-4">
-                Workshops
+              <h1 className="font-charm text-4xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[150px] 2xl:text-[225px] font-bold text-white leading-none mb-2 md:mb-4">
+                Engagements
               </h1>
             </div>
-            <h2 className="font-league-spartan text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-normal text-black sm:ml-[-10%] md:ml-[-20%] lg:ml-[-30%] xl:ml-[-40%] 2xl:ml-[-60%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-4%] 2xl:mt-[-6%]">
+            <h2 className="font-league-spartan text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-5xl pt-2 font-normal text-black sm:ml-[-10%] md:ml-[-20%] lg:ml-[-30%] xl:ml-[-40%] 2xl:ml-[42%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-4%] 2xl:mt-[-5%]">
               Transformative Sessions
             </h2>
           </div>
@@ -91,7 +133,7 @@ export default function Workshops() {
       {/* Workshops Listings Section */}
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 bg-[#FFE4EE]">
         <div className="container mx-auto">
-          <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal text-gray-700 text-center mb-8 sm:mb-12 md:mb-16">
+          <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal text-black text-center mb-8 sm:mb-12 md:mb-16">
             Workshops
           </h2>
           
@@ -144,120 +186,252 @@ export default function Workshops() {
       </section>
 
       {/* Empowered Living Quote Section */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 bg-gray-800 relative overflow-hidden">
-        {/* Background Text */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-10">
-          <span className="font-playfair text-2xl sm:text-4xl md:text-6xl lg:text-8xl xl:text-[200px] font-bold text-gray-600 whitespace-nowrap">
-            Empowered Living Empow
-          </span>
-        </div>
+      <section className="relative speaking-section overflow-hidden min-h-[50vh]">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-07%20at%2018.00.54.jpeg?alt=media&token=29bccf0b-c40f-40f1-abb0-aea30d22f568')`
+          }}
+        ></div>
         
-        <div className="relative z-10 container mx-auto text-center">
-          <div className="max-w-4xl mx-auto">
-            <img 
-              src="https://api.builder.io/api/v1/image/assets/TEMP/9ef2ef4ab7707f0aa3dc051ca846715a652746d4?width=1206" 
-              alt="Suzanna Griffiths"
-              className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-cover rounded-full mx-auto mb-4 sm:mb-6 md:mb-8 border-4 border-white"
-            />
-            <h3 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
-              GROW, OVERCOME
-            </h3>
-            <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white leading-relaxed mb-6 sm:mb-8 max-w-3xl mx-auto">
-              This space is designed to help you heal from past wounds, discover your divine purpose, 
-              and walk boldly in your calling. Every workshop is crafted with love and intention.
-            </p>
-            <p className="font-playfair text-lg sm:text-xl md:text-2xl text-white font-semibold">
-              - Suzanna Griffiths
-            </p>
-            
-            {/* Navigation Arrows */}
-            <div className="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-10 md:mt-12">
-              <button className="p-2 sm:p-3 rounded-full bg-white/20 hover:bg-white/30 transition-colors">
-                <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button className="p-2 sm:p-3 rounded-full bg-white/20 hover:bg-white/30 transition-colors">
-                <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/80 to-black/70"></div>
+        
+        {/* Content */}
+        <div className="relative z-10 py-12 md:py-24 lg:py-32">
+          <div className="container mx-auto px-4 text-center text-white">
+            {/* Review Carousel */}
+            <div className="mb-8 md:mb-12 relative min-h-[400px] md:min-h-[500px] flex items-center">
+              <div className="w-full">
+                {/* Left Arrow */}
+                <button 
+                  onClick={prevReview}
+                  className="absolute left-4 md:left-8 lg:left-16 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm border border-white/20"
+                  aria-label="Previous review"
+                >
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+
+                {/* Review Content */}
+                <div className="max-w-4xl mx-auto px-16 md:px-24 transition-all duration-700 ease-in-out">
+                  <div className="mb-6 md:mb-8">
+                    <img 
+                      src={speakingReviews[currentReviewIndex].image}
+                      alt={`${speakingReviews[currentReviewIndex].name} testimonial`}
+                      className="w-28 h-28 md:w-36 md:h-36 rounded-full mx-auto object-cover transition-all duration-700 ease-in-out shadow-2xl border-4 border-white/20"
+                    />
+                  </div>
+                  
+                  <h3 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-white font-bold mb-6 md:mb-8 transition-all duration-700 ease-in-out">
+                    "GROW, OVERCOME"
+                  </h3>
+                  
+                  <p className="font-playfair text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white font-medium leading-relaxed max-w-4xl mx-auto mb-6 md:mb-8 transition-all duration-700 ease-in-out">
+                    {speakingReviews[currentReviewIndex].quote}
+                  </p>
+                  
+                  <div className="font-playfair text-lg sm:text-xl md:text-xl xl:text-2xl text-white transition-all duration-700 ease-in-out">
+                    <p className="font-bold mb-2">- {speakingReviews[currentReviewIndex].name}</p>
+                    {speakingReviews[currentReviewIndex].role && speakingReviews[currentReviewIndex].company && (
+                      <p className="text-lg md:text-xl opacity-80">
+                        {speakingReviews[currentReviewIndex].role}, {speakingReviews[currentReviewIndex].company}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Right Arrow */}
+                <button 
+                  onClick={nextReview}
+                  className="absolute right-4 md:right-8 lg:right-16 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm border border-white/20"
+                  aria-label="Next review"
+                >
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
             </div>
+
+            {/* Review Indicators */}
+            {/* <div className="flex justify-center space-x-3">
+              {speakingReviews.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setIsAutoScrolling(false);
+                    setCurrentReviewIndex(index);
+                    // Resume auto-scroll after 10 seconds of inactivity
+                    setTimeout(() => setIsAutoScrolling(true), 10000);
+                  }}
+                  className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                    index === currentReviewIndex 
+                      ? 'bg-white scale-125 shadow-lg' 
+                      : 'bg-white/40 hover:bg-white/60 hover:scale-110'
+                  }`}
+                  aria-label={`Go to review ${index + 1}`}
+                />
+              ))}
+            </div> */}
           </div>
         </div>
       </section>
 
       {/* Book Suzanna Section */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 bg-gradient-to-b from-[#F1E6DB] to-[#FFE4EE] relative overflow-hidden">
-        {/* Arch Background */}
-        <div className="absolute inset-0 w-full h-full">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
-            <defs>
-              <linearGradient id="archGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#F1E6DB" />
-                <stop offset="50%" stopColor="#F84988" />
-                <stop offset="100%" stopColor="#FFAC24" />
-              </linearGradient>
-            </defs>
-            {/* Mobile arch - less curved */}
-            <path className="block md:hidden" d="M0 100 L0 70 Q50 60 100 70 L100 100 Z" fill="url(#archGradient)"/>
-            {/* Desktop arch - original steep */}
-            <path className="hidden md:block" d="M0 100 L0 60 Q50 0 100 60 L100 100 Z" fill="url(#archGradient)"/>
-          </svg>
-        </div>
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 bg-gradient-to-b from-[#F1E6DB] to-[#FFAC24] relative overflow-hidden">
         
         <div className="relative z-10 container mx-auto">
           <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal text-black text-center mb-8 sm:mb-12 md:mb-16">
             Book Suzanna
           </h2>
+
+          <p className="font-playfair text-center sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-black font-medium leading-relaxed max-w-4xl mx-auto mb-6 md:mb-8 transition-all duration-700 ease-in-out">
+          Let’s Connect!
+          If you have a question, need support, or just want to share what’s on your heart, reach out. I’m here and excited to hear from you.
+          </p>
           
           <div className="relative max-w-6xl mx-auto">
-            {/* Top Right Image */}
-            <div className="absolute top-0 right-0 z-20 hidden lg:block">
+            {/* Left Floating Image */}
+            {/* <div className="absolute -left-10 top-1/2 transform -translate-y-1/2 z-20 hidden lg:block">
               <img 
-                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-03%20at%2015.16.00.jpeg?alt=media&token=51b15196-285d-4ee5-86c0-28acb23b9119"
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.15.11.jpeg?alt=media&token=ffa533c9-f9a9-4db1-9447-e412759ad613"
                 alt="Suzanna portrait"
-                className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 object-cover border-4 border-white shadow-lg"
+                className="w-32 h-60 md:w-40 md:h-60 lg:w-48 lg:h-60 object-cover border-4 border-white shadow-lg"
               />
-            </div>
+            </div> */}
             
-            {/* Bottom Left Image */}
-            <div className="absolute bottom-0 left-0 z-20 hidden lg:block">
+            {/* Right Floating Image */}
+            {/* <div className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 hidden lg:block">
               <img 
-                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/coming-soon-letter-hanging-door-600nw-2497993761.webp?alt=media&token=ab00d3a3-6e03-4828-9552-14cb58f298aa"
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.19.31.jpeg?alt=media&token=cab0c754-cdf3-429d-986c-d2d42217bd3a"
                 alt="Suzanna on couch"
                 className="w-28 h-36 md:w-36 md:h-48 lg:w-44 lg:h-60 object-cover rounded-lg shadow-lg"
               />
-            </div>
+            </div> */}
             
-            {/* Main Content */}
-            <div className="relative z-30 rounded-2xl p-6 sm:p-8 md:p-12 lg:p-16 max-w-4xl mx-auto mt-[10%] sm:mt-[15%] md:mt-[20%] lg:mt-[25%]">
-              <div className="space-y-4 sm:space-y-6 md:space-y-8">
-                <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-700 leading-relaxed text-white">
-                  Ready to take the next step in your healing journey? Book a private session with Suzanna 
-                  for personalized guidance and support tailored to your specific needs and goals.
-                </p>
-                <p className="font-helvetica text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-700 leading-relaxed text-white">
-                  Whether you're seeking clarity on your purpose, working through past trauma, or ready to 
-                  step into your next season, Suzanna is here to walk alongside you.
-                </p>
-                <div className="pt-2 sm:pt-3 md:pt-4">
-                  <button className="bg-white text-black px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-lg hover:bg-[#e03a7a] transition-colors font-helvetica text-sm sm:text-base md:text-lg flex items-center gap-2 shadow-lg">
-                    Book Now
-                    <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {/* Main Form */}
+            <div className="relative z-30 rounded-2xl p-6 sm:p-8 md:p-12 lg:p-16 max-w-4xl mx-auto mt-[10%] sm:mt-[15%] md:mt-[20%] lg:mt-[0%]">
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="firstName" className="block text-sm font-medium text-black mb-2">
+                      First Name:*
+                    </label>
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      placeholder="FIRST NAME"
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F84988] focus:border-transparent text-gray-900"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="lastName" className="block text-sm font-medium text-black mb-2">
+                      Last Name:*
+                    </label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      placeholder="LAST NAME"
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F84988] focus:border-transparent text-gray-900"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-black mb-2">
+                    Your Email:*
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="EMAIL ADDRESS"
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F84988] focus:border-transparent text-gray-900"
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-black mb-2">
+                    What's up? Tell us how we can help:*
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={4}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F84988] focus:border-transparent text-gray-900 resize-none"
+                  ></textarea>
+                </div>
+                
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-black mb-2">
+                    Phone:
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="PHONE"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F84988] focus:border-transparent text-gray-900"
+                  />
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <input
+                      type="checkbox"
+                      id="terms"
+                      name="terms"
+                      required
+                      className="mt-1 h-4 w-4 text-[#F84988] focus:ring-[#F84988] border-gray-300 rounded"
+                    />
+                    <label htmlFor="terms" className="text-sm text-black">
+                      I affirm that I've reviewed and accepted SueLyn Empowered Living Terms and Conditions and Privacy Policy.*
+                    </label>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <input
+                      type="checkbox"
+                      id="communications"
+                      name="communications"
+                      className="mt-1 h-4 w-4 text-[#F84988] focus:ring-[#F84988] border-gray-300 rounded"
+                    />
+                    <label htmlFor="communications" className="text-sm text-black">
+                      By checking this box, I agree to receive communications, including email, calls, and text messages from SueLyn Empowered Living regarding announcements and company updates. Reply to any messages with STOP at any time to stop receiving messages and request for help by replying HELP. The frequency of messages varies. Message and data rates may apply.
+                    </label>
+                  </div>
+                </div>
+                
+                <div className="pt-4">
+                  <button
+                    type="submit"
+                    className="bg-black text-white px-8 py-4 rounded-lg hover:bg-[#e03a7a] transition-colors font-helvetica text-lg flex items-center gap-2 shadow-lg w-full md:w-auto justify-center"
+                  >
+                    SEND
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
       </section>
 
       {/* Newsletter Signup Section */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden w-full bg-gradient-to-b from-[#FFAC24] to-[#FFAC24]">
-        <div className="relative z-10 container mx-auto px-4 text-center pt-[6%] sm:pt-[8%] md:pt-[10%] lg:pt-[12%]">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden w-full bg-gradient-to-b from-[#FFAC24] to-[#FFAC24] mt-[-10%]">
+        <div className="relative z-10 container mx-auto px-4 text-center pt-[6%] sm:pt-[8%] md:pt-[10%] lg:pt-[6%]">
           <h3 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-normal text-black leading-none mb-8 sm:mb-10 md:mb-12">
           JOIN THE EMPOWERED SPACE
           </h3>
@@ -296,11 +470,11 @@ export default function Workshops() {
                     <stop offset="100%" stopColor="#F84988" />
                   </linearGradient>
                 </defs>
-                <path d="M0 0 L0 60 Q50 100 100 60 L100 0 Z" fill="url(#flippedGradient)"/>
+                <path d="M0 0 L0 40 Q50 80 100 40 L100 0 Z" fill="url(#flippedGradient)"/>
               </svg>
             </div>
 
-            <div className="relative z-10 container mx-auto px-4 mt-[-100px]">
+            <div className="relative z-10 container mx-auto px-4 mt-[-50px]">
               <div className="text-center mb-[5%]">
               <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none mt-[5%]">
               RESTORED, REALIGNED,

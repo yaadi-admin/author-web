@@ -4,9 +4,9 @@ import { speakingReviews, Review } from '../data/reviews';
 
 export const footerPictures = [
   "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.13.42.jpeg?alt=media&token=b8d6e1a3-f9c8-4f9f-9922-e1845f387b52",
-  "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-18-00-54.jpg?alt=media&token=00f0e840-f8fa-408e-9277-d564ed5bb947",
-  "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-36-43.jpg?alt=media&token=b3c94eb0-895f-47c7-862c-c81e1048d8e5",
-  "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-49-44.jpg?alt=media&token=b3f5ee65-37b7-4db0-a9a5-41145eb1e6ce",
+  "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.20.25.jpeg?alt=media&token=66612d92-b389-468f-9a89-3289710deddc",
+  "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.20.45.jpeg?alt=media&token=7ec8bdb3-ef9c-4c72-9095-ac56ef741b60",
+  "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.15.23.jpeg?alt=media&token=dda25c8d-55da-4ba9-aa4d-2dd531d5ad04",
 ];
 
 export default function Index() {

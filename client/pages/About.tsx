@@ -78,15 +78,15 @@ export default function About() {
       </section>
 
       {/* Hero Content */}
-      <div className="relative z-10 text-center px-4 mt-[-15%] sm:mt-[-12%] md:mt-[-15%] lg:mt-[-20%] xl:mt-[-10.5%]">
+      <div className="relative z-10 text-center px-4 mt-[-15%] sm:mt-[-12%] md:mt-[-15%] lg:mt-[-30%] xl:mt-[-15%]">
         <div className="relative z-10 text-center px-4 text-white">
           <div className="max-w-4xl mx-auto">
             <div className="flex justify-center items-center">
-              <h1 className="font-charm text-4xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[180px] 2xl:text-[300px] font-bold text-white leading-none mb-2 md:mb-4">
+              <h1 className="font-charm text-4xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[150px] 2xl:text-[250px] font-bold text-white leading-none mb-2 md:mb-4">
                 About
               </h1>
             </div>
-            <h2 className="font-league-spartan text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-normal text-black sm:ml-[-10%] md:ml-[-20%] lg:ml-[-30%] xl:ml-[-40%] 2xl:ml-[-60%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-4%] 2xl:mt-[-6%]">
+            <h2 className="font-league-spartan text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-5xl pt-2 font-normal text-black sm:ml-[-10%] md:ml-[-20%] lg:ml-[-30%] xl:ml-[-40%] 2xl:ml-[-60%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-4%] 2xl:mt-[-6%]">
               Suzanna Griffiths
             </h2>
           </div>
@@ -128,14 +128,11 @@ export default function About() {
                   This is more than a platform - it's a <b>movement</b> of truth-telling, healing, and purpose.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mt-4">
-                  <button className="group bg-black text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 font-inter text-xs sm:text-sm font-semibold flex items-center space-x-2">
+                  <button className="group bg-[#F84988] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 font-inter text-xs sm:text-sm font-semibold flex items-center space-x-2">
                     <span>Explore My Book</span>
                   </button>
-                  <button className="group bg-suelyn-cream text-black px-4 sm:px-6 py-2 sm:py-3 rounded-lg border border-black/20 hover:bg-black hover:text-white transition-all duration-300 transform hover:-translate-y-1 font-inter text-xs sm:text-sm font-semibold flex items-center space-x-2">
+                  <button className="group bg-suelyn-cream text-black px-4 sm:px-6 py-2 sm:py-3 rounded-lg border border-black/20 hover:bg-[#F84988] hover:text-white transition-all duration-300 transform hover:-translate-y-1 font-inter text-xs sm:text-sm font-semibold flex items-center space-x-2">
                     <span>Book Suzanna to Speak</span>
-                  </button>
-                  <button className="group bg-suelyn-cream text-black px-4 sm:px-6 py-2 sm:py-3 rounded-lg border border-black/20 hover:bg-black hover:text-white transition-all duration-300 transform hover:-translate-y-1 font-inter text-xs sm:text-sm font-semibold flex items-center space-x-2">
-                    LEARN MORE
                   </button>
                 </div>
               </div>
@@ -143,20 +140,20 @@ export default function About() {
       </section>
 
       {/* Personal Section with Images */}
-      <section className="py-8 sm:py-12 md:py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
+      <section className="py-8 sm:py-12 md:py-16 mt-[-5%] px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-16">
             {/* Left Image */}
             <div className="flex-1 flex flex-col items-center lg:items-end">
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-16-27-44%202.jpg?alt=media&token=4a2c7d9d-6807-41a2-baf7-bc87b5910f41"
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.20.03.jpeg?alt=media&token=802d2350-0cb7-4e3f-b75d-c1ff6b11dd1e"
                 alt="Suzanna Griffiths"
                 className="w-40 sm:w-48 md:w-64 lg:w-80 object-cover rounded-lg mb-4"
               />
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-17-49-44.jpg?alt=media&token=b3f5ee65-37b7-4db0-a9a5-41145eb1e6ce"
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.20.13.jpeg?alt=media&token=b4e5d3b3-aab9-424c-b4b2-fe33e76a1766"
                 alt="Suzanna portrait"
-                className="w-24 h-24 sm:w-28 sm:h-28 md:w-40 md:h-40 object-cover rounded-lg mt-[-15%] sm:mt-[-20%] md:mt-[-25%] ml-[-8%] sm:ml-[-10%] md:ml-[-12%]"
+                className="w-44 h-44 sm:w-28 sm:h-28 md:w-40 md:h-64 object-cover rounded-lg mt-[-15%] sm:mt-[-20%] md:mt-[-45%] ml-[-8%] sm:ml-[-10%] md:ml-[-12%]"
               />
             </div>
 
@@ -173,7 +170,7 @@ export default function About() {
               <div className="flex flex-col items-center">
                 <div className="flex items-center justify-center space-x-2 sm:space-x-3 w-full">
                   <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
-                  <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed text-center">
+                  <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed text-left">
                     <span>Christian couples & married women</span> seeking deeper connection and spiritual growth
                   </p>
                 </div>
@@ -181,7 +178,7 @@ export default function About() {
               <div className="flex flex-col items-center">
                 <div className="flex items-center justify-center space-x-2 sm:space-x-3 w-full">
                   <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
-                  <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed text-center">
+                  <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed text-left">
                     <span>Men seeking emotional and spiritual healing</span> to break free from past wounds
                   </p>
                 </div>
@@ -189,7 +186,7 @@ export default function About() {
               <div className="flex flex-col items-center">
                 <div className="flex items-center justify-center space-x-2 sm:space-x-3 w-full">
                   <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
-                  <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed text-center">
+                  <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed text-left">
                     <span>Pastors, counselors, and psychologists</span> looking for biblical wisdom in their practice
                   </p>
                 </div>
@@ -197,7 +194,7 @@ export default function About() {
               <div className="flex flex-col items-center">
                 <div className="flex items-center justify-center space-x-2 sm:space-x-3 w-full">
                   <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
-                  <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed text-center">
+                  <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed text-left">
                     <span>Anyone seeking clarity, restoration, and biblical truth</span> in their journey
                   </p>
                 </div>
@@ -207,10 +204,10 @@ export default function About() {
 
 
               <div className="pt-6 sm:pt-8 border-t border-black/10 w-full">
-                <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-normal text-black leading-none mb-4 sm:mb-6">
+                <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-normal text-center text-black leading-none mb-4 sm:mb-6">
                   OUR MISSION
                 </h2>
-                <p className="font-playfair text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-normal text-black/80 leading-tight italic mb-6 sm:mb-8">
+                <p className="font-playfair text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center font-normal text-black/80 leading-tight italic mb-6 sm:mb-8">
                   "SueLyn Empowered Living exists to help individuals overcome shame, doubt, and fear by rediscovering their God-given greatness through biblical truth and personal testimony."
                 </p>
               </div>
@@ -433,7 +430,7 @@ export default function About() {
                   </div>
 
                   <p className="font-helvetica text-xs sm:text-sm text-black leading-relaxed">
-                    She makes a mean sangria that brings people together and creates unforgettable moments of joy and connection.
+                  She makes a mean sangria
                   </p>
 
                   {/* Card Footer */}
@@ -487,7 +484,7 @@ export default function About() {
                   </div>
 
                   <p className="font-helvetica text-xs sm:text-sm text-black leading-relaxed">
-                    Once you're her people, she protects your soul and spirit with unwavering dedication and fierce loyalty.
+                  Fiercely loyal. Once you’re her people, she protects your soul and spirit.
                   </p>
 
                   {/* Card Footer */}
@@ -534,14 +531,15 @@ export default function About() {
                         </svg>
                       </div>
                       <div>
-                        <h5 className="font-playfair text-xs sm:text-sm font-semibold text-black">Fiercely Loyal</h5>
-                        <p className="font-helvetica text-xs text-black">Protector of souls</p>
+                        <h5 className="font-playfair text-xs sm:text-sm font-semibold text-black">Music Lover</h5>
+                        <p className="font-helvetica text-xs text-black">African gospel, Country</p>
                       </div>
                     </div>
                   </div>
 
                   <p className="font-helvetica text-xs sm:text-sm text-black leading-relaxed">
-                    Once you're her people, she protects your soul and spirit with unwavering dedication and fierce loyalty.
+                  African gospel, Country
+She thinks Latin dance is sensual…wants to learn someday.
                   </p>
 
                   {/* Card Footer */}
@@ -572,7 +570,7 @@ export default function About() {
                       </svg>
                     </div>
                     <div>
-                      <h4 className="font-inter text-xs font-semibold text-gray-900">Fun Fact</h4>
+                      <h4 className="font-inter text-xs font-semibold text-gray-900">Avid Shopper</h4>
                       <p className="font-inter text-xs text-black">Suzanna Griffiths</p>
                     </div>
                   </div>
@@ -588,15 +586,15 @@ export default function About() {
                         </svg>
                       </div>
                       <div>
-                        <h5 className="font-playfair text-xs sm:text-sm font-semibold text-black">Fiercely Loyal</h5>
-                        <p className="font-helvetica text-xs text-black">Protector of souls</p>
+                        <h5 className="font-playfair text-xs sm:text-sm font-semibold text-black">Avid Shopper</h5>
+                        <p className="font-helvetica text-xs text-black">She loves to shop</p>
                       </div>
                     </div>
                   </div>
 
                   <p className="font-helvetica text-xs sm:text-sm text-black leading-relaxed">
-                    Once you're her people, she protects your soul and spirit with unwavering dedication and fierce loyalty.
-                  </p>
+                  She loves to shop.
+                  </p><br />
 
                   {/* Card Footer */}
                   <div className="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-gray-100">
@@ -638,7 +636,7 @@ export default function About() {
                     className="w-full h-auto rounded-lg"
                   />
                   <img
-                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.13.57.jpeg?alt=media&token=5e60e899-8e01-41fc-9679-c26ce9ceaa74"
+                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.19.31.jpeg?alt=media&token=cab0c754-cdf3-429d-986c-d2d42217bd3a"
                     alt="Suzanna"
                     className="w-full h-auto rounded-lg"
                   />

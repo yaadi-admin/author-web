@@ -11,7 +11,7 @@ const workshopData = [
     date: "October 25th, 2025",
     title: "Redeemed For a Purpose Workshop & Book Launch",
     description: "Join us for an inspiring workshop and book launch as we explore the journey of healing, purpose, and transformation. This event is a must-attend for anyone looking to find their place in the world and live a life of purpose.",
-    image: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-12-22-41-35.jpg?alt=media&token=26d01e57-7952-4fa4-a118-6d4d30056501",
+    image: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-19%20at%2018.00.44.jpeg?alt=media&token=8a288f2f-86e7-4b3c-a745-d73dff52bec4",
     isActive: true,
     url: "https://caribtix.vbotickets.com/event/Redeemed_For_A_Purpose/167873"
   },

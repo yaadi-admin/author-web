@@ -9,6 +9,14 @@ export default function Foundation() {
   const [animationKey, setAnimationKey] = useState(0);
   const marqueeText = "SUELYN EMPOWERED LIVING FOUNDATION ".repeat(20);
 
+  // Contact form state
+  const [contactForm, setContactForm] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   // Parallax scroll effect
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +26,49 @@ export default function Foundation() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Handle form input changes
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setContactForm(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async () => {
+    if (!contactForm.name || !contactForm.email || !contactForm.message) {
+      alert('Please fill in all fields');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(contactForm),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Clear form after successful submission
+        setContactForm({ name: '', email: '', message: '' });
+        alert('Thank you for your message! We will get back to you soon.');
+      } else {
+        throw new Error(data.error || 'Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert('There was an error sending your message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="bg-gradient-to-r from-[#F1E6DB] via-[#E0B2F1] to-[#FFE4EE]">
@@ -191,39 +242,6 @@ export default function Foundation() {
         </style>
       </section>
 
-      <section className="py-20 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {/* Education */}
-            <div className="rounded-2xl flex flex-col items-center text-center">
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-12-23-10-00.jpg?alt=media&token=0a48ed69-8dfd-4fcf-a929-85fb1d40df47"
-                alt="Education Foundation"
-                className="w-full h-84 object-cover rounded-2xl mb-4"
-              />
-              <button
-                onClick={() => alert("portal closed")}
-                className="bg-[#F84988] text-white font-bold px-8 rounded-lg hover:bg-[#e03a7a] transition-colors text-lg shadow-md p-2 mb-2"
-              >
-                Learn More
-              </button>
-            </div>
-            {/* Skills Development */}
-            <div className="bg-white rounded-2xl shadow-lg flex flex-col items-center p-8 text-center border-2 border-[#FFAC24]">
-              <h3 className="font-playfair text-3xl font-bold text-[#FFAC24] mb-4">Skills Development</h3>
-              <p className="font-helvetica text-gray-700 mb-6">
-                Providing training and support to enhance employability and promote independence.
-              </p>
-              {/* <button
-                className="bg-[#FFAC24] text-white font-bold px-8 py-3 rounded-lg hover:bg-[#e6951a] transition-colors text-lg shadow-md"
-              >
-                DONATE NOW
-              </button> */}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Email Subscription Section with Gradient Arch */}
       <section className="py-12 sm:py-16 md:py-24 relative overflow-hidden w-full bg-gradient-to-b from-[#F1E6DB] to-[#FFAC24]">
 
@@ -240,22 +258,34 @@ Have a question or an idea for collaboration? We’d love to hear from you. Toge
             <div className="grid md:grid-cols-3 gap-3 sm:gap-4">
               <input
                 type="text"
+                name="name"
                 placeholder="Name"
+                value={contactForm.name}
+                onChange={handleInputChange}
                 className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 sm:px-6 py-3 sm:py-4 text-black text-base sm:text-lg placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white"
               />
               <input
                 type="email"
+                name="email"
                 placeholder="Email"
+                value={contactForm.email}
+                onChange={handleInputChange}
                 className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 sm:px-6 py-3 sm:py-4 text-black text-base sm:text-lg placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white"
               />
                <input
                 type="text"
+                name="message"
                 placeholder="Message"
+                value={contactForm.message}
+                onChange={handleInputChange}
                 className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 sm:px-6 py-3 sm:py-4 text-black text-base sm:text-lg placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white"
               />
             </div>
-            <button className="bg-white text-black px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-[#E6951A] transition-colors font-inter text-base sm:text-lg mt-4 sm:mt-6">
-              Contact Us
+            <button
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+            className="bg-white text-black px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-[#E6951A] transition-colors font-inter text-base sm:text-lg mt-4 sm:mt-6 disabled:opacity-50 disabled:cursor-not-allowed">
+              {isSubmitting ? 'Sending...' : 'Contact Us'}
             </button>
           </div>
         </div>

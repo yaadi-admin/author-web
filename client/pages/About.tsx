@@ -231,7 +231,7 @@ export default function About() {
                 <div className="flex items-center justify-center space-x-2 sm:space-x-3 w-full">
                   <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
                   <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed text-left">
-                    <span>Christian couples & married women</span> seeking deeper connection and spiritual growth
+                  We serve adults who desire to embrace the whole self.
                   </p>
                 </div>
               </div>
@@ -239,7 +239,7 @@ export default function About() {
                 <div className="flex items-center justify-center space-x-2 sm:space-x-3 w-full">
                   <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
                   <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed text-left">
-                    <span>Men seeking emotional and spiritual healing</span> to break free from past wounds
+                  Christian couples who are determined to enjoy marriage God's way.
                   </p>
                 </div>
               </div>
@@ -247,7 +247,7 @@ export default function About() {
                 <div className="flex items-center justify-center space-x-2 sm:space-x-3 w-full">
                   <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
                   <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed text-left">
-                    <span>Pastors, counselors, and psychologists</span> looking for biblical wisdom in their practice
+                  ⁠Couples who are experiencing prolonged turmoil linked to unsealed soul wounds.
                   </p>
                 </div>
               </div>

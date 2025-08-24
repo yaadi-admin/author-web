@@ -242,6 +242,38 @@ export default function Foundation() {
         </style>
       </section>
 
+      <section className="py-24 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE] mt-[-3%]">
+        <div className="container mx-auto">
+          <div className="max-w-6xl mx-auto">
+            {/* <h2 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-black leading-none mb-10 text-center">
+              Gallery
+            </h2> */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-22%20at%2011.32.24.jpeg?alt=media&token=73d758d5-b2ef-4516-9cb5-0e2f9051c16e"
+                alt="Empowerment 1"
+                className="rounded-lg object-cover w-full h-[28rem] aspect-[3/4] shadow-lg"
+              />
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-22%20at%2011.33.34.jpeg?alt=media&token=7e1a651d-5b71-4617-ab6a-802fe87ec234"
+                alt="Empowerment 2"
+                className="rounded-lg object-cover w-full h-[28rem] aspect-[3/4] shadow-lg"
+              />
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-22%20at%2011.32.43.jpeg?alt=media&token=9d835eea-f1d9-41f7-b192-eebe3806e674"
+                alt="Empowerment 3"
+                className="rounded-lg object-cover w-full h-[28rem] aspect-[3/4] shadow-lg"
+              />
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-22%20at%2011.33.19.jpeg?alt=media&token=9f06a9c5-9ad9-4727-9c07-f313c9e380c9"
+                alt="Empowerment 4"
+                className="rounded-lg object-cover w-full h-[28rem] aspect-[3/4] shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Email Subscription Section with Gradient Arch */}
       <section className="py-12 sm:py-16 md:py-24 relative overflow-hidden w-full bg-gradient-to-b from-[#F1E6DB] to-[#FFAC24]">
 

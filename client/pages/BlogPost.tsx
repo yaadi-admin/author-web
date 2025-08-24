@@ -199,7 +199,7 @@ export default function BlogPost() {
             {/* Article Content */}
             <article className="prose prose-lg max-w-none">
               <div 
-                className="font-helvetica text-lg leading-relaxed text-black"
+                className="font-helvetica text-lg leading-relaxed text-black [&>p]:mb-6 [&>p]:leading-relaxed [&>p]:text-lg"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             </article>

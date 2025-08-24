@@ -2,11 +2,19 @@ import Header from '../components/Header';
 import { useState, useEffect, useCallback } from 'react';
 import { footerPictures } from './Index';
 import Footer from './footer';
+import axios from 'axios';
 
 export default function About() {
   const [scrollY, setScrollY] = useState(0);
   // State for managing the marquee animation
   const [animationKey, setAnimationKey] = useState(0);
+  
+  // Newsletter form state
+  const [newsletterForm, setNewsletterForm] = useState({
+    firstName: '',
+    email: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
 
   // Error handling for animation
@@ -41,6 +49,49 @@ export default function About() {
     }
     return cleanupAnimation;
   }, [handleAnimationError, cleanupAnimation]);
+
+  // Handle newsletter form input changes
+  const handleNewsletterInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setNewsletterForm(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  // Handle newsletter form submission
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!newsletterForm.firstName || !newsletterForm.email) {
+      alert('Please fill in all fields');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await axios.post('http://localhost:8081/api/suelyn/authenticate', {
+        name: newsletterForm.firstName,
+        email: newsletterForm.email,
+        message: 'Newsletter subscription request from About page',
+        title: 'Newsletter Subscription - About Page',
+        function: 'sendContactEmail'
+      });
+
+      if (response.status === 200) {
+        // Clear form after successful submission
+        setNewsletterForm({ firstName: '', email: '' });
+        alert('Thank you for joining the Empowered Space! We will keep you updated.');
+      } else {
+        throw new Error(response.data.error || 'Failed to subscribe');
+      }
+    } catch (error) {
+      console.error('Error subscribing to newsletter:', error);
+      alert('There was an error subscribing to our newsletter. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="bg-gradient-to-r from-[#F1E6DB] via-[#E0B2F1] to-[#FFE4EE]">
@@ -699,23 +750,34 @@ She thinks Latin dance is sensual…wants to learn someday.
             </div>
 
             {/* Signup form */}
-            <div className="max-w-4xl mx-auto mb-8 sm:mb-10 md:mb-12">
+            <form onSubmit={handleNewsletterSubmit} className="max-w-4xl mx-auto mb-8 sm:mb-10 md:mb-12">
               <div className="flex flex-col md:flex-row gap-3 sm:gap-4">
                 <input
                   type="text"
+                  name="firstName"
                   placeholder="First Name"
+                  value={newsletterForm.firstName}
+                  onChange={handleNewsletterInputChange}
+                  required
                   className="flex-1 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 sm:px-6 py-3 sm:py-4 text-white text-base sm:text-lg placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white"
                 />
                 <input
                   type="email"
+                  name="email"
                   placeholder="Email"
+                  value={newsletterForm.email}
+                  onChange={handleNewsletterInputChange}
+                  required
                   className="flex-1 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 sm:px-6 py-3 sm:py-4 text-white text-base sm:text-lg placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white"
                 />
-                <button className="bg-suelyn-cream text-black px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-gray-100 transition-colors font-inter text-base sm:text-lg whitespace-nowrap">
-                  JOIN THE FUN
+                <button 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-suelyn-cream text-black px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-gray-100 transition-colors font-inter text-base sm:text-lg whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed">
+                  {isSubmitting ? 'JOINING...' : 'JOIN THE FUN'}
                 </button>
               </div>
-            </div>
+            </form>
 
             {/* Image gallery row */}
             <div className="flex justify-center gap-1 overflow-x-auto pb-4">

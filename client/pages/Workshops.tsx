@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { speakingReviews, Review } from '../data/reviews';
 import { footerPictures } from './Index';
 import Footer from './footer';
+import axios from 'axios';
 
 // Workshop data object
 const workshopData = [
@@ -41,6 +42,18 @@ export default function Workshops() {
   const [scrollY, setScrollY] = useState(0);
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
+  
+  // Contact form state
+  const [contactForm, setContactForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    message: '',
+    phone: '',
+    terms: false,
+    communications: false
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Parallax scroll effect
   useEffect(() => {
@@ -89,6 +102,64 @@ export default function Workshops() {
     setTimeout(() => setIsAutoScrolling(true), 10000);
   }, []);
 
+  // Handle form input changes
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+    
+    setContactForm(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!contactForm.firstName || !contactForm.lastName || !contactForm.email || !contactForm.message) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    if (!contactForm.terms) {
+      alert('Please accept the Terms and Conditions to continue');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await axios.post('http://localhost:8081/api/suelyn/authenticate', {
+        name: `${contactForm.firstName} ${contactForm.lastName}`,
+        email: contactForm.email,
+        message: contactForm.message,
+        phone: contactForm.phone,
+        title: `${contactForm.firstName} ${contactForm.lastName} ${contactForm.phone} - Workshop Inquiry`,
+        function: 'sendContactEmail'
+      });
+
+      if (response.status === 200) {
+        // Clear form after successful submission
+        setContactForm({
+          firstName: '',
+          lastName: '',
+          email: '',
+          message: '',
+          phone: '',
+          terms: false,
+          communications: false
+        });
+        alert('Thank you for your message! We will get back to you soon.');
+      } else {
+        throw new Error(response.data.error || 'Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert('There was an error sending your message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="bg-gradient-to-r from-[#F1E6DB] via-[#E0B2F1] to-[#FFE4EE]">
@@ -315,7 +386,7 @@ export default function Workshops() {
             
             {/* Main Form */}
             <div className="relative z-30 rounded-2xl p-6 sm:p-8 md:p-12 lg:p-16 max-w-4xl mx-auto mt-[10%] sm:mt-[15%] md:mt-[20%] lg:mt-[0%]">
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="firstName" className="block text-sm font-medium text-black mb-2">
@@ -326,6 +397,8 @@ export default function Workshops() {
                       id="firstName"
                       name="firstName"
                       placeholder="FIRST NAME"
+                      value={contactForm.firstName}
+                      onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F84988] focus:border-transparent text-gray-900"
                     />
@@ -340,6 +413,8 @@ export default function Workshops() {
                       id="lastName"
                       name="lastName"
                       placeholder="LAST NAME"
+                      value={contactForm.lastName}
+                      onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F84988] focus:border-transparent text-gray-900"
                     />
@@ -355,6 +430,8 @@ export default function Workshops() {
                     id="email"
                     name="email"
                     placeholder="EMAIL ADDRESS"
+                    value={contactForm.email}
+                    onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F84988] focus:border-transparent text-gray-900"
                   />
@@ -368,6 +445,8 @@ export default function Workshops() {
                     id="message"
                     name="message"
                     rows={4}
+                    value={contactForm.message}
+                    onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F84988] focus:border-transparent text-gray-900 resize-none"
                   ></textarea>
@@ -382,6 +461,8 @@ export default function Workshops() {
                     id="phone"
                     name="phone"
                     placeholder="PHONE"
+                    value={contactForm.phone}
+                    onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F84988] focus:border-transparent text-gray-900"
                   />
                 </div>
@@ -392,6 +473,8 @@ export default function Workshops() {
                       type="checkbox"
                       id="terms"
                       name="terms"
+                      checked={contactForm.terms}
+                      onChange={handleInputChange}
                       required
                       className="mt-1 h-4 w-4 text-[#F84988] focus:ring-[#F84988] border-gray-300 rounded"
                     />
@@ -405,6 +488,8 @@ export default function Workshops() {
                       type="checkbox"
                       id="communications"
                       name="communications"
+                      checked={contactForm.communications}
+                      onChange={handleInputChange}
                       className="mt-1 h-4 w-4 text-[#F84988] focus:ring-[#F84988] border-gray-300 rounded"
                     />
                     <label htmlFor="communications" className="text-sm text-black">
@@ -416,9 +501,10 @@ export default function Workshops() {
                 <div className="pt-4">
                   <button
                     type="submit"
-                    className="bg-black text-white px-8 py-4 rounded-lg hover:bg-[#e03a7a] transition-colors font-helvetica text-lg flex items-center gap-2 shadow-lg w-full md:w-auto justify-center"
+                    disabled={isSubmitting}
+                    className="bg-black text-white px-8 py-4 rounded-lg hover:bg-[#e03a7a] transition-colors font-helvetica text-lg flex items-center gap-2 shadow-lg w-full md:w-auto justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    SEND
+                    {isSubmitting ? 'SENDING...' : 'SEND'}
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>

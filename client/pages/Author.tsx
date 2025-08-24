@@ -77,7 +77,7 @@ export default function Author() {
 
     setIsSubmitting(true);
     try {
-      const response = await axios.post('http://localhost:8081/api/suelyn/authenticate', {
+      const response = await axios.post('https://sue-server-894877881089.europe-west1.run.app/api/suelyn/authenticate', {
         name: newsletterForm.name,
         email: newsletterForm.email,
         message: 'Newsletter subscription request from Author page',

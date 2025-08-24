@@ -47,7 +47,7 @@ export default function Foundation() {
     setIsSubmitting(true);
     try {
 
-      const response = await axios.post('http://localhost:8081/api/suelyn/authenticate', {
+      const response = await axios.post('https://sue-server-894877881089.europe-west1.run.app/api/suelyn/authenticate', {
         name: contactForm.name,
         email: contactForm.email,
         message: contactForm.message,

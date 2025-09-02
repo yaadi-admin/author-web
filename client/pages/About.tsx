@@ -703,7 +703,7 @@ She thinks Latin dance is sensual…wants to learn someday.
                 </div>
                 <div className="space-y-2 sm:space-y-4 pt-4 sm:pt-8">
                   <img
-                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.20.55.jpeg?alt=media&token=a0118b95-1f15-47d0-aa75-0104f07bad0e"
+                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0065.jpg?alt=media&token=923e0655-66ad-4d26-be2b-34ccdd7ae4f0"
                     alt="Suzanna"
                     className="w-full h-auto rounded-lg"
                   />

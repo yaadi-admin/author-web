@@ -247,7 +247,7 @@ export default function About() {
                 <div className="flex items-center justify-center space-x-2 sm:space-x-3 w-full">
                   <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full mt-2 sm:mt-3"></div>
                   <p className="font-helvetica text-sm sm:text-base md:text-lg text-black leading-relaxed text-left">
-                  ⁠Couples who are experiencing prolonged turmoil linked to unsealed soul wounds.
+                  ⁠Couples who are experiencing prolonged turmoil linked to unhealed soul wounds.
                   </p>
                 </div>
               </div>
@@ -598,7 +598,7 @@ export default function About() {
                   </div>
 
                   <p className="font-helvetica text-xs sm:text-sm text-black leading-relaxed">
-                  African gospel, Country
+                  African gospel and country music
 She thinks Latin dance is sensual…wants to learn someday.
                   </p>
 

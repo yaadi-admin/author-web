@@ -59,9 +59,9 @@ export default function Blog() {
           <div 
             className="absolute inset-0 w-full h-[120%] transform -translate-y-[10%]"
             style={{
-              backgroundImage: 'url(https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-07-20-15-57-01.jpg?alt=media&token=d42bae63-e21c-4399-af29-15dfffa22460)',
+              backgroundImage: 'url(https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0235.jpg?alt=media&token=a5612b0e-c68f-428f-8179-e9f4fdeee5ff)',
               backgroundSize: 'cover',
-              backgroundPosition: 'center',
+              backgroundPosition: 'center 20%',
               transform: `translateY(${scrollY * 0.5}px)`,
               willChange: 'transform'
             }}

@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 
 export const footerPictures = [
   "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.13.42.jpeg?alt=media&token=b8d6e1a3-f9c8-4f9f-9922-e1845f387b52",
-  "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.20.25.jpeg?alt=media&token=66612d92-b389-468f-9a89-3289710deddc",
-  "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.20.45.jpeg?alt=media&token=7ec8bdb3-ef9c-4c72-9095-ac56ef741b60",
+  "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0178.jpg?alt=media&token=41ee0dfd-8d7f-447d-964d-27939d20834a",
+  "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0070.jpg?alt=media&token=568de8dc-e8f7-45ee-a4c0-95f81ffd38fb",
   "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.15.23.jpeg?alt=media&token=dda25c8d-55da-4ba9-aa4d-2dd531d5ad04",
 ];
 
@@ -117,7 +117,6 @@ export default function Index() {
             style={{
               backgroundImage: 'url(https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0235.jpg?alt=media&token=a5612b0e-c68f-428f-8179-e9f4fdeee5ff)',
               backgroundSize: 'cover',
-              // Offset the image vertically so it's not aligned to the very top
               backgroundPosition: 'center 20%',
               transform: `translateY(${scrollY * 0.5}px)`,
               willChange: 'transform'
@@ -480,7 +479,8 @@ export default function Index() {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-07%20at%2018.00.54.jpeg?alt=media&token=29bccf0b-c40f-40f1-abb0-aea30d22f568')`
+            backgroundImage: `url('https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0004.jpg?alt=media&token=24696ff6-d7d5-4598-b0df-b2828b939062')`,
+            backgroundPosition: 'center 20%',
           }}
         ></div>
         

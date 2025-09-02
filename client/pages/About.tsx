@@ -104,9 +104,9 @@ export default function About() {
           <div
             className="absolute inset-0 w-full h-[120%] transform -translate-y-[10%]"
             style={{
-              backgroundImage: 'url(https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-07-20-15-57-01.jpg?alt=media&token=d42bae63-e21c-4399-af29-15dfffa22460)',
+              backgroundImage: 'url(https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0235.jpg?alt=media&token=a5612b0e-c68f-428f-8179-e9f4fdeee5ff)',
               backgroundSize: 'cover',
-              backgroundPosition: 'center',
+              backgroundPosition: 'center 20%',
               transform: `translateY(${scrollY * 0.5}px)`,
               willChange: 'transform'
             }}
@@ -206,12 +206,12 @@ export default function About() {
             {/* Left Image */}
             <div className="flex-1 flex flex-col items-center lg:items-end">
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.20.03.jpeg?alt=media&token=802d2350-0cb7-4e3f-b75d-c1ff6b11dd1e"
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0231.jpg?alt=media&token=027e5be3-7bf2-4747-b1ff-d6fa9f45dbd4"
                 alt="Suzanna Griffiths"
                 className="w-40 sm:w-48 md:w-64 lg:w-80 object-cover rounded-lg mb-4"
               />
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.20.13.jpeg?alt=media&token=b4e5d3b3-aab9-424c-b4b2-fe33e76a1766"
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0173.jpg?alt=media&token=f6282e54-85cb-4234-b417-b6894c10d08e"
                 alt="Suzanna portrait"
                 className="w-44 h-44 sm:w-28 sm:h-28 md:w-40 md:h-64 object-cover rounded-lg mt-[-15%] sm:mt-[-20%] md:mt-[-45%] ml-[-8%] sm:ml-[-10%] md:ml-[-12%]"
               />
@@ -276,7 +276,7 @@ export default function About() {
             {/* Right Image */}
             <div className="flex-1 flex flex-col items-center lg:items-start">
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/PHOTO-2025-08-07-18-00-54.jpg?alt=media&token=00f0e840-f8fa-408e-9277-d564ed5bb947"
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0004.jpg?alt=media&token=24696ff6-d7d5-4598-b0df-b2828b939062"
                 alt="Suzanna empowerment"
                 className="w-48 sm:w-56 md:w-64 lg:w-80 xl:w-96 h-auto rounded-lg"
               />

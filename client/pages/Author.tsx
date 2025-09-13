@@ -402,9 +402,9 @@ export default function Author() {
               </div>
               <h3 className="font-playfair text-lg sm:text-xl font-bold text-black mb-2">Book Jungle Jamaica</h3>
               <p className="font-helvetica text-xs sm:text-sm text-black/60 mb-4">Hardcover</p>
-              <button onClick={() => window.open('https://g.co/kgs/SnPabVz', '_blank')} className="bg-white text-black px-4 sm:px-6 py-2 rounded hover:bg-[#E6951A] transition-colors font-inter text-xs sm:text-sm font-bold">
+              {/* <button onClick={() => window.open('https://g.co/kgs/SnPabVz', '_blank')} className="bg-white text-black px-4 sm:px-6 py-2 rounded hover:bg-[#E6951A] transition-colors font-inter text-xs sm:text-sm font-bold">
                 SHOP NOW
-              </button>
+              </button> */}
             </div>
           </div>
 

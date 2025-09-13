@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 export const footerPictures = [
   "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.13.42.jpeg?alt=media&token=b8d6e1a3-f9c8-4f9f-9922-e1845f387b52",
   "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0178.jpg?alt=media&token=41ee0dfd-8d7f-447d-964d-27939d20834a",
-  "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0070.jpg?alt=media&token=568de8dc-e8f7-45ee-a4c0-95f81ffd38fb",
   "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.15.23.jpeg?alt=media&token=dda25c8d-55da-4ba9-aa4d-2dd531d5ad04",
+  "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-09-11%20at%2010.05.58.jpeg?alt=media&token=6e8ecfa8-4a61-4df6-b660-cafb414f3013",
 ];
 
 export default function Index() { 
@@ -130,7 +130,7 @@ export default function Index() {
 
 
        {/* Hero Content - Positioned above background */}
-       <div className="relative z-10 text-center px-4 mt-[-8%] sm:mt-[-10%] md:mt-[-12%] lg:mt-[-15%] xl:mt-[-6%] max-w-[95vw] mx-auto">
+       <div className="relative z-10 text-center px-4 max-w-[95vw] mx-auto">
           
           {/* Medium and Desktop Navigation - Side by side */}
           <div className="hidden sm:flex justify-center items-center space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8 xl:space-x-8 2xl:space-x-10 3xl:space-x-8 max-w-full overflow-hidden">
@@ -164,7 +164,7 @@ export default function Index() {
             </h1>
           </div>
           
-          <h2 className="font-league-spartan text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl 3xl:text-5xl font-normal text-black sm:ml-[-2%] md:ml-[-3%] lg:ml-[-4%] xl:ml-[-6%] 2xl:ml-[-8%] 3xl:ml-[-22%] mt-[-4%]">
+          <h2 className="font-charm text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl 3xl:text-5xl font-bold text-black sm:ml-[-2%] md:ml-[-3%] lg:ml-[-4%] xl:ml-[-6%] 2xl:ml-[-8%] 3xl:ml-[-22%] mt-[-4%]">
             Empowered Living
           </h2>
         </div>

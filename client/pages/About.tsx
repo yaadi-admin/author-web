@@ -276,7 +276,7 @@ export default function About() {
             {/* Right Image */}
             <div className="flex-1 flex flex-col items-center lg:items-start">
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0004.jpg?alt=media&token=24696ff6-d7d5-4598-b0df-b2828b939062"
+                src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-09-11%20at%2010.05.58.jpeg?alt=media&token=6e8ecfa8-4a61-4df6-b660-cafb414f3013"
                 alt="Suzanna empowerment"
                 className="w-48 sm:w-56 md:w-64 lg:w-80 xl:w-96 h-auto rounded-lg"
               />
@@ -703,12 +703,12 @@ She thinks Latin dance is sensual…wants to learn someday.
                 </div>
                 <div className="space-y-2 sm:space-y-4 pt-4 sm:pt-8">
                   <img
-                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0065.jpg?alt=media&token=923e0655-66ad-4d26-be2b-34ccdd7ae4f0"
+                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.14.55.jpeg?alt=media&token=0becff48-6d3c-4d19-9233-fa210f8f1c91"
                     alt="Suzanna"
                     className="w-full h-auto rounded-lg"
                   />
                   <img
-                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.14.55.jpeg?alt=media&token=0becff48-6d3c-4d19-9233-fa210f8f1c91"
+                    src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-09-11%20at%2010.05.58.jpeg?alt=media&token=6e8ecfa8-4a61-4df6-b660-cafb414f3013"
                     alt="Suzanna"
                     className="w-full h-auto rounded-lg"
                   />

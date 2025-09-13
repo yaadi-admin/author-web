@@ -62,8 +62,8 @@ export default function Blog() {
               backgroundImage: 'url(https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0235.jpg?alt=media&token=a5612b0e-c68f-428f-8179-e9f4fdeee5ff)',
               backgroundSize: 'cover',
               backgroundPosition: 'center 20%',
-              transform: `translateY(${scrollY * 0.5}px)`,
-              willChange: 'transform'
+              // transform: `translateY(${scrollY * 0.5}px)`,
+              // willChange: 'transform'
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50"></div>
@@ -73,11 +73,11 @@ export default function Blog() {
 
 
       {/* Hero Content */}
-      <div className="relative z-10 text-center px-4 mt-[-15%] sm:mt-[-12%] md:mt-[-15%] lg:mt-[-20%] xl:mt-[-15%]">
-        <div className="relative z-10 text-center px-4 text-white">
+      <div className="relative z-10 text-center px-4 mt-[1%]">
+        <div className="relative z-10 text-center px-4 text-black">
           <div className="max-w-4xl mx-auto">
             <div className="flex justify-center items-center">
-              <h1 className="font-charm text-4xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[150px] 2xl:text-[250px] font-bold text-white leading-none mb-2 md:mb-4">
+              <h1 className="font-charm text-4xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[150px] 2xl:text-[250px] font-bold text-black leading-none mb-2 md:mb-4">
                 Blog
               </h1>
             </div>

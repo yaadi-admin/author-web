@@ -118,8 +118,8 @@ export default function Index() {
               backgroundImage: 'url(https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0235.jpg?alt=media&token=a5612b0e-c68f-428f-8179-e9f4fdeee5ff)',
               backgroundSize: 'cover',
               backgroundPosition: 'center 20%',
-              transform: `translateY(${scrollY * 0.5}px)`,
-              willChange: 'transform'
+              // transform: `translateY(${scrollY * 0.5}px)`,
+              // willChange: 'transform'
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#F1E6DB]/30 via-[#E0B2F1]/20 to-[#FFE4EE]/10"></div>
@@ -506,12 +506,12 @@ export default function Index() {
 
                 {/* Review Content */}
                 <div className="max-w-4xl mx-auto px-16 md:px-24 transition-all duration-700 ease-in-out">
-                  <div className="mb-6 md:mb-8">
-                    <img 
+                  <div className="mb-6 md:mb-8 ">
+                    {/* <img 
                       src={speakingReviews[currentReviewIndex].image}
                       alt={`${speakingReviews[currentReviewIndex].name} testimonial`}
                       className="w-28 h-28 md:w-36 md:h-36 rounded-full mx-auto object-cover transition-all duration-700 ease-in-out shadow-2xl border-4 border-white/20"
-                    />
+                    /> */}
                   </div>
                   
                   <h3 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-white font-bold mb-6 md:mb-8 transition-all duration-700 ease-in-out">

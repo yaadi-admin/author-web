@@ -667,11 +667,8 @@ export default function Index() {
           <div className="relative z-10 container mx-auto px-4 mt-[-70px]">
             <div className="text-center mb-[5%]">
               <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none mt-[5%]">
-                RESTORED, REALIGNED,
+              The Bible Is The Manual For Life
               </h3>
-              <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[0%] mb-[0%] ml-[20%]">
-                REBORN
-              </p>
               <p className="font-playfair text-lg sm:text-xl md:text-3xl lg:text-3xl font-normal text-white leading-tight max-w-4xl mx-auto mb-8 mt-5">
                 "This is what it looks like to live it out, everyday."
               </p>

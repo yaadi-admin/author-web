@@ -132,7 +132,7 @@ export default function Author() {
                 Resources
               </h1>
             </div>
-            <h2 className="font-league-spartan text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-5xl pt-2 font-normal text-black sm:ml-[-10%] md:ml-[-20%] lg:ml-[-30%] xl:ml-[-40%] 2xl:ml-[-60%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-4%] 2xl:mt-[-6%]">
+            <h2 className="font-charm text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-5xl pt-2 font-normal text-black sm:ml-[-10%] md:ml-[-20%] lg:ml-[-30%] xl:ml-[-40%] 2xl:ml-[-60%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-4%] 2xl:mt-[-6%]">
               Suzanna Griffiths
             </h2>
           </div>
@@ -398,9 +398,9 @@ export default function Author() {
             {/* Barnes & Noble */}
             <div className="bg-white/60 backdrop-blur-sm rounded-lg p-4 sm:p-6 text-center hover:bg-white/80 transition-all duration-300 shadow-lg">
               <div className="w-16 h-8 sm:w-20 sm:h-10 md:w-24 md:h-12 mx-auto mb-4 rounded-full flex items-center justify-center">
-                <img src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/d554c6a6-fa21-42b4-9366-d88a26fd41af_removalai_preview.png?alt=media&token=b36b6586-3ef3-4ff2-9465-6bc0bd521d96" alt="Book Jungle Jamaica" className="w-16 h-8 sm:w-20 sm:h-10 md:w-24 md:h-12" />
+                <img src="https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/d554c6a6-fa21-42b4-9366-d88a26fd41af_removalai_preview.png?alt=media&token=b36b6586-3ef3-4ff2-9465-6bc0bd521d96" alt="Book Jungle, Ocho Rios, Jamaica" className="w-16 h-8 sm:w-20 sm:h-10 md:w-24 md:h-12" />
               </div>
-              <h3 className="font-playfair text-lg sm:text-xl font-bold text-black mb-2">Book Jungle Jamaica</h3>
+              <h3 className="font-playfair text-lg sm:text-xl font-bold text-black mb-2">Book Jungle, Ocho Rios, Jamaica</h3>
               <p className="font-helvetica text-xs sm:text-sm text-black/60 mb-4">Hardcover</p>
               {/* <button onClick={() => window.open('https://g.co/kgs/SnPabVz', '_blank')} className="bg-white text-black px-4 sm:px-6 py-2 rounded hover:bg-[#E6951A] transition-colors font-inter text-xs sm:text-sm font-bold">
                 SHOP NOW
@@ -500,11 +500,8 @@ export default function Author() {
             <div className="relative z-10 container mx-auto px-4 mt-[-100px]">
               <div className="text-center mb-[5%]">
               <h3 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-5xl font-normal text-white leading-none mt-[5%]">
-              RESTORED, REALIGNED,
+              The Bible Is The Manual For Life
             </h3>
-            <p className="font-playfair text-lg sm:text-4xl md:text-5xl lg:text-4xl font-light italic text-white leading-tight max-w-2xl mt-[0%] mb-[0%] ml-[20%]">
-              REBORN
-            </p>
             <p className="font-playfair text-lg sm:text-xl md:text-3xl lg:text-3xl font-normal text-white leading-tight max-w-4xl mx-auto mb-8 mt-5">
           "This is what it looks like to live it out, everyday."
           </p>

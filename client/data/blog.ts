@@ -60,12 +60,12 @@ let blogPostsData: BlogPost[] = [
       <p class="italic text-lg mt-8">With love and hope,<br>Suzanna</p>
     `,
     author: "Suzanna Griffiths",
-    authorImage: "https://api.builder.io/api/v1/image/assets/TEMP/9ef2ef4ab7707f0aa3dc051ca846715a652746d4?width=1206",
+    authorImage: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0178.jpg?alt=media&token=41ee0dfd-8d7f-447d-964d-27939d20834a",
     publishDate: "2025-01-15",
     readTime: "8 min read",
     category: "Healing",
     tags: ["healing", "purpose", "transformation", "faith"],
-    featuredImage: "https://api.builder.io/api/v1/image/assets/TEMP/f23911c57b35c55b16a3da69d3df3ad19cbde001?width=1240",
+    featuredImage: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0178.jpg?alt=media&token=41ee0dfd-8d7f-447d-964d-27939d20834a",
     featured: true
   },
   {
@@ -112,12 +112,12 @@ let blogPostsData: BlogPost[] = [
       <p class="italic text-lg mt-8">With purpose and passion,<br>Suzanna</p>
     `,
     author: "Suzanna Griffiths",
-    authorImage: "https://api.builder.io/api/v1/image/assets/TEMP/9ef2ef4ab7707f0aa3dc051ca846715a652746d4?width=1206",
+    authorImage: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0178.jpg?alt=media&token=41ee0dfd-8d7f-447d-964d-27939d20834a",
     publishDate: "2025-01-10",
     readTime: "6 min read",
     category: "Purpose",
     tags: ["purpose", "faith", "calling", "transformation"],
-    featuredImage: "https://api.builder.io/api/v1/image/assets/TEMP/3bcb43c2d08f89a125bec53b49f9f6707b3f05df?width=941",
+    featuredImage: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.15.23.jpeg?alt=media&token=dda25c8d-55da-4ba9-aa4d-2dd531d5ad04",
     featured: true
   },
   {
@@ -162,12 +162,12 @@ let blogPostsData: BlogPost[] = [
       <p class="italic text-lg mt-8">With courage and love,<br>Suzanna</p>
     `,
     author: "Suzanna Griffiths",
-    authorImage: "https://api.builder.io/api/v1/image/assets/TEMP/9ef2ef4ab7707f0aa3dc051ca846715a652746d4?width=1206",
+    authorImage: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0178.jpg?alt=media&token=41ee0dfd-8d7f-447d-964d-27939d20834a",
     publishDate: "2025-01-05",
     readTime: "5 min read",
     category: "Courage",
     tags: ["courage", "fear", "growth", "faith"],
-    featuredImage: "https://api.builder.io/api/v1/image/assets/TEMP/cb8827ce947c674e0b468cb798d4e8d61410fc29?width=383",
+    featuredImage: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0178.jpg?alt=media&token=41ee0dfd-8d7f-447d-964d-27939d20834a",
     featured: false
   },
   {
@@ -212,12 +212,12 @@ let blogPostsData: BlogPost[] = [
       <p class="italic text-lg mt-8">With love and wisdom,<br>Suzanna</p>
     `,
     author: "Suzanna Griffiths",
-    authorImage: "https://api.builder.io/api/v1/image/assets/TEMP/9ef2ef4ab7707f0aa3dc051ca846715a652746d4?width=1206",
+    authorImage: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0178.jpg?alt=media&token=41ee0dfd-8d7f-447d-964d-27939d20834a",
     publishDate: "2024-12-28",
     readTime: "7 min read",
     category: "Relationships",
     tags: ["relationships", "love", "communication", "growth"],
-    featuredImage: "https://api.builder.io/api/v1/image/assets/TEMP/40d6bfce6b71d50c24fdb15e3287730608df80de?width=383",
+    featuredImage: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0178.jpg?alt=media&token=41ee0dfd-8d7f-447d-964d-27939d20834a",
     featured: false
   },
   {
@@ -256,12 +256,12 @@ let blogPostsData: BlogPost[] = [
       <p class="italic text-lg mt-8">With authenticity and love,<br>Suzanna</p>
     `,
     author: "Suzanna Griffiths",
-    authorImage: "https://api.builder.io/api/v1/image/assets/TEMP/9ef2ef4ab7707f0aa3dc051ca846715a652746d4?width=1206",
+    authorImage: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0178.jpg?alt=media&token=41ee0dfd-8d7f-447d-964d-27939d20834a",
     publishDate: "2024-12-20",
     readTime: "6 min read",
     category: "Authenticity",
     tags: ["authenticity", "self-love", "courage", "identity"],
-    featuredImage: "https://api.builder.io/api/v1/image/assets/TEMP/6f79502e1785bd966aaee7c1022f0c3c9b1a1110?width=892",
+    featuredImage: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0178.jpg?alt=media&token=41ee0dfd-8d7f-447d-964d-27939d20834a",
     featured: false
   }
 ];

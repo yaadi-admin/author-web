@@ -1,47 +1,16 @@
 import Header from '../components/Header';
 import { useState, useEffect, useCallback } from 'react';
 import { speakingReviews, Review } from '../data/reviews';
+import { getAllWorkshops, type Workshop } from '../data/workshops';
 import { footerPictures } from './Index';
 import Footer from './footer';
 import axios from 'axios';
-
-// Workshop data object
-const workshopData = [
-  {
-    id: 1,
-    date: "October 25th, 2025",
-    title: "Redeemed For a Purpose Workshop & Book Launch",
-    description: "Join us for an inspiring workshop and book launch as we explore the journey of healing, purpose, and transformation. This event is a must-attend for anyone looking to find their place in the world and live a life of purpose.",
-    image: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-19%20at%2018.00.44.jpeg?alt=media&token=8a288f2f-86e7-4b3c-a745-d73dff52bec4",
-    isActive: true,
-    url: "https://caribtix.vbotickets.com/event/Redeemed_For_A_Purpose/167873"
-  },
-  {
-    id: 2,
-    date: "November 15th, 2025",
-    title: "This Event is Coming Soon",
-    description: "An exciting new workshop focused on building resilience and overcoming life's challenges. Details coming soon - stay tuned for more information.",
-    image: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/coming-soon-letter-hanging-door-600nw-2497993761.webp?alt=media&token=ab00d3a3-6e03-4828-9552-14cb58f298aa",
-    isActive: false,
-    comingSoon: true,
-    url: "#"
-  },
-  {
-    id: 3,
-    date: "December 5th, 2025",
-    title: "Another Amazing Workshop",
-    description: "A special end-of-year workshop designed to help you reflect, reset, and prepare for the new year ahead. Join us for this powerful session of transformation.",
-    image: "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/coming-soon-letter-hanging-door-600nw-2497993761.webp?alt=media&token=ab00d3a3-6e03-4828-9552-14cb58f298aa",
-    isActive: false,
-    comingSoon: true,
-    url: "#"
-  }
-];
 
 export default function Workshops() {
   const [scrollY, setScrollY] = useState(0);
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
+  const [workshopData, setWorkshopData] = useState<Workshop[]>([]);
   
   // Contact form state
   const [contactForm, setContactForm] = useState({
@@ -54,6 +23,22 @@ export default function Workshops() {
     communications: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Load workshop data
+  useEffect(() => {
+    const loadWorkshops = async () => {
+      try {
+        const workshops = await getAllWorkshops(); // Now async again
+        setWorkshopData(workshops);
+      } catch (error) {
+        console.error('Error loading workshops:', error);
+        // Set empty array if error
+        setWorkshopData([]);
+      }
+    };
+
+    loadWorkshops();
+  }, []);
 
   // Parallax scroll effect
   useEffect(() => {
@@ -193,7 +178,7 @@ export default function Workshops() {
                 Engagements
               </h1>
             </div>
-            <h2 className="font-charm text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-5xl pt-2 font-normal text-black sm:ml-[-10%] md:ml-[-20%] lg:ml-[-30%] xl:ml-[-40%] 2xl:ml-[42%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-4%] 2xl:mt-[-5%]">
+            <h2 className="font-charm text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-5xl pt-2 font-normal text-black ml-[30%] sm:ml-[30%] md:ml-[30%] lg:ml-[30%] xl:ml-[30%] 2xl:ml-[30%] sm:mt-[-1%] md:mt-[-2%] lg:mt-[-3%] xl:mt-[-3.5%] 2xl:mt-[-5%]">
               Transformative Sessions
             </h2>
           </div>

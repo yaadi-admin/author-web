@@ -16,6 +16,10 @@ import Workshops from "./pages/Workshops";
 import Foundation from "./pages/Foundation";
 import NotFound from "./pages/NotFound";
 
+// Import seed utility to make it globally available
+import "./utils/seedWorkshops";
+
+
 const queryClient = new QueryClient();
 
 const App = () => (

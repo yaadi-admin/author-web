@@ -1,10 +1,38 @@
 import Header from '../components/Header';
 import { useState, useMemo, useEffect } from 'react';
-import { blogPosts, categories, BlogPost } from '../data/blog';
+import { getAllBlogPosts, getFeaturedPosts, categories, BlogPost } from '../data/blog';
 import Footer from './footer';
 
 export default function Blog() {
   const [scrollY, setScrollY] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [allPosts, setAllPosts] = useState<BlogPost[]>([]);
+  const [featuredPosts, setFeaturedPosts] = useState<BlogPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Load blog posts
+  useEffect(() => {
+    const loadPosts = async () => {
+      try {
+        setIsLoading(true);
+        const [posts, featured] = await Promise.all([
+          getAllBlogPosts(),
+          getFeaturedPosts()
+        ]);
+        setAllPosts(posts);
+        setFeaturedPosts(featured);
+      } catch (error) {
+        console.error('Error loading blog posts:', error);
+        setAllPosts([]);
+        setFeaturedPosts([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadPosts();
+  }, []);
 
   // Parallax scroll effect
   useEffect(() => {
@@ -15,14 +43,12 @@ export default function Blog() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [searchQuery, setSearchQuery] = useState('');
 
   // Filter posts based on category and search query
   const filteredPosts = useMemo(() => {
     let posts = selectedCategory === 'All' 
-      ? blogPosts 
-      : blogPosts.filter(post => post.category === selectedCategory);
+      ? allPosts 
+      : allPosts.filter(post => post.category === selectedCategory);
     
     if (searchQuery) {
       posts = posts.filter(post => 
@@ -33,11 +59,7 @@ export default function Blog() {
     }
     
     return posts;
-  }, [selectedCategory, searchQuery]);
-
-  const featuredPosts = useMemo(() => {
-    return blogPosts.filter(post => post.featured);
-  }, []);
+  }, [allPosts, selectedCategory, searchQuery]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -104,7 +126,34 @@ export default function Blog() {
 
           {/* Featured Posts Grid */}
           <div className="grid lg:grid-cols-2 gap-8 mb-16">
-            {featuredPosts.map((post) => (
+            {isLoading ? (
+              // Loading skeleton for featured posts
+              Array.from({ length: 2 }).map((_, index) => (
+                <div key={index} className="group cursor-pointer">
+                  <div className="bg-white/50 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg animate-pulse">
+                    <div className="h-64 bg-gray-300"></div>
+                    <div className="p-6">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-10 h-10 bg-gray-300 rounded-full"></div>
+                        <div>
+                          <div className="h-4 bg-gray-300 rounded w-20 mb-1"></div>
+                          <div className="h-3 bg-gray-300 rounded w-32"></div>
+                        </div>
+                      </div>
+                      <div className="h-6 bg-gray-300 rounded w-3/4 mb-3"></div>
+                      <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
+                      <div className="h-4 bg-gray-300 rounded w-2/3 mb-4"></div>
+                      <div className="flex flex-wrap gap-2">
+                        {Array.from({ length: 3 }).map((_, tagIndex) => (
+                          <div key={tagIndex} className="h-6 bg-gray-300 rounded w-16"></div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              featuredPosts.map((post) => (
               <div key={post.id} className="group cursor-pointer">
                 <a href={`/blog/${post.id}`} className="block">
                   <div className="bg-white/50 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-[1.02]">
@@ -149,7 +198,8 @@ export default function Blog() {
                   </div>
                 </a>
               </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
       </section>
@@ -207,7 +257,34 @@ export default function Blog() {
           </div>
 
           {/* Posts Grid */}
-          {filteredPosts.length > 0 ? (
+          {isLoading ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {Array.from({ length: 6 }).map((_, index) => (
+                <div key={index} className="group cursor-pointer">
+                  <div className="bg-white/50 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg animate-pulse">
+                    <div className="h-48 bg-gray-300"></div>
+                    <div className="p-6">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
+                        <div>
+                          <div className="h-3 bg-gray-300 rounded w-16 mb-1"></div>
+                          <div className="h-3 bg-gray-300 rounded w-24"></div>
+                        </div>
+                      </div>
+                      <div className="h-5 bg-gray-300 rounded w-3/4 mb-3"></div>
+                      <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
+                      <div className="h-4 bg-gray-300 rounded w-2/3 mb-4"></div>
+                      <div className="flex flex-wrap gap-1">
+                        {Array.from({ length: 2 }).map((_, tagIndex) => (
+                          <div key={tagIndex} className="h-5 bg-gray-300 rounded w-12"></div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : filteredPosts.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredPosts.map((post) => (
                 <div key={post.id} className="group cursor-pointer">

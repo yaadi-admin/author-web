@@ -1,6 +1,6 @@
 import Header from '../components/Header';
 import { useParams, Link } from 'react-router-dom';
-import { getBlogPostById, blogPosts, type BlogPost } from '../data/blog';
+import { getBlogPostById, getAllBlogPosts, type BlogPost } from '../data/blog';
 import { useState, useEffect } from 'react';
 import Footer from './footer';
 
@@ -21,18 +21,29 @@ export default function BlogPost() {
   }, []);
 
   useEffect(() => {
-    if (id) {
-      const foundPost = getBlogPostById(id);
-      setPost(foundPost || null);
-      
-      // Get related posts (same category, excluding current post)
-      if (foundPost) {
-        const related = blogPosts
-          .filter(p => p.id !== id && p.category === foundPost.category)
-          .slice(0, 3);
-        setRelatedPosts(related);
+    const loadPost = async () => {
+      if (id) {
+        try {
+          const foundPost = await getBlogPostById(id);
+          setPost(foundPost || null);
+          
+          // Get related posts (same category, excluding current post)
+          if (foundPost) {
+            const allPosts = await getAllBlogPosts();
+            const related = allPosts
+              .filter(p => p.id !== id && p.category === foundPost.category)
+              .slice(0, 3);
+            setRelatedPosts(related);
+          }
+        } catch (error) {
+          console.error('Error loading blog post:', error);
+          setPost(null);
+          setRelatedPosts([]);
+        }
       }
-    }
+    };
+
+    loadPost();
   }, [id]);
 
   const formatDate = (dateString: string) => {

@@ -206,7 +206,7 @@ export default function Workshops() {
                   <img 
                     src={workshop.image}
                     alt={workshop.title}
-                    className="w-full h-full object-cover rounded-lg border-2 border-[#F84988] min-h-[200px] sm:min-h-[250px] md:min-h-[300px]"
+                    className="w-full h-full object-contain bg-white rounded-lg border-2 border-[#F84988] min-h-[200px] sm:min-h-[250px] md:min-h-[300px]"
                   />
                 </div>
                 <div className="flex-1 flex flex-col justify-center">

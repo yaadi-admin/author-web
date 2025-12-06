@@ -47,6 +47,7 @@ interface BlogFormData {
   tags: string[];
   featuredImage: string;
   featured: boolean;
+  galleryImages: string[];
 }
 
 interface WorkshopFormData {
@@ -72,7 +73,8 @@ const initialFormData: BlogFormData = {
   category: 'Healing',
   tags: [],
   featuredImage: '',
-  featured: false
+  featured: false,
+  galleryImages: []
 };
 
 const initialWorkshopFormData: WorkshopFormData = {
@@ -199,40 +201,106 @@ export default function AdminBlog() {
 
   const convertPlainTextToHTML = (plainText: string): string => {
     if (!plainText.trim()) return '';
-    
-    // Split by double line breaks to identify paragraphs
-    const paragraphs = plainText
-      .split(/\n\s*\n/)
-      .filter(p => p.trim())
-      .map(p => p.trim().replace(/\n/g, ' ')); // Replace single line breaks with spaces
-    
-    // Wrap each paragraph in clean HTML - let prose styles handle spacing
-    return paragraphs
-      .map(paragraph => {
-        // Escape HTML entities for security
-        const escapedParagraph = paragraph
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;')
-          .replace(/'/g, '&#x27;');
-        
-        return `<p>${escapedParagraph}</p>`;
-      })
-      .join('\n\n');
+
+    const escapeHtml = (text: string) =>
+      text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;');
+
+    const formatInline = (text: string) => {
+      const escaped = escapeHtml(text);
+      return escaped
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>');
+    };
+
+    const lines = plainText.split(/\r?\n/);
+    const parts: string[] = [];
+    let paragraph: string[] = [];
+    let listType: 'ul' | 'ol' | null = null;
+    let listItems: string[] = [];
+
+    const flushParagraph = () => {
+      if (paragraph.length === 0) return;
+      const content = formatInline(paragraph.join(' '));
+      parts.push(`<p>${content}</p>`);
+      paragraph = [];
+    };
+
+    const flushList = () => {
+      if (!listType || listItems.length === 0) return;
+      parts.push(
+        `<${listType}>${listItems.map(item => `<li>${item}</li>`).join('')}</${listType}>`
+      );
+      listType = null;
+      listItems = [];
+    };
+
+    lines.forEach(rawLine => {
+      const line = rawLine.trim();
+
+      if (!line) {
+        flushParagraph();
+        flushList();
+        return;
+      }
+
+      const headingMatch = line.match(/^(#{1,3})\s+(.*)$/);
+      if (headingMatch) {
+        flushParagraph();
+        flushList();
+        const level = Math.min(headingMatch[1].length + 1, 4); // h2-h4 for better hierarchy
+        parts.push(`<h${level}>${formatInline(headingMatch[2])}</h${level}>`);
+        return;
+      }
+
+      const bulletMatch = line.match(/^[-*•]\s+(.*)$/);
+      if (bulletMatch) {
+        flushParagraph();
+        if (listType !== 'ul') flushList();
+        listType = 'ul';
+        listItems.push(formatInline(bulletMatch[1]));
+        return;
+      }
+
+      const orderedMatch = line.match(/^\d+[.)]\s+(.*)$/);
+      if (orderedMatch) {
+        flushParagraph();
+        if (listType !== 'ol') flushList();
+        listType = 'ol';
+        listItems.push(formatInline(orderedMatch[1]));
+        return;
+      }
+
+      if (listType) {
+        flushList();
+      }
+      paragraph.push(line);
+    });
+
+    flushParagraph();
+    flushList();
+
+    return parts.join('\n\n');
   };
 
   const convertHTMLToPlainText = (html: string): string => {
     if (!html.trim()) return '';
-    
-    // Remove HTML tags and convert back to plain text with paragraph breaks
-    return html
-      .replace(/<p[^>]*>/gi, '')
-      .replace(/<\/p>/gi, '\n\n')
-      .replace(/<br\s*\/?>/gi, '\n')
-      .replace(/<[^>]*>/g, '') // Remove any remaining HTML tags
-      .replace(/\n\s*\n\s*\n/g, '\n\n') // Clean up multiple line breaks
-      .trim();
+
+    let text = html;
+    text = text.replace(/<h1[^>]*>(.*?)<\/h1>/gis, '# $1\n\n');
+    text = text.replace(/<h2[^>]*>(.*?)<\/h2>/gis, '## $1\n\n');
+    text = text.replace(/<h3[^>]*>(.*?)<\/h3>/gis, '### $1\n\n');
+    text = text.replace(/<h4[^>]*>(.*?)<\/h4>/gis, '#### $1\n\n');
+    text = text.replace(/<li[^>]*>(.*?)<\/li>/gis, '- $1\n');
+    text = text.replace(/<\/ul>|<\/ol>/gis, '\n');
+    text = text.replace(/<br\s*\/?>/gi, '\n');
+    text = text.replace(/<\/p>/gi, '\n\n');
+    text = text.replace(/<[^>]*>/g, '');
+    return text.replace(/\n{3,}/g, '\n\n').trim();
   };
 
   const handleInputChange = (field: keyof BlogFormData, value: any) => {
@@ -271,6 +339,25 @@ export default function AdminBlog() {
     }));
   };
 
+  const handleGalleryChange = (index: number, url: string) => {
+    setCurrentPost(prev => {
+      const next = [...prev.galleryImages];
+      next[index] = url;
+      return { ...prev, galleryImages: next };
+    });
+  };
+
+  const handleGalleryAdd = () => {
+    setCurrentPost(prev => ({ ...prev, galleryImages: [...prev.galleryImages, ''] }));
+  };
+
+  const handleGalleryRemove = (index: number) => {
+    setCurrentPost(prev => ({
+      ...prev,
+      galleryImages: prev.galleryImages.filter((_, i) => i !== index)
+    }));
+  };
+
   const handleSave = async () => {
     if (!currentPost.title || !currentPost.excerpt || !currentPost.content) {
       toast({
@@ -289,7 +376,8 @@ export default function AdminBlog() {
         ...currentPost,
         id: preparedId,
         publishDate: preparedPublishDate,
-        readTime: currentPost.readTime || estimateReadTime(currentPost.content)
+        readTime: currentPost.readTime || estimateReadTime(currentPost.content),
+        galleryImages: currentPost.galleryImages?.filter(Boolean) || []
       };
 
       if (editingId) {
@@ -325,7 +413,10 @@ export default function AdminBlog() {
   };
 
   const handleEdit = (post: BlogPost) => {
-    setCurrentPost(post);
+    setCurrentPost({
+      ...post,
+      galleryImages: post.galleryImages || []
+    });
     setPlainTextContent(convertHTMLToPlainText(post.content));
     setEditingId(post.id);
     setShowForm(true);
@@ -916,12 +1007,12 @@ export default function AdminBlog() {
                   id="content"
                   value={plainTextContent}
                   onChange={(e) => handleContentChange(e.target.value)}
-                  placeholder="Write your blog content here. Simply type naturally and separate paragraphs with double line breaks.&#10;&#10;Example:&#10;Healing is not a destination; it's a journey. Some days will be easier than others. Some wounds may take longer to heal than others.&#10;&#10;Remember, you don't have to do this alone. God is with you every step of the way, and there are people who want to walk alongside you.&#10;&#10;Your healing is holy. Your voice is needed. Your purpose is still alive."
+                  placeholder="Write naturally. Use Markdown-style formatting:&#10;# Heading 1&#10;## Heading 2&#10;- Bullet item&#10;- Another bullet&#10;1. Numbered item&#10;**bold**, *italic*."
                   rows={12}
                   className="text-sm leading-relaxed"
                 />
                 <div className="text-sm text-gray-500 mt-1">
-                  ✨ <strong>Auto-formatting enabled:</strong> Write naturally and your text will be beautifully formatted with proper paragraph spacing. Double line breaks create new paragraphs. Estimated read time: {estimateReadTime(currentPost.content)}
+                  ✨ <strong>Auto-formatting enabled:</strong> Headings (#, ##), bullets (- or 1.), bold (**bold**), and italics (*italic*) are supported. Estimated read time: {estimateReadTime(currentPost.content)}
                 </div>
               </div>
 
@@ -986,6 +1077,41 @@ export default function AdminBlog() {
                 onChange={(url) => handleInputChange('authorImage', url)}
                 placeholder="https://example.com/author.jpg"
               />
+
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <Label>Gallery Images</Label>
+                  <Button type="button" variant="outline" size="sm" onClick={handleGalleryAdd}>
+                    Add Image
+                  </Button>
+                </div>
+                {currentPost.galleryImages.length === 0 && (
+                  <p className="text-sm text-gray-500">Optional: add supporting images to show under the article.</p>
+                )}
+                <div className="grid md:grid-cols-2 gap-4">
+                  {currentPost.galleryImages.map((img, idx) => (
+                    <div key={idx} className="space-y-2">
+                      <div className="flex items-center justify-between text-sm text-gray-600">
+                        <span>Image {idx + 1}</span>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleGalleryRemove(idx)}
+                        >
+                          Remove
+                        </Button>
+                      </div>
+                      <ImageUpload
+                        label=""
+                        value={img}
+                        onChange={(url) => handleGalleryChange(idx, url)}
+                        placeholder="https://example.com/gallery.jpg"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
 
               {/* Tags */}
               <div>
@@ -1078,12 +1204,30 @@ export default function AdminBlog() {
                   )}
 
                   {/* Content Preview */}
-                  <div className="prose prose-lg max-w-none mb-8">
+                  <div className="prose prose-lg max-w-none prose-ul:list-disc prose-ol:list-decimal prose-li:marker:text-[#F84988] prose-headings:font-playfair prose-headings:text-black mb-8">
                     <div 
                       className="font-helvetica text-lg leading-relaxed text-black [&>p]:mb-6 [&>p]:leading-relaxed"
                       dangerouslySetInnerHTML={{ __html: currentPost.content || '<p>Blog content will appear here...</p>' }}
                     />
                   </div>
+
+                  {currentPost.galleryImages.length > 0 && (
+                    <div className="mb-8">
+                      <h3 className="font-playfair text-xl font-bold text-black mb-4">Gallery</h3>
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        {currentPost.galleryImages.map((img, idx) => (
+                          img ? (
+                            <img
+                              key={idx}
+                              src={img}
+                              alt={`Gallery ${idx + 1}`}
+                              className="w-full h-48 object-contain bg-white rounded-lg"
+                            />
+                          ) : null
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Tags */}
                   {currentPost.tags.length > 0 && (

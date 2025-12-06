@@ -14,6 +14,7 @@ export interface BlogPost {
   tags: string[];
   featuredImage: string;
   featured: boolean;
+  galleryImages?: string[];
 }
 
 // Firestore collection reference
@@ -63,7 +64,8 @@ export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
       const data = doc.data();
       posts.push({
         id: doc.id,
-        ...data
+        ...data,
+        galleryImages: (data.galleryImages || []) as string[]
       } as BlogPost);
     });
     
@@ -84,7 +86,8 @@ export const getBlogPostById = async (id: string): Promise<BlogPost | undefined>
     if (docSnap.exists()) {
       return {
         id: docSnap.id,
-        ...docSnap.data()
+        ...docSnap.data(),
+        galleryImages: (docSnap.data().galleryImages || []) as string[]
       } as BlogPost;
     }
     return undefined;
@@ -104,7 +107,8 @@ export const getFeaturedPosts = async (): Promise<BlogPost[]> => {
       const data = doc.data();
       posts.push({
         id: doc.id,
-        ...data
+        ...data,
+        galleryImages: (data.galleryImages || []) as string[]
       } as BlogPost);
     });
     
@@ -129,7 +133,8 @@ export const getPostsByCategory = async (category: string): Promise<BlogPost[]> 
       const data = doc.data();
       posts.push({
         id: doc.id,
-        ...data
+        ...data,
+        galleryImages: (data.galleryImages || []) as string[]
       } as BlogPost);
     });
     
@@ -157,7 +162,8 @@ export const addBlogPost = async (newPost: Omit<BlogPost, 'id'> & { id?: string 
 
     const payload: BlogPost = {
       ...newPost,
-      id: docRef.id
+      id: docRef.id,
+      galleryImages: newPost.galleryImages || []
     };
 
     await setDoc(docRef, payload);
@@ -178,7 +184,7 @@ export const updateBlogPost = async (updatedPost: BlogPost): Promise<BlogPost> =
   try {
     const docRef = doc(firebase.firestore, 'blogs', updatedPost.id);
     const { id, ...updateData } = updatedPost;
-    await setDoc(docRef, { ...updateData, id }, { merge: true });
+    await setDoc(docRef, { ...updateData, id, galleryImages: updateData.galleryImages || [] }, { merge: true });
     
     // Update cache
     const index = blogPostsCache.findIndex(post => post.id === updatedPost.id);

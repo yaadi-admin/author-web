@@ -208,12 +208,28 @@ export default function BlogPost() {
             </div>
 
             {/* Article Content */}
-            <article className="prose prose-lg max-w-none">
+            <article className="prose prose-lg max-w-none prose-ul:list-disc prose-ol:list-decimal prose-li:marker:text-[#F84988] prose-headings:font-playfair prose-headings:text-black">
               <div 
                 className="font-helvetica text-lg leading-relaxed text-black [&>p]:mb-6 [&>p]:leading-relaxed [&>p]:text-lg"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             </article>
+
+            {post.galleryImages && post.galleryImages.length > 0 && (
+              <div className="mt-10">
+                <h3 className="font-playfair text-2xl font-bold text-black mb-4">Gallery</h3>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {post.galleryImages.map((img, idx) => (
+                    <img
+                      key={idx}
+                      src={img}
+                      alt={`Gallery ${idx + 1}`}
+                      className="w-full h-56 object-contain bg-white rounded-lg"
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Tags */}
             <div className="mt-12 pt-8 border-t border-black/10">

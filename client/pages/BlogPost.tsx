@@ -107,18 +107,18 @@ export default function BlogPost() {
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-24">
         {/* Hero Background Image with Parallax */}
-        <div className="absolute inset-0 z-0">
-          <div 
-            className="absolute inset-0 w-full h-[120%] transform -translate-y-[10%]"
+        <div className="absolute inset-0 z-0 overflow-hidden bg-black">
+          <img
+            src={post.featuredImage}
+            alt={post.title}
+            className="absolute inset-0 w-full h-full object-contain"
             style={{
-              backgroundImage: `url(${post.featuredImage})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
               transform: `translateY(${scrollY * 0.5}px)`,
               willChange: 'transform'
             }}
+            loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50" />
         </div>
 
         {/* Hero Content */}
@@ -280,7 +280,7 @@ export default function BlogPost() {
                         <img
                           src={relatedPost.featuredImage}
                           alt={relatedPost.title}
-                          className="w-full h-48 object-cover"
+                          className="w-full h-48 object-contain bg-white"
                         />
                         <div className="absolute top-4 left-4">
                           <span className="bg-[#F84988] text-white px-3 py-1 rounded-full text-sm font-helvetica font-semibold">

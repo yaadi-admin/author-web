@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, addDoc, updateDoc, deleteDoc, getDoc, query, where, orderBy } from 'firebase/firestore';
+import { collection, doc, getDocs, deleteDoc, getDoc, query, where, orderBy, setDoc } from 'firebase/firestore';
 import firebase from '../lib/firebase';
 
 export interface BlogPost {
@@ -29,6 +29,15 @@ const isCacheValid = (): boolean => {
   return Date.now() - lastFetchTime < CACHE_DURATION;
 };
 
+const sanitizeId = (value?: string): string => {
+  if (!value) return '';
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 80);
+};
 
 export const categories = [
   "All",
@@ -132,16 +141,31 @@ export const getPostsByCategory = async (category: string): Promise<BlogPost[]> 
 };
 
 // Admin functions for managing blog posts
-export const addBlogPost = async (newPost: Omit<BlogPost, 'id'>): Promise<BlogPost> => {
+export const addBlogPost = async (newPost: Omit<BlogPost, 'id'> & { id?: string }): Promise<BlogPost> => {
   try {
-    const docRef = await addDoc(blogsCollection, newPost);
-    const createdPost = {
-      id: docRef.id,
-      ...newPost
+    const preferredId = sanitizeId(newPost.id);
+    const docRef = preferredId
+      ? doc(firebase.firestore, 'blogs', preferredId)
+      : doc(blogsCollection);
+
+    if (preferredId) {
+      const existing = await getDoc(docRef);
+      if (existing.exists()) {
+        throw new Error('A blog post with this URL already exists. Please choose another title or ID.');
+      }
+    }
+
+    const payload: BlogPost = {
+      ...newPost,
+      id: docRef.id
     };
+
+    await setDoc(docRef, payload);
     
     // Update cache
+    const createdPost = { ...payload };
     blogPostsCache = [createdPost, ...blogPostsCache];
+    lastFetchTime = Date.now();
     
     return createdPost;
   } catch (error) {
@@ -154,14 +178,14 @@ export const updateBlogPost = async (updatedPost: BlogPost): Promise<BlogPost> =
   try {
     const docRef = doc(firebase.firestore, 'blogs', updatedPost.id);
     const { id, ...updateData } = updatedPost;
-    
-    await updateDoc(docRef, updateData);
+    await setDoc(docRef, { ...updateData, id }, { merge: true });
     
     // Update cache
     const index = blogPostsCache.findIndex(post => post.id === updatedPost.id);
     if (index !== -1) {
       blogPostsCache[index] = updatedPost;
     }
+    lastFetchTime = Date.now();
     
     return updatedPost;
   } catch (error) {
@@ -177,6 +201,7 @@ export const deleteBlogPost = async (postId: string): Promise<void> => {
     
     // Update cache
     blogPostsCache = blogPostsCache.filter(post => post.id !== postId);
+    lastFetchTime = Date.now();
   } catch (error) {
     console.error('Error deleting blog post:', error);
     throw error;

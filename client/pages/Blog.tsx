@@ -161,7 +161,7 @@ export default function Blog() {
                       <img
                         src={post.featuredImage}
                         alt={post.title}
-                        className="w-full h-64 object-cover"
+                        className="w-full h-64 object-contain bg-white"
                       />
                       <div className="absolute top-4 left-4">
                         <span className="bg-[#F84988] text-white px-3 py-1 rounded-full text-sm font-helvetica font-semibold">
@@ -294,7 +294,7 @@ export default function Blog() {
                         <img
                           src={post.featuredImage}
                           alt={post.title}
-                          className="w-full h-48 object-cover"
+                          className="w-full h-48 object-contain bg-white"
                         />
                         <div className="absolute top-4 left-4">
                           <span className="bg-[#F84988] text-white px-3 py-1 rounded-full text-sm font-helvetica font-semibold">

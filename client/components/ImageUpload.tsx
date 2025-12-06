@@ -1,9 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Card, CardContent } from './ui/card';
 import { Upload, X, Link as LinkIcon } from 'lucide-react';
+import { getDownloadURL, ref as storageRef, uploadBytesResumable } from 'firebase/storage';
+import firebase from '../lib/firebase';
 
 interface ImageUploadProps {
   value: string;
@@ -15,7 +17,15 @@ interface ImageUploadProps {
 export default function ImageUpload({ value, onChange, label, placeholder }: ImageUploadProps) {
   const [dragActive, setDragActive] = useState(false);
   const [preview, setPreview] = useState<string>(value);
+  const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState<number>(0);
+  const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setPreview(value);
+    setError(null);
+  }, [value]);
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
@@ -44,25 +54,53 @@ export default function ImageUpload({ value, onChange, label, placeholder }: Ima
   };
 
   const handleFile = (file: File) => {
-    if (file.type.startsWith('image/')) {
-      // Create a preview URL
-      const previewUrl = URL.createObjectURL(file);
-      setPreview(previewUrl);
-      
-      // In a real application, you would upload the file to your server/cloud storage
-      // For demo purposes, we'll use a placeholder URL
-      const placeholderUrl = `https://api.placeholder.com/800x400/${file.name.replace(/\.[^/.]+$/, "")}`;
-      onChange(placeholderUrl);
-      
-      // Note: In production, you would:
-      // 1. Upload the file to your storage service (AWS S3, Cloudinary, etc.)
-      // 2. Get the public URL from the storage service
-      // 3. Call onChange with that URL
+    if (!file.type.startsWith('image/')) {
+      setError('Please upload a valid image file.');
+      return;
     }
+
+    setError(null);
+    setUploading(true);
+    setUploadProgress(0);
+
+    // Show an immediate local preview
+    const previewUrl = URL.createObjectURL(file);
+    setPreview(previewUrl);
+
+    const safeName = file.name.toLowerCase().replace(/[^a-z0-9.]+/g, '-');
+    const fileRef = storageRef(firebase.storage, `uploads/blog/${Date.now()}-${safeName}`);
+    const uploadTask = uploadBytesResumable(fileRef, file);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        setUploadProgress(progress);
+      },
+      (uploadError) => {
+        console.error('Image upload failed', uploadError);
+        setError('Upload failed. Please try again.');
+        setUploading(false);
+      },
+      async () => {
+        try {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+          setPreview(downloadURL);
+          onChange(downloadURL);
+        } catch (urlError) {
+          console.error('Failed to get download URL', urlError);
+          setError('Unable to retrieve image URL. Please retry.');
+        } finally {
+          setUploading(false);
+        }
+      }
+    );
   };
 
   const handleUrlChange = (url: string) => {
     setPreview(url);
+    setError(null);
+    setUploadProgress(0);
     onChange(url);
   };
 
@@ -72,6 +110,8 @@ export default function ImageUpload({ value, onChange, label, placeholder }: Ima
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
+    setUploadProgress(0);
+    setError(null);
   };
 
   return (
@@ -113,7 +153,7 @@ export default function ImageUpload({ value, onChange, label, placeholder }: Ima
               <img
                 src={preview}
                 alt="Preview"
-                className="w-full h-48 object-cover rounded-lg"
+                className="w-full h-48 object-contain bg-black/5 rounded-lg"
                 onError={() => setPreview('')}
               />
               <Button
@@ -125,6 +165,17 @@ export default function ImageUpload({ value, onChange, label, placeholder }: Ima
               >
                 <X size={16} />
               </Button>
+              {uploading && (
+                <div className="absolute inset-x-4 bottom-4 bg-white/80 rounded-full overflow-hidden shadow-sm">
+                  <div
+                    className="h-2 bg-[#F84988] transition-all"
+                    style={{ width: `${uploadProgress}%` }}
+                  />
+                  <p className="text-xs text-center mt-1 text-gray-700">
+                    Uploading… {uploadProgress}%
+                  </p>
+                </div>
+              )}
             </div>
           ) : (
             <div className="text-center py-8">
@@ -158,9 +209,9 @@ export default function ImageUpload({ value, onChange, label, placeholder }: Ima
       
       {/* Help Text */}
       <p className="text-xs text-gray-500">
-        Note: In this demo, uploaded files will be converted to placeholder URLs. 
-        In production, implement proper file upload to your storage service.
+        Images are uploaded to Firebase Storage and the public URL is saved with your post. Ensure you have internet connectivity while uploading.
       </p>
+      {error && <p className="text-xs text-red-500">{error}</p>}
     </div>
   );
 }

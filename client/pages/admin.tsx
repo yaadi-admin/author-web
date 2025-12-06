@@ -283,9 +283,18 @@ export default function AdminBlog() {
 
     setIsSaving(true);
     try {
+      const preparedId = (currentPost.id || generateId(currentPost.title)).trim();
+      const preparedPublishDate = currentPost.publishDate || new Date().toISOString().split('T')[0];
+      const postPayload: BlogFormData = {
+        ...currentPost,
+        id: preparedId,
+        publishDate: preparedPublishDate,
+        readTime: currentPost.readTime || estimateReadTime(currentPost.content)
+      };
+
       if (editingId) {
         // Update existing post
-        await updateBlogPost({ ...currentPost });
+        await updateBlogPost({ ...postPayload, id: editingId });
         const updatedPosts = await getAllBlogPosts();
         setPosts(updatedPosts);
         toast({
@@ -294,8 +303,7 @@ export default function AdminBlog() {
         });
       } else {
         // Create new post
-        const { id, ...newPostData } = currentPost;
-        await addBlogPost(newPostData);
+        await addBlogPost(postPayload);
         const updatedPosts = await getAllBlogPosts();
         setPosts(updatedPosts);
         toast({
@@ -308,7 +316,7 @@ export default function AdminBlog() {
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to save blog post. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to save blog post. Please try again.",
         variant: "destructive"
       });
     } finally {
@@ -633,7 +641,7 @@ export default function AdminBlog() {
                               <img
                                 src={post.featuredImage || '/placeholder.svg'}
                                 alt={post.title}
-                                className="w-full h-32 lg:h-40 object-cover rounded-lg"
+                                className="w-full h-32 lg:h-40 object-contain bg-white rounded-lg"
                               />
                             </div>
                             
@@ -770,7 +778,7 @@ export default function AdminBlog() {
                               <img
                                 src={workshop.image || '/placeholder.svg'}
                                 alt={workshop.title}
-                                className="w-full h-32 lg:h-40 object-cover rounded-lg"
+                                className="w-full h-32 lg:h-40 object-contain bg-white rounded-lg"
                               />
                             </div>
                             
@@ -1064,7 +1072,7 @@ export default function AdminBlog() {
                       <img
                         src={currentPost.featuredImage}
                         alt={currentPost.title}
-                        className="w-full h-64 object-cover rounded-lg"
+                        className="w-full h-64 object-contain bg-white rounded-lg"
                       />
                     </div>
                   )}

@@ -2,9 +2,9 @@ import Header from '../components/Header';
 import { useState, useEffect, useCallback } from 'react';
 import { speakingReviews, Review } from '../data/reviews';
 import { getAllWorkshops, type Workshop } from '../data/workshops';
+import { submitContactForm } from '../lib/contact';
 import { footerPictures } from './Index';
 import Footer from './footer';
-import axios from 'axios';
 
 export default function Workshops() {
   const [scrollY, setScrollY] = useState(0);
@@ -87,6 +87,16 @@ export default function Workshops() {
     setTimeout(() => setIsAutoScrolling(true), 10000);
   }, []);
 
+  const visibleWorkshops = workshopData.filter(
+    (workshop) => workshop.isActive || workshop.comingSoon,
+  );
+
+  const canOpenWorkshopUrl = (workshop: Workshop) =>
+    workshop.isActive &&
+    !workshop.comingSoon &&
+    workshop.url.trim() !== '' &&
+    workshop.url.trim() !== '#';
+
   // Handle form input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -114,30 +124,25 @@ export default function Workshops() {
 
     setIsSubmitting(true);
     try {
-      const response = await axios.post('https://sue-server-894877881089.europe-west1.run.app/api/suelyn/authenticate', {
+      await submitContactForm({
         name: `${contactForm.firstName} ${contactForm.lastName}`,
         email: contactForm.email,
         message: contactForm.message,
         phone: contactForm.phone,
         title: `${contactForm.firstName} ${contactForm.lastName} ${contactForm.phone} - Workshop Inquiry`,
-        function: 'sendContactEmail'
+        source: 'Workshops inquiry form'
       });
 
-      if (response.status === 200) {
-        // Clear form after successful submission
-        setContactForm({
-          firstName: '',
-          lastName: '',
-          email: '',
-          message: '',
-          phone: '',
-          terms: false,
-          communications: false
-        });
-        alert('Thank you for your message! We will get back to you soon.');
-      } else {
-        throw new Error(response.data.error || 'Failed to send message');
-      }
+      setContactForm({
+        firstName: '',
+        lastName: '',
+        email: '',
+        message: '',
+        phone: '',
+        terms: false,
+        communications: false
+      });
+      alert('Thank you for your message! We will get back to you soon.');
     } catch (error) {
       console.error('Error sending message:', error);
       alert('There was an error sending your message. Please try again.');
@@ -195,7 +200,7 @@ export default function Workshops() {
           </h2>
           
           <div className="space-y-6 sm:space-y-8 max-w-6xl mx-auto">
-            {workshopData.map((workshop, index) => (
+            {visibleWorkshops.map((workshop, index) => (
               <div 
                 key={workshop.id}
                 className={`relative flex flex-col lg:flex-row gap-4 sm:gap-6 md:gap-8 items-stretch ${
@@ -219,7 +224,7 @@ export default function Workshops() {
                   <p className="font-helvetica text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-4 sm:mb-6">
                     {workshop.description}
                   </p>
-                  {!workshop.comingSoon && <button onClick={() => window.open(workshop.url, '_blank')} className="bg-[#F84988] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:bg-[#e03a7a] transition-colors font-helvetica text-xs sm:text-sm flex items-center gap-2 self-start">
+                  {canOpenWorkshopUrl(workshop) && <button onClick={() => window.open(workshop.url, '_blank', 'noopener,noreferrer')} className="bg-[#F84988] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg hover:bg-[#e03a7a] transition-colors font-helvetica text-xs sm:text-sm flex items-center gap-2 self-start">
                     Buy Tickets
                     <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

@@ -1,9 +1,9 @@
 import Header from '../components/Header';
 import { useState, useEffect, useCallback } from 'react';
+import { submitContactForm } from '../lib/contact';
 import { speakingReviews, Review } from '../data/reviews';
 import { footerPictures } from './Index';
 import Footer from './footer';
-import axios from 'axios';
 
 export default function Author() {
   // State for review carousel
@@ -77,21 +77,16 @@ export default function Author() {
 
     setIsSubmitting(true);
     try {
-      const response = await axios.post('https://sue-server-894877881089.europe-west1.run.app/api/suelyn/authenticate', {
+      await submitContactForm({
         name: newsletterForm.name,
         email: newsletterForm.email,
         message: 'Newsletter subscription request from Author page',
         title: 'Newsletter Subscription - Author Page',
-        function: 'sendContactEmail'
+        source: 'Author newsletter signup'
       });
 
-      if (response.status === 200) {
-        // Clear form after successful submission
-        setNewsletterForm({ name: '', email: '' });
-        alert('Thank you for joining the Empowered Space! We will keep you updated.');
-      } else {
-        throw new Error(response.data.error || 'Failed to subscribe');
-      }
+      setNewsletterForm({ name: '', email: '' });
+      alert('Thank you for joining the Empowered Space! We will keep you updated.');
     } catch (error) {
       console.error('Error subscribing to newsletter:', error);
       alert('There was an error subscribing to our newsletter. Please try again.');

@@ -1,5 +1,16 @@
-import { collection, doc, getDocs, deleteDoc, getDoc, query, where, orderBy, setDoc } from 'firebase/firestore';
-import firebase from '../lib/firebase';
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
+import { z } from "zod";
+import firebase from "../lib/firebase";
 
 export interface BlogPost {
   id: string;
@@ -17,27 +28,67 @@ export interface BlogPost {
   galleryImages?: string[];
 }
 
-// Firestore collection reference
-const blogsCollection = collection(firebase.firestore, 'blogs');
+const blogsCollection = collection(firebase.firestore, "blogs");
 
-// Cache for blog posts to improve performance
+const blogPostSchema = z.object({
+  title: z.string().default(""),
+  excerpt: z.string().default(""),
+  content: z.string().default(""),
+  author: z.string().default(""),
+  authorImage: z.string().default(""),
+  publishDate: z.string().default(""),
+  readTime: z.string().default(""),
+  category: z.string().default("Healing"),
+  tags: z.array(z.string()).catch([]),
+  featuredImage: z.string().default(""),
+  featured: z.boolean().catch(false),
+  galleryImages: z.array(z.string()).catch([]),
+});
+
 let blogPostsCache: BlogPost[] = [];
-let lastFetchTime: number = 0;
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+let lastFetchTime = 0;
+const CACHE_DURATION = 5 * 60 * 1000;
 
-// Helper function to check if cache is valid
-const isCacheValid = (): boolean => {
-  return Date.now() - lastFetchTime < CACHE_DURATION;
-};
+const isCacheValid = (): boolean => Date.now() - lastFetchTime < CACHE_DURATION;
+
+const sortBlogPosts = (posts: BlogPost[]): BlogPost[] =>
+  [...posts].sort(
+    (left, right) =>
+      new Date(right.publishDate).getTime() - new Date(left.publishDate).getTime(),
+  );
 
 const sanitizeId = (value?: string): string => {
-  if (!value) return '';
+  if (!value) return "";
   return value
     .toLowerCase()
     .trim()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
     .slice(0, 80);
+};
+
+const normalizeBlogPost = (documentId: string, data: unknown): BlogPost | null => {
+  const parsed = blogPostSchema.safeParse(data);
+  if (!parsed.success) {
+    console.warn(`Skipping invalid blog post document: ${documentId}`, parsed.error.flatten());
+    return null;
+  }
+
+  return {
+    id: documentId,
+    title: parsed.data.title,
+    excerpt: parsed.data.excerpt,
+    content: parsed.data.content,
+    author: parsed.data.author,
+    authorImage: parsed.data.authorImage,
+    publishDate: parsed.data.publishDate,
+    readTime: parsed.data.readTime,
+    category: parsed.data.category,
+    tags: parsed.data.tags,
+    featuredImage: parsed.data.featuredImage,
+    featured: parsed.data.featured,
+    galleryImages: parsed.data.galleryImages,
+  };
 };
 
 export const categories = [
@@ -46,76 +97,67 @@ export const categories = [
   "Purpose",
   "Courage",
   "Relationships",
-  "Authenticity"
+  "Authenticity",
 ];
 
-// Firestore functions for managing blog posts
 export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
   try {
     if (isCacheValid() && blogPostsCache.length > 0) {
       return blogPostsCache;
     }
 
-    const q = query(blogsCollection, orderBy('publishDate', 'desc'));
-    const querySnapshot = await getDocs(q);
+    const querySnapshot = await getDocs(query(blogsCollection, orderBy("publishDate", "desc")));
     const posts: BlogPost[] = [];
-    
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      posts.push({
-        id: doc.id,
-        ...data,
-        galleryImages: (data.galleryImages || []) as string[]
-      } as BlogPost);
+
+    querySnapshot.forEach((document) => {
+      const post = normalizeBlogPost(document.id, document.data());
+      if (post) {
+        posts.push(post);
+      }
     });
-    
-    blogPostsCache = posts;
+
+    blogPostsCache = sortBlogPosts(posts);
     lastFetchTime = Date.now();
-    return posts;
+    return blogPostsCache;
   } catch (error) {
-    console.error('Error fetching blog posts:', error);
-    return blogPostsCache; // Return cached data if available
+    console.error("Error fetching blog posts:", error);
+    return blogPostsCache;
   }
 };
 
 export const getBlogPostById = async (id: string): Promise<BlogPost | undefined> => {
   try {
-    const docRef = doc(firebase.firestore, 'blogs', id);
-    const docSnap = await getDoc(docRef);
-    
-    if (docSnap.exists()) {
-      return {
-        id: docSnap.id,
-        ...docSnap.data(),
-        galleryImages: (docSnap.data().galleryImages || []) as string[]
-      } as BlogPost;
+    const docSnap = await getDoc(doc(firebase.firestore, "blogs", id));
+
+    if (!docSnap.exists()) {
+      return undefined;
     }
-    return undefined;
+
+    return normalizeBlogPost(docSnap.id, docSnap.data()) ?? undefined;
   } catch (error) {
-    console.error('Error fetching blog post:', error);
+    console.error("Error fetching blog post:", error);
     return undefined;
   }
 };
 
 export const getFeaturedPosts = async (): Promise<BlogPost[]> => {
   try {
-    const q = query(blogsCollection, where('featured', '==', true), orderBy('publishDate', 'desc'));
-    const querySnapshot = await getDocs(q);
+    const querySnapshot = await getDocs(
+      query(blogsCollection, where("featured", "==", true), orderBy("publishDate", "desc")),
+    );
     const posts: BlogPost[] = [];
-    
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      posts.push({
-        id: doc.id,
-        ...data,
-        galleryImages: (data.galleryImages || []) as string[]
-      } as BlogPost);
+
+    querySnapshot.forEach((document) => {
+      const post = normalizeBlogPost(document.id, document.data());
+      if (post) {
+        posts.push(post);
+      }
     });
-    
-    return posts;
+
+    return sortBlogPosts(posts);
   } catch (error) {
-    console.error('Error fetching featured posts:', error);
-    return [];
+    console.error("Error fetching featured posts:", error);
+    return (await getAllBlogPosts()).filter((post) => post.featured);
   }
 };
 
@@ -124,101 +166,97 @@ export const getPostsByCategory = async (category: string): Promise<BlogPost[]> 
     if (category === "All") {
       return await getAllBlogPosts();
     }
-    
-    const q = query(blogsCollection, where('category', '==', category), orderBy('publishDate', 'desc'));
-    const querySnapshot = await getDocs(q);
+
+    const querySnapshot = await getDocs(
+      query(blogsCollection, where("category", "==", category), orderBy("publishDate", "desc")),
+    );
     const posts: BlogPost[] = [];
-    
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      posts.push({
-        id: doc.id,
-        ...data,
-        galleryImages: (data.galleryImages || []) as string[]
-      } as BlogPost);
+
+    querySnapshot.forEach((document) => {
+      const post = normalizeBlogPost(document.id, document.data());
+      if (post) {
+        posts.push(post);
+      }
     });
-    
-    return posts;
+
+    return sortBlogPosts(posts);
   } catch (error) {
-    console.error('Error fetching posts by category:', error);
-    return [];
+    console.error("Error fetching posts by category:", error);
+    return (await getAllBlogPosts()).filter((post) => post.category === category);
   }
 };
 
-// Admin functions for managing blog posts
-export const addBlogPost = async (newPost: Omit<BlogPost, 'id'> & { id?: string }): Promise<BlogPost> => {
+export const addBlogPost = async (
+  newPost: Omit<BlogPost, "id"> & { id?: string },
+): Promise<BlogPost> => {
   try {
     const preferredId = sanitizeId(newPost.id);
     const docRef = preferredId
-      ? doc(firebase.firestore, 'blogs', preferredId)
+      ? doc(firebase.firestore, "blogs", preferredId)
       : doc(blogsCollection);
 
     if (preferredId) {
       const existing = await getDoc(docRef);
       if (existing.exists()) {
-        throw new Error('A blog post with this URL already exists. Please choose another title or ID.');
+        throw new Error(
+          "A blog post with this URL already exists. Please choose another title or ID.",
+        );
       }
     }
 
     const payload: BlogPost = {
       ...newPost,
       id: docRef.id,
-      galleryImages: newPost.galleryImages || []
+      galleryImages: newPost.galleryImages || [],
     };
 
     await setDoc(docRef, payload);
-    
-    // Update cache
-    const createdPost = { ...payload };
-    blogPostsCache = [createdPost, ...blogPostsCache];
+
+    blogPostsCache = sortBlogPosts([
+      ...blogPostsCache.filter((post) => post.id !== payload.id),
+      payload,
+    ]);
     lastFetchTime = Date.now();
-    
-    return createdPost;
+
+    return payload;
   } catch (error) {
-    console.error('Error adding blog post:', error);
+    console.error("Error adding blog post:", error);
     throw error;
   }
 };
 
 export const updateBlogPost = async (updatedPost: BlogPost): Promise<BlogPost> => {
   try {
-    const docRef = doc(firebase.firestore, 'blogs', updatedPost.id);
+    const docRef = doc(firebase.firestore, "blogs", updatedPost.id);
     const { id, ...updateData } = updatedPost;
-    await setDoc(docRef, { ...updateData, id, galleryImages: updateData.galleryImages || [] }, { merge: true });
-    
-    // Update cache
-    const index = blogPostsCache.findIndex(post => post.id === updatedPost.id);
+    await setDoc(
+      docRef,
+      { ...updateData, id, galleryImages: updateData.galleryImages || [] },
+      { merge: true },
+    );
+
+    const index = blogPostsCache.findIndex((post) => post.id === updatedPost.id);
     if (index !== -1) {
       blogPostsCache[index] = updatedPost;
+      blogPostsCache = sortBlogPosts(blogPostsCache);
     }
     lastFetchTime = Date.now();
-    
+
     return updatedPost;
   } catch (error) {
-    console.error('Error updating blog post:', error);
+    console.error("Error updating blog post:", error);
     throw error;
   }
 };
 
 export const deleteBlogPost = async (postId: string): Promise<void> => {
   try {
-    const docRef = doc(firebase.firestore, 'blogs', postId);
-    await deleteDoc(docRef);
-    
-    // Update cache
-    blogPostsCache = blogPostsCache.filter(post => post.id !== postId);
+    await deleteDoc(doc(firebase.firestore, "blogs", postId));
+
+    blogPostsCache = blogPostsCache.filter((post) => post.id !== postId);
     lastFetchTime = Date.now();
   } catch (error) {
-    console.error('Error deleting blog post:', error);
+    console.error("Error deleting blog post:", error);
     throw error;
   }
 };
-
-// Legacy exports for backward compatibility - these now return async data
-export const blogPosts = getAllBlogPosts();
-
-// For real-time updates in the admin interface
-export const setBlogPosts = (posts: BlogPost[]): void => {
-  blogPostsCache = posts;
-  lastFetchTime = Date.now();
-}; 

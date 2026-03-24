@@ -1,8 +1,8 @@
 import Header from '../components/Header';
 import { useState, useEffect } from 'react';
+import { submitContactForm } from '../lib/contact';
 import { footerPictures } from './Index';
 import Footer from './footer';
-import axios from 'axios';
 
 export default function Foundation() {
   const [scrollY, setScrollY] = useState(0);
@@ -46,22 +46,16 @@ export default function Foundation() {
 
     setIsSubmitting(true);
     try {
-
-      const response = await axios.post('https://sue-server-894877881089.europe-west1.run.app/api/suelyn/authenticate', {
+      await submitContactForm({
         name: contactForm.name,
         email: contactForm.email,
         message: contactForm.message,
         title: 'SueLyn Empowered Living Foundation',
-        function: 'sendContactEmail'
+        source: 'Foundation contact form'
       });
 
-      if (response.status === 200) {
-        // Clear form after successful submission
-        setContactForm({ name: '', email: '', message: '' });
-        alert('Thank you for your message! We will get back to you soon.');
-      } else {
-        throw new Error(response.data.error || 'Failed to send message');
-      }
+      setContactForm({ name: '', email: '', message: '' });
+      alert('Thank you for your message! We will get back to you soon.');
     } catch (error) {
       console.error('Error sending message:', error);
       alert('There was an error sending your message. Please try again.');

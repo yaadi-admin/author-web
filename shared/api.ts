@@ -10,3 +10,29 @@
 export interface DemoResponse {
   message: string;
 }
+
+export interface ContactRequest {
+  name: string;
+  email: string;
+  message: string;
+  phone?: string;
+  title?: string;
+  source?: string;
+}
+
+export interface ContactResponse {
+  success: boolean;
+  message: string;
+  warning?: string;
+  error?: string;
+}
+
+export interface AdminLoginRequest {
+  password: string;
+}
+
+export interface AdminSessionResponse {
+  authenticated: boolean;
+  expiresAt?: number;
+  error?: string;
+}

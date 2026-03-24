@@ -1,55 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Eye, EyeOff, Lock } from 'lucide-react';
-import { toast } from './ui/use-toast';
+import React, { useState } from "react";
+import { Eye, EyeOff, Lock } from "lucide-react";
+import { loginAdmin } from "../lib/admin-auth";
+import { Button } from "./ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { toast } from "./ui/use-toast";
 
 interface AdminPasswordProtectionProps {
   onAuthenticated: () => void;
 }
 
-const ADMIN_PASSWORD = 'Empowered#2025'; // In production, this should be environment variable
-const SESSION_STORAGE_KEY = 'admin_auth_time';
-const SESSION_DURATION = 120 * 60 * 1000; // 120 minutes in milliseconds
+const SESSION_DURATION_MINUTES = 120;
 
-export default function AdminPasswordProtection({ onAuthenticated }: AdminPasswordProtectionProps) {
-  const [password, setPassword] = useState('');
+export default function AdminPasswordProtection({
+  onAuthenticated,
+}: AdminPasswordProtectionProps) {
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate a small delay for better UX
-    setTimeout(() => {
-      if (password === ADMIN_PASSWORD) {
-        // Store authentication time in localStorage
-        localStorage.setItem(SESSION_STORAGE_KEY, Date.now().toString());
-        
-        toast({
-          title: "Access Granted",
-          description: "Welcome to the admin panel!"
-        });
-        
-        onAuthenticated();
-      } else {
-        toast({
-          title: "Access Denied",
-          description: "Invalid password. Please try again.",
-          variant: "destructive"
-        });
-        setPassword('');
-      }
+    try {
+      await loginAdmin(password);
+
+      toast({
+        title: "Access Granted",
+        description: "Welcome to the admin panel!",
+      });
+
+      onAuthenticated();
+    } catch (error) {
+      toast({
+        title: "Access Denied",
+        description:
+          error instanceof Error ? error.message : "Invalid password. Please try again.",
+        variant: "destructive",
+      });
+      setPassword("");
+    } finally {
       setIsLoading(false);
-    }, 500);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSubmit(e as any);
+    if (e.key === "Enter") {
+      void handleSubmit(e as unknown as React.FormEvent);
     }
   };
 
@@ -67,7 +66,7 @@ export default function AdminPasswordProtection({ onAuthenticated }: AdminPasswo
             Please enter your password to access the administration panel
           </p>
         </CardHeader>
-        
+
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
@@ -96,7 +95,7 @@ export default function AdminPasswordProtection({ onAuthenticated }: AdminPasswo
                 </button>
               </div>
             </div>
-            
+
             <Button
               type="submit"
               className="w-full bg-[#F84988] text-white hover:bg-[#e03a7a] font-helvetica py-3"
@@ -108,14 +107,14 @@ export default function AdminPasswordProtection({ onAuthenticated }: AdminPasswo
                   Verifying...
                 </div>
               ) : (
-                'Access Admin Panel'
+                "Access Admin Panel"
               )}
             </Button>
           </form>
-          
+
           <div className="mt-6 pt-4 border-t border-gray-200">
             <p className="font-helvetica text-xs text-black/50 text-center">
-              Session will remain active for 120 minutes
+              Session will remain active for {SESSION_DURATION_MINUTES} minutes
             </p>
           </div>
         </CardContent>
@@ -123,29 +122,3 @@ export default function AdminPasswordProtection({ onAuthenticated }: AdminPasswo
     </div>
   );
 }
-
-// Utility function to check if user is authenticated
-export const isUserAuthenticated = (): boolean => {
-  const authTime = localStorage.getItem(SESSION_STORAGE_KEY);
-  
-  if (!authTime) {
-    return false;
-  }
-  
-  const lastAuthTime = parseInt(authTime);
-  const currentTime = Date.now();
-  const timeDifference = currentTime - lastAuthTime;
-  
-  // Check if session has expired (120 minutes)
-  if (timeDifference > SESSION_DURATION) {
-    localStorage.removeItem(SESSION_STORAGE_KEY);
-    return false;
-  }
-  
-  return true;
-};
-
-// Utility function to clear authentication
-export const clearAuthentication = (): void => {
-  localStorage.removeItem(SESSION_STORAGE_KEY);
-};

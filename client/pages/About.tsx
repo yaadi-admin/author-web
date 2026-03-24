@@ -1,8 +1,8 @@
 import Header from '../components/Header';
 import { useState, useEffect, useCallback } from 'react';
+import { submitContactForm } from '../lib/contact';
 import { footerPictures } from './Index';
 import Footer from './footer';
-import axios from 'axios';
 
 export default function About() {
   const [scrollY, setScrollY] = useState(0);
@@ -70,21 +70,16 @@ export default function About() {
 
     setIsSubmitting(true);
     try {
-      const response = await axios.post('https://sue-server-894877881089.europe-west1.run.app/api/suelyn/authenticate', {
+      await submitContactForm({
         name: newsletterForm.firstName,
         email: newsletterForm.email,
         message: 'Newsletter subscription request from About page',
         title: 'Newsletter Subscription - About Page',
-        function: 'sendContactEmail'
+        source: 'About newsletter signup'
       });
 
-      if (response.status === 200) {
-        // Clear form after successful submission
-        setNewsletterForm({ firstName: '', email: '' });
-        alert('Thank you for joining the Empowered Space! We will keep you updated.');
-      } else {
-        throw new Error(response.data.error || 'Failed to subscribe');
-      }
+      setNewsletterForm({ firstName: '', email: '' });
+      alert('Thank you for joining the Empowered Space! We will keep you updated.');
     } catch (error) {
       console.error('Error subscribing to newsletter:', error);
       alert('There was an error subscribing to our newsletter. Please try again.');

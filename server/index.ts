@@ -3,6 +3,11 @@ import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
 import { handleContactForm } from "./routes/contact_route";
+import {
+  handleAdminLogin,
+  handleAdminLogout,
+  handleAdminSession,
+} from "./routes/admin_auth";
 
 export function createServer() {
   const app = express();
@@ -18,10 +23,17 @@ export function createServer() {
     res.json({ message: ping });
   });
 
+  app.get("/health", (_req, res) => {
+    res.json({ status: "ok" });
+  });
+
   app.get("/api/demo", handleDemo);
 
   // Contact form route
   app.post("/api/contact", handleContactForm);
+  app.post("/api/admin/login", handleAdminLogin);
+  app.get("/api/admin/session", handleAdminSession);
+  app.post("/api/admin/logout", handleAdminLogout);
 
   return app;
 }

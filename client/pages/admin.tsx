@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
-import AdminPasswordProtection, { isUserAuthenticated, clearAuthentication } from '../components/AdminPasswordProtection';
+import AdminPasswordProtection from '../components/AdminPasswordProtection';
+import { getAdminSession, logoutAdmin } from '../lib/admin-auth';
 import { injectInitialWorkshops } from '../data/workshops';
 import { 
-  blogPosts, 
   categories, 
   type BlogPost, 
   addBlogPost, 
   updateBlogPost, 
   deleteBlogPost, 
-  getAllBlogPosts,
-  setBlogPosts 
+  getAllBlogPosts
 } from '../data/blog';
 import {
   getAllWorkshops,
@@ -117,33 +116,30 @@ export default function AdminBlog() {
 
   // Check authentication on component mount
   useEffect(() => {
-    const checkAuth = () => {
-      // Check if this is a navigation from another page (not a reload)
-      const isNavigation = !sessionStorage.getItem('admin_page_loaded');
-      
-      if (isNavigation) {
-        // Mark that we've loaded the admin page
-        sessionStorage.setItem('admin_page_loaded', 'true');
-        
-        // Check if user is authenticated
-        const authenticated = isUserAuthenticated();
-        
-        if (!authenticated) {
-          setShowPasswordProtection(true);
-          return;
-        }
+    let isCancelled = false;
+
+    const checkAuth = async () => {
+      const authenticated = await getAdminSession();
+
+      if (isCancelled) {
+        return;
       }
-      
-      // User is authenticated or this is a reload
+
+      if (!authenticated) {
+        setIsAuthenticated(false);
+        setShowPasswordProtection(true);
+        return;
+      }
+
+      setShowPasswordProtection(false);
       setIsAuthenticated(true);
-      loadInitialData();
+      await loadInitialData();
     };
 
-    checkAuth();
+    void checkAuth();
 
-    // Cleanup function to remove the session flag when leaving the page
     return () => {
-      sessionStorage.removeItem('admin_page_loaded');
+      isCancelled = true;
     };
   }, []);
 
@@ -467,6 +463,15 @@ export default function AdminBlog() {
       return;
     }
 
+    if (!currentWorkshop.comingSoon && !currentWorkshop.url.trim()) {
+      toast({
+        title: "Error",
+        description: "A ticket URL is required unless the workshop is marked as coming soon.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     setIsSaving(true);
     try {
       if (editingWorkshopId) {
@@ -543,13 +548,14 @@ export default function AdminBlog() {
 
   const handleLogout = () => {
     if (confirm('Are you sure you want to logout? You will need to re-enter the password to access the admin panel.')) {
-      clearAuthentication();
-      setIsAuthenticated(false);
-      setShowPasswordProtection(true);
-      
-      toast({
-        title: "Logged Out",
-        description: "You have been successfully logged out."
+      void logoutAdmin().finally(() => {
+        setIsAuthenticated(false);
+        setShowPasswordProtection(true);
+
+        toast({
+          title: "Logged Out",
+          description: "You have been successfully logged out."
+        });
       });
     }
   };

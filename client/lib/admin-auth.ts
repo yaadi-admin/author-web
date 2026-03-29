@@ -3,6 +3,9 @@ import type {
   AdminSessionResponse,
 } from "@shared/api";
 
+const SESSION_STORAGE_KEY = "admin_session_expires_at";
+const DEFAULT_SESSION_DURATION_MS = 120 * 60 * 1000;
+
 const readResponse = async <T>(
   response: Response,
 ): Promise<{ data: T | null; rawText: string }> => {
@@ -46,12 +49,52 @@ const getErrorMessage = (
   return fallback;
 };
 
+const hasStorage = () =>
+  typeof window !== "undefined" && typeof window.localStorage !== "undefined";
+
+const readStoredSessionExpiry = () => {
+  if (!hasStorage()) {
+    return null;
+  }
+
+  const rawValue = window.localStorage.getItem(SESSION_STORAGE_KEY);
+  if (!rawValue) {
+    return null;
+  }
+
+  const expiresAt = Number(rawValue);
+  if (!Number.isFinite(expiresAt) || expiresAt <= Date.now()) {
+    window.localStorage.removeItem(SESSION_STORAGE_KEY);
+    return null;
+  }
+
+  return expiresAt;
+};
+
+const storeSessionExpiry = (expiresAt?: number) => {
+  if (!hasStorage()) {
+    return;
+  }
+
+  window.localStorage.setItem(
+    SESSION_STORAGE_KEY,
+    String(expiresAt ?? Date.now() + DEFAULT_SESSION_DURATION_MS),
+  );
+};
+
+const clearStoredSessionExpiry = () => {
+  if (!hasStorage()) {
+    return;
+  }
+
+  window.localStorage.removeItem(SESSION_STORAGE_KEY);
+};
+
 export const loginAdmin = async (password: string): Promise<AdminSessionResponse> => {
   const payload: AdminLoginRequest = { password };
 
   const response = await fetch("/api/admin/login", {
     method: "POST",
-    credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
     },
@@ -65,26 +108,13 @@ export const loginAdmin = async (password: string): Promise<AdminSessionResponse
     );
   }
 
+  storeSessionExpiry(data.expiresAt);
   return data;
 };
 
-export const getAdminSession = async (): Promise<boolean> => {
-  const response = await fetch("/api/admin/session", {
-    method: "GET",
-    credentials: "same-origin",
-  });
-
-  if (!response.ok) {
-    return false;
-  }
-
-  const { data } = await readResponse<AdminSessionResponse>(response);
-  return Boolean(data?.authenticated);
-};
+export const getAdminSession = async (): Promise<boolean> =>
+  readStoredSessionExpiry() !== null;
 
 export const logoutAdmin = async (): Promise<void> => {
-  await fetch("/api/admin/logout", {
-    method: "POST",
-    credentials: "same-origin",
-  }).catch(() => undefined);
+  clearStoredSessionExpiry();
 };

@@ -5,8 +5,8 @@ import {
   logoutAdmin,
 } from "../lib/admin_auth";
 
-export const handleAdminLogin: RequestHandler = (request, response) => {
-  const result = loginAdmin(request.body);
+export const handleAdminLogin: RequestHandler = async (request, response) => {
+  const result = await loginAdmin(request.body);
 
   if (result.headers) {
     Object.entries(result.headers).forEach(([name, value]) => {
@@ -17,8 +17,8 @@ export const handleAdminLogin: RequestHandler = (request, response) => {
   return response.status(result.status).json(result.body);
 };
 
-export const handleAdminSession: RequestHandler = (request, response) => {
-  const result = getAdminSessionResponse(request.headers.cookie);
+export const handleAdminSession: RequestHandler = async (request, response) => {
+  const result = await getAdminSessionResponse(request.headers.cookie);
 
   if (result.headers) {
     Object.entries(result.headers).forEach(([name, value]) => {

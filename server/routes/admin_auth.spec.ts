@@ -6,11 +6,11 @@ afterEach(() => {
 });
 
 describe("loginAdmin", () => {
-  it("falls back to ADMIN_PASSWORD when ADMIN_SESSION_SECRET is blank", () => {
+  it("falls back to ADMIN_PASSWORD when ADMIN_SESSION_SECRET is blank", async () => {
     vi.stubEnv("ADMIN_PASSWORD", "admin-secret");
     vi.stubEnv("ADMIN_SESSION_SECRET", "");
 
-    const response = loginAdmin({
+    const response = await loginAdmin({
       password: "admin-secret",
     });
 
@@ -21,11 +21,11 @@ describe("loginAdmin", () => {
     });
   });
 
-  it("returns a JSON error when the password is wrong", () => {
+  it("returns a JSON error when the password is wrong", async () => {
     vi.stubEnv("ADMIN_PASSWORD", "admin-secret");
     vi.stubEnv("ADMIN_SESSION_SECRET", "");
 
-    const response = loginAdmin({
+    const response = await loginAdmin({
       password: "wrong-password",
     });
 
@@ -36,15 +36,15 @@ describe("loginAdmin", () => {
     });
   });
 
-  it("accepts a valid cookie from the generated session", () => {
+  it("accepts a valid cookie from the generated session", async () => {
     vi.stubEnv("ADMIN_PASSWORD", "admin-secret");
     vi.stubEnv("ADMIN_SESSION_SECRET", "");
 
-    const loginResponse = loginAdmin({
+    const loginResponse = await loginAdmin({
       password: "admin-secret",
     });
 
-    const sessionResponse = getAdminSessionResponse(
+    const sessionResponse = await getAdminSessionResponse(
       loginResponse.headers?.["Set-Cookie"],
     );
 

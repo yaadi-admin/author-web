@@ -9,7 +9,7 @@ const jsonResponse = (body: unknown, status: number, headers?: Record<string, st
     },
   });
 
-export function GET(request: Request) {
-  const result = getAdminSessionResponse(request.headers.get("cookie"));
+export async function GET(request: Request) {
+  const result = await getAdminSessionResponse(request.headers.get("cookie"));
   return jsonResponse(result.body, result.status, result.headers);
 }

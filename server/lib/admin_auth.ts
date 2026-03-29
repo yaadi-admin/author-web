@@ -1,8 +1,9 @@
-import crypto from "node:crypto";
 import type { AdminLoginRequest, AdminSessionResponse } from "@shared/api";
 
 const SESSION_COOKIE_NAME = "admin_session";
 const SESSION_DURATION_MS = 120 * 60 * 1000;
+const textEncoder = new TextEncoder();
+const textDecoder = new TextDecoder();
 
 export interface JsonResult<T> {
   status: number;
@@ -23,6 +24,28 @@ const getAdminPassword = () => readEnv("ADMIN_PASSWORD");
 const getSessionSecret = () =>
   readEnv("ADMIN_SESSION_SECRET") ?? readEnv("ADMIN_PASSWORD");
 
+const toBase64 = (bytes: Uint8Array) => {
+  let binary = "";
+
+  bytes.forEach((byte) => {
+    binary += String.fromCharCode(byte);
+  });
+
+  return btoa(binary);
+};
+
+const fromBase64 = (value: string) =>
+  Uint8Array.from(atob(value), (char) => char.charCodeAt(0));
+
+const toBase64Url = (bytes: Uint8Array) =>
+  toBase64(bytes).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+
+const fromBase64Url = (value: string) => {
+  const padding = (4 - (value.length % 4 || 4)) % 4;
+  const base64 = `${value.replace(/-/g, "+").replace(/_/g, "/")}${"=".repeat(padding)}`;
+  return fromBase64(base64);
+};
+
 const parseCookies = (cookieHeader?: string): Record<string, string> => {
   if (!cookieHeader) {
     return {};
@@ -39,27 +62,51 @@ const parseCookies = (cookieHeader?: string): Record<string, string> => {
   }, {});
 };
 
-const signPayload = (payload: string) => {
+const createHmacKey = async (usage: "sign" | "verify") => {
   const secret = getSessionSecret();
   if (!secret) {
     return null;
   }
 
-  return crypto.createHmac("sha256", secret).update(payload).digest("base64url");
+  return globalThis.crypto.subtle.importKey(
+    "raw",
+    textEncoder.encode(secret),
+    {
+      name: "HMAC",
+      hash: "SHA-256",
+    },
+    false,
+    [usage],
+  );
 };
 
-const createSessionToken = (expiresAt: number): string => {
-  const payload = Buffer.from(JSON.stringify({ exp: expiresAt }), "utf8").toString(
-    "base64url",
+const signPayload = async (payload: string) => {
+  const key = await createHmacKey("sign");
+  if (!key) {
+    return null;
+  }
+
+  const signature = await globalThis.crypto.subtle.sign(
+    "HMAC",
+    key,
+    textEncoder.encode(payload),
   );
-  const signature = signPayload(payload);
+
+  return toBase64Url(new Uint8Array(signature));
+};
+
+const createSessionToken = async (expiresAt: number): Promise<string> => {
+  const payload = toBase64Url(textEncoder.encode(JSON.stringify({ exp: expiresAt })));
+  const signature = await signPayload(payload);
+
   if (!signature) {
     throw new Error("Admin session secret is not configured.");
   }
+
   return `${payload}.${signature}`;
 };
 
-const getSessionExpiry = (cookieHeader?: string): number | null => {
+const getSessionExpiry = async (cookieHeader?: string): Promise<number | null> => {
   const token = parseCookies(cookieHeader)[SESSION_COOKIE_NAME];
   if (!token) {
     return null;
@@ -70,17 +117,16 @@ const getSessionExpiry = (cookieHeader?: string): number | null => {
     return null;
   }
 
-  const expectedSignature = signPayload(payload);
-  if (!expectedSignature) {
-    return null;
-  }
-  if (signature.length !== expectedSignature.length) {
+  const key = await createHmacKey("verify");
+  if (!key) {
     return null;
   }
 
-  const isValidSignature = crypto.timingSafeEqual(
-    Buffer.from(signature),
-    Buffer.from(expectedSignature),
+  const isValidSignature = await globalThis.crypto.subtle.verify(
+    "HMAC",
+    key,
+    fromBase64Url(signature),
+    textEncoder.encode(payload),
   );
 
   if (!isValidSignature) {
@@ -88,9 +134,9 @@ const getSessionExpiry = (cookieHeader?: string): number | null => {
   }
 
   try {
-    const decoded = JSON.parse(
-      Buffer.from(payload, "base64url").toString("utf8"),
-    ) as { exp?: number };
+    const decoded = JSON.parse(textDecoder.decode(fromBase64Url(payload))) as {
+      exp?: number;
+    };
 
     if (typeof decoded.exp !== "number" || decoded.exp <= Date.now()) {
       return null;
@@ -126,9 +172,9 @@ const clearCookie = () =>
     .filter(Boolean)
     .join("; ");
 
-export const loginAdmin = (
+export const loginAdmin = async (
   body?: Partial<AdminLoginRequest>,
-): JsonResult<AdminSessionResponse> => {
+): Promise<JsonResult<AdminSessionResponse>> => {
   try {
     const adminPassword = getAdminPassword();
     const password = body?.password;
@@ -164,7 +210,7 @@ export const loginAdmin = (
     }
 
     const expiresAt = Date.now() + SESSION_DURATION_MS;
-    const token = createSessionToken(expiresAt);
+    const token = await createSessionToken(expiresAt);
 
     return {
       status: 200,
@@ -189,10 +235,10 @@ export const loginAdmin = (
   }
 };
 
-export const getAdminSessionResponse = (
+export const getAdminSessionResponse = async (
   cookieHeader?: string | null,
-): JsonResult<AdminSessionResponse> => {
-  const expiresAt = getSessionExpiry(cookieHeader ?? undefined);
+): Promise<JsonResult<AdminSessionResponse>> => {
+  const expiresAt = await getSessionExpiry(cookieHeader ?? undefined);
 
   if (!expiresAt) {
     return {

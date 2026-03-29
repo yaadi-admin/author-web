@@ -14,6 +14,6 @@ export async function POST(request: Request) {
     .json()
     .catch(() => undefined);
 
-  const result = loginAdmin(body);
+  const result = await loginAdmin(body);
   return jsonResponse(result.body, result.status, result.headers);
 }

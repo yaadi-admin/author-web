@@ -1,51 +1,21 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { handleAdminLogin } from "./admin_auth";
-
-const createResponse = () => {
-  const response = {
-    headers: {} as Record<string, string>,
-    body: null as unknown,
-    statusCode: 200,
-    setHeader(name: string, value: string) {
-      this.headers[name] = value;
-      return this;
-    },
-    status(code: number) {
-      this.statusCode = code;
-      return this;
-    },
-    json(payload: unknown) {
-      this.body = payload;
-      return this;
-    },
-  };
-
-  return response;
-};
+import { getAdminSessionResponse, loginAdmin } from "../lib/admin_auth";
 
 afterEach(() => {
   vi.unstubAllEnvs();
 });
 
-describe("handleAdminLogin", () => {
+describe("loginAdmin", () => {
   it("falls back to ADMIN_PASSWORD when ADMIN_SESSION_SECRET is blank", () => {
     vi.stubEnv("ADMIN_PASSWORD", "admin-secret");
     vi.stubEnv("ADMIN_SESSION_SECRET", "");
 
-    const response = createResponse();
+    const response = loginAdmin({
+      password: "admin-secret",
+    });
 
-    handleAdminLogin(
-      {
-        body: {
-          password: "admin-secret",
-        },
-      } as never,
-      response as never,
-      {} as never,
-    );
-
-    expect(response.statusCode).toBe(200);
-    expect(response.headers["Set-Cookie"]).toContain("admin_session=");
+    expect(response.status).toBe(200);
+    expect(response.headers?.["Set-Cookie"]).toContain("admin_session=");
     expect(response.body).toMatchObject({
       authenticated: true,
     });
@@ -55,22 +25,32 @@ describe("handleAdminLogin", () => {
     vi.stubEnv("ADMIN_PASSWORD", "admin-secret");
     vi.stubEnv("ADMIN_SESSION_SECRET", "");
 
-    const response = createResponse();
+    const response = loginAdmin({
+      password: "wrong-password",
+    });
 
-    handleAdminLogin(
-      {
-        body: {
-          password: "wrong-password",
-        },
-      } as never,
-      response as never,
-      {} as never,
-    );
-
-    expect(response.statusCode).toBe(401);
+    expect(response.status).toBe(401);
     expect(response.body).toMatchObject({
       authenticated: false,
       error: "Invalid password.",
+    });
+  });
+
+  it("accepts a valid cookie from the generated session", () => {
+    vi.stubEnv("ADMIN_PASSWORD", "admin-secret");
+    vi.stubEnv("ADMIN_SESSION_SECRET", "");
+
+    const loginResponse = loginAdmin({
+      password: "admin-secret",
+    });
+
+    const sessionResponse = getAdminSessionResponse(
+      loginResponse.headers?.["Set-Cookie"],
+    );
+
+    expect(sessionResponse.status).toBe(200);
+    expect(sessionResponse.body).toMatchObject({
+      authenticated: true,
     });
   });
 });

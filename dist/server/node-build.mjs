@@ -79,16 +79,18 @@ const buildCustomerEmail = (payload) => {
     </div>
   `;
 };
-const handleContactForm = async (request, response) => {
+const submitContactForm = async (body) => {
   try {
-    const result = contactSchema.safeParse(request.body);
+    const result = contactSchema.safeParse(body);
     if (!result.success) {
-      const payload2 = {
-        success: false,
-        error: result.error.issues[0]?.message ?? "Invalid contact form payload.",
-        message: "Unable to submit the contact form."
+      return {
+        status: 400,
+        body: {
+          success: false,
+          error: result.error.issues[0]?.message ?? "Invalid contact form payload.",
+          message: "Unable to submit the contact form."
+        }
       };
-      return response.status(400).json(payload2);
     }
     const payload = result.data;
     const resend = getResendClient();
@@ -112,21 +114,31 @@ const handleContactForm = async (request, response) => {
       console.error("Confirmation email error:", error);
       return error;
     });
-    const responseBody = {
-      success: true,
-      message: "Contact form submitted successfully. We will get back to you soon.",
-      ...customerResult ? { warning: "Your message was received, but the confirmation email could not be sent." } : {}
+    return {
+      status: 200,
+      body: {
+        success: true,
+        message: "Contact form submitted successfully. We will get back to you soon.",
+        ...customerResult ? {
+          warning: "Your message was received, but the confirmation email could not be sent."
+        } : {}
+      }
     };
-    return response.json(responseBody);
   } catch (error) {
     console.error("Contact form error:", error);
-    const payload = {
-      success: false,
-      message: "Failed to submit contact form. Please try again later.",
-      error: "Failed to submit contact form. Please try again later."
+    return {
+      status: 500,
+      body: {
+        success: false,
+        message: "Failed to submit contact form. Please try again later.",
+        error: "Failed to submit contact form. Please try again later."
+      }
     };
-    return response.status(500).json(payload);
   }
+};
+const handleContactForm = async (request, response) => {
+  const result = await submitContactForm(request.body);
+  return response.status(result.status).json(result.body);
 };
 const SESSION_COOKIE_NAME = "admin_session";
 const SESSION_DURATION_MS = 120 * 60 * 1e3;
@@ -220,69 +232,116 @@ const clearCookie = () => [
   "Max-Age=0",
   "Secure"
 ].filter(Boolean).join("; ");
-const handleAdminLogin = (request, response) => {
+const loginAdmin = (body) => {
   try {
     const adminPassword = getAdminPassword();
-    const { password } = request.body ?? {};
+    const password = body?.password;
     if (!adminPassword) {
-      const payload2 = {
-        authenticated: false,
-        error: "ADMIN_PASSWORD is not configured."
+      return {
+        status: 500,
+        body: {
+          authenticated: false,
+          error: "ADMIN_PASSWORD is not configured."
+        }
       };
-      return response.status(500).json(payload2);
     }
     if (!password) {
-      const payload2 = {
-        authenticated: false,
-        error: "Password is required."
+      return {
+        status: 400,
+        body: {
+          authenticated: false,
+          error: "Password is required."
+        }
       };
-      return response.status(400).json(payload2);
     }
     if (password !== adminPassword) {
-      const payload2 = {
-        authenticated: false,
-        error: "Invalid password."
+      return {
+        status: 401,
+        body: {
+          authenticated: false,
+          error: "Invalid password."
+        }
       };
-      return response.status(401).json(payload2);
     }
     const expiresAt = Date.now() + SESSION_DURATION_MS;
     const token = createSessionToken(expiresAt);
-    response.setHeader(
-      "Set-Cookie",
-      buildCookie(token, Math.floor(SESSION_DURATION_MS / 1e3))
-    );
-    const payload = {
-      authenticated: true,
-      expiresAt
+    return {
+      status: 200,
+      headers: {
+        "Set-Cookie": buildCookie(token, Math.floor(SESSION_DURATION_MS / 1e3))
+      },
+      body: {
+        authenticated: true,
+        expiresAt
+      }
     };
-    return response.json(payload);
   } catch (error) {
     console.error("Admin login error:", error);
-    const payload = {
-      authenticated: false,
-      error: "Unable to start admin session."
+    return {
+      status: 500,
+      body: {
+        authenticated: false,
+        error: "Unable to start admin session."
+      }
     };
-    return response.status(500).json(payload);
   }
+};
+const getAdminSessionResponse = (cookieHeader) => {
+  const expiresAt = getSessionExpiry(cookieHeader ?? void 0);
+  if (!expiresAt) {
+    return {
+      status: 401,
+      headers: {
+        "Set-Cookie": clearCookie()
+      },
+      body: {
+        authenticated: false
+      }
+    };
+  }
+  return {
+    status: 200,
+    body: {
+      authenticated: true,
+      expiresAt
+    }
+  };
+};
+const logoutAdmin = () => ({
+  status: 200,
+  headers: {
+    "Set-Cookie": clearCookie()
+  },
+  body: {
+    success: true
+  }
+});
+const handleAdminLogin = (request, response) => {
+  const result = loginAdmin(request.body);
+  if (result.headers) {
+    Object.entries(result.headers).forEach(([name, value]) => {
+      response.setHeader(name, value);
+    });
+  }
+  return response.status(result.status).json(result.body);
 };
 const handleAdminSession = (request, response) => {
-  const expiresAt = getSessionExpiry(request.headers.cookie);
-  if (!expiresAt) {
-    response.setHeader("Set-Cookie", clearCookie());
-    const payload2 = {
-      authenticated: false
-    };
-    return response.status(401).json(payload2);
+  const result = getAdminSessionResponse(request.headers.cookie);
+  if (result.headers) {
+    Object.entries(result.headers).forEach(([name, value]) => {
+      response.setHeader(name, value);
+    });
   }
-  const payload = {
-    authenticated: true,
-    expiresAt
-  };
-  return response.json(payload);
+  return response.status(result.status).json(result.body);
 };
 const handleAdminLogout = (_request, response) => {
-  response.setHeader("Set-Cookie", clearCookie());
-  return response.json({ success: true });
+  const result = logoutAdmin();
+  if (result.headers) {
+    Object.entries(result.headers).forEach(([name, value]) => {
+      response.setHeader(name, value);
+    });
+  }
+  return response.status(result.status).json(result.body);
 };
 function createServer() {
   const app2 = express__default();

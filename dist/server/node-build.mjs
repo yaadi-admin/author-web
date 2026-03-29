@@ -130,8 +130,15 @@ const handleContactForm = async (request, response) => {
 };
 const SESSION_COOKIE_NAME = "admin_session";
 const SESSION_DURATION_MS = 120 * 60 * 1e3;
-const getAdminPassword = () => process.env.ADMIN_PASSWORD;
-const getSessionSecret = () => process.env.ADMIN_SESSION_SECRET ?? process.env.ADMIN_PASSWORD;
+const readEnv = (name) => {
+  const value = process.env[name];
+  if (typeof value !== "string") {
+    return void 0;
+  }
+  return value === "" ? void 0 : value;
+};
+const getAdminPassword = () => readEnv("ADMIN_PASSWORD");
+const getSessionSecret = () => readEnv("ADMIN_SESSION_SECRET") ?? readEnv("ADMIN_PASSWORD");
 const parseCookies = (cookieHeader) => {
   if (!cookieHeader) {
     return {};
@@ -214,40 +221,49 @@ const clearCookie = () => [
   "Secure"
 ].filter(Boolean).join("; ");
 const handleAdminLogin = (request, response) => {
-  const adminPassword = getAdminPassword();
-  const { password } = request.body ?? {};
-  if (!adminPassword) {
-    const payload2 = {
-      authenticated: false,
-      error: "ADMIN_PASSWORD is not configured."
+  try {
+    const adminPassword = getAdminPassword();
+    const { password } = request.body ?? {};
+    if (!adminPassword) {
+      const payload2 = {
+        authenticated: false,
+        error: "ADMIN_PASSWORD is not configured."
+      };
+      return response.status(500).json(payload2);
+    }
+    if (!password) {
+      const payload2 = {
+        authenticated: false,
+        error: "Password is required."
+      };
+      return response.status(400).json(payload2);
+    }
+    if (password !== adminPassword) {
+      const payload2 = {
+        authenticated: false,
+        error: "Invalid password."
+      };
+      return response.status(401).json(payload2);
+    }
+    const expiresAt = Date.now() + SESSION_DURATION_MS;
+    const token = createSessionToken(expiresAt);
+    response.setHeader(
+      "Set-Cookie",
+      buildCookie(token, Math.floor(SESSION_DURATION_MS / 1e3))
+    );
+    const payload = {
+      authenticated: true,
+      expiresAt
     };
-    return response.status(500).json(payload2);
-  }
-  if (!password) {
-    const payload2 = {
+    return response.json(payload);
+  } catch (error) {
+    console.error("Admin login error:", error);
+    const payload = {
       authenticated: false,
-      error: "Password is required."
+      error: "Unable to start admin session."
     };
-    return response.status(400).json(payload2);
+    return response.status(500).json(payload);
   }
-  if (password !== adminPassword) {
-    const payload2 = {
-      authenticated: false,
-      error: "Invalid password."
-    };
-    return response.status(401).json(payload2);
-  }
-  const expiresAt = Date.now() + SESSION_DURATION_MS;
-  const token = createSessionToken(expiresAt);
-  response.setHeader(
-    "Set-Cookie",
-    buildCookie(token, Math.floor(SESSION_DURATION_MS / 1e3))
-  );
-  const payload = {
-    authenticated: true,
-    expiresAt
-  };
-  return response.json(payload);
 };
 const handleAdminSession = (request, response) => {
   const expiresAt = getSessionExpiry(request.headers.cookie);

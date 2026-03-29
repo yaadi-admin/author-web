@@ -3,12 +3,47 @@ import type {
   AdminSessionResponse,
 } from "@shared/api";
 
-const getJson = async <T>(response: Response): Promise<T | null> => {
-  try {
-    return (await response.json()) as T;
-  } catch {
-    return null;
+const readResponse = async <T>(
+  response: Response,
+): Promise<{ data: T | null; rawText: string }> => {
+  const rawText = await response.text();
+  if (!rawText) {
+    return { data: null, rawText: "" };
   }
+
+  try {
+    return {
+      data: JSON.parse(rawText) as T,
+      rawText,
+    };
+  } catch {
+    return {
+      data: null,
+      rawText,
+    };
+  }
+};
+
+const getErrorMessage = (
+  response: Response,
+  data: AdminSessionResponse | null,
+  rawText: string,
+  fallback: string,
+) => {
+  if (data?.error) {
+    return data.error;
+  }
+
+  const trimmed = rawText.trim();
+  if (trimmed && !trimmed.startsWith("<")) {
+    return trimmed;
+  }
+
+  if (response.status >= 500) {
+    return "Admin login failed on the server.";
+  }
+
+  return fallback;
 };
 
 export const loginAdmin = async (password: string): Promise<AdminSessionResponse> => {
@@ -23,9 +58,11 @@ export const loginAdmin = async (password: string): Promise<AdminSessionResponse
     body: JSON.stringify(payload),
   });
 
-  const data = await getJson<AdminSessionResponse>(response);
+  const { data, rawText } = await readResponse<AdminSessionResponse>(response);
   if (!response.ok || !data?.authenticated) {
-    throw new Error(data?.error || "Invalid password.");
+    throw new Error(
+      getErrorMessage(response, data, rawText, "Invalid password."),
+    );
   }
 
   return data;
@@ -41,7 +78,7 @@ export const getAdminSession = async (): Promise<boolean> => {
     return false;
   }
 
-  const data = await getJson<AdminSessionResponse>(response);
+  const { data } = await readResponse<AdminSessionResponse>(response);
   return Boolean(data?.authenticated);
 };
 

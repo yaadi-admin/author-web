@@ -5,6 +5,7 @@ import express__default from "express";
 import cors from "cors";
 import { Resend } from "resend";
 import { z } from "zod";
+import { randomUUID } from "node:crypto";
 const handleDemo = (req, res) => {
   const response = {
     message: "Hello from Express server"
@@ -19,24 +20,24 @@ const contactSchema = z.object({
   title: z.string().trim().optional(),
   source: z.string().trim().optional()
 });
-const escapeHtml = (value) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
-const getResendClient = () => {
+const escapeHtml$1 = (value) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+const getResendClient$1 = () => {
   const resendApiKey = process.env.RESEND_API_KEY;
   if (!resendApiKey) {
     throw new Error("RESEND_API_KEY is not configured.");
   }
   return new Resend(resendApiKey);
 };
-const getFromAddress = () => process.env.CONTACT_FROM_EMAIL ?? "info@suelynempoweredliving.com";
-const getToAddress = () => process.env.CONTACT_TO_EMAIL ?? "info@suelynempoweredliving.com";
-const getBrandName = () => process.env.CONTACT_BRAND_NAME ?? "SueLyn Empowered Living";
+const getFromAddress$1 = () => process.env.CONTACT_FROM_EMAIL ?? "info@suelynempoweredliving.com";
+const getToAddress$1 = () => process.env.CONTACT_TO_EMAIL ?? "info@suelynempoweredliving.com";
+const getBrandName$1 = () => process.env.CONTACT_BRAND_NAME ?? "SueLyn Empowered Living";
 const buildBusinessEmail = (payload) => {
-  const title = escapeHtml(payload.title?.trim() || "New Contact Message");
-  const source = escapeHtml(payload.source?.trim() || "website");
-  const name = escapeHtml(payload.name);
-  const email = escapeHtml(payload.email);
-  const phone = escapeHtml(payload.phone?.trim() || "Not provided");
-  const message = escapeHtml(payload.message).replace(/\n/g, "<br />");
+  const title = escapeHtml$1(payload.title?.trim() || "New Contact Message");
+  const source = escapeHtml$1(payload.source?.trim() || "website");
+  const name = escapeHtml$1(payload.name);
+  const email = escapeHtml$1(payload.email);
+  const phone = escapeHtml$1(payload.phone?.trim() || "Not provided");
+  const message = escapeHtml$1(payload.message).replace(/\n/g, "<br />");
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <h2 style="color: #F84988;">${title}</h2>
@@ -60,9 +61,9 @@ const buildBusinessEmail = (payload) => {
   `;
 };
 const buildCustomerEmail = (payload) => {
-  const name = escapeHtml(payload.name);
-  const message = escapeHtml(payload.message).replace(/\n/g, "<br />");
-  const brandName = escapeHtml(getBrandName());
+  const name = escapeHtml$1(payload.name);
+  const message = escapeHtml$1(payload.message).replace(/\n/g, "<br />");
+  const brandName = escapeHtml$1(getBrandName$1());
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <h2 style="color: #F84988;">Thank You for Reaching Out</h2>
@@ -92,11 +93,11 @@ const submitContactForm = async (body) => {
       };
     }
     const payload = result.data;
-    const resend = getResendClient();
+    const resend = getResendClient$1();
     const transporter = resend.emails;
-    const brandName = getBrandName();
-    const fromAddress = getFromAddress();
-    const toAddress = getToAddress();
+    const brandName = getBrandName$1();
+    const fromAddress = getFromAddress$1();
+    const toAddress = getToAddress$1();
     await transporter.send({
       from: `${brandName} <${fromAddress}>`,
       to: [toAddress],
@@ -137,6 +138,266 @@ const submitContactForm = async (body) => {
 };
 const handleContactForm = async (request, response) => {
   const result = await submitContactForm(request.body);
+  return response.status(result.status).json(result.body);
+};
+const intakeSchema = z.object({
+  step: z.literal("intake"),
+  firstName: z.string().trim().min(1, "First name is required."),
+  lastName: z.string().trim().min(1, "Last name is required."),
+  email: z.string().trim().email("A valid email address is required."),
+  phone: z.string().trim().optional(),
+  serviceInterest: z.string().trim().min(1, "Please choose a coaching focus."),
+  preferredSessionType: z.string().trim().min(1, "Please choose a session format."),
+  message: z.string().trim().min(20, "Please share a little more about what support you need."),
+  termsAccepted: z.literal(true, {
+    errorMap: () => ({ message: "Terms must be accepted before continuing." })
+  }),
+  communicationsOptIn: z.boolean().optional()
+});
+const assessmentSchema = z.object({
+  step: z.literal("assessment"),
+  inquiryId: z.string().trim().min(1, "Missing coaching inquiry reference."),
+  firstName: z.string().trim().min(1, "First name is required."),
+  lastName: z.string().trim().min(1, "Last name is required."),
+  email: z.string().trim().email("A valid email address is required."),
+  phone: z.string().trim().optional(),
+  primaryChallenge: z.string().trim().min(15, "Please describe your primary challenge."),
+  desiredOutcome: z.string().trim().min(15, "Please describe your desired outcome."),
+  preferredTiming: z.string().trim().min(1, "Please choose your preferred availability."),
+  priorCoachingExperience: z.string().trim().min(1, "Please tell us about prior coaching experience."),
+  sessionCommitment: z.string().trim().min(1, "Please choose your commitment level."),
+  prayerFocus: z.string().trim().optional()
+});
+const coachingSchema = z.discriminatedUnion("step", [
+  intakeSchema,
+  assessmentSchema
+]);
+const escapeHtml = (value) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+const formatMultiline = (value) => escapeHtml(value).replace(/\n/g, "<br />");
+const getResendClient = () => {
+  const resendApiKey = process.env.RESEND_API_KEY;
+  if (!resendApiKey) {
+    throw new Error("RESEND_API_KEY is not configured.");
+  }
+  return new Resend(resendApiKey);
+};
+const getFromAddress = () => process.env.CONTACT_FROM_EMAIL ?? "info@suelynempoweredliving.com";
+const getToAddress = () => process.env.CONTACT_TO_EMAIL ?? "info@suelynempoweredliving.com";
+const getBrandName = () => process.env.CONTACT_BRAND_NAME ?? "SueLyn Empowered Living";
+const getSiteUrl = () => (process.env.PUBLIC_SITE_URL ?? "https://suelynempoweredliving.com").replace(/\/+$/, "");
+const buildFallbackMailtoUrl = (subject, inquiryId, email) => {
+  const toAddress = getToAddress();
+  const body = encodeURIComponent(
+    `Inquiry ID: ${inquiryId}
+Client Email: ${email}
+
+Please send the next-step details for this coaching request.`
+  );
+  return `mailto:${encodeURIComponent(toAddress)}?subject=${encodeURIComponent(subject)}&body=${body}`;
+};
+const getActionLinks = (inquiryId, email) => {
+  const siteUrl = getSiteUrl();
+  const schedulingUrl = process.env.COACHING_SCHEDULING_URL?.trim() || buildFallbackMailtoUrl("Schedule my coaching session", inquiryId, email);
+  const paymentUrl = process.env.COACHING_PAYMENT_URL?.trim() || buildFallbackMailtoUrl("Send my coaching payment link", inquiryId, email);
+  return {
+    links: {
+      assessmentUrl: `${siteUrl}/workshops#new-client-assessment`,
+      schedulingUrl,
+      paymentUrl
+    },
+    usingFallbackLinks: !process.env.COACHING_SCHEDULING_URL?.trim() || !process.env.COACHING_PAYMENT_URL?.trim()
+  };
+};
+const renderActionButtons = (links, usingFallbackLinks) => `
+  <div style="margin-top: 24px;">
+    ${links.assessmentUrl ? `<a href="${escapeHtml(links.assessmentUrl)}" style="display: inline-block; margin: 0 12px 12px 0; padding: 12px 18px; background: #F84988; color: #ffffff; text-decoration: none; border-radius: 999px; font-weight: 600;">Complete Assessment</a>` : ""}
+    ${links.schedulingUrl ? `<a href="${escapeHtml(links.schedulingUrl)}" style="display: inline-block; margin: 0 12px 12px 0; padding: 12px 18px; background: #111111; color: #ffffff; text-decoration: none; border-radius: 999px; font-weight: 600;">${usingFallbackLinks ? "Request Scheduling Link" : "Schedule Session"}</a>` : ""}
+    ${links.paymentUrl ? `<a href="${escapeHtml(links.paymentUrl)}" style="display: inline-block; margin: 0 12px 12px 0; padding: 12px 18px; background: #FFAC24; color: #111111; text-decoration: none; border-radius: 999px; font-weight: 700;">${usingFallbackLinks ? "Request Payment Link" : "Make Payment"}</a>` : ""}
+  </div>
+`;
+const buildIntakeBusinessEmail = (payload, inquiryId) => `
+  <div style="font-family: Arial, sans-serif; max-width: 680px; margin: 0 auto; color: #1a1a1a;">
+    <h2 style="color: #F84988;">New Coaching Inquiry</h2>
+    <p style="margin-top: 0;"><strong>Inquiry ID:</strong> ${escapeHtml(inquiryId)}</p>
+
+    <h3 style="color: #FFAC24;">Contact Details</h3>
+    <ul>
+      <li><strong>Name:</strong> ${escapeHtml(payload.firstName)} ${escapeHtml(payload.lastName)}</li>
+      <li><strong>Email:</strong> ${escapeHtml(payload.email)}</li>
+      <li><strong>Phone:</strong> ${escapeHtml(payload.phone?.trim() || "Not provided")}</li>
+    </ul>
+
+    <h3 style="color: #FFAC24;">Coaching Preferences</h3>
+    <ul>
+      <li><strong>Focus:</strong> ${escapeHtml(payload.serviceInterest)}</li>
+      <li><strong>Session Type:</strong> ${escapeHtml(payload.preferredSessionType)}</li>
+      <li><strong>Marketing Opt-In:</strong> ${payload.communicationsOptIn ? "Yes" : "No"}</li>
+    </ul>
+
+    <h3 style="color: #FFAC24;">What Support Is Needed</h3>
+    <div style="background-color: #fff5f8; padding: 18px; border-radius: 12px; border-left: 4px solid #F84988;">
+      ${formatMultiline(payload.message)}
+    </div>
+  </div>
+`;
+const buildAssessmentBusinessEmail = (payload, links, usingFallbackLinks) => `
+  <div style="font-family: Arial, sans-serif; max-width: 680px; margin: 0 auto; color: #1a1a1a;">
+    <h2 style="color: #F84988;">New Client Assessment Completed</h2>
+    <p style="margin-top: 0;"><strong>Inquiry ID:</strong> ${escapeHtml(payload.inquiryId)}</p>
+
+    <h3 style="color: #FFAC24;">Client Details</h3>
+    <ul>
+      <li><strong>Name:</strong> ${escapeHtml(payload.firstName)} ${escapeHtml(payload.lastName)}</li>
+      <li><strong>Email:</strong> ${escapeHtml(payload.email)}</li>
+      <li><strong>Phone:</strong> ${escapeHtml(payload.phone?.trim() || "Not provided")}</li>
+      <li><strong>Availability:</strong> ${escapeHtml(payload.preferredTiming)}</li>
+      <li><strong>Prior Coaching:</strong> ${escapeHtml(payload.priorCoachingExperience)}</li>
+      <li><strong>Commitment:</strong> ${escapeHtml(payload.sessionCommitment)}</li>
+    </ul>
+
+    <h3 style="color: #FFAC24;">Assessment Summary</h3>
+    <p><strong>Primary Challenge</strong><br />${formatMultiline(payload.primaryChallenge)}</p>
+    <p><strong>Desired Outcome</strong><br />${formatMultiline(payload.desiredOutcome)}</p>
+    <p><strong>Prayer Focus</strong><br />${formatMultiline(payload.prayerFocus?.trim() || "Not provided")}</p>
+
+    <h3 style="color: #FFAC24;">Client Next Steps</h3>
+    <p>${usingFallbackLinks ? "Scheduling and payment currently route through email fallback links." : "Scheduling and payment links were sent to the client automatically."}</p>
+    ${renderActionButtons(links, usingFallbackLinks)}
+  </div>
+`;
+const buildIntakeCustomerEmail = (payload, inquiryId, links) => {
+  const brandName = escapeHtml(getBrandName());
+  return `
+    <div style="font-family: Arial, sans-serif; max-width: 680px; margin: 0 auto; color: #1a1a1a;">
+      <h2 style="color: #F84988;">Your Coaching Request Has Started</h2>
+      <p>Dear ${escapeHtml(payload.firstName)},</p>
+      <p>Thank you for reaching out to ${brandName}. Your coaching inquiry has been received.</p>
+      <p><strong>Your inquiry ID:</strong> ${escapeHtml(inquiryId)}</p>
+      <p>The next step is your New Client Assessment Form so we can guide you into the right session, schedule, and payment path.</p>
+      ${renderActionButtons(
+    {
+      assessmentUrl: links.assessmentUrl
+    },
+    false
+  )}
+      <p style="margin-top: 20px;">We look forward to walking with you.</p>
+      <p>With care,<br />${brandName}</p>
+    </div>
+  `;
+};
+const buildAssessmentCustomerEmail = (payload, links, usingFallbackLinks) => {
+  const brandName = escapeHtml(getBrandName());
+  return `
+    <div style="font-family: Arial, sans-serif; max-width: 680px; margin: 0 auto; color: #1a1a1a;">
+      <h2 style="color: #F84988;">Your Next Coaching Steps Are Ready</h2>
+      <p>Dear ${escapeHtml(payload.firstName)},</p>
+      <p>We received your New Client Assessment Form and prepared the next step for your coaching journey.</p>
+      <p><strong>Your inquiry ID:</strong> ${escapeHtml(payload.inquiryId)}</p>
+      <p>${usingFallbackLinks ? "Use the buttons below to request your scheduling and payment links." : "Use the buttons below to schedule your session and complete payment."}</p>
+      ${renderActionButtons(links, usingFallbackLinks)}
+      <p style="margin-top: 20px;">We are honored to support your healing and growth.</p>
+      <p>With care,<br />${brandName}</p>
+    </div>
+  `;
+};
+const submitCoachingWorkflow = async (body) => {
+  try {
+    const result = coachingSchema.safeParse(body);
+    if (!result.success) {
+      return {
+        status: 400,
+        body: {
+          success: false,
+          error: result.error.issues[0]?.message ?? "Invalid coaching payload.",
+          message: "Unable to continue the coaching workflow."
+        }
+      };
+    }
+    const payload = result.data;
+    const resend = getResendClient();
+    const transporter = resend.emails;
+    const brandName = getBrandName();
+    const fromAddress = getFromAddress();
+    const toAddress = getToAddress();
+    if (payload.step === "intake") {
+      const inquiryId = `coach-${randomUUID().slice(0, 8)}`;
+      const { links: links2, usingFallbackLinks: usingFallbackLinks2 } = getActionLinks(inquiryId, payload.email);
+      await transporter.send({
+        from: `${brandName} <${fromAddress}>`,
+        to: [toAddress],
+        subject: `New Coaching Inquiry (${inquiryId})`,
+        html: buildIntakeBusinessEmail(payload, inquiryId),
+        replyTo: payload.email
+      });
+      const customerError2 = await transporter.send({
+        from: `${brandName} <${fromAddress}>`,
+        to: [payload.email],
+        subject: `Continue your coaching request (${inquiryId})`,
+        html: buildIntakeCustomerEmail(payload, inquiryId, links2)
+      }).then(() => null).catch((error) => {
+        console.error("Coaching intake confirmation email error:", error);
+        return error;
+      });
+      return {
+        status: 200,
+        body: {
+          success: true,
+          inquiryId,
+          nextStep: "assessment",
+          links: links2,
+          usingFallbackLinks: usingFallbackLinks2,
+          message: "Your coaching request is in. Complete the New Client Assessment Form to continue to scheduling and payment.",
+          ...customerError2 ? {
+            warning: "Your request was received, but the confirmation email could not be sent."
+          } : {}
+        }
+      };
+    }
+    const { links, usingFallbackLinks } = getActionLinks(payload.inquiryId, payload.email);
+    await transporter.send({
+      from: `${brandName} <${fromAddress}>`,
+      to: [toAddress],
+      subject: `New Client Assessment (${payload.inquiryId})`,
+      html: buildAssessmentBusinessEmail(payload, links, usingFallbackLinks),
+      replyTo: payload.email
+    });
+    const customerError = await transporter.send({
+      from: `${brandName} <${fromAddress}>`,
+      to: [payload.email],
+      subject: `Your coaching next steps (${payload.inquiryId})`,
+      html: buildAssessmentCustomerEmail(payload, links, usingFallbackLinks)
+    }).then(() => null).catch((error) => {
+      console.error("Coaching assessment confirmation email error:", error);
+      return error;
+    });
+    return {
+      status: 200,
+      body: {
+        success: true,
+        inquiryId: payload.inquiryId,
+        nextStep: "complete",
+        links,
+        usingFallbackLinks,
+        message: usingFallbackLinks ? "Assessment received. Use the buttons below to request your scheduling and payment links." : "Assessment received. You can now schedule your session and make payment.",
+        ...customerError ? {
+          warning: "Your assessment was received, but the confirmation email could not be sent."
+        } : {}
+      }
+    };
+  } catch (error) {
+    console.error("Coaching workflow error:", error);
+    return {
+      status: 500,
+      body: {
+        success: false,
+        message: "Failed to continue the coaching workflow. Please try again later.",
+        error: "Failed to continue the coaching workflow. Please try again later."
+      }
+    };
+  }
+};
+const handleCoachingWorkflow = async (request, response) => {
+  const result = await submitCoachingWorkflow(request.body);
   return response.status(result.status).json(result.body);
 };
 const SESSION_COOKIE_NAME = "admin_session";
@@ -388,6 +649,7 @@ function createServer() {
   });
   app2.get("/api/demo", handleDemo);
   app2.post("/api/contact", handleContactForm);
+  app2.post("/api/coaching", handleCoachingWorkflow);
   app2.post("/api/admin/login", handleAdminLogin);
   app2.get("/api/admin/session", handleAdminSession);
   app2.post("/api/admin/logout", handleAdminLogout);

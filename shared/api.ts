@@ -27,6 +27,57 @@ export interface ContactResponse {
   error?: string;
 }
 
+export type CoachingWorkflowStep = "intake" | "assessment";
+
+export interface CoachingActionLinks {
+  assessmentUrl?: string;
+  schedulingUrl?: string;
+  paymentUrl?: string;
+}
+
+export interface CoachingIntakeRequest {
+  step: "intake";
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string;
+  serviceInterest: string;
+  preferredSessionType: string;
+  message: string;
+  termsAccepted: boolean;
+  communicationsOptIn?: boolean;
+}
+
+export interface CoachingAssessmentRequest {
+  step: "assessment";
+  inquiryId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string;
+  primaryChallenge: string;
+  desiredOutcome: string;
+  preferredTiming: string;
+  priorCoachingExperience: string;
+  sessionCommitment: string;
+  prayerFocus?: string;
+}
+
+export type CoachingWorkflowRequest =
+  | CoachingIntakeRequest
+  | CoachingAssessmentRequest;
+
+export interface CoachingWorkflowResponse {
+  success: boolean;
+  message: string;
+  error?: string;
+  warning?: string;
+  inquiryId?: string;
+  nextStep?: "assessment" | "complete";
+  links?: CoachingActionLinks;
+  usingFallbackLinks?: boolean;
+}
+
 export interface AdminLoginRequest {
   password: string;
 }

@@ -10,6 +10,7 @@ import {
   setDoc,
   where,
 } from "firebase/firestore";
+import { isValid, parse, startOfDay } from "date-fns";
 import { z } from "zod";
 import firebase from "../lib/firebase";
 
@@ -43,8 +44,96 @@ const CACHE_DURATION = 5 * 60 * 1000;
 
 const isCacheValid = (): boolean => Date.now() - lastFetchTime < CACHE_DURATION;
 
-const sortWorkshops = (items: Workshop[]): Workshop[] =>
-  [...items].sort((left, right) => left.id - right.id);
+const DATE_PATTERNS = [
+  "MMMM do, yyyy",
+  "MMMM d, yyyy",
+  "MMMM do yyyy",
+  "MMMM d yyyy",
+  "MMM do, yyyy",
+  "MMM d, yyyy",
+  "MMM do yyyy",
+  "MMM d yyyy",
+  "yyyy-MM-dd",
+] as const;
+
+const normalizeWorkshopDateText = (value: string) =>
+  value
+    .replace(/\s+/g, " ")
+    .replace(/(\d)(st|nd|rd|th)\b/gi, "$1")
+    .trim();
+
+export const parseWorkshopDate = (value: string): Date | null => {
+  const trimmedValue = value.trim();
+  if (!trimmedValue) {
+    return null;
+  }
+
+  for (const pattern of DATE_PATTERNS) {
+    const parsedDate = parse(trimmedValue, pattern, new Date());
+    if (isValid(parsedDate)) {
+      return startOfDay(parsedDate);
+    }
+  }
+
+  const normalizedValue = normalizeWorkshopDateText(trimmedValue);
+  const fallbackDate = new Date(normalizedValue);
+
+  if (Number.isNaN(fallbackDate.getTime())) {
+    return null;
+  }
+
+  return startOfDay(fallbackDate);
+};
+
+export const getWorkshopTemporalStatus = (
+  workshop: Workshop,
+  referenceDate: Date = startOfDay(new Date()),
+): "upcoming" | "past" | "undated" => {
+  const parsedDate = parseWorkshopDate(workshop.date);
+  const comparisonDate = startOfDay(referenceDate);
+
+  if (!parsedDate) {
+    return "undated";
+  }
+
+  return parsedDate.getTime() < comparisonDate.getTime() ? "past" : "upcoming";
+};
+
+export const sortWorkshopsByRelevance = (items: Workshop[]): Workshop[] => {
+  const referenceDate = startOfDay(new Date());
+
+  return [...items].sort((left, right) => {
+    const leftDate = parseWorkshopDate(left.date);
+    const rightDate = parseWorkshopDate(right.date);
+
+    if (leftDate && rightDate) {
+      const leftIsPast = leftDate.getTime() < referenceDate.getTime();
+      const rightIsPast = rightDate.getTime() < referenceDate.getTime();
+
+      if (leftIsPast !== rightIsPast) {
+        return leftIsPast ? 1 : -1;
+      }
+
+      if (leftIsPast) {
+        return rightDate.getTime() - leftDate.getTime();
+      }
+
+      return leftDate.getTime() - rightDate.getTime();
+    }
+
+    if (leftDate) {
+      return -1;
+    }
+
+    if (rightDate) {
+      return 1;
+    }
+
+    return right.id - left.id;
+  });
+};
+
+const sortWorkshops = (items: Workshop[]): Workshop[] => sortWorkshopsByRelevance(items);
 
 const normalizeWorkshop = (documentId: string, data: unknown): Workshop | null => {
   const parsed = workshopSchema.safeParse(data);

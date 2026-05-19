@@ -8,7 +8,10 @@ import {
   useRef,
 } from "react";
 import { submitContactForm } from "../lib/contact";
+import { addRegistration } from "../data/registrations";
 import { toast } from "../hooks/use-toast";
+import { useCountdown } from "../hooks/use-countdown";
+import { RETREAT_DATE } from "../lib/retreat-config";
 import {
   Accordion,
   AccordionContent,
@@ -16,11 +19,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { speakingReviews } from "../data/reviews";
-
-/* ------------------------------------------------------------------ */
-/*  CONFIG                                                            */
-/* ------------------------------------------------------------------ */
-const RETREAT_DATE = new Date("2026-09-15T09:00:00-05:00");
 
 /* ------------------------------------------------------------------ */
 /*  DATA                                                              */
@@ -147,9 +145,34 @@ const faqs = [
       "Yes. Faith-centered principles will be incorporated throughout the experience, creating a sacred space for spiritual, emotional, and relational growth.",
   },
   {
+    question: "What is the registration fee?",
+    answer:
+      "Singles Registration is $100 USD and Couples Registration is $180 USD. This secures your spot and covers your initial retreat access.",
+  },
+  {
+    question: "Is the registration fee non-refundable?",
+    answer:
+      "Yes, the registration fee is non-refundable. Please review our full Retreat Policies & Terms section for complete details.",
+  },
+  {
     question: "Are payment plans available?",
     answer:
-      "Yes. Flexible payment options are available for select packages. All payments are due by August 31st, 2026.",
+      "Yes. Payment plans are available for the Full In-Person Retreat package. For other packages, contact the SueLyn Empowered Living team to discuss possible arrangements. All payments are due by August 31st, 2026.",
+  },
+  {
+    question: "Which packages will allow payment plans?",
+    answer:
+      "Payment plans are primarily available for the Full In-Person Retreat package. Contact our team after registration to discuss personalized payment arrangements for other packages.",
+  },
+  {
+    question: "What payment methods will be accepted?",
+    answer:
+      "We accept all major debit and credit cards, PayPal, bank transfer, Lynk, and other secure payment methods through our payment portal.",
+  },
+  {
+    question: "Does the NDA need to be signed before payment plan details are shared, or after?",
+    answer:
+      "We recommend the following flow: complete your registration fee first, then fill out the retreat form and sign the NDA. Payment plan details will be shared after these steps are completed.",
   },
   {
     question: "Will recordings be available?",
@@ -191,36 +214,6 @@ const experienceFeatures = [
   "Spiritual & Emotional Alignment",
   "Practical Relationship Tools",
 ];
-
-/* ------------------------------------------------------------------ */
-/*  HOOKS                                                             */
-/* ------------------------------------------------------------------ */
-
-function useCountdown(targetDate: Date) {
-  const calculateTimeLeft = useCallback(() => {
-    const difference = targetDate.getTime() - Date.now();
-    if (difference <= 0) {
-      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-    }
-    return {
-      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-      minutes: Math.floor((difference / (1000 * 60)) % 60),
-      seconds: Math.floor((difference / 1000) % 60),
-    };
-  }, [targetDate]);
-
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [calculateTimeLeft]);
-
-  return timeLeft;
-}
 
 /* ------------------------------------------------------------------ */
 /*  COMPONENT                                                         */
@@ -309,6 +302,18 @@ export default function LoverNeverEnds() {
 
       setIsSubmitting(true);
       try {
+        // Persist to Firestore first
+        await addRegistration({
+          fullName: formData.fullName,
+          partnerName: formData.partnerName || undefined,
+          email: formData.email,
+          phone: formData.phone || undefined,
+          packageSelection: formData.packageSelection,
+          emergencyContact: formData.emergencyContact || undefined,
+          paymentPlanRequest: formData.paymentPlanRequest || undefined,
+          source: "Lover Never Ends Retreat Registration",
+        });
+
         const messageBody = [
           `Full Name: ${formData.fullName}`,
           `Spouse/Partner Name: ${formData.partnerName || "Not provided"}`,
@@ -452,8 +457,25 @@ export default function LoverNeverEnds() {
         </div>
       </section>
 
+      {/* ===================== FLYER SHOWCASE ===================== */}
+      <section className="py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB]">
+        <div className="container mx-auto max-w-4xl">
+          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl ring-4 ring-white/20">
+            <img
+              src="/Lover-never-ends-flyer.jpeg"
+              alt="Lover Never Ends Retreat Flyer"
+              className="w-full h-auto object-cover"
+              loading="eager"
+            />
+          </div>
+          <p className="text-center font-inter text-sm text-black/50 mt-4">
+            October 19, 2026 · A Divine Design Experience for Couples
+          </p>
+        </div>
+      </section>
+
       {/* ===================== ABOUT ===================== */}
-      <section className="py-16 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB]">
+      <section className="py-16 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#F1E6DB] to-[#F1E6DB]">
         <div className="container mx-auto max-w-4xl text-center">
           <p className="font-playfair text-suelyn-pink text-sm sm:text-base uppercase tracking-widest mb-4">
             About The Experience
@@ -1038,7 +1060,7 @@ export default function LoverNeverEnds() {
               "Payment plans must be completed by August 31, 2026.",
               "Speakers and schedule are subject to change if necessary.",
               "Participants consent to event photography and video coverage for promotional purposes.",
-              "You will be required to sign an NDA. This will be sent once all payments are received.",
+              "You will be required to sign an NDA. This will be sent after your registration fee is received and your retreat form is completed.",
             ].map((policy) => (
               <div key={policy} className="flex items-start gap-3">
                 <div className="w-2 h-2 rounded-full bg-suelyn-pink flex-shrink-0 mt-2" />

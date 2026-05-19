@@ -3,6 +3,106 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { speakingReviews, Review } from '../data/reviews';
 import Footer from './footer';
 import { Link } from 'react-router-dom';
+import { useCountdown } from '../hooks/use-countdown';
+import { RETREAT_DATE, REGISTRATION_LINKS } from '../lib/retreat-config';
+import { Sparkles, ArrowRight } from 'lucide-react';
+
+function RetreatPromoBanner() {
+  const countdown = useCountdown(RETREAT_DATE);
+
+  return (
+    <section className="relative w-full overflow-hidden bg-gradient-to-br from-[#290712] via-[#53112d] to-[#F84988]">
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#FFAC24] rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#F84988] rounded-full blur-[120px]" />
+      </div>
+
+      <div className="relative z-10 container mx-auto px-4 py-10 sm:py-14 md:py-18">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Flyer Image */}
+          <div className="order-2 lg:order-1">
+            <Link to="/lover-never-ends" className="block group">
+              <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl ring-4 ring-white/10 transition-all duration-500 group-hover:shadow-[0_32px_100px_rgba(248,73,136,0.35)] group-hover:ring-white/20 group-hover:scale-[1.02]">
+                <img
+                  src="/Lover-never-ends-flyer.jpeg"
+                  alt="Lover Never Ends Retreat Flyer"
+                  className="w-full h-auto object-cover"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            </Link>
+          </div>
+
+          {/* Content */}
+          <div className="order-1 lg:order-2 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs sm:text-sm font-semibold uppercase tracking-widest text-white/90 mb-5">
+              <Sparkles className="h-4 w-4" />
+              Upcoming Experience — Oct 19, 2026
+            </div>
+
+            <h2 className="font-charm text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-none mb-3">
+              Lover Never Ends
+            </h2>
+            <p className="font-playfair text-base sm:text-lg md:text-xl text-white/80 mb-8">
+              A Divine Design Experience for Couples
+            </p>
+
+            {/* Countdown */}
+            <div className="flex justify-center lg:justify-start gap-2 sm:gap-4 mb-8">
+              {[
+                { value: countdown.days, label: "Days" },
+                { value: countdown.hours, label: "Hours" },
+                { value: countdown.minutes, label: "Minutes" },
+                { value: countdown.seconds, label: "Seconds" },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="bg-white/10 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4 min-w-[60px] sm:min-w-[80px] md:min-w-[90px]"
+                >
+                  <div className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white">
+                    {String(item.value).padStart(2, "0")}
+                  </div>
+                  <div className="font-inter text-[10px] sm:text-xs md:text-sm text-white/60 uppercase tracking-wider">
+                    {item.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Registration Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start items-center mb-4">
+              <a
+                href={REGISTRATION_LINKS.singles}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto bg-white text-[#F84988] px-6 sm:px-8 py-3 sm:py-4 rounded-full font-inter font-semibold text-sm sm:text-base hover:bg-white/90 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-center"
+              >
+                Singles — $100 USD
+              </a>
+              <a
+                href={REGISTRATION_LINKS.couples}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto bg-[#FFAC24] text-[#111111] px-6 sm:px-8 py-3 sm:py-4 rounded-full font-inter font-semibold text-sm sm:text-base hover:bg-[#e69920] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-center"
+              >
+                Couples — $180 USD
+              </a>
+            </div>
+
+            <Link
+              to="/lover-never-ends"
+              className="inline-flex items-center gap-2 text-white font-inter font-semibold text-xs sm:text-sm uppercase tracking-wider hover:text-white/80 transition-colors"
+            >
+              Learn More About the Retreat
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export const footerPictures = [
   "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.13.42.jpeg?alt=media&token=b8d6e1a3-f9c8-4f9f-9922-e1845f387b52",
@@ -172,6 +272,8 @@ export default function Index() {
           </h2>
         </div>
 
+      {/* ===================== RETREAT PROMO BANNER ===================== */}
+      <RetreatPromoBanner />
 
       {/* Mission Statement Section */}
       <section className="py-6 sm:py-8 md:py-12 lg:py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE] mt-[5%]">

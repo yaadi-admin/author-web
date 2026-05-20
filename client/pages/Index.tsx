@@ -70,26 +70,6 @@ function RetreatPromoBanner() {
               ))}
             </div>
 
-            {/* Registration Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start items-center mb-4">
-              <a
-                href={REGISTRATION_LINKS.singles}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto bg-white text-[#F84988] px-6 sm:px-8 py-3 sm:py-4 rounded-full font-inter font-semibold text-sm sm:text-base hover:bg-white/90 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-center"
-              >
-                Singles — $100 USD
-              </a>
-              <a
-                href={REGISTRATION_LINKS.couples}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto bg-[#FFAC24] text-[#111111] px-6 sm:px-8 py-3 sm:py-4 rounded-full font-inter font-semibold text-sm sm:text-base hover:bg-[#e69920] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-center"
-              >
-                Couples — $180 USD
-              </a>
-            </div>
-
             <Link
               to="/lover-never-ends"
               className="inline-flex items-center gap-2 text-white font-inter font-semibold text-xs sm:text-sm uppercase tracking-wider hover:text-white/80 transition-colors"

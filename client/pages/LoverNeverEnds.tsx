@@ -11,7 +11,7 @@ import { submitContactForm } from "../lib/contact";
 import { addRegistration } from "../data/registrations";
 import { toast } from "../hooks/use-toast";
 import { useCountdown } from "../hooks/use-countdown";
-import { RETREAT_DATE } from "../lib/retreat-config";
+import { RETREAT_DATE, REGISTRATION_LINKS } from "../lib/retreat-config";
 import {
   Accordion,
   AccordionContent,
@@ -892,14 +892,14 @@ export default function LoverNeverEnds() {
           <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 sm:p-12 md:p-16 border border-white/60 shadow-xl">
             <div className="text-center mb-10">
               <p className="font-playfair text-suelyn-pink text-sm sm:text-base uppercase tracking-widest mb-4">
-                Secure Your Spot
+                Step 1 of 2
               </p>
               <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-4">
-                Register Now
+                Share Your Details
               </h2>
               <p className="font-helvetica text-base sm:text-lg text-black/60">
-                Spaces are limited. Complete the form below and our team will contact you
-                with payment and next-step details.
+                Let us know who you are and which package you're interested in. Then pay your
+                registration fee below to secure your spot.
               </p>
             </div>
 
@@ -1010,9 +1010,47 @@ export default function LoverNeverEnds() {
                 disabled={isSubmitting}
                 className="w-full bg-suelyn-pink text-white py-4 rounded-full font-inter font-semibold text-base sm:text-lg hover:bg-suelyn-pink/90 transition-all shadow-lg hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {isSubmitting ? "Submitting..." : "Complete Registration"}
+                {isSubmitting ? "Submitting..." : "Submit My Details"}
               </button>
             </form>
+
+            {/* Step 2: Registration Fee */}
+            <div className="mt-10 pt-10 border-t border-black/10">
+              <div className="text-center mb-6">
+                <p className="font-playfair text-suelyn-pink text-sm sm:text-base uppercase tracking-widest mb-2">
+                  Step 2 of 2
+                </p>
+                <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-black mb-2">
+                  Pay Your Registration Fee
+                </h3>
+                <p className="font-helvetica text-sm sm:text-base text-black/60 max-w-lg mx-auto">
+                  This non-refundable fee secures your spot. Package balance is due by August 31st, 2026.
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a
+                  href={REGISTRATION_LINKS.singles}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto bg-suelyn-pink text-white px-8 py-4 rounded-full font-inter font-semibold text-base sm:text-lg hover:bg-suelyn-pink/90 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-center"
+                >
+                  Register Here — Singles $100 USD
+                </a>
+                <a
+                  href={REGISTRATION_LINKS.couples}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto bg-[#FFAC24] text-[#111111] px-8 py-4 rounded-full font-inter font-semibold text-base sm:text-lg hover:bg-[#e69920] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-center"
+                >
+                  Register Here — Couples $180 USD
+                </a>
+              </div>
+
+              <p className="text-center font-helvetica text-xs text-black/40 mt-4">
+                Registration fee is non-refundable. You'll receive next steps via email within 24 hours.
+              </p>
+            </div>
           </div>
         </div>
       </section>

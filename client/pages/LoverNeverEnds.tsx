@@ -55,7 +55,7 @@ const speakers: Speaker[] = [
     title: "Trauma-Informed Specialist",
     sessionTitle: "Restored From Within: The Healing That Rebuilds Your Marriage",
     focus: "What You Haven't Healed Is Still Showing Up",
-    bio: "Chantaeu Munroe, Author of Layers of Healing: Discovering Purpose in Pain and Trauma, is a Certified Trauma-Informed and Christian Life Coach, and the CEO & Founder of CKM Healing Consultancy. She empowers organizations, individuals, and families to heal from trauma and break destructive cycles through faith-based, holistic approaches.",
+    bio: "Chantaeu Munroe is the author of Layers of Healing: Discovering Purpose in Pain and Trauma, a Certified Trauma-Informed and Christian Life Coach, and the CEO & Founder of CKM Healing Consultancy and the Layers of Healing Foundation. She helps individuals, families, and organizations heal from trauma, break destructive cycles, and build healthier patterns through faith-based, holistic support.",
     color: "#8B5CF6",
   },
   {
@@ -71,68 +71,121 @@ const speakers: Speaker[] = [
 interface PackageOption {
   name: string;
   price: string;
+  description?: string;
   badge?: string;
   features: string[];
   highlighted?: boolean;
+  ctaLabel?: string;
+  ctaHref?: string;
 }
 
 const packages: PackageOption[] = [
   {
-    name: "Online Experience Pass",
-    price: "$150 USD",
-    features: [
-      "Full virtual access to all 4 days",
-      "Session recordings",
-      "Retreat materials",
-      "SueLyn Empowered Community access",
-    ],
-  },
-  {
-    name: "Online + 2 Coaching Sessions",
-    price: "$250 USD",
-    badge: "Most Popular",
+    name: "Full Couples Retreat Experience",
+    price: "$2,600 USD + $180 Registration Fee (Per Couple)",
+    description:
+      "A premium 4 Days / 3 Nights transformational experience intentionally designed for couples seeking healing, reconnection, restoration, and alignment.",
+    badge: "Premium Experience",
     highlighted: true,
     features: [
-      "Everything in the Online Experience Pass",
-      "Two personalized coaching sessions",
+      "Luxury accommodation",
+      "All meals",
+      "Full retreat access",
+      "Direct connection to the Voices",
+      "Transformational sessions",
+      "Offsite curated rekindling experiences",
+      "Themed group activities",
+      "Welcome package & keepsakes",
+      "Face-to-face networking with premier sponsors",
+    ],
+    ctaLabel: "In-Person Couples Secure Your Spot - Register Now",
+    ctaHref: REGISTRATION_LINKS.couples,
+  },
+  {
+    name: "Singles In-Person Experience",
+    price: "$2,350 USD + $100 USD Registration Fee",
+    description:
+      "A healing and restoration experience for individuals seeking emotional wellness, clarity, alignment, and personal growth.",
+    features: [
+      "Single occupancy accommodation",
+      "All meals",
+      "Full retreat access",
+      "Direct connection to the Voices",
+      "Transformational sessions",
+      "Offsite curated rekindling experiences",
+      "Themed group activities",
+      "Welcome package & keepsakes",
+      "Face-to-face networking with premier sponsors",
+    ],
+    ctaLabel: "In-Person Singles Secure Your Spot - Register Now",
+    ctaHref: REGISTRATION_LINKS.singles,
+  },
+  {
+    name: "Shared Accommodation Experience",
+    price: "$1,300 USD + $100 USD Registration Fee (Per Person)",
+    description:
+      "Attend the full retreat experience alongside a selected roommate or friend.",
+    features: [
+      "Shared accommodation",
+      "All meals",
+      "Full retreat access",
+      "Direct connection to the Voices",
+      "Transformational sessions",
+      "Offsite curated rekindling experiences",
+      "Themed group activities",
+      "Welcome package & keepsakes",
+      "Face-to-face networking with premier sponsors",
     ],
   },
   {
-    name: "Transformation Experience",
+    name: "One-Day Couples Experience",
+    price: "$650 USD (Per Couple)",
+    description:
+      "A one-day transformational reset experience for couples seeking meaningful connection, restoration, and quality time together.",
+    features: [
+      "One-day in-person access",
+      "Meals included",
+      "Retreat materials",
+      "Guided activities",
+      "Transformational sessions",
+    ],
+  },
+  {
+    name: "Online Experience Pass",
+    price: "$150 USD",
+    description: "Experience the retreat virtually from anywhere in the world.",
+    features: [
+      "Virtual access to all 3 days",
+      "Session recordings",
+      "Retreat materials",
+      "Online Community access",
+    ],
+  },
+  {
+    name: "Online Experience + Coaching",
+    price: "$250 USD",
+    badge: "Most Popular",
+    features: [
+      "Everything in Online Pass",
+      "Two coaching sessions",
+    ],
+  },
+  {
+    name: "Transformation Experience Package",
     price: "$500 USD",
     features: [
-      "Everything in the Online Experience Pass",
-      "Four personalized coaching sessions",
-      "A copy of B.A.N.T.T.E. (Build a Nation Not Two Empires)",
-    ],
-  },
-  {
-    name: "One-Day In-Person",
-    price: "$650 USD",
-    features: [
-      "One day in-person access",
-      "Meals included",
-      "Session materials",
-      "Activities",
-    ],
-  },
-  {
-    name: "Full In-Person Retreat",
-    price: "$2,600 USD + $180 Registration Fee",
-    badge: "Premium Experience",
-    features: [
-      "4 Days / 3 Nights accommodation",
-      "All meals included",
-      "Full retreat access",
-      "Exclusive retreat bonuses",
+      "Everything in Online Pass",
+      "Four coaching sessions",
+      "Copy of B.A.N.T.T.E. (Build a Nation Not Two Empires by Suzanna D. Griffiths)",
     ],
   },
   {
     name: "Church Group Virtual",
     price: "$100,000 JMD",
+    description: "A shared virtual retreat experience for churches and ministry groups.",
     features: [
-      "Virtual access for 10 persons",
-      "Group participation experience",
+      "Access for up to 10 persons",
+      "Group participation",
       "Retreat materials",
     ],
   },
@@ -145,34 +198,9 @@ const faqs = [
       "Yes. Faith-centered principles will be incorporated throughout the experience, creating a sacred space for spiritual, emotional, and relational growth.",
   },
   {
-    question: "What is the registration fee?",
-    answer:
-      "Singles Registration is $100 USD and Couples Registration is $180 USD. This secures your spot and covers your initial retreat access.",
-  },
-  {
-    question: "Is the registration fee non-refundable?",
-    answer:
-      "Yes, the registration fee is non-refundable. Please review our full Retreat Policies & Terms section for complete details.",
-  },
-  {
     question: "Are payment plans available?",
     answer:
-      "Yes. Payment plans are available for the Full In-Person Retreat package. For other packages, contact the SueLyn Empowered Living team to discuss possible arrangements. All payments are due by August 31st, 2026.",
-  },
-  {
-    question: "Which packages will allow payment plans?",
-    answer:
-      "Payment plans are primarily available for the Full In-Person Retreat package. Contact our team after registration to discuss personalized payment arrangements for other packages.",
-  },
-  {
-    question: "What payment methods will be accepted?",
-    answer:
-      "We accept all major debit and credit cards, PayPal, bank transfer, Lynk, and other secure payment methods through our payment portal.",
-  },
-  {
-    question: "Does the NDA need to be signed before payment plan details are shared, or after?",
-    answer:
-      "We recommend the following flow: complete your registration fee first, then fill out the retreat form and sign the NDA. Payment plan details will be shared after these steps are completed.",
+      "Yes. Flexible payment options are available for select packages. All payments are due by August 31, 2026.",
   },
   {
     question: "Will recordings be available?",
@@ -182,7 +210,7 @@ const faqs = [
   {
     question: "Is accommodation included in all packages?",
     answer:
-      "Accommodation is only included in the Full In-Person Retreat package. The One-Day In-Person Experience includes meals and activities but does not include overnight accommodation.",
+      "Accommodation is only included in the Full Couples Retreat Experience, Singles In-Person Experience, and Shared Accommodation Experience. The One-Day Couples Experience does not include overnight accommodation.",
   },
   {
     question: "Can I upgrade my package later?",
@@ -190,29 +218,32 @@ const faqs = [
       "Yes, subject to availability. Contact the SueLyn Empowered Living team to discuss upgrade options.",
   },
   {
-    question: "What is the refund policy?",
+    question: "Is the registration fee non-refundable?",
     answer:
-      "Registration fees are non-refundable. Please review our full Retreat Policies & Terms section for complete details.",
+      "Yes. Registration fees are non-refundable. Please review the Retreat Policies & Terms section for full details.",
   },
 ];
 
 const audienceList = [
   { label: "Married & Engaged Couples", icon: "💍" },
-  { label: "Couples Seeking Restoration", icon: "🤝" },
+  { label: "Couples Seeking Restoration or Navigating Transition", icon: "🤝" },
   { label: "Parents", icon: "🏠" },
   { label: "Church Leaders & Family Ministry", icon: "⛪" },
-  { label: "Police Officers & Counselors", icon: "🛡️" },
+  { label: "Police Officers Handling Domestic Disputes", icon: "🛡️" },
+  { label: "Guidance Counselors", icon: "🗣️" },
   { label: "Individuals Desiring Healthier Patterns", icon: "🌱" },
 ];
 
 const experienceFeatures = [
   "Transformational Teaching Sessions",
   "Healing & Restoration Conversations",
-  "Guided Couple Exercises",
-  "Coaching & Reflection Moments",
-  "Community & Connection",
+  "Guided Reflection and Self-Discovery Moments",
+  "Practical Relationship and Emotional Wellness Tools",
+  "Curated Rekindling and Restoration Experiences",
+  "Themed Group Activities and Meaningful Connection Opportunities",
+  "Community, Encouragement, and Safe Conversations",
   "Spiritual & Emotional Alignment",
-  "Practical Relationship Tools",
+  "Intentional Moments Designed to Help You Reconnect with Yourself and Others",
 ];
 
 /* ------------------------------------------------------------------ */
@@ -315,12 +346,12 @@ export default function LoverNeverEnds() {
         });
 
         const messageBody = [
-          `Full Name: ${formData.fullName}`,
-          `Spouse/Partner Name: ${formData.partnerName || "Not provided"}`,
-          `Phone: ${formData.phone || "Not provided"}`,
-          `Package: ${formData.packageSelection}`,
-          `Emergency Contact: ${formData.emergencyContact || "Not provided"}`,
-          `Payment Plan Request: ${formData.paymentPlanRequest || "Not requested"}`,
+          "A new Lover Never Ends registration was submitted.",
+          "",
+          `Package selected: ${formData.packageSelection}`,
+          `Payment plan requested: ${formData.paymentPlanRequest ? "Yes" : "No"}`,
+          "",
+          "Please review the registration details and follow up with next steps.",
         ].join("\n");
 
         await submitContactForm({
@@ -330,6 +361,14 @@ export default function LoverNeverEnds() {
           title: "Lover Never Ends Retreat Registration",
           source: "Retreat Registration Form",
           message: messageBody,
+          registrationDetails: {
+            fullName: formData.fullName,
+            partnerName: formData.partnerName,
+            phone: formData.phone,
+            packageSelection: formData.packageSelection,
+            emergencyContact: formData.emergencyContact,
+            paymentPlanRequest: formData.paymentPlanRequest,
+          },
         });
 
         toast({
@@ -405,13 +444,19 @@ export default function LoverNeverEnds() {
             Lover Never Ends
           </h1>
           <h2 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white/90 font-medium mb-6">
-            A Healing, Restoration & Alignment Reset for Couples
+            More than a Retreat. It Is a Reset.
           </h2>
-          <p className="font-helvetica text-base sm:text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl mx-auto mb-10">
-            Whether you are rebuilding, reconnecting, healing, or simply seeking
-            deeper alignment in your relationship, this experience is designed to
-            pour back into you both intentionally — spiritually, emotionally, and
-            relationally.
+          <p className="font-helvetica text-base sm:text-lg md:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto mb-10">
+            Sometimes life, pain, disappointment, responsibilities, and disconnection
+            quietly create distance, not only between people, but within ourselves.
+            Lover Never Ends was created as a space to pause, heal, reconnect, and
+            realign. Whether you are attending as a couple seeking restoration and a
+            deeper connection or as an individual pursuing healing, clarity, and
+            emotional wellness, this experience is designed to intentionally pour back
+            into you. Through transformational conversations, curated experiences,
+            practical relationship tools, healing moments, and community, you will
+            leave refreshed, empowered, and reminded that healthy love, beginning
+            within yourself, still matters.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
@@ -469,7 +514,7 @@ export default function LoverNeverEnds() {
             />
           </div>
           <p className="text-center font-inter text-sm text-black/50 mt-4">
-            October 19, 2026 · A Divine Design Experience for Couples
+            October 16, 2026 · A Divine Design Experience
           </p>
         </div>
       </section>
@@ -483,22 +528,24 @@ export default function LoverNeverEnds() {
           <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-8 leading-tight">
             More Than a Retreat.
             <br />
-            <span className="text-suelyn-pink">A Sacred Space.</span>
+            <span className="text-suelyn-pink">It Is a Reset.</span>
           </h2>
           <p className="font-helvetica text-base sm:text-lg md:text-xl text-black/70 leading-relaxed mb-6">
-            <em className="font-playfair">Lover Never Ends: A Divine Design Experience</em> is
-            intentionally created for couples to pause, reconnect, heal, and realign.
+            Sometimes life, pain, disappointment, responsibilities, and disconnection
+            quietly create distance, not only between people, but within ourselves.
           </p>
           <p className="font-helvetica text-base sm:text-lg md:text-xl text-black/70 leading-relaxed mb-6">
-            Through powerful sessions, guided conversations, transformational teachings,
-            coaching, reflection moments, and community, couples will experience practical
-            tools and emotional breakthroughs designed to strengthen both individual healing
-            and relational growth.
+            <em className="font-playfair">Lover Never Ends</em> was created as a space to
+            pause, heal, reconnect, and realign. Whether you are attending as a couple
+            seeking restoration and a deeper connection or as an individual pursuing
+            healing, clarity, and emotional wellness, this experience is designed to
+            intentionally pour back into you.
           </p>
           <p className="font-helvetica text-base sm:text-lg md:text-xl text-black/70 leading-relaxed">
-            Whether attending virtually or in person, each participant will walk away with
-            renewed clarity, deeper connection, and actionable strategies to nurture healthier
-            relationships.
+            Through transformational conversations, curated experiences, practical
+            relationship tools, healing moments, and community, you will leave
+            refreshed, empowered, and reminded that healthy love, beginning within
+            yourself, still matters.
           </p>
         </div>
       </section>
@@ -669,6 +716,11 @@ export default function LoverNeverEnds() {
                 <p className="font-playfair text-2xl sm:text-3xl font-bold text-suelyn-pink mb-6">
                   {pkg.price}
                 </p>
+                {pkg.description && (
+                  <p className="font-helvetica text-sm sm:text-base text-black/65 mb-6 leading-relaxed">
+                    {pkg.description}
+                  </p>
+                )}
                 <ul className="space-y-3 mb-8 flex-1">
                   {pkg.features.map((f) => (
                     <li key={f} className="flex items-start gap-3">
@@ -691,16 +743,31 @@ export default function LoverNeverEnds() {
                     </li>
                   ))}
                 </ul>
-                <button
-                  onClick={scrollToRegistration}
-                  className={`w-full py-3 rounded-full font-inter font-semibold text-sm sm:text-base transition-all ${
-                    pkg.highlighted
-                      ? "bg-suelyn-pink text-white hover:bg-suelyn-pink/90 shadow-lg"
-                      : "bg-black/5 text-black hover:bg-black/10"
-                  }`}
-                >
-                  Select Package
-                </button>
+                {pkg.ctaHref ? (
+                  <a
+                    href={pkg.ctaHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-full py-3 rounded-full font-inter font-semibold text-sm sm:text-base transition-all text-center ${
+                      pkg.highlighted
+                        ? "bg-suelyn-pink text-white hover:bg-suelyn-pink/90 shadow-lg"
+                        : "bg-black/5 text-black hover:bg-black/10"
+                    }`}
+                  >
+                    {pkg.ctaLabel}
+                  </a>
+                ) : (
+                  <button
+                    onClick={scrollToRegistration}
+                    className={`w-full py-3 rounded-full font-inter font-semibold text-sm sm:text-base transition-all ${
+                      pkg.highlighted
+                        ? "bg-suelyn-pink text-white hover:bg-suelyn-pink/90 shadow-lg"
+                        : "bg-black/5 text-black hover:bg-black/10"
+                    }`}
+                  >
+                    Select Package
+                  </button>
+                )}
               </div>
             ))}
           </div>
@@ -724,7 +791,8 @@ export default function LoverNeverEnds() {
               <em className="font-playfair">Lover Never Ends</em> combines transformational
               teaching, coaching support, guided reflection, healing conversations, practical
               relationship tools, and immersive experiences designed to create long-lasting
-              impact for couples.
+              impact for couples. This experience was intentionally created to help couples
+              heal, reconnect, and grow together emotionally, spiritually, and relationally.
             </p>
           </div>
         </div>

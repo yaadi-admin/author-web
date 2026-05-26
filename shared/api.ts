@@ -18,6 +18,14 @@ export interface ContactRequest {
   phone?: string;
   title?: string;
   source?: string;
+  registrationDetails?: {
+    fullName: string;
+    partnerName?: string;
+    phone?: string;
+    packageSelection: string;
+    emergencyContact?: string;
+    paymentPlanRequest?: string;
+  };
 }
 
 export interface ContactResponse {

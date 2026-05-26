@@ -408,7 +408,7 @@ export default function Workshops() {
                 <div className="order-1 lg:order-2 text-center lg:text-left">
                   <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-semibold uppercase tracking-widest text-white mb-4">
                     <Sparkles className="h-4 w-4" />
-                    Oct 19, 2026
+                    October 16, 2026
                   </div>
                   <h2 className="font-charm text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-none mb-3">
                     Lover Never Ends

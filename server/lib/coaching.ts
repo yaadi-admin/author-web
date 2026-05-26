@@ -68,7 +68,7 @@ const getFromAddress = () =>
   process.env.CONTACT_FROM_EMAIL ?? "info@suelynempoweredliving.com";
 
 const getToAddress = () =>
-  process.env.CONTACT_TO_EMAIL ?? "info@suelynempoweredliving.com";
+  process.env.CONTACT_TO_EMAIL ?? "suegriffiths.author@gmail.com";
 
 const getBrandName = () =>
   process.env.CONTACT_BRAND_NAME ?? "SueLyn Empowered Living";

@@ -38,7 +38,7 @@ function RetreatPromoBanner() {
           <div className="order-1 lg:order-2 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs sm:text-sm font-semibold uppercase tracking-widest text-white/90 mb-5">
               <Sparkles className="h-4 w-4" />
-              Upcoming Experience — Oct 19, 2026
+              Upcoming Experience — October 16, 2026
             </div>
 
             <h2 className="font-charm text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-none mb-3">

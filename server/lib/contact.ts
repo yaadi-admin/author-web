@@ -61,7 +61,7 @@ const renderField = (label: string, value?: string) => `
 
 const buildBusinessEmail = (payload: ContactRequest) => {
   if (payload.registrationDetails) {
-    const title = escapeHtml(payload.title?.trim() || "Lover Never Ends Registration");
+    const title = escapeHtml(payload.title?.trim() || "Love Never Ends Registration");
     const source = escapeHtml(payload.source?.trim() || "website");
     const details = payload.registrationDetails;
 
@@ -71,7 +71,7 @@ const buildBusinessEmail = (payload: ContactRequest) => {
           <p style="margin: 0 0 10px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #a34767;">New Registration Submission</p>
           <h2 style="margin: 0; color: #F84988; font-size: 30px;">${title}</h2>
           <p style="margin: 14px 0 0; color: #5e4b53; line-height: 1.6;">
-            A new Lover Never Ends registration has been submitted through the ${source} form.
+            A new Love Never Ends registration has been submitted through the ${source} form.
           </p>
         </div>
 
@@ -144,7 +144,7 @@ const buildCustomerEmail = (payload: ContactRequest) => {
           <p style="margin: 0 0 10px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #a34767;">Registration Received</p>
           <h2 style="margin: 0; color: #F84988; font-size: 30px;">Thank You for Registering</h2>
           <p style="margin: 14px 0 0; line-height: 1.7; color: #4b3941;">
-            Dear ${name}, your Lover Never Ends registration has been received. We are honored to support your next step toward healing, restoration, and alignment.
+            Dear ${name}, your Love Never Ends registration has been received. We are honored to support your next step toward healing, restoration, and alignment.
           </p>
         </div>
 
@@ -241,7 +241,7 @@ export const submitContactForm = async (
         from: `${brandName} <${fromAddress}>`,
         to: [payload.email],
         subject: payload.registrationDetails
-          ? "Your Lover Never Ends registration was received"
+          ? "Your Love Never Ends registration was received"
           : `Thanks for contacting ${brandName}`,
         html: buildCustomerEmail(payload),
       })

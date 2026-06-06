@@ -397,7 +397,7 @@ export default function Workshops() {
                   <div className="overflow-hidden rounded-xl sm:rounded-2xl shadow-xl ring-2 ring-white/20 transition-all duration-500 group-hover:ring-white/40 group-hover:scale-[1.01]">
                     <img
                       src="/Lover-never-ends-flyer.jpeg"
-                      alt="Lover Never Ends Retreat Flyer"
+                      alt="Love Never Ends Retreat Flyer"
                       className="w-full h-auto object-cover"
                       loading="lazy"
                     />
@@ -411,10 +411,10 @@ export default function Workshops() {
                     October 16, 2026
                   </div>
                   <h2 className="font-charm text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-none mb-3">
-                    Lover Never Ends
+                    Love Never Ends
                   </h2>
                   <p className="font-playfair text-base sm:text-lg md:text-xl text-white/90 max-w-lg mb-6">
-                    A Divine Design Experience for Couples — Healing, Restoration & Alignment Reset
+                    A Divine Design Experience — Healing, Restoration & Alignment Reset
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start items-center">
                     <span className="bg-white text-[#F84988] px-6 sm:px-8 py-3 rounded-full font-inter font-semibold text-sm sm:text-base hover:bg-white/90 transition-all shadow-lg">

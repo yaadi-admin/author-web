@@ -25,7 +25,7 @@ function RetreatPromoBanner() {
               <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl ring-4 ring-white/10 transition-all duration-500 group-hover:shadow-[0_32px_100px_rgba(248,73,136,0.35)] group-hover:ring-white/20 group-hover:scale-[1.02]">
                 <img
                   src="/Lover-never-ends-flyer.jpeg"
-                  alt="Lover Never Ends Retreat Flyer"
+                  alt="Love Never Ends Retreat Flyer"
                   className="w-full h-auto object-cover"
                   loading="eager"
                 />
@@ -42,10 +42,10 @@ function RetreatPromoBanner() {
             </div>
 
             <h2 className="font-charm text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-none mb-3">
-              Lover Never Ends
+              Love Never Ends
             </h2>
             <p className="font-playfair text-base sm:text-lg md:text-xl text-white/80 mb-8">
-              A Divine Design Experience for Couples
+              A Divine Design Experience
             </p>
 
             {/* Countdown */}

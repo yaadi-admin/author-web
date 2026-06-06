@@ -27,6 +27,7 @@ import { speakingReviews } from "../data/reviews";
 interface Speaker {
   name: string;
   title: string;
+  organization?: string;
   sessionTitle: string;
   focus: string;
   bio: string;
@@ -59,11 +60,12 @@ const speakers: Speaker[] = [
     color: "#8B5CF6",
   },
   {
-    name: "Coach Terri Samy",
-    title: "Featured Voice",
-    sessionTitle: "Session details coming soon",
-    focus: "Practical relationship tools and coaching for lasting transformation.",
-    bio: "Coach Terri Samy is a dedicated relationship coach committed to helping couples build strong, healthy, and purpose-filled partnerships.",
+    name: "Coach Terry Samy",
+    title: "Founder & Lead Coach",
+    organization: "Grace N Grit Coaching Hub",
+    sessionTitle: "Generational Restoration & Transformation",
+    focus: "BETTER SPOUSES BEGIN BEFORE \"I DO\"",
+    bio: "Coach Terry Samy is the Founder and Lead Coach of Grace N Grit Coaching Hub, where she helps individuals, couples, and families heal emotionally, build healthier relationships, and break destructive generational patterns. Known for her compassionate yet honest approach, she specializes in emotional healing, relationship dynamics, childhood wounds, communication, identity restoration, and resilience coaching. Through coaching, speaking, and faith-centered teachings, Coach Terry empowers people to understand how early life experiences shape adult relationships, helping them move from survival to intentional living, emotional wellness, and lasting transformation.",
     color: "#10B981",
   },
 ];
@@ -98,7 +100,7 @@ const packages: PackageOption[] = [
       "Welcome package & keepsakes",
       "Face-to-face networking with premier sponsors",
     ],
-    ctaLabel: "In-Person Couples Secure Your Spot - Register Now",
+    ctaLabel: "Register Now",
     ctaHref: REGISTRATION_LINKS.couples,
   },
   {
@@ -117,7 +119,7 @@ const packages: PackageOption[] = [
       "Welcome package & keepsakes",
       "Face-to-face networking with premier sponsors",
     ],
-    ctaLabel: "In-Person Singles Secure Your Spot - Register Now",
+    ctaLabel: "Register Now",
     ctaHref: REGISTRATION_LINKS.singles,
   },
   {
@@ -136,6 +138,7 @@ const packages: PackageOption[] = [
       "Welcome package & keepsakes",
       "Face-to-face networking with premier sponsors",
     ],
+    ctaLabel: "Register Now",
   },
   {
     name: "One-Day Couples Experience",
@@ -160,6 +163,7 @@ const packages: PackageOption[] = [
       "Retreat materials",
       "Online Community access",
     ],
+    ctaLabel: "Secure Your Spot",
   },
   {
     name: "Online Experience + Coaching",
@@ -169,6 +173,7 @@ const packages: PackageOption[] = [
       "Everything in Online Pass",
       "Two coaching sessions",
     ],
+    ctaLabel: "Secure Your Spot",
   },
   {
     name: "Transformation Experience Package",
@@ -178,6 +183,7 @@ const packages: PackageOption[] = [
       "Four coaching sessions",
       "Copy of B.A.N.T.T.E. (Build a Nation Not Two Empires by Suzanna D. Griffiths)",
     ],
+    ctaLabel: "Secure Your Spot",
   },
   {
     name: "Church Group Virtual",
@@ -188,6 +194,7 @@ const packages: PackageOption[] = [
       "Group participation",
       "Retreat materials",
     ],
+    ctaLabel: "Secure Your Spot",
   },
 ];
 
@@ -342,11 +349,11 @@ export default function LoverNeverEnds() {
           packageSelection: formData.packageSelection,
           emergencyContact: formData.emergencyContact || undefined,
           paymentPlanRequest: formData.paymentPlanRequest || undefined,
-          source: "Lover Never Ends Retreat Registration",
+          source: "Love Never Ends Retreat Registration",
         });
 
         const messageBody = [
-          "A new Lover Never Ends registration was submitted.",
+          "A new Love Never Ends registration was submitted.",
           "",
           `Package selected: ${formData.packageSelection}`,
           `Payment plan requested: ${formData.paymentPlanRequest ? "Yes" : "No"}`,
@@ -358,7 +365,7 @@ export default function LoverNeverEnds() {
           name: formData.fullName,
           email: formData.email,
           phone: formData.phone,
-          title: "Lover Never Ends Retreat Registration",
+          title: "Love Never Ends Retreat Registration",
           source: "Retreat Registration Form",
           message: messageBody,
           registrationDetails: {
@@ -441,7 +448,7 @@ export default function LoverNeverEnds() {
             A Divine Design Experience
           </p>
           <h1 className="font-charm text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white leading-none mb-4">
-            Lover Never Ends
+            Love Never Ends
           </h1>
           <h2 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white/90 font-medium mb-6">
             More than a Retreat. It Is a Reset.
@@ -449,7 +456,7 @@ export default function LoverNeverEnds() {
           <p className="font-helvetica text-base sm:text-lg md:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto mb-10">
             Sometimes life, pain, disappointment, responsibilities, and disconnection
             quietly create distance, not only between people, but within ourselves.
-            Lover Never Ends was created as a space to pause, heal, reconnect, and
+            Love Never Ends was created as a space to pause, heal, reconnect, and
             realign. Whether you are attending as a couple seeking restoration and a
             deeper connection or as an individual pursuing healing, clarity, and
             emotional wellness, this experience is designed to intentionally pour back
@@ -508,7 +515,7 @@ export default function LoverNeverEnds() {
           <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl ring-4 ring-white/20">
             <img
               src="/Lover-never-ends-flyer.jpeg"
-              alt="Lover Never Ends Retreat Flyer"
+              alt="Love Never Ends Retreat Flyer"
               className="w-full h-auto object-cover"
               loading="eager"
             />
@@ -535,7 +542,7 @@ export default function LoverNeverEnds() {
             quietly create distance, not only between people, but within ourselves.
           </p>
           <p className="font-helvetica text-base sm:text-lg md:text-xl text-black/70 leading-relaxed mb-6">
-            <em className="font-playfair">Lover Never Ends</em> was created as a space to
+            <em className="font-playfair">Love Never Ends</em> was created as a space to
             pause, heal, reconnect, and realign. Whether you are attending as a couple
             seeking restoration and a deeper connection or as an individual pursuing
             healing, clarity, and emotional wellness, this experience is designed to
@@ -652,6 +659,11 @@ export default function LoverNeverEnds() {
                   <p className="font-inter text-sm text-suelyn-pink font-semibold uppercase tracking-wider mt-1">
                     {speaker.title}
                   </p>
+                  {speaker.organization && (
+                    <p className="font-inter text-xs text-black/60 mt-1">
+                      {speaker.organization}
+                    </p>
+                  )}
                 </div>
                 <div className="mb-4">
                   <p className="font-inter text-xs uppercase tracking-wider text-black/40 mb-1">
@@ -754,7 +766,7 @@ export default function LoverNeverEnds() {
                         : "bg-black/5 text-black hover:bg-black/10"
                     }`}
                   >
-                    {pkg.ctaLabel}
+                    {pkg.ctaLabel || "Register Now"}
                   </a>
                 ) : (
                   <button
@@ -765,7 +777,7 @@ export default function LoverNeverEnds() {
                         : "bg-black/5 text-black hover:bg-black/10"
                     }`}
                   >
-                    Select Package
+                    {pkg.ctaLabel || "Select Package"}
                   </button>
                 )}
               </div>
@@ -788,7 +800,7 @@ export default function LoverNeverEnds() {
               This is not just another relationship seminar.
             </p>
             <p className="font-helvetica text-base sm:text-lg md:text-xl leading-relaxed text-white/90 max-w-3xl mx-auto">
-              <em className="font-playfair">Lover Never Ends</em> combines transformational
+              <em className="font-playfair">Love Never Ends</em> combines transformational
               teaching, coaching support, guided reflection, healing conversations, practical
               relationship tools, and immersive experiences designed to create long-lasting
               impact for couples. This experience was intentionally created to help couples

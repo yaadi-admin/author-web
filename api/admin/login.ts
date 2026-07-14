@@ -1,4 +1,4 @@
-import { loginAdmin } from "./auth";
+import { loginAdmin } from "./_auth";
 
 const applyResult = <T extends object>(result: {
   status: number;

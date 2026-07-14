@@ -8,4 +8,4 @@ export {
   verifyAdminPassword,
   hashAdminPassword,
   resetAdminAuthRateLimitsForTests,
-} from "../../api/admin/auth";
+} from "../../api/admin/_auth";

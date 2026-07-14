@@ -1,6 +1,4 @@
-import {
-  loginAdmin,
-} from "../lib/admin_auth";
+import { loginAdmin } from "./auth";
 
 const applyResult = <T extends object>(result: {
   status: number;

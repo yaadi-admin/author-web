@@ -14,7 +14,8 @@ import BlogPost from "./pages/BlogPost";
 import AdminBlog from "./pages/admin";
 import Workshops from "./pages/Workshops";
 import Foundation from "./pages/Foundation";
-import LoverNeverEnds from "./pages/LoverNeverEnds";
+// Temporarily unpublished while the retreat is restructured (Oct online + Feb in-person).
+// import LoverNeverEnds from "./pages/LoverNeverEnds";
 import NotFound from "./pages/NotFound";
 
 
@@ -35,7 +36,9 @@ const App = () => (
           <Route path="/admin" element={<AdminBlog />} />
           <Route path="/workshops" element={<Workshops />} />
           <Route path="/foundation" element={<Foundation />} />
-          <Route path="/lover-never-ends" element={<LoverNeverEnds />} />
+          {/* Love Never Ends temporarily unpublished — restore route when details are finalized */}
+          {/* <Route path="/lover-never-ends" element={<LoverNeverEnds />} /> */}
+          {/* <Route path="/love-never-ends" element={<LoverNeverEnds />} /> */}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

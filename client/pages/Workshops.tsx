@@ -1,5 +1,4 @@
 import Header from "../components/Header";
-import { Link } from "react-router-dom";
 import {
   useState,
   useEffect,
@@ -379,56 +378,6 @@ export default function Workshops() {
               inquiries can move straight into assessment, scheduling, and payment.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* ===================== RETREAT FLYER ===================== */}
-      <section className="bg-[#ffe6ef] px-4 py-8 sm:py-10">
-        <div className="container mx-auto max-w-6xl">
-          <Link to="/lover-never-ends" className="block group">
-            <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#F84988] to-[#FFAC24] p-4 sm:p-6 md:p-8 shadow-[0_24px_80px_rgba(95,18,49,0.2)] transition-all duration-300 group-hover:shadow-[0_32px_100px_rgba(95,18,49,0.3)]">
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3" />
-                <div className="absolute bottom-0 left-0 w-48 h-48 bg-white rounded-full blur-3xl transform -translate-x-1/3 translate-y-1/3" />
-              </div>
-              <div className="relative z-10 grid lg:grid-cols-[1.2fr_1fr] gap-6 items-center">
-                {/* Flyer Image */}
-                <div className="order-2 lg:order-1">
-                  <div className="overflow-hidden rounded-xl sm:rounded-2xl shadow-xl ring-2 ring-white/20 transition-all duration-500 group-hover:ring-white/40 group-hover:scale-[1.01]">
-                    <img
-                      src="/Lover-never-ends-flyer.jpeg"
-                      alt="Love Never Ends Retreat Flyer"
-                      className="w-full h-auto object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-
-                {/* Text Content */}
-                <div className="order-1 lg:order-2 text-center lg:text-left">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-semibold uppercase tracking-widest text-white mb-4">
-                    <Sparkles className="h-4 w-4" />
-                    October 16, 2026
-                  </div>
-                  <h2 className="font-charm text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-none mb-3">
-                    Love Never Ends
-                  </h2>
-                  <p className="font-playfair text-base sm:text-lg md:text-xl text-white/90 max-w-lg mb-6">
-                    A Divine Design Experience — Healing, Restoration & Alignment Reset
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start items-center">
-                    <span className="bg-white text-[#F84988] px-6 sm:px-8 py-3 rounded-full font-inter font-semibold text-sm sm:text-base hover:bg-white/90 transition-all shadow-lg">
-                      View Retreat Details
-                    </span>
-                    <span className="text-white font-inter font-medium text-sm flex items-center gap-2">
-                      Click to learn more
-                      <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Link>
         </div>
       </section>
 

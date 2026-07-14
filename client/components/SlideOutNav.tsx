@@ -142,15 +142,6 @@ export default function SlideOutNav({ whiteText = false, isScrolled = false }: S
                   Foundation
                 </Link>
               </li>
-              <li>
-                <Link 
-                  to="/lover-never-ends" 
-                  onClick={closeNav}
-                  className="font-helvetica text-lg sm:text-xl md:text-2xl font-bold text-white hover:text-suelyn-pink transition-colors block py-1 sm:py-2"
-                >
-                  Love Never Ends
-                </Link>
-              </li>
             </ul>
           </nav>
 

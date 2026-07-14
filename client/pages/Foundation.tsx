@@ -178,6 +178,170 @@ export default function Foundation() {
         </div>
       </section>
 
+      {/* Scholarship Section */}
+      <section id="scholarship" className="py-16 sm:py-20 md:py-24 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB]">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-10 sm:mb-14">
+            <p className="font-playfair text-suelyn-pink text-sm sm:text-base uppercase tracking-widest mb-3">
+              Applications close July 25, 2026
+            </p>
+            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight mb-4">
+              SueLyn Empowered Living Scholarship
+            </h2>
+            <p className="font-playfair text-lg sm:text-xl md:text-2xl italic text-black/80">
+              Empowering Dreams. Investing in Tomorrow&apos;s Leaders.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start mb-14">
+            <div className="order-2 lg:order-1">
+              <img
+                src="/SELF-Scholarship.png"
+                alt="SueLyn Empowered Living Foundation Scholarship flyer — 7 scholarships to be awarded"
+                className="w-full h-auto rounded-2xl shadow-xl"
+              />
+            </div>
+
+            <div className="order-1 lg:order-2 space-y-5 font-helvetica text-base sm:text-lg text-black leading-relaxed">
+              <p>
+                Education has the power to transform lives, open doors to new opportunities, and build stronger communities. At the SueLyn Foundation, we believe every deserving student should have the opportunity to pursue their dreams without financial barriers standing in the way.
+              </p>
+              <p>
+                The SueLyn Empowered Living Scholarship was created to invest in the next generation of leaders — students who demonstrate academic excellence, perseverance, integrity, and a genuine desire to make a positive impact on their communities.
+              </p>
+              <p>
+                Whether your ambition is to become a teacher, engineer, healthcare professional, entrepreneur, or leader in another field, we want to help you take the next step toward achieving your goals.
+              </p>
+              <p className="font-semibold">
+                This scholarship is more than financial assistance; it&apos;s a partnership in your future.
+              </p>
+
+              <div className="rounded-2xl bg-white/70 border border-[#F84988]/20 p-5 sm:p-6">
+                <p className="font-playfair text-xl font-semibold text-black mb-3">7 Scholarships to be Awarded</p>
+                <ul className="space-y-2 text-black/80">
+                  <li>2 for University students</li>
+                  <li>5 for High School students</li>
+                </ul>
+                <p className="mt-4 text-sm uppercase tracking-wider text-[#741C82] font-semibold">
+                  Empowering Minds. Elevating Futures.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 mb-14">
+            <div>
+              <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-black mb-4">
+                Why We Invest in Students
+              </h3>
+              <div className="space-y-4 font-helvetica text-base sm:text-lg text-black/80 leading-relaxed">
+                <p>
+                  At the SueLyn Foundation, we understand that every student&apos;s journey is unique. Behind every academic achievement is a story of dedication, sacrifice, resilience, and hope.
+                </p>
+                <p>
+                  We are committed to recognizing those stories and empowering students who are determined to create brighter futures for themselves and their communities.
+                </p>
+                <p className="font-semibold text-black">
+                  When we invest in education, we invest in Jamaica&apos;s future.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-black mb-4">
+                Who Can Apply?
+              </h3>
+              <p className="font-helvetica text-base sm:text-lg text-black/80 leading-relaxed mb-4">
+                The SueLyn Empowered Living Scholarship is open to students who meet the scholarship&apos;s eligibility requirements. Successful applicants will demonstrate:
+              </p>
+              <ul className="space-y-2 font-helvetica text-base sm:text-lg text-black mb-5 list-disc pl-5">
+                <li>Academic excellence</li>
+                <li>Leadership potential</li>
+                <li>Community involvement</li>
+                <li>Integrity and good character</li>
+                <li>A commitment to personal growth and lifelong learning</li>
+              </ul>
+              <div className="rounded-xl bg-[#741C82]/5 border border-[#741C82]/15 p-4 sm:p-5 space-y-2 font-helvetica text-sm sm:text-base text-black/80">
+                <p><span className="font-semibold text-black">High School:</span> Minimum 85% average</p>
+                <p><span className="font-semibold text-black">University:</span> Minimum 3.5 GPA</p>
+                <p><span className="font-semibold text-black">Church involvement</span> required</p>
+                <p><span className="font-semibold text-black">Residency:</span> Open to residents of St. Catherine, Kingston, and St. Andrew</p>
+                <p><span className="font-semibold text-black">Essay:</span> Original essay on one of the provided topics</p>
+                <p><span className="font-semibold text-black">Social:</span> Follow SueLyn Empowered Living and add 5 new followers on at least one platform</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 mb-14">
+            <div>
+              <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-black mb-4">
+                Essay Topics
+              </h3>
+              <div className="space-y-5 font-helvetica text-sm sm:text-base text-black/80 leading-relaxed">
+                <div>
+                  <p className="font-semibold text-black mb-2">High School (choose one · 1,500 words)</p>
+                  <ol className="list-decimal pl-5 space-y-2">
+                    <li>&quot;My Story Is Not My Destiny: How Challenges Can Shape Purpose Rather Than Define It&quot;</li>
+                    <li>&quot;The Importance of Self-Worth in a World Seeking Validation.&quot;</li>
+                  </ol>
+                </div>
+                <div>
+                  <p className="font-semibold text-black mb-2">University (choose one · 2,500 words)</p>
+                  <ol className="list-decimal pl-5 space-y-2">
+                    <li>&quot;The Cost of Unhealed Trauma: How Emotional Wounds Influence Our Decisions, Relationships and Future.&quot;</li>
+                    <li>&quot;The Power of Identity: Understanding Who You Are Before Pursuing What You Do.&quot;</li>
+                    <li>&quot;Success Without Wholeness: Why Personal Healing Matters as Much as Professional Achievement.&quot;</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-black mb-4">
+                Before You Apply
+              </h3>
+              <ul className="space-y-3 font-helvetica text-base sm:text-lg text-black mb-8">
+                <li className="flex gap-3"><span className="text-[#F84988] font-bold">✓</span> Completed application information</li>
+                <li className="flex gap-3"><span className="text-[#F84988] font-bold">✓</span> Required supporting documents</li>
+                <li className="flex gap-3"><span className="text-[#F84988] font-bold">✓</span> Essay prepared in PDF format</li>
+                <li className="flex gap-3"><span className="text-[#F84988] font-bold">✓</span> Correct essay file name format</li>
+                <li className="flex gap-3"><span className="text-[#F84988] font-bold">✓</span> Access to a valid email address and phone number</li>
+              </ul>
+
+              <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-black mb-4">
+                Application Process
+              </h3>
+              <p className="font-helvetica text-base sm:text-lg text-black/80 leading-relaxed">
+                Complete Application → Submit Required Documents → Email Essay → Review Process → Scholarship Award
+              </p>
+            </div>
+          </div>
+
+          <div className="rounded-3xl bg-gradient-to-br from-[#741C82] via-[#F84988] to-[#FFAC24] p-8 sm:p-10 md:p-12 text-center text-white shadow-xl">
+            <h3 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+              Ready to Apply?
+            </h3>
+            <p className="font-helvetica text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto mb-3 leading-relaxed">
+              Your story, your determination, and your dreams matter. This scholarship could be the next step toward achieving your educational goals and creating a brighter future.
+            </p>
+            <p className="font-playfair text-lg sm:text-xl font-semibold mb-8">
+              Applications close on July 25, 2026. Take the first step today.
+            </p>
+            <a
+              href="https://forms.gle/zdsyoXZmB9743vRF9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center bg-white text-[#741C82] px-8 sm:px-10 py-3.5 sm:py-4 rounded-full font-inter font-semibold text-base sm:text-lg hover:bg-white/90 transition-colors shadow-lg"
+            >
+              Begin Your Application
+            </a>
+            <p className="mt-6 font-helvetica text-sm text-white/80">
+              Follow @SueLynEmpoweredLiving on Facebook, Instagram, or TikTok
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Continuous Background Text Section */}
       <section className="py-1 w-full marquee-container relative overflow-hidden bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
         <div className="w-full overflow-hidden relative">

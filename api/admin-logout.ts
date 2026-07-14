@@ -1,4 +1,4 @@
-import { logoutAdmin } from "./_auth";
+import { logoutAdmin } from "../server/lib/admin_auth";
 
 export async function POST() {
   const result = logoutAdmin();

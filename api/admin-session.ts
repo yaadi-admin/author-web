@@ -1,4 +1,4 @@
-import { getAdminSessionResponse } from "./_auth";
+import { getAdminSessionResponse } from "../server/lib/admin_auth";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);

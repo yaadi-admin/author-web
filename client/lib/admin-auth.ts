@@ -61,7 +61,7 @@ const getErrorMessage = (
 export const loginAdmin = async (password: string): Promise<AdminSessionResponse> => {
   const payload: AdminLoginRequest = { password };
 
-  const response = await fetch("/api/admin/login", {
+  const response = await fetch("/api/admin-login", {
     ...fetchOptions,
     method: "POST",
     headers: {
@@ -90,7 +90,7 @@ export const getAdminSession = async (options?: {
 }): Promise<boolean> => {
   try {
     const response = await fetch(
-      options?.renew ? "/api/admin/session?renew=1" : "/api/admin/session",
+      options?.renew ? "/api/admin-session?renew=1" : "/api/admin-session",
       {
         ...fetchOptions,
         method: "GET",
@@ -110,7 +110,7 @@ export const getAdminSession = async (options?: {
 
 export const logoutAdmin = async (): Promise<void> => {
   try {
-    await fetch("/api/admin/logout", {
+    await fetch("/api/admin-logout", {
       ...fetchOptions,
       method: "POST",
     });

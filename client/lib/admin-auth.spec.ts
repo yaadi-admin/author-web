@@ -70,7 +70,7 @@ describe("loginAdmin", () => {
     await loginAdmin("correct-password");
 
     expect(fetchMock).toHaveBeenCalledWith(
-      "/api/admin/login",
+      "/api/admin-login",
       expect.objectContaining({
         method: "POST",
         credentials: "include",
@@ -100,7 +100,7 @@ describe("getAdminSession", () => {
 
     await expect(getAdminSession()).resolves.toBe(true);
     expect(fetchMock).toHaveBeenCalledWith(
-      "/api/admin/session",
+      "/api/admin-session",
       expect.objectContaining({
         method: "GET",
         credentials: "include",
@@ -146,7 +146,7 @@ describe("logoutAdmin", () => {
     await logoutAdmin();
 
     expect(fetchMock).toHaveBeenCalledWith(
-      "/api/admin/logout",
+      "/api/admin-logout",
       expect.objectContaining({
         method: "POST",
         credentials: "include",

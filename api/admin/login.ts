@@ -1,75 +1,59 @@
-const SESSION_DURATION_MS = 120 * 60 * 1000;
+import {
+  getAdminSessionResponse,
+  loginAdmin,
+  logoutAdmin,
+} from "../../server/lib/admin_auth";
 
-const readEnv = (name: string) => {
-  const value = process.env[name];
-  if (typeof value !== "string") {
-    return undefined;
+const applyResult = <T extends object>(result: {
+  status: number;
+  body: T;
+  headers?: Record<string, string>;
+}) => {
+  const headers = new Headers({
+    "Content-Type": "application/json",
+  });
+
+  if (result.headers) {
+    Object.entries(result.headers).forEach(([name, value]) => {
+      headers.set(name, value);
+    });
   }
 
-  return value === "" ? undefined : value;
+  return new Response(JSON.stringify(result.body), {
+    status: result.status,
+    headers,
+  });
 };
 
-const jsonResponse = (body: unknown, status: number) =>
-  new Response(JSON.stringify(body), {
-    status,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+const getClientKey = (request: Request) => {
+  const forwarded = request.headers.get("x-forwarded-for");
+  if (forwarded) {
+    return forwarded.split(",")[0]?.trim() || "unknown";
+  }
+
+  return request.headers.get("x-real-ip") || "unknown";
+};
 
 export async function POST(request: Request) {
   try {
-    const adminPassword = readEnv("ADMIN_PASSWORD");
-    const body = await request
-      .json()
-      .catch(() => undefined) as { password?: string } | undefined;
+    const body = (await request.json().catch(() => undefined)) as
+      | { password?: string }
+      | undefined;
 
-    if (!adminPassword) {
-      return jsonResponse(
-        {
-          authenticated: false,
-          error: "ADMIN_PASSWORD is not configured.",
-        },
-        500,
-      );
-    }
+    const result = await loginAdmin(body, {
+      clientKey: getClientKey(request),
+    });
 
-    if (!body?.password) {
-      return jsonResponse(
-        {
-          authenticated: false,
-          error: "Password is required.",
-        },
-        400,
-      );
-    }
-
-    if (body.password !== adminPassword) {
-      return jsonResponse(
-        {
-          authenticated: false,
-          error: "Invalid password.",
-        },
-        401,
-      );
-    }
-
-    return jsonResponse(
-      {
-        authenticated: true,
-        expiresAt: Date.now() + SESSION_DURATION_MS,
-      },
-      200,
-    );
+    return applyResult(result);
   } catch (error) {
     console.error("Vercel admin login error:", error);
 
-    return jsonResponse(
-      {
+    return applyResult({
+      status: 500,
+      body: {
         authenticated: false,
         error: "Unable to validate password.",
       },
-      500,
-    );
+    });
   }
 }

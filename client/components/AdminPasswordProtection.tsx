@@ -112,9 +112,12 @@ export default function AdminPasswordProtection({
             </Button>
           </form>
 
-          <div className="mt-6 pt-4 border-t border-gray-200">
+          <div className="mt-6 pt-4 border-t border-gray-200 space-y-2">
             <p className="font-helvetica text-xs text-black/50 text-center">
-              Session will remain active for {SESSION_DURATION_MINUTES} minutes
+              Secure session remains active for {SESSION_DURATION_MINUTES} minutes
+            </p>
+            <p className="font-helvetica text-xs text-black/40 text-center">
+              Access is verified by the server with an encrypted HttpOnly cookie.
             </p>
           </div>
         </CardContent>

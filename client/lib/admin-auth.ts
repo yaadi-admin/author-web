@@ -3,8 +3,13 @@ import type {
   AdminSessionResponse,
 } from "@shared/api";
 
-const SESSION_STORAGE_KEY = "admin_session_expires_at";
-const DEFAULT_SESSION_DURATION_MS = 120 * 60 * 1000;
+const fetchOptions: RequestInit = {
+  credentials: "include",
+  cache: "no-store",
+  headers: {
+    Accept: "application/json",
+  },
+};
 
 const readResponse = async <T>(
   response: Response,
@@ -42,6 +47,10 @@ const getErrorMessage = (
     return trimmed;
   }
 
+  if (response.status === 429) {
+    return "Too many login attempts. Please wait and try again.";
+  }
+
   if (response.status >= 500) {
     return "Admin login failed on the server.";
   }
@@ -49,53 +58,14 @@ const getErrorMessage = (
   return fallback;
 };
 
-const hasStorage = () =>
-  typeof window !== "undefined" && typeof window.localStorage !== "undefined";
-
-const readStoredSessionExpiry = () => {
-  if (!hasStorage()) {
-    return null;
-  }
-
-  const rawValue = window.localStorage.getItem(SESSION_STORAGE_KEY);
-  if (!rawValue) {
-    return null;
-  }
-
-  const expiresAt = Number(rawValue);
-  if (!Number.isFinite(expiresAt) || expiresAt <= Date.now()) {
-    window.localStorage.removeItem(SESSION_STORAGE_KEY);
-    return null;
-  }
-
-  return expiresAt;
-};
-
-const storeSessionExpiry = (expiresAt?: number) => {
-  if (!hasStorage()) {
-    return;
-  }
-
-  window.localStorage.setItem(
-    SESSION_STORAGE_KEY,
-    String(expiresAt ?? Date.now() + DEFAULT_SESSION_DURATION_MS),
-  );
-};
-
-const clearStoredSessionExpiry = () => {
-  if (!hasStorage()) {
-    return;
-  }
-
-  window.localStorage.removeItem(SESSION_STORAGE_KEY);
-};
-
 export const loginAdmin = async (password: string): Promise<AdminSessionResponse> => {
   const payload: AdminLoginRequest = { password };
 
   const response = await fetch("/api/admin/login", {
+    ...fetchOptions,
     method: "POST",
     headers: {
+      ...((fetchOptions.headers as Record<string, string>) || {}),
       "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),
@@ -108,13 +78,43 @@ export const loginAdmin = async (password: string): Promise<AdminSessionResponse
     );
   }
 
-  storeSessionExpiry(data.expiresAt);
   return data;
 };
 
-export const getAdminSession = async (): Promise<boolean> =>
-  readStoredSessionExpiry() !== null;
+/**
+ * Always verifies against the server HttpOnly session cookie.
+ * Local storage is intentionally not used as an auth source of truth.
+ */
+export const getAdminSession = async (options?: {
+  renew?: boolean;
+}): Promise<boolean> => {
+  try {
+    const response = await fetch(
+      options?.renew ? "/api/admin/session?renew=1" : "/api/admin/session",
+      {
+        ...fetchOptions,
+        method: "GET",
+      },
+    );
+
+    if (!response.ok) {
+      return false;
+    }
+
+    const { data } = await readResponse<AdminSessionResponse>(response);
+    return Boolean(data?.authenticated);
+  } catch {
+    return false;
+  }
+};
 
 export const logoutAdmin = async (): Promise<void> => {
-  clearStoredSessionExpiry();
+  try {
+    await fetch("/api/admin/logout", {
+      ...fetchOptions,
+      method: "POST",
+    });
+  } catch {
+    // Clear local UI state even if the network request fails.
+  }
 };

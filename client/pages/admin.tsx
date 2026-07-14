@@ -115,12 +115,12 @@ export default function AdminBlog() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showPasswordProtection, setShowPasswordProtection] = useState(false);
 
-  // Check authentication on component mount
+  // Check authentication on component mount and keep the server session alive.
   useEffect(() => {
     let isCancelled = false;
 
     const checkAuth = async () => {
-      const authenticated = await getAdminSession();
+      const authenticated = await getAdminSession({ renew: true });
 
       if (isCancelled) {
         return;
@@ -139,8 +139,28 @@ export default function AdminBlog() {
 
     void checkAuth();
 
+    const heartbeat = window.setInterval(() => {
+      void (async () => {
+        const stillAuthenticated = await getAdminSession({ renew: true });
+        if (isCancelled) {
+          return;
+        }
+
+        if (!stillAuthenticated) {
+          setIsAuthenticated(false);
+          setShowPasswordProtection(true);
+          toast({
+            title: "Session expired",
+            description: "Please sign in again to continue managing content.",
+            variant: "destructive",
+          });
+        }
+      })();
+    }, 10 * 60 * 1000);
+
     return () => {
       isCancelled = true;
+      window.clearInterval(heartbeat);
     };
   }, []);
 

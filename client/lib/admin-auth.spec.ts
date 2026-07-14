@@ -1,19 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { getAdminSession, loginAdmin, logoutAdmin } from "./admin-auth";
 
-beforeEach(() => {
-  const storage = new Map<string, string>();
-
-  vi.stubGlobal("window", {
-    localStorage: {
-      clear: () => storage.clear(),
-      getItem: (key: string) => storage.get(key) ?? null,
-      removeItem: (key: string) => storage.delete(key),
-      setItem: (key: string, value: string) => storage.set(key, value),
-    },
-  });
-});
-
 afterEach(() => {
   vi.restoreAllMocks();
   vi.unstubAllGlobals();
@@ -62,41 +49,75 @@ describe("loginAdmin", () => {
     );
   });
 
-  it("stores a local session after a successful login", async () => {
-    vi.stubGlobal(
-      "fetch",
-      vi.fn().mockResolvedValue(
-        new Response(
-          JSON.stringify({
-            authenticated: true,
-            expiresAt: Date.now() + 60_000,
-          }),
-          {
-            status: 200,
-            headers: {
-              "Content-Type": "application/json",
-            },
+  it("sends credentials so the HttpOnly session cookie is stored", async () => {
+    const fetchMock = vi.fn().mockResolvedValue(
+      new Response(
+        JSON.stringify({
+          authenticated: true,
+          expiresAt: Date.now() + 60_000,
+        }),
+        {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json",
           },
-        ),
+        },
       ),
     );
 
+    vi.stubGlobal("fetch", fetchMock);
+
     await loginAdmin("correct-password");
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      "/api/admin/login",
+      expect.objectContaining({
+        method: "POST",
+        credentials: "include",
+      }),
+    );
+  });
+});
+
+describe("getAdminSession", () => {
+  it("verifies authentication with the server session endpoint", async () => {
+    const fetchMock = vi.fn().mockResolvedValue(
+      new Response(
+        JSON.stringify({
+          authenticated: true,
+          expiresAt: Date.now() + 60_000,
+        }),
+        {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      ),
+    );
+
+    vi.stubGlobal("fetch", fetchMock);
 
     await expect(getAdminSession()).resolves.toBe(true);
+    expect(fetchMock).toHaveBeenCalledWith(
+      "/api/admin/session",
+      expect.objectContaining({
+        method: "GET",
+        credentials: "include",
+      }),
+    );
   });
 
-  it("clears the local session on logout", async () => {
+  it("returns false when the server session is invalid", async () => {
     vi.stubGlobal(
       "fetch",
       vi.fn().mockResolvedValue(
         new Response(
           JSON.stringify({
-            authenticated: true,
-            expiresAt: Date.now() + 60_000,
+            authenticated: false,
           }),
           {
-            status: 200,
+            status: 401,
             headers: {
               "Content-Type": "application/json",
             },
@@ -105,9 +126,31 @@ describe("loginAdmin", () => {
       ),
     );
 
-    await loginAdmin("correct-password");
+    await expect(getAdminSession()).resolves.toBe(false);
+  });
+});
+
+describe("logoutAdmin", () => {
+  it("calls the server logout endpoint with credentials", async () => {
+    const fetchMock = vi.fn().mockResolvedValue(
+      new Response(JSON.stringify({ success: true }), {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }),
+    );
+
+    vi.stubGlobal("fetch", fetchMock);
+
     await logoutAdmin();
 
-    await expect(getAdminSession()).resolves.toBe(false);
+    expect(fetchMock).toHaveBeenCalledWith(
+      "/api/admin/logout",
+      expect.objectContaining({
+        method: "POST",
+        credentials: "include",
+      }),
+    );
   });
 });

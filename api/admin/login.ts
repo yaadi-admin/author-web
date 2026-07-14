@@ -1,8 +1,6 @@
 import {
-  getAdminSessionResponse,
   loginAdmin,
-  logoutAdmin,
-} from "../../server/lib/admin_auth";
+} from "../lib/admin_auth";
 
 const applyResult = <T extends object>(result: {
   status: number;

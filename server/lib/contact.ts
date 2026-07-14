@@ -1,7 +1,12 @@
 import { Resend } from "resend";
 import { z } from "zod";
-import type { ContactRequest, ContactResponse } from "@shared/api";
-import type { JsonResult } from "./admin_auth";
+import type { ContactRequest, ContactResponse } from "../../shared/api";
+
+interface JsonResult<T> {
+  status: number;
+  body: T;
+  headers?: Record<string, string>;
+}
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required."),

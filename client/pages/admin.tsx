@@ -32,6 +32,7 @@ import { Switch } from '../components/ui/switch';
 import { toast } from '../components/ui/use-toast';
 import { Pencil, Trash2, Plus, Eye, Save, X, LogOut } from 'lucide-react';
 import ImageUpload from '../components/ImageUpload';
+import GalleryAdmin from '../components/GalleryAdmin';
 
 interface BlogFormData {
   id: string;
@@ -665,9 +666,10 @@ export default function AdminBlog() {
             
             {/* Tab Navigation */}
             <Tabs defaultValue="blog" value={currentTab} onValueChange={setCurrentTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-6">
+              <TabsList className="grid w-full grid-cols-3 mb-6">
                 <TabsTrigger value="blog" disabled={isLoading}>Blog Posts</TabsTrigger>
                 <TabsTrigger value="workshops" disabled={isLoading}>Workshops</TabsTrigger>
+                <TabsTrigger value="gallery" disabled={isLoading}>Gallery</TabsTrigger>
               </TabsList>
 
               {isLoading && (
@@ -946,6 +948,11 @@ export default function AdminBlog() {
                     ))
                   )}
                 </div>
+              </TabsContent>
+
+              {/* Gallery Tab Content */}
+              <TabsContent value="gallery" className="space-y-6">
+                <GalleryAdmin isActive={currentTab === 'gallery'} />
               </TabsContent>
                 </>
               )}

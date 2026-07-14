@@ -12,9 +12,17 @@ interface ImageUploadProps {
   onChange: (url: string) => void;
   label: string;
   placeholder?: string;
+  /** Firebase Storage folder prefix, e.g. "uploads/gallery/" */
+  storagePrefix?: string;
 }
 
-export default function ImageUpload({ value, onChange, label, placeholder }: ImageUploadProps) {
+export default function ImageUpload({
+  value,
+  onChange,
+  label,
+  placeholder,
+  storagePrefix = "uploads/blog/",
+}: ImageUploadProps) {
   const [dragActive, setDragActive] = useState(false);
   const [preview, setPreview] = useState<string>(value);
   const [uploading, setUploading] = useState(false);
@@ -68,7 +76,8 @@ export default function ImageUpload({ value, onChange, label, placeholder }: Ima
     setPreview(previewUrl);
 
     const safeName = file.name.toLowerCase().replace(/[^a-z0-9.]+/g, '-');
-    const fileRef = storageRef(firebase.storage, `uploads/blog/${Date.now()}-${safeName}`);
+    const prefix = storagePrefix.endsWith('/') ? storagePrefix : `${storagePrefix}/`;
+    const fileRef = storageRef(firebase.storage, `${prefix}${Date.now()}-${safeName}`);
     const uploadTask = uploadBytesResumable(fileRef, file);
 
     uploadTask.on(

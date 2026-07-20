@@ -135,6 +135,15 @@ export default function SlideOutNav({ whiteText = false, isScrolled = false }: S
               </li>
               <li>
                 <Link 
+                  to="/coaching" 
+                  onClick={closeNav}
+                  className="font-helvetica text-lg sm:text-xl md:text-2xl font-bold text-white hover:text-suelyn-pink transition-colors block py-1 sm:py-2"
+                >
+                  Coaching
+                </Link>
+              </li>
+              <li>
+                <Link 
                   to="/foundation" 
                   onClick={closeNav}
                   className="font-helvetica text-lg sm:text-xl md:text-2xl font-bold text-white hover:text-suelyn-pink transition-colors block py-1 sm:py-2"

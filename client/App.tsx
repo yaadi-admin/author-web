@@ -16,6 +16,7 @@ import Workshops from "./pages/Workshops";
 import Foundation from "./pages/Foundation";
 import Gallery from "./pages/Gallery";
 import GalleryAlbum from "./pages/GalleryAlbum";
+import Coaching from "./pages/Coaching";
 // Temporarily unpublished while the retreat is restructured (Oct online + Feb in-person).
 // import LoverNeverEnds from "./pages/LoverNeverEnds";
 import NotFound from "./pages/NotFound";
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/foundation" element={<Foundation />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/gallery/:id" element={<GalleryAlbum />} />
+          <Route path="/coaching" element={<Coaching />} />
           {/* Love Never Ends temporarily unpublished — restore route when details are finalized */}
           {/* <Route path="/lover-never-ends" element={<LoverNeverEnds />} /> */}
           {/* <Route path="/love-never-ends" element={<LoverNeverEnds />} /> */}

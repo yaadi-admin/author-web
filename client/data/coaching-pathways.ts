@@ -1,12 +1,18 @@
-export const COACHING_REGISTRATION_URL =
-  "https://forms.gle/Ggpn61P2UcurTBtW6";
-
 export type CoachingPathwayId =
   | "identity-reset"
   | "survival-to-wholeness"
   | "purpose-alignment"
   | "covenant-preparedness"
   | "family-enrichment";
+
+/** Per-pathway payment links. Registration is sent after payment is received. */
+export const coachingPaymentUrls: Record<CoachingPathwayId, string> = {
+  "identity-reset": "https://secure.ezeepayments.com/?PgxnCzx",
+  "survival-to-wholeness": "https://secure.ezeepayments.com/?dBNwin3",
+  "purpose-alignment": "https://secure.ezeepayments.com/?zeTrzlE",
+  "covenant-preparedness": "https://secure.ezeepayments.com/?tnFwoYT",
+  "family-enrichment": "https://secure.ezeepayments.com/?xv8poUf",
+};
 
 export interface CoachingPathway {
   id: CoachingPathwayId;
@@ -151,17 +157,17 @@ export const coachingFaqs = [
   {
     question: "Can I pay in installments?",
     answer:
-      "Yes and No. It’s a one-time payment for Pathways 1 and 2. Flexible payment options may be available for the other coaching pathways. If you require an installment plan, please indicate this on your registration form or discuss it during your onboarding conversation. We will work with you to determine an option that best supports your journey.",
+      "Yes and No. It’s a one-time payment for Pathways 1 and 2. Flexible payment options may be available for the other coaching pathways. If you require an installment plan, please reach out after selecting your pathway and we will work with you to determine an option that best supports your journey.",
   },
   {
     question: "What if I'm unsure which pathway is right for me?",
     answer:
-      'That\'s perfectly okay. Many clients know they want change but aren\'t sure where to begin. During the registration process, you can select "I\'m not sure—I would like guidance." Because every client begins with The Identity Reset, Suzanna will work with you to identify the pathway that best aligns with your goals, current season, and desired outcomes before you move into specialized coaching.',
+      "That's perfectly okay. Many clients know they want change but aren't sure where to begin. Because every client begins with The Identity Reset, start there. Suzanna will then work with you to identify the pathway that best aligns with your goals, current season, and desired outcomes before you move into specialized coaching.",
   },
   {
-    question: "What happens after I register?",
+    question: "What happens after I pay?",
     answer:
-      "Once your registration has been submitted, you will receive a confirmation email acknowledging your application. Your registration will then be reviewed, and you will receive the next steps, including your payment link, scheduling instructions, and onboarding information. Once payment has been received, your coaching sessions will be confirmed, and you'll be ready to begin your transformation journey.",
+      "Payment is your commitment to begin. Once payment has been received, you will be sent the registration form and next steps, including scheduling instructions and onboarding information. Once registration is complete, your coaching sessions will be confirmed, and you'll be ready to begin your transformation journey.",
   },
   {
     question: "How long are the sessions?",
@@ -180,21 +186,19 @@ export const coachingFaqs = [
   },
 ];
 
-/** Opens the master registration form, optionally noting the intended pathway. */
-export const getCoachingRegistrationUrl = (pathway?: CoachingPathwayId | "general") => {
-  if (!pathway || pathway === "general") {
-    return COACHING_REGISTRATION_URL;
+/**
+ * Returns the payment URL for a pathway.
+ * Top-of-page / Identity Reset CTAs use the Identity Reset payment link.
+ */
+export const getCoachingPaymentUrl = (
+  pathway: CoachingPathwayId | "general" = "identity-reset",
+) => {
+  if (pathway === "general") {
+    return coachingPaymentUrls["identity-reset"];
   }
 
-  const pathwayTitles: Record<CoachingPathwayId, string> = {
-    "identity-reset": "The Identity Reset",
-    "survival-to-wholeness": "From Survival to Wholeness",
-    "purpose-alignment": "Purpose Alignment",
-    "covenant-preparedness": "Covenant Preparedness",
-    "family-enrichment": "Family Enrichment",
-  };
-
-  const url = new URL(COACHING_REGISTRATION_URL);
-  url.searchParams.set("pathway", pathwayTitles[pathway]);
-  return url.toString();
+  return coachingPaymentUrls[pathway];
 };
+
+/** @deprecated Prefer getCoachingPaymentUrl — payment is now the first step. */
+export const getCoachingRegistrationUrl = getCoachingPaymentUrl;

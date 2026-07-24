@@ -53,6 +53,10 @@ const DATE_PATTERNS = [
   "MMM d, yyyy",
   "MMM do yyyy",
   "MMM d yyyy",
+  "MM/dd/yyyy",
+  "M/d/yyyy",
+  "dd/MM/yyyy",
+  "d/M/yyyy",
   "yyyy-MM-dd",
 ] as const;
 
@@ -219,6 +223,8 @@ const initialWorkshops: Workshop[] = [
 export const getAllWorkshops = async (): Promise<Workshop[]> => {
   try {
     if (isCacheValid() && workshopsCache.length > 0) {
+      // Re-sort on every read so current vs past order stays correct as dates pass.
+      workshopsCache = sortWorkshops(workshopsCache);
       return workshopsCache;
     }
 

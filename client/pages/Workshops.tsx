@@ -11,6 +11,7 @@ import { speakingReviews } from "../data/reviews";
 import {
   getAllWorkshops,
   getWorkshopTemporalStatus,
+  sortWorkshopsByRelevance,
   type Workshop,
 } from "../data/workshops";
 import {
@@ -167,7 +168,8 @@ export default function Workshops() {
       try {
         const workshops = await getAllWorkshops();
         if (!isCancelled) {
-          setWorkshopData(workshops);
+          // Current/upcoming first, past engagements at the bottom.
+          setWorkshopData(sortWorkshopsByRelevance(workshops));
         }
       } catch (error) {
         console.error("Error loading workshops:", error);

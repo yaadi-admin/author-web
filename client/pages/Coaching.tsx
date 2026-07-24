@@ -9,7 +9,7 @@ import {
 import {
   coachingFaqs,
   coachingPathways,
-  getCoachingRegistrationUrl,
+  getCoachingPaymentUrl,
   type CoachingPathway,
   type CoachingPathwayId,
 } from "../data/coaching-pathways";
@@ -23,22 +23,22 @@ const processSteps = [
   },
   {
     step: "2",
-    title: "Complete the Registration Form",
-    body: "Provide your contact information, answer a few introductory questions and indicate the pathway you are interested in pursuing.",
+    title: "Complete Your Payment",
+    body: "Use the payment link for your chosen pathway to secure your place. Payment is your commitment to begin.",
   },
   {
     step: "3",
-    title: "Begin with The Identity Reset",
-    body: "All clients begin with four 90-minute Identity Reset sessions to establish a healthy foundation for the coaching journey.",
+    title: "Receive Your Registration Form",
+    body: "Once payment is received, we will send you the registration form and onboarding details to complete before your sessions begin.",
   },
   {
     step: "4",
-    title: "Continue Your Transformation",
-    body: "After the Identity Reset, you and your coach will determine whether to continue in your selected pathway or pursue another that better supports your needs.",
+    title: "Begin with The Identity Reset",
+    body: "All clients begin with four 90-minute Identity Reset sessions to establish a healthy foundation for the coaching journey.",
   },
 ];
 
-function RegisterButton({
+function PaymentButton({
   pathway,
   label,
   className = "",
@@ -49,7 +49,7 @@ function RegisterButton({
 }) {
   return (
     <a
-      href={getCoachingRegistrationUrl(pathway)}
+      href={getCoachingPaymentUrl(pathway)}
       target="_blank"
       rel="noopener noreferrer"
       className={`inline-flex items-center justify-center gap-2 rounded-full bg-[#F84988] px-7 py-3.5 font-inter text-sm sm:text-base font-semibold text-white shadow-lg transition-all hover:bg-[#e03a7a] hover:shadow-xl ${className}`}
@@ -67,18 +67,19 @@ function PathwayCard({ pathway, reverse }: { pathway: CoachingPathway; reverse?:
       className="overflow-hidden rounded-3xl bg-white/70 border border-white/80 shadow-lg"
     >
       <div
-        className={`grid lg:grid-cols-2 gap-0 items-stretch ${
+        className={`grid lg:grid-cols-2 gap-0 ${
           reverse ? "lg:[&>*:first-child]:order-2" : ""
         }`}
       >
-        <div className="relative min-h-[280px] lg:min-h-full">
+        {/* Fixed aspect keeps pathway images the same size across all cards */}
+        <div className="relative aspect-[3/2] w-full bg-[#1a0a12]">
           <img
             src={pathway.image}
             alt={pathway.title}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover object-center"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
           <div className="absolute bottom-4 left-4 right-4 lg:bottom-6 lg:left-6">
             <span className="inline-flex rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#741C82]">
               Pathway {pathway.number}
@@ -86,7 +87,7 @@ function PathwayCard({ pathway, reverse }: { pathway: CoachingPathway; reverse?:
           </div>
         </div>
 
-        <div className="p-6 sm:p-8 lg:p-10 space-y-5">
+        <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10 space-y-5">
           <div>
             <h3 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-black leading-tight">
               {pathway.title}
@@ -145,7 +146,7 @@ function PathwayCard({ pathway, reverse }: { pathway: CoachingPathway; reverse?:
           )}
 
           <div className="pt-1">
-            <RegisterButton pathway={pathway.id} label={pathway.ctaLabel} />
+            <PaymentButton pathway={pathway.id} label={pathway.ctaLabel} />
             {pathway.ctaNote && (
               <p className="mt-3 font-helvetica text-sm text-black/60">{pathway.ctaNote}</p>
             )}
@@ -161,30 +162,46 @@ export default function Coaching() {
     <div className="bg-gradient-to-r from-[#F1E6DB] via-[#E0B2F1] to-[#FFE4EE] min-h-screen">
       <Header whiteText={true} />
 
-      {/* Hero */}
-      <section className="relative min-h-[85vh] flex items-end sm:items-center overflow-hidden pt-24 pb-16">
-        <div className="absolute inset-0 z-0">
+      {/* Hero — portrait photo shown more fully instead of heavy crop */}
+      <section className="relative overflow-hidden pt-24">
+        <div className="absolute inset-0 z-0 bg-[#1a0a12]">
           <img
             src="/coaching/hero.jpg"
-            alt="Strategic Coaching Pathways"
-            className="w-full h-full object-cover"
+            alt=""
+            aria-hidden="true"
+            className="h-full w-full scale-110 object-cover object-[center_18%] blur-2xl opacity-40"
             loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70" />
         </div>
 
-        <div className="relative z-10 container mx-auto px-4 max-w-5xl text-center sm:text-left">
-          <p className="font-helvetica text-xs sm:text-sm uppercase tracking-[0.25em] text-white/85 mb-4">
-            Strategic Coaching Pathways
-          </p>
-          <h1 className="font-charm text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-none mb-5">
-            Your Journey. Your Healing. Your Transformation.
-          </h1>
-          <p className="font-playfair text-base sm:text-xl text-white/90 max-w-2xl mb-8">
-            Structured, confidential coaching pathways designed to help you rebuild from within and
-            move intentionally toward wholeness and purpose.
-          </p>
-          <RegisterButton pathway="general" label="Begin Your Journey" />
+        <div className="relative z-10 container mx-auto px-4 max-w-6xl py-12 sm:py-16 md:py-20">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+            <div className="text-center lg:text-left">
+              <p className="font-helvetica text-xs sm:text-sm uppercase tracking-[0.25em] text-white/85 mb-4">
+                Strategic Coaching Pathways
+              </p>
+              <h1 className="font-charm text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-none mb-5">
+                Your Journey. Your Healing. Your Transformation.
+              </h1>
+              <p className="font-playfair text-base sm:text-xl text-white/90 max-w-xl mx-auto lg:mx-0 mb-8">
+                Structured, confidential coaching pathways designed to help you rebuild from within
+                and move intentionally toward wholeness and purpose.
+              </p>
+              <PaymentButton pathway="identity-reset" label="Begin Your Journey" />
+            </div>
+
+            <div className="mx-auto w-full max-w-md lg:max-w-none">
+              <div className="overflow-hidden rounded-[1.75rem] ring-4 ring-white/15 shadow-2xl bg-black/20">
+                <img
+                  src="/coaching/hero.jpg"
+                  alt="Strategic Coaching Pathways"
+                  className="h-auto w-full object-contain"
+                  loading="eager"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -242,9 +259,8 @@ export default function Coaching() {
                     coaching journey.
                   </p>
                   <p>
-                    During the registration process, you may indicate the pathway you are most
-                    interested in pursuing. However, your first four coaching sessions will begin
-                    with The Identity Reset.
+                    You may indicate the pathway you are most interested in pursuing. However, your
+                    first four coaching sessions will begin with The Identity Reset.
                   </p>
                   <p>
                     After completing the Identity Reset, you and your coach will review your progress
@@ -257,7 +273,7 @@ export default function Coaching() {
                 </div>
                 <div className="mt-8">
                   <a
-                    href={getCoachingRegistrationUrl("identity-reset")}
+                    href={getCoachingPaymentUrl("identity-reset")}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 font-inter text-sm sm:text-base font-semibold text-[#741C82] shadow-lg transition-all hover:bg-white/90"
@@ -267,11 +283,11 @@ export default function Coaching() {
                   </a>
                 </div>
               </div>
-              <div className="overflow-hidden rounded-2xl ring-4 ring-white/20 shadow-2xl">
+              <div className="overflow-hidden rounded-2xl ring-4 ring-white/20 shadow-2xl aspect-[3/2]">
                 <img
                   src="/coaching/identity-reset.jpg"
                   alt="The Identity Reset"
-                  className="w-full h-auto object-cover"
+                  className="h-full w-full object-cover object-center"
                   loading="lazy"
                 />
               </div>
@@ -289,7 +305,8 @@ export default function Coaching() {
             </h2>
             <p className="font-helvetica text-base sm:text-lg text-black/70 max-w-3xl mx-auto">
               Choose the pathway that reflects where you are — and where you are ready to go. Every
-              journey still begins with The Identity Reset.
+              journey still begins with The Identity Reset. Payment secures your place; registration
+              follows once payment is received.
             </p>
           </div>
 
@@ -362,7 +379,7 @@ export default function Coaching() {
             <p className="font-playfair text-xl sm:text-2xl text-black mb-6">
               Ready to take the first step?
             </p>
-            <RegisterButton pathway="identity-reset" label="Begin My Identity Reset" />
+            <PaymentButton pathway="identity-reset" label="Begin My Identity Reset" />
           </div>
         </div>
       </section>

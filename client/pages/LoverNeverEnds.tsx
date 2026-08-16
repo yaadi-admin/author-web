@@ -1,960 +1,529 @@
 import Header from "../components/Header";
 import Footer from "./footer";
-import {
-  useState,
-  useEffect,
-  useCallback,
-  useMemo,
-  useRef,
-} from "react";
-import { submitContactForm } from "../lib/contact";
-import { addRegistration } from "../data/registrations";
-import { toast } from "../hooks/use-toast";
-import { useCountdown } from "../hooks/use-countdown";
-import { RETREAT_DATE, REGISTRATION_LINKS } from "../lib/retreat-config";
+import { Link } from "react-router-dom";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { speakingReviews } from "../data/reviews";
+import { useCountdown } from "../hooks/use-countdown";
+import {
+  EVENT_DATE,
+  EVENT_DATE_LABEL,
+  EVENT_FORMAT_LABEL,
+  EVENT_PRICE_LABEL,
+  EVENT_PRICE_PER_PERSON,
+  EVENT_REGISTRATION_URL,
+  EVENT_TAGLINE,
+  EVENT_TITLE,
+} from "../lib/retreat-config";
+import {
+  ArrowRight,
+  BookOpen,
+  HeartHandshake,
+  MessagesSquare,
+  Sparkles,
+  Users,
+} from "lucide-react";
 
-/* ------------------------------------------------------------------ */
-/*  DATA                                                              */
-/* ------------------------------------------------------------------ */
-
-interface Speaker {
-  name: string;
-  title: string;
-  organization?: string;
-  sessionTitle: string;
-  focus: string;
-  bio: string;
-  color: string;
-}
-
-const speakers: Speaker[] = [
+const voices = [
   {
-    name: "Coach SueLyn",
-    title: "Visionary & Host",
-    sessionTitle: "Divine Design for Couples",
-    focus: "Purpose-driven partnership and spiritual alignment in marriage.",
-    bio: "Suzanna D. Griffiths is a certified leader, faith-fueled mentor, and bold storyteller called to help individuals heal, rise, and walk in wholeness while enjoying fulfilling relationships and marriage.",
-    color: "#F84988",
+    name: "Minister Suzanna Griffiths",
+    focus: "Positioned for the Kingdom",
+    session: "Stewarding The Life God Entrusted To You.",
+    description:
+      "Your life is more than something to simply live; it is something you have been entrusted to steward. Minister Suzanna Griffiths will invite participants to examine how they are showing up in the life God has given them and whether their choices, relationships, gifts, and priorities are aligned with what they have been called to carry.",
+    image: "/love-never-ends/suzanna-griffiths.jpeg",
   },
   {
     name: "Bishop Dr. Carla Dunbar",
-    title: "Featured Voice",
-    sessionTitle: "Session details coming soon",
-    focus: "Powerful teachings on faith, family, and Kingdom relationships.",
-    bio: "Bishop Dr. Carla Dunbar brings decades of ministry leadership and a passion for seeing families thrive through faith-centered principles.",
-    color: "#FFAC24",
+    focus: "Purpose, Fulfillment & Alignment",
+    session: "The Aligned Marriage: Where Purpose, Partnership & Fulfillment Meet",
+    description:
+      "What happens when two individual purposes must learn to move in one direction? Bishop Dr. Carla Dunbar will explore alignment within marriage and how couples can build partnerships where purpose, connection, and fulfillment can coexist.",
+    image: "/love-never-ends/carla-dunbar.png",
   },
   {
-    name: "Chantaeu Munroe",
-    title: "Trauma-Informed Specialist",
-    sessionTitle: "Restored From Within: The Healing That Rebuilds Your Marriage",
-    focus: "What You Haven't Healed Is Still Showing Up",
-    bio: "Chantaeu Munroe is the author of Layers of Healing: Discovering Purpose in Pain and Trauma, a Certified Trauma-Informed and Christian Life Coach, and the CEO & Founder of CKM Healing Consultancy and the Layers of Healing Foundation. She helps individuals, families, and organizations heal from trauma, break destructive cycles, and build healthier patterns through faith-based, holistic support.",
-    color: "#8B5CF6",
+    name: "Minister Chantaeu Munroe",
+    focus: "Individual Healing & Restoration",
+    session: "Restored From Within: The Healing That Rebuilds Your Marriage",
+    description:
+      "What you haven't healed is still showing up. Unresolved wounds can quietly influence how we communicate, love, respond to conflict, and experience connection. Minister Chantaeu Munroe will help participants explore how healing from within can begin changing what shows up in their relationships.",
+    image: "/love-never-ends/chantaeu-munroe.jpg",
   },
   {
-    name: "Coach Terry Samy",
-    title: "Founder & Lead Coach",
-    organization: "Grace N Grit Coaching Hub",
-    sessionTitle: "Generational Restoration & Transformation",
-    focus: "BETTER SPOUSES BEGIN BEFORE \"I DO\"",
-    bio: "Coach Terry Samy is the Founder and Lead Coach of Grace N Grit Coaching Hub, where she helps individuals, couples, and families heal emotionally, build healthier relationships, and break destructive generational patterns. Known for her compassionate yet honest approach, she specializes in emotional healing, relationship dynamics, childhood wounds, communication, identity restoration, and resilience coaching. Through coaching, speaking, and faith-centered teachings, Coach Terry empowers people to understand how early life experiences shape adult relationships, helping them move from survival to intentional living, emotional wellness, and lasting transformation.",
-    color: "#10B981",
+    name: "Coach Terry Njiru",
+    focus: "Generational Restoration & Transformation",
+    session:
+      "The Family Curse Ends With Me: Choosing Healing, Restoration & Transformation",
+    description:
+      "Not everything you inherited has to be passed on. Coach Terry Njiru will lead a powerful conversation about recognizing generational patterns, confronting what needs to change, and intentionally choosing healing and restoration so that what affected yesterday does not have to define tomorrow.",
+    image: "/love-never-ends/terry-njiru.jpeg",
   },
 ];
 
-interface PackageOption {
-  name: string;
-  price: string;
-  description?: string;
-  badge?: string;
-  features: string[];
-  highlighted?: boolean;
-  ctaLabel?: string;
-  ctaHref?: string;
-}
+const experiences = [
+  {
+    title: "Interactive Sessions",
+    body: "You're not coming just to listen. Expect opportunities to engage, respond, reflect and participate.",
+    icon: MessagesSquare,
+  },
+  {
+    title: "Practical Tools & Insights",
+    body: "Take what you learn beyond October 17 with practical strategies you can begin applying to your life and relationships.",
+    icon: BookOpen,
+  },
+  {
+    title: "Real Conversations That Transform",
+    body: "Honest conversations around healing, relationships, purpose, generational patterns and becoming whole.",
+    icon: HeartHandshake,
+  },
+  {
+    title: "Guided Breakout Sessions",
+    body: "Move from the larger conference space into smaller, intentional conversations where you can explore, reflect, and engage more deeply.",
+    icon: Users,
+  },
+];
 
-const packages: PackageOption[] = [
-  {
-    name: "Full Couples Retreat Experience",
-    price: "$2,600 USD + $180 Registration Fee (Per Couple)",
-    description:
-      "A premium 4 Days / 3 Nights transformational experience intentionally designed for couples seeking healing, reconnection, restoration, and alignment.",
-    badge: "Premium Experience",
-    highlighted: true,
-    features: [
-      "Luxury accommodation",
-      "All meals",
-      "Full retreat access",
-      "Direct connection to the Voices",
-      "Transformational sessions",
-      "Offsite curated rekindling experiences",
-      "Themed group activities",
-      "Welcome package & keepsakes",
-      "Face-to-face networking with premier sponsors",
-    ],
-    ctaLabel: "Register Now",
-    ctaHref: REGISTRATION_LINKS.couples,
-  },
-  {
-    name: "Singles In-Person Experience",
-    price: "$2,350 USD + $100 USD Registration Fee",
-    description:
-      "A healing and restoration experience for individuals seeking emotional wellness, clarity, alignment, and personal growth.",
-    features: [
-      "Single occupancy accommodation",
-      "All meals",
-      "Full retreat access",
-      "Direct connection to the Voices",
-      "Transformational sessions",
-      "Offsite curated rekindling experiences",
-      "Themed group activities",
-      "Welcome package & keepsakes",
-      "Face-to-face networking with premier sponsors",
-    ],
-    ctaLabel: "Register Now",
-    ctaHref: REGISTRATION_LINKS.singles,
-  },
-  {
-    name: "Shared Accommodation Experience",
-    price: "$1,300 USD + $100 USD Registration Fee (Per Person)",
-    description:
-      "Attend the full retreat experience alongside a selected roommate or friend.",
-    features: [
-      "Shared accommodation",
-      "All meals",
-      "Full retreat access",
-      "Direct connection to the Voices",
-      "Transformational sessions",
-      "Offsite curated rekindling experiences",
-      "Themed group activities",
-      "Welcome package & keepsakes",
-      "Face-to-face networking with premier sponsors",
-    ],
-    ctaLabel: "Register Now",
-  },
-  {
-    name: "One-Day Couples Experience",
-    price: "$650 USD (Per Couple)",
-    description:
-      "A one-day transformational reset experience for couples seeking meaningful connection, restoration, and quality time together.",
-    features: [
-      "One-day in-person access",
-      "Meals included",
-      "Retreat materials",
-      "Guided activities",
-      "Transformational sessions",
-    ],
-  },
-  {
-    name: "Online Experience Pass",
-    price: "$150 USD",
-    description: "Experience the retreat virtually from anywhere in the world.",
-    features: [
-      "Virtual access to all 3 days",
-      "Session recordings",
-      "Retreat materials",
-      "Online Community access",
-    ],
-    ctaLabel: "Secure Your Spot",
-  },
-  {
-    name: "Online Experience + Coaching",
-    price: "$250 USD",
-    badge: "Most Popular",
-    features: [
-      "Everything in Online Pass",
-      "Two coaching sessions",
-    ],
-    ctaLabel: "Secure Your Spot",
-  },
-  {
-    name: "Transformation Experience Package",
-    price: "$500 USD",
-    features: [
-      "Everything in Online Pass",
-      "Four coaching sessions",
-      "Copy of B.A.N.T.T.E. (Build a Nation Not Two Empires by Suzanna D. Griffiths)",
-    ],
-    ctaLabel: "Secure Your Spot",
-  },
-  {
-    name: "Church Group Virtual",
-    price: "$100,000 JMD",
-    description: "A shared virtual retreat experience for churches and ministry groups.",
-    features: [
-      "Access for up to 10 persons",
-      "Group participation",
-      "Retreat materials",
-    ],
-    ctaLabel: "Secure Your Spot",
-  },
+const includes = [
+  "Full access to the online interactive conference",
+  "Four Featured Voice transformational sessions",
+  "Interactive engagement activities",
+  "Guided breakout sessions",
+  "Reflection and self-discovery exercises",
+  "Practical tools for life, relationships and legacy",
+  "Digital conference workbook",
+  "Meaningful conversation and connection",
+  "A faith-rooted environment centered on healing, restoration and transformation",
+];
+
+const whoIsThisFor = [
+  "It's for the person who knows there are patterns that need to change.",
+  "It's for the individual doing the work of becoming whole.",
+  "It's for the couple who wants to build with greater intention.",
+  "It's for the person questioning whether what they inherited must become what they pass on.",
+  "It's for the person seeking greater clarity around purpose, relationships, healing, and alignment.",
 ];
 
 const faqs = [
   {
-    question: "Is this experience faith-based?",
+    question: "Is Love Never Ends: The First Step a webinar?",
     answer:
-      "Yes. Faith-centered principles will be incorporated throughout the experience, creating a sacred space for spiritual, emotional, and relational growth.",
+      "No. The First Step is an online interactive experience. In addition to sessions led by our Featured Voices, the experience will incorporate engagement activities, guided reflection, and breakout sessions.",
   },
   {
-    question: "Are payment plans available?",
+    question: "Is this only for married couples?",
     answer:
-      "Yes. Flexible payment options are available for select packages. All payments are due by August 31, 2026.",
+      "No. The experience is designed for individuals and couples. Conversations will explore individual healing, relationships, generational patterns, purpose, restoration and alignment.",
   },
   {
-    question: "Will recordings be available?",
+    question: "Is the experience faith-based?",
     answer:
-      "Yes. Online attendees will receive access to session recordings so you can revisit the teachings at your own pace.",
+      "Yes. Love Never Ends is rooted in faith-based principles and the belief that healing, restoration, and transformation are possible. The experience is designed to create a welcoming space for people who are ready to grow, reflect, and take meaningful steps forward.",
   },
   {
-    question: "Is accommodation included in all packages?",
+    question: "Will I receive a workbook?",
     answer:
-      "Accommodation is only included in the Full Couples Retreat Experience, Singles In-Person Experience, and Shared Accommodation Experience. The One-Day Couples Experience does not include overnight accommodation.",
+      "Yes. Registered participants will receive a digital conference workbook featuring exercises, reflection questions and practical tools connected to the Featured Voice sessions.",
   },
   {
-    question: "Can I upgrade my package later?",
+    question: "Will there be breakout sessions?",
     answer:
-      "Yes, subject to availability. Contact the SueLyn Empowered Living team to discuss upgrade options.",
+      "Yes. Breakout sessions form part of the interactive experience and will provide opportunities for deeper reflection, conversation and engagement.",
   },
   {
-    question: "Is the registration fee non-refundable?",
+    question: "How much does registration cost?",
+    answer: "Registration is $65 USD per person.",
+  },
+  {
+    question: "Where will the conference be held?",
     answer:
-      "Yes. Registration fees are non-refundable. Please review the Retreat Policies & Terms section for full details.",
+      "The experience is fully online. Registered participants will receive access instructions and additional conference information before the event.",
   },
 ];
 
-const audienceList = [
-  { label: "Married & Engaged Couples", icon: "💍" },
-  { label: "Couples Seeking Restoration or Navigating Transition", icon: "🤝" },
-  { label: "Parents", icon: "🏠" },
-  { label: "Church Leaders & Family Ministry", icon: "⛪" },
-  { label: "Police Officers Handling Domestic Disputes", icon: "🛡️" },
-  { label: "Guidance Counselors", icon: "🗣️" },
-  { label: "Individuals Desiring Healthier Patterns", icon: "🌱" },
-];
-
-const experienceFeatures = [
-  "Transformational Teaching Sessions",
-  "Healing & Restoration Conversations",
-  "Guided Reflection and Self-Discovery Moments",
-  "Practical Relationship and Emotional Wellness Tools",
-  "Curated Rekindling and Restoration Experiences",
-  "Themed Group Activities and Meaningful Connection Opportunities",
-  "Community, Encouragement, and Safe Conversations",
-  "Spiritual & Emotional Alignment",
-  "Intentional Moments Designed to Help You Reconnect with Yourself and Others",
-];
-
-/* ------------------------------------------------------------------ */
-/*  COMPONENT                                                         */
-/* ------------------------------------------------------------------ */
-
-export default function LoverNeverEnds() {
-  const countdown = useCountdown(RETREAT_DATE);
-  const [scrollY, setScrollY] = useState(0);
-
-  /* Review carousel state */
-  const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
-  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
-  const resumeAutoScrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  /* Form state */
-  const [formData, setFormData] = useState({
-    fullName: "",
-    partnerName: "",
-    email: "",
-    phone: "",
-    packageSelection: "",
-    emergencyContact: "",
-    paymentPlanRequest: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  /* Scroll tracking */
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  /* Review carousel */
-  useEffect(() => {
-    if (!isAutoScrolling) return;
-    const interval = setInterval(() => {
-      setCurrentReviewIndex((prev) => (prev + 1) % speakingReviews.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [isAutoScrolling]);
-
-  const nextReview = useCallback(() => {
-    setIsAutoScrolling(false);
-    setCurrentReviewIndex((prev) => (prev + 1) % speakingReviews.length);
-    if (resumeAutoScrollTimeoutRef.current) clearTimeout(resumeAutoScrollTimeoutRef.current);
-    resumeAutoScrollTimeoutRef.current = setTimeout(() => setIsAutoScrolling(true), 10000);
-  }, []);
-
-  const prevReview = useCallback(() => {
-    setIsAutoScrolling(false);
-    setCurrentReviewIndex(
-      (prev) => (prev - 1 + speakingReviews.length) % speakingReviews.length
-    );
-    if (resumeAutoScrollTimeoutRef.current) clearTimeout(resumeAutoScrollTimeoutRef.current);
-    resumeAutoScrollTimeoutRef.current = setTimeout(() => setIsAutoScrolling(true), 10000);
-  }, []);
-
-  /* Form handlers */
-  const handleFormChange = useCallback(
-    (field: string, value: string) => {
-      setFormData((prev) => ({ ...prev, [field]: value }));
-    },
-    []
-  );
-
-  const handleSubmit = useCallback(
-    async (e: React.FormEvent) => {
-      e.preventDefault();
-      if (!formData.fullName.trim() || !formData.email.trim()) {
-        toast({
-          title: "Missing Information",
-          description: "Please fill in your full name and email address.",
-          variant: "destructive",
-        });
-        return;
-      }
-      if (!formData.packageSelection) {
-        toast({
-          title: "Package Required",
-          description: "Please select a retreat package.",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      setIsSubmitting(true);
-      try {
-        // Persist to Firestore first
-        await addRegistration({
-          fullName: formData.fullName,
-          partnerName: formData.partnerName || undefined,
-          email: formData.email,
-          phone: formData.phone || undefined,
-          packageSelection: formData.packageSelection,
-          emergencyContact: formData.emergencyContact || undefined,
-          paymentPlanRequest: formData.paymentPlanRequest || undefined,
-          source: "Love Never Ends Retreat Registration",
-        });
-
-        const messageBody = [
-          "A new Love Never Ends registration was submitted.",
-          "",
-          `Package selected: ${formData.packageSelection}`,
-          `Payment plan requested: ${formData.paymentPlanRequest ? "Yes" : "No"}`,
-          "",
-          "Please review the registration details and follow up with next steps.",
-        ].join("\n");
-
-        await submitContactForm({
-          name: formData.fullName,
-          email: formData.email,
-          phone: formData.phone,
-          title: "Love Never Ends Retreat Registration",
-          source: "Retreat Registration Form",
-          message: messageBody,
-          registrationDetails: {
-            fullName: formData.fullName,
-            partnerName: formData.partnerName,
-            phone: formData.phone,
-            packageSelection: formData.packageSelection,
-            emergencyContact: formData.emergencyContact,
-            paymentPlanRequest: formData.paymentPlanRequest,
-          },
-        });
-
-        toast({
-          title: "Registration Submitted",
-          description:
-            "Thank you! We have received your registration and will contact you shortly with next steps.",
-        });
-
-        setFormData({
-          fullName: "",
-          partnerName: "",
-          email: "",
-          phone: "",
-          packageSelection: "",
-          emergencyContact: "",
-          paymentPlanRequest: "",
-        });
-      } catch (error) {
-        toast({
-          title: "Submission Failed",
-          description:
-            error instanceof Error
-              ? error.message
-              : "Failed to submit registration. Please try again.",
-          variant: "destructive",
-        });
-      } finally {
-        setIsSubmitting(false);
-      }
-    },
-    [formData]
-  );
-
-  const scrollToRegistration = useCallback(() => {
-    const el = document.getElementById("registration-form");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  }, []);
-
-  const scrollToPackages = useCallback(() => {
-    const el = document.getElementById("packages");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  }, []);
-
-  /* Marquee text */
-  const marqueeText = useMemo(() => "LOVER NEVER ENDS ".repeat(60), []);
+function RegisterButton({
+  label = "Register Now",
+  variant = "pink",
+}: {
+  label?: string;
+  variant?: "pink" | "white";
+}) {
+  const styles =
+    variant === "white"
+      ? "bg-white text-[#741C82] hover:bg-white/90"
+      : "bg-[#F84988] text-white hover:bg-[#e03a7a]";
 
   return (
-    <div className="bg-gradient-to-b from-[#FFE4EE] via-[#FFE4EE] to-[#FFE4EE] overflow-x-hidden">
-      <Header whiteText={true} />
+    <a
+      href={EVENT_REGISTRATION_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-inter text-sm sm:text-base font-semibold shadow-lg transition-all hover:shadow-xl ${styles}`}
+    >
+      {label}
+      <ArrowRight className="h-4 w-4" />
+    </a>
+  );
+}
 
-      {/* ===================== HERO ===================== */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 z-0">
-          <div
-            className="absolute inset-0 w-full h-[120%]"
-            style={{
-              backgroundImage:
-                "url(https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0235.jpg?alt=media&token=a5612b0e-c68f-428f-8179-e9f4fdeee5ff)",
-              backgroundSize: "cover",
-              backgroundPosition: "center 30%",
-              transform: `translateY(${scrollY * 0.3}px)`,
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
+function CountdownStrip() {
+  const countdown = useCountdown(EVENT_DATE);
+
+  return (
+    <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+      {[
+        { value: countdown.days, label: "Days" },
+        { value: countdown.hours, label: "Hours" },
+        { value: countdown.minutes, label: "Minutes" },
+        { value: countdown.seconds, label: "Seconds" },
+      ].map((item) => (
+        <div
+          key={item.label}
+          className="min-w-[68px] rounded-2xl bg-white/15 px-3 py-3 text-center backdrop-blur-sm sm:min-w-[88px] sm:px-4"
+        >
+          <div className="font-playfair text-2xl font-bold text-white sm:text-3xl">
+            {String(item.value).padStart(2, "0")}
+          </div>
+          <div className="font-helvetica text-[10px] uppercase tracking-wider text-white/70 sm:text-xs">
+            {item.label}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default function LoverNeverEnds() {
+  return (
+    <div className="min-h-screen overflow-x-hidden bg-gradient-to-b from-[#FFF0F6] via-[#FFE4EE] to-[#FFF8EB]">
+      <Header whiteText={false} />
+
+      {/* Sticky CTA */}
+      <div className="fixed bottom-4 left-4 right-4 z-40 flex justify-center pointer-events-none sm:bottom-6">
+        <a
+          href={EVENT_REGISTRATION_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-[#111111] px-6 py-3 font-inter text-sm font-semibold text-white shadow-[0_18px_50px_rgba(17,17,17,0.35)] transition hover:bg-[#F84988] sm:px-8 sm:text-base"
+        >
+          Register Now — {EVENT_PRICE_LABEL}
+          <ArrowRight className="h-4 w-4" />
+        </a>
+      </div>
+
+      {/* Hero */}
+      <section className="relative overflow-hidden pt-24 pb-10 sm:pb-16">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#F84988] via-[#FF7A59] to-[#FFAC24]" />
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute -left-20 top-10 h-72 w-72 rounded-full bg-white blur-[100px]" />
+          <div className="absolute -right-16 bottom-0 h-80 w-80 rounded-full bg-[#741C82] blur-[120px]" />
         </div>
 
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto pt-24 pb-16">
-          <p className="font-playfair text-sm sm:text-base md:text-lg text-white/80 tracking-widest uppercase mb-4">
-            A Divine Design Experience
-          </p>
-          <h1 className="font-charm text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white leading-none mb-4">
-            Love Never Ends
-          </h1>
-          <h2 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white/90 font-medium mb-6">
-            More than a Retreat. It Is a Reset.
-          </h2>
-          <p className="font-helvetica text-base sm:text-lg md:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto mb-10">
-            Sometimes life, pain, disappointment, responsibilities, and disconnection
-            quietly create distance, not only between people, but within ourselves.
-            Love Never Ends was created as a space to pause, heal, reconnect, and
-            realign. Whether you are attending as a couple seeking restoration and a
-            deeper connection or as an individual pursuing healing, clarity, and
-            emotional wellness, this experience is designed to intentionally pour back
-            into you. Through transformational conversations, curated experiences,
-            practical relationship tools, healing moments, and community, you will
-            leave refreshed, empowered, and reminded that healthy love, beginning
-            within yourself, still matters.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button
-              onClick={scrollToRegistration}
-              className="bg-suelyn-pink text-white px-8 py-4 rounded-full font-inter font-semibold text-base sm:text-lg hover:bg-suelyn-pink/90 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-            >
-              Reserve Your Spot
-            </button>
-            <button
-              onClick={scrollToPackages}
-              className="bg-white/10 backdrop-blur-sm text-white border border-white/30 px-8 py-4 rounded-full font-inter font-semibold text-base sm:text-lg hover:bg-white/20 transition-all"
-            >
-              View Packages
-            </button>
-          </div>
+        <div className="relative z-10 container mx-auto max-w-6xl px-4">
+          <div className="grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
+            <div className="order-2 text-center text-white lg:order-1 lg:text-left">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em]">
+                <Sparkles className="h-4 w-4" />
+                {EVENT_DATE_LABEL}
+              </div>
+              <h1 className="font-charm text-4xl font-bold leading-none sm:text-5xl md:text-6xl lg:text-7xl">
+                {EVENT_TITLE}
+              </h1>
+              <p className="mt-3 font-playfair text-lg italic text-white/90 sm:text-xl md:text-2xl">
+                {EVENT_TAGLINE}
+              </p>
+              <p className="mt-2 font-helvetica text-sm uppercase tracking-[0.18em] text-white/80 sm:text-base">
+                {EVENT_DATE_LABEL} | {EVENT_FORMAT_LABEL}
+              </p>
 
-          {/* Countdown */}
-          <div className="mt-12 sm:mt-16">
-            <p className="font-playfair text-white/70 text-sm uppercase tracking-widest mb-4">
-              Experience begins in
-            </p>
-            <div className="flex justify-center gap-3 sm:gap-6">
-              {[
-                { value: countdown.days, label: "Days" },
-                { value: countdown.hours, label: "Hours" },
-                { value: countdown.minutes, label: "Minutes" },
-                { value: countdown.seconds, label: "Seconds" },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 sm:px-6 sm:py-4 min-w-[70px] sm:min-w-[90px]"
-                >
-                  <div className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-white">
-                    {String(item.value).padStart(2, "0")}
-                  </div>
-                  <div className="font-inter text-xs sm:text-sm text-white/60 uppercase tracking-wider">
-                    {item.label}
-                  </div>
-                </div>
-              ))}
+              <div className="mt-8 space-y-4 font-helvetica text-sm leading-relaxed text-white/90 sm:text-base">
+                <p>
+                  Healing doesn't always begin with having all the answers. Sometimes, it
+                  begins with the courage to recognize what needs to change and taking the
+                  first step.
+                </p>
+                <p>
+                  Love Never Ends: The First Step is a dynamic online interactive experience
+                  created for individuals and couples ready to examine the patterns shaping
+                  their lives, relationships, and legacy.
+                </p>
+                <p>
+                  Through transformational conversations, practical tools, guided reflection,
+                  and meaningful interaction, four powerful Voices will lead you through
+                  conversations around generational restoration, purpose and alignment,
+                  individual healing, relationships, and positioning for what comes next.
+                </p>
+                <p className="font-playfair text-base italic text-white sm:text-lg">
+                  This isn't a webinar where you simply log in and listen. Come prepared to
+                  engage. To reflect. To participate. And most importantly, to take your
+                  first step.
+                </p>
+              </div>
+
+              <div className="mt-8">
+                <CountdownStrip />
+              </div>
+
+              <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
+                <RegisterButton label="Register Now" />
+                <p className="font-playfair text-lg font-semibold text-white">
+                  {EVENT_PRICE_PER_PERSON}
+                </p>
+              </div>
+            </div>
+
+            <div className="order-1 mx-auto w-full max-w-md lg:order-2 lg:max-w-none">
+              <div className="overflow-hidden rounded-[1.75rem] bg-black/10 shadow-2xl ring-4 ring-white/20">
+                <img
+                  src="/love-never-ends/hero.jpg"
+                  alt="Love Never Ends: The First Step"
+                  className="h-auto w-full object-contain"
+                  loading="eager"
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===================== FLYER SHOWCASE ===================== */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB]">
-        <div className="container mx-auto max-w-4xl">
-          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl ring-4 ring-white/20">
-            <img
-              src="/Lover-never-ends-flyer.jpeg"
-              alt="Love Never Ends Retreat Flyer"
-              className="w-full h-auto object-cover"
-              loading="eager"
+      {/* More than a conference */}
+      <section className="px-4 py-16 sm:py-20">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="font-playfair text-3xl font-bold text-[#23121a] sm:text-4xl md:text-5xl">
+            This Is More Than an Online Conference
+          </h2>
+          <div className="mt-8 space-y-5 text-left font-helvetica text-base leading-relaxed text-[#4d3340] sm:text-center sm:text-lg">
+            <p>
+              The vision behind Love Never Ends has always been about creating space for
+              healing, restoration, reconnection, and alignment.
+            </p>
+            <p>That vision hasn't changed. The way we're beginning has.</p>
+            <p>
+              Love Never Ends begins with The First Step — an accessible, interactive online
+              experience bringing people together from wherever they are.
+            </p>
+            <p>
+              Throughout the experience, you won't simply hear from our Featured Voices.
+              You'll be invited into the conversation through reflection, practical
+              exercises, breakout sessions, and intentional moments designed to help you
+              examine where you are, what may be holding you back, and what your next step
+              could look like.
+            </p>
+            <p className="font-playfair text-lg italic text-[#741C82] sm:text-xl">
+              Transformation doesn't happen simply because we heard something powerful. It
+              begins when we decide to do something with what we've heard.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Voices */}
+      <section className="px-4 pb-16 sm:pb-20">
+        <div className="container mx-auto max-w-6xl">
+          <div className="mb-12 text-center">
+            <p className="mb-3 font-helvetica text-xs uppercase tracking-[0.22em] text-[#F84988] sm:text-sm">
+              Four Transformational Voices
+            </p>
+            <h2 className="font-playfair text-3xl font-bold text-[#23121a] sm:text-4xl md:text-5xl">
+              One Divine Assignment
+            </h2>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2">
+            {voices.map((voice) => (
+              <article
+                key={voice.name}
+                className="overflow-hidden rounded-[1.75rem] border border-[#f3bdd1] bg-white/90 shadow-[0_20px_60px_rgba(95,18,49,0.08)]"
+              >
+                <div className="aspect-[4/5] overflow-hidden bg-[#1a0a12]">
+                  <img
+                    src={voice.image}
+                    alt={voice.name}
+                    className="h-full w-full object-cover object-top"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="space-y-3 p-6">
+                  <p className="font-helvetica text-xs font-semibold uppercase tracking-[0.18em] text-[#F84988]">
+                    {voice.focus}
+                  </p>
+                  <h3 className="font-playfair text-2xl font-bold text-[#23121a]">
+                    {voice.name}
+                  </h3>
+                  <p className="font-playfair text-base italic text-[#741C82]">
+                    {voice.session}
+                  </p>
+                  <p className="font-helvetica text-sm leading-relaxed text-[#4d3340] sm:text-base">
+                    {voice.description}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What you'll experience */}
+      <section className="bg-gradient-to-br from-[#741C82] via-[#F84988] to-[#FFAC24] px-4 py-16 sm:py-20">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="mb-10 text-center font-playfair text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+            What You'll Experience
+          </h2>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {experiences.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-2xl border border-white/20 bg-white/10 p-6 text-white backdrop-blur-sm"
+              >
+                <item.icon className="mb-4 h-8 w-8 text-white" />
+                <h3 className="mb-3 font-playfair text-xl font-bold">{item.title}</h3>
+                <p className="font-helvetica text-sm leading-relaxed text-white/85">
+                  {item.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Includes */}
+      <section className="px-4 py-16 sm:py-20">
+        <div className="container mx-auto max-w-5xl">
+          <div className="rounded-[2rem] border border-[#f3bdd1] bg-white/85 p-8 shadow-xl sm:p-10 md:p-12">
+            <div className="text-center">
+              <h2 className="font-playfair text-3xl font-bold text-[#23121a] sm:text-4xl md:text-5xl">
+                Your $65 Experience Includes
+              </h2>
+            </div>
+            <ul className="mt-10 grid gap-4 sm:grid-cols-2">
+              {includes.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-3 font-helvetica text-sm text-[#4d3340] sm:text-base"
+                >
+                  <span className="mt-1 inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#F84988] text-[10px] font-bold text-white">
+                    ✓
+                  </span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-10 flex flex-col items-center gap-4 text-center">
+              <p className="font-playfair text-2xl font-bold text-[#F84988] sm:text-3xl">
+                {EVENT_PRICE_PER_PERSON}
+              </p>
+              <RegisterButton />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Who is this for */}
+      <section className="px-4 pb-16 sm:pb-20">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="font-playfair text-3xl font-bold text-[#23121a] sm:text-4xl md:text-5xl">
+            Is Love Never Ends: The First Step For You?
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl font-helvetica text-base text-[#4d3340] sm:text-lg">
+            This experience isn't only for people whose relationships are in crisis.
+          </p>
+          <div className="mt-8 space-y-4 text-left">
+            {whoIsThisFor.map((line) => (
+              <p
+                key={line}
+                className="rounded-2xl border border-[#f3bdd1] bg-white/70 px-5 py-4 font-helvetica text-sm text-[#4d3340] sm:text-base"
+              >
+                {line}
+              </p>
+            ))}
+          </div>
+          <p className="mt-8 font-playfair text-xl italic text-[#741C82] sm:text-2xl">
+            And it's for anyone who knows: Something needs to change—and I'm ready to take
+            my first step.
+          </p>
+          <div className="mt-8">
+            <RegisterButton label="Yes, I'm Ready — Register Now" />
+          </div>
+        </div>
+      </section>
+
+      {/* Registration conversion */}
+      <section className="px-4 pb-16 sm:pb-20">
+        <div className="container mx-auto max-w-4xl overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#290712] via-[#53112d] to-[#F84988] p-8 text-center text-white shadow-2xl sm:p-12">
+          <p className="font-helvetica text-xs uppercase tracking-[0.22em] text-white/75 sm:text-sm">
+            One Experience. One Investment.
+          </p>
+          <h2 className="mt-4 font-charm text-5xl font-bold sm:text-6xl md:text-7xl">
+            {EVENT_PRICE_LABEL}
+          </h2>
+          <p className="mt-2 font-playfair text-lg text-white/85">Per Person</p>
+          <p className="mx-auto mt-6 max-w-2xl font-helvetica text-sm leading-relaxed text-white/85 sm:text-base">
+            Your registration gives you access to the full Love Never Ends: The First Step
+            Online Interactive Experience, including all Featured Voice sessions, breakout
+            sessions, interactive activities, and your digital conference workbook.
+          </p>
+          <div className="mt-6 space-y-1 font-helvetica text-sm text-white/80">
+            <p>{EVENT_DATE_LABEL}</p>
+            <p>{EVENT_FORMAT_LABEL}</p>
+          </div>
+          <div className="mt-8">
+            <RegisterButton
+              label={`Register Now – ${EVENT_PRICE_LABEL}`}
+              variant="white"
             />
           </div>
-          <p className="text-center font-inter text-sm text-black/50 mt-4">
-            October 16, 2026 · A Divine Design Experience
-          </p>
         </div>
       </section>
 
-      {/* ===================== ABOUT ===================== */}
-      <section className="py-16 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#F1E6DB] to-[#F1E6DB]">
+      {/* What comes next */}
+      <section className="px-4 pb-16 sm:pb-20">
         <div className="container mx-auto max-w-4xl text-center">
-          <p className="font-playfair text-suelyn-pink text-sm sm:text-base uppercase tracking-widest mb-4">
-            About The Experience
-          </p>
-          <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-8 leading-tight">
-            More Than a Retreat.
-            <br />
-            <span className="text-suelyn-pink">It Is a Reset.</span>
+          <h2 className="font-playfair text-3xl font-bold text-[#23121a] sm:text-4xl md:text-5xl">
+            The First Step Is Only the Beginning
           </h2>
-          <p className="font-helvetica text-base sm:text-lg md:text-xl text-black/70 leading-relaxed mb-6">
-            Sometimes life, pain, disappointment, responsibilities, and disconnection
-            quietly create distance, not only between people, but within ourselves.
-          </p>
-          <p className="font-helvetica text-base sm:text-lg md:text-xl text-black/70 leading-relaxed mb-6">
-            <em className="font-playfair">Love Never Ends</em> was created as a space to
-            pause, heal, reconnect, and realign. Whether you are attending as a couple
-            seeking restoration and a deeper connection or as an individual pursuing
-            healing, clarity, and emotional wellness, this experience is designed to
-            intentionally pour back into you.
-          </p>
-          <p className="font-helvetica text-base sm:text-lg md:text-xl text-black/70 leading-relaxed">
-            Through transformational conversations, curated experiences, practical
-            relationship tools, healing moments, and community, you will leave
-            refreshed, empowered, and reminded that healthy love, beginning within
-            yourself, still matters.
-          </p>
-        </div>
-      </section>
-
-      {/* ===================== WHO THIS IS FOR ===================== */}
-      <section className="py-16 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#F1E6DB] to-[#FFE4EE]">
-        <div className="container mx-auto">
-          <div className="text-center mb-12 md:mb-16">
-            <p className="font-playfair text-suelyn-pink text-sm sm:text-base uppercase tracking-widest mb-4">
-              Who Is This For?
+          <div className="mt-8 space-y-5 font-helvetica text-base leading-relaxed text-[#4d3340] sm:text-lg">
+            <p>
+              Love Never Ends: The First Step is exactly what its name says — the beginning.
             </p>
-            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black">
-              Designed For Every Stage
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
-            {audienceList.map((item) => (
-              <div
-                key={item.label}
-                className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 sm:p-8 text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-white/50"
-              >
-                <div className="text-4xl sm:text-5xl mb-4">{item.icon}</div>
-                <h3 className="font-playfair text-lg sm:text-xl font-bold text-black">
-                  {item.label}
-                </h3>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===================== WHAT YOU'LL EXPERIENCE ===================== */}
-      <section className="py-16 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE]">
-        <div className="container mx-auto">
-          <div className="text-center mb-12 md:mb-16">
-            <p className="font-playfair text-suelyn-pink text-sm sm:text-base uppercase tracking-widest mb-4">
-              The Experience
+            <p>
+              October marks the official launch of the Love Never Ends Experience and opens
+              the door to a deeper journey of healing, restoration, alignment, and
+              intentional relationships.
             </p>
-            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black">
-              What You&apos;ll Experience
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
-            {experienceFeatures.map((feature) => (
-              <div
-                key={feature}
-                className="flex items-start gap-4 bg-white/50 rounded-xl p-5 sm:p-6 border border-white/60"
-              >
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-suelyn-pink flex items-center justify-center mt-0.5">
-                  <svg
-                    className="w-4 h-4 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={3}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-                <span className="font-helvetica text-base sm:text-lg text-black/80 leading-snug">
-                  {feature}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===================== FEATURED VOICES ===================== */}
-      <section className="py-16 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB]">
-        <div className="container mx-auto">
-          <div className="text-center mb-12 md:mb-16">
-            <p className="font-playfair text-suelyn-pink text-sm sm:text-base uppercase tracking-widest mb-4">
-              Meet The Voices
+            <p>
+              For those ready to continue beyond the online experience, Love Never Ends will
+              culminate in an immersive in-person experience in February 2027, designed to
+              take the conversations and connections started here even deeper.
             </p>
-            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black">
-              Featured Voices
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-5xl mx-auto">
-            {speakers.map((speaker) => (
-              <div
-                key={speaker.name}
-                className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/60 hover:shadow-xl transition-all duration-300"
-              >
-                {/* Placeholder headshot */}
-                <div
-                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-full mx-auto mb-5 flex items-center justify-center text-white font-playfair text-2xl sm:text-3xl font-bold shadow-lg"
-                  style={{ backgroundColor: speaker.color }}
-                >
-                  {speaker.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                </div>
-                <div className="text-center mb-4">
-                  <h3 className="font-playfair text-xl sm:text-2xl font-bold text-black">
-                    {speaker.name}
-                  </h3>
-                  <p className="font-inter text-sm text-suelyn-pink font-semibold uppercase tracking-wider mt-1">
-                    {speaker.title}
-                  </p>
-                  {speaker.organization && (
-                    <p className="font-inter text-xs text-black/60 mt-1">
-                      {speaker.organization}
-                    </p>
-                  )}
-                </div>
-                <div className="mb-4">
-                  <p className="font-inter text-xs uppercase tracking-wider text-black/40 mb-1">
-                    Session
-                  </p>
-                  <p className="font-playfair text-base sm:text-lg font-semibold text-black">
-                    {speaker.sessionTitle}
-                  </p>
-                </div>
-                {speaker.focus && (
-                  <div className="mb-4">
-                    <p className="font-inter text-xs uppercase tracking-wider text-black/40 mb-1">
-                      Focus
-                    </p>
-                    <p className="font-helvetica text-sm sm:text-base text-black/70 italic">
-                      &ldquo;{speaker.focus}&rdquo;
-                    </p>
-                  </div>
-                )}
-                <p className="font-helvetica text-sm sm:text-base text-black/60 leading-relaxed">
-                  {speaker.bio}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===================== PACKAGES ===================== */}
-      <section id="packages" className="py-16 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#F1E6DB] to-[#FFE4EE]">
-        <div className="container mx-auto">
-          <div className="text-center mb-12 md:mb-16">
-            <p className="font-playfair text-suelyn-pink text-sm sm:text-base uppercase tracking-widest mb-4">
-              Investment
+            <p>
+              More details about the in-person experience will be shared in the months ahead.
             </p>
-            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4">
-              Package Options
-            </h2>
-            <p className="font-helvetica text-base sm:text-lg text-black/60 max-w-2xl mx-auto">
-              Choose the experience that best fits your journey. Every package includes
-              transformational value designed to meet you where you are.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-            {packages.map((pkg) => (
-              <div
-                key={pkg.name}
-                className={`relative rounded-2xl p-6 sm:p-8 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col ${
-                  pkg.highlighted
-                    ? "bg-gradient-to-br from-suelyn-pink/10 to-suelyn-purple/10 border-suelyn-pink/30 scale-[1.02]"
-                    : "bg-white/60 border-white/60"
-                }`}
-              >
-                {pkg.badge && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-suelyn-pink text-white text-xs font-inter font-bold uppercase tracking-wider px-4 py-1 rounded-full shadow-md">
-                    {pkg.badge}
-                  </div>
-                )}
-                <h3 className="font-playfair text-xl sm:text-2xl font-bold text-black mb-2">
-                  {pkg.name}
-                </h3>
-                <p className="font-playfair text-2xl sm:text-3xl font-bold text-suelyn-pink mb-6">
-                  {pkg.price}
-                </p>
-                {pkg.description && (
-                  <p className="font-helvetica text-sm sm:text-base text-black/65 mb-6 leading-relaxed">
-                    {pkg.description}
-                  </p>
-                )}
-                <ul className="space-y-3 mb-8 flex-1">
-                  {pkg.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3">
-                      <svg
-                        className="w-5 h-5 text-suelyn-pink flex-shrink-0 mt-0.5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      <span className="font-helvetica text-sm sm:text-base text-black/70">
-                        {f}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                {pkg.ctaHref ? (
-                  <a
-                    href={pkg.ctaHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`w-full py-3 rounded-full font-inter font-semibold text-sm sm:text-base transition-all text-center ${
-                      pkg.highlighted
-                        ? "bg-suelyn-pink text-white hover:bg-suelyn-pink/90 shadow-lg"
-                        : "bg-black/5 text-black hover:bg-black/10"
-                    }`}
-                  >
-                    {pkg.ctaLabel || "Register Now"}
-                  </a>
-                ) : (
-                  <button
-                    onClick={scrollToRegistration}
-                    className={`w-full py-3 rounded-full font-inter font-semibold text-sm sm:text-base transition-all ${
-                      pkg.highlighted
-                        ? "bg-suelyn-pink text-white hover:bg-suelyn-pink/90 shadow-lg"
-                        : "bg-black/5 text-black hover:bg-black/10"
-                    }`}
-                  >
-                    {pkg.ctaLabel || "Select Package"}
-                  </button>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===================== WHAT MAKES THIS DIFFERENT ===================== */}
-      <section className="py-16 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB]">
-        <div className="container mx-auto max-w-4xl">
-          <div className="bg-gradient-to-br from-suelyn-pink to-suelyn-purple rounded-3xl p-8 sm:p-12 md:p-16 text-white text-center shadow-2xl">
-            <p className="font-playfair text-white/80 text-sm sm:text-base uppercase tracking-widest mb-4">
-              Why This Experience?
-            </p>
-            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
-              What Makes This Different?
-            </h2>
-            <p className="font-helvetica text-base sm:text-lg md:text-xl leading-relaxed text-white/90 max-w-3xl mx-auto mb-6">
-              This is not just another relationship seminar.
-            </p>
-            <p className="font-helvetica text-base sm:text-lg md:text-xl leading-relaxed text-white/90 max-w-3xl mx-auto">
-              <em className="font-playfair">Love Never Ends</em> combines transformational
-              teaching, coaching support, guided reflection, healing conversations, practical
-              relationship tools, and immersive experiences designed to create long-lasting
-              impact for couples. This experience was intentionally created to help couples
-              heal, reconnect, and grow together emotionally, spiritually, and relationally.
+            <p className="font-playfair text-xl italic text-[#F84988] sm:text-2xl">
+              But every journey begins somewhere. This is The First Step.
             </p>
           </div>
         </div>
       </section>
 
-      {/* ===================== WHY THIS MATTERS ===================== */}
-      <section className="py-16 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#F1E6DB] to-[#FFE4EE]">
-        <div className="container mx-auto max-w-4xl text-center">
-          <p className="font-playfair text-suelyn-pink text-sm sm:text-base uppercase tracking-widest mb-4">
-            The Heart Behind It
-          </p>
-          <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-8">
-            Why This Experience Matters
-          </h2>
-          <p className="font-helvetica text-base sm:text-lg md:text-xl text-black/70 leading-relaxed mb-6">
-            Relationships require intentional investment.
-          </p>
-          <p className="font-helvetica text-base sm:text-lg md:text-xl text-black/70 leading-relaxed mb-6">
-            In the middle of life, responsibilities, emotional wounds, and daily pressures,
-            couples often lose connection — not because love disappeared, but because healing,
-            communication, and alignment were neglected.
-          </p>
-          <p className="font-helvetica text-base sm:text-lg md:text-xl text-black/70 leading-relaxed">
-            This experience was created to help couples reconnect with themselves, with each
-            other, and with the divine design intended for healthy relationships.
-          </p>
-        </div>
-      </section>
-
-      {/* ===================== TESTIMONIALS ===================== */}
-      <section className="relative overflow-hidden min-h-[70vh] flex items-center">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage:
-              "url(https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/1X1A0004.jpg?alt=media&token=24696ff6-d7d5-4598-b0df-b2828b939062)",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/80 to-black/70" />
-        <div className="relative z-10 container mx-auto px-4 py-12 md:py-24">
-          <div className="text-center mb-8 md:mb-12">
-            <p className="font-playfair text-white/70 text-sm uppercase tracking-widest mb-2">
-              Testimonials
-            </p>
-            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-              Words That Inspire
-            </h2>
-          </div>
-          <div className="relative min-h-[300px] md:min-h-[400px] flex items-center">
-            <button
-              onClick={prevReview}
-              className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all backdrop-blur-sm border border-white/20"
-              aria-label="Previous review"
-            >
-              <svg
-                className="w-6 h-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </button>
-            <div className="max-w-4xl mx-auto px-12 md:px-24 text-center transition-all duration-700 ease-in-out">
-              <p className="font-playfair text-lg sm:text-xl md:text-2xl lg:text-3xl text-white font-medium leading-relaxed mb-6 md:mb-8">
-                &ldquo;{speakingReviews[currentReviewIndex].quote}&rdquo;
-              </p>
-              <div className="font-playfair text-lg sm:text-xl text-white">
-                <p className="font-bold mb-1">
-                  — {speakingReviews[currentReviewIndex].name}
-                </p>
-                {speakingReviews[currentReviewIndex].role &&
-                  speakingReviews[currentReviewIndex].company && (
-                    <p className="text-sm md:text-base opacity-80">
-                      {speakingReviews[currentReviewIndex].role},{" "}
-                      {speakingReviews[currentReviewIndex].company}
-                    </p>
-                  )}
-              </div>
-            </div>
-            <button
-              onClick={nextReview}
-              className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all backdrop-blur-sm border border-white/20"
-              aria-label="Next review"
-            >
-              <svg
-                className="w-6 h-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* ===================== MARQUEE ===================== */}
-      <section className="py-8 sm:py-12 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE] overflow-hidden">
-        <div className="w-full overflow-hidden">
-          <div className="animate-marquee whitespace-nowrap">
-            <span className="font-playfair text-4xl sm:text-6xl md:text-8xl lg:text-[120px] font-bold text-black/10 leading-tight mx-4">
-              {marqueeText}
-            </span>
-          </div>
-        </div>
-        <style>{`
-          @keyframes marquee-slide {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          .animate-marquee {
-            animation: marquee-slide 40s linear infinite;
-          }
-        `}</style>
-      </section>
-
-      {/* ===================== FAQ ===================== */}
-      <section className="py-16 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB]">
+      {/* FAQ */}
+      <section className="px-4 pb-16 sm:pb-20">
         <div className="container mx-auto max-w-3xl">
-          <div className="text-center mb-12 md:mb-16">
-            <p className="font-playfair text-suelyn-pink text-sm sm:text-base uppercase tracking-widest mb-4">
-              Got Questions?
-            </p>
-            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-black">
-              Frequently Asked Questions
-            </h2>
-          </div>
+          <h2 className="mb-10 text-center font-playfair text-3xl font-bold text-[#23121a] sm:text-4xl md:text-5xl">
+            Frequently Asked Questions
+          </h2>
           <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, i) => (
+            {faqs.map((faq, index) => (
               <AccordionItem
-                key={i}
-                value={`item-${i}`}
-                className="bg-white/60 backdrop-blur-sm rounded-xl px-5 sm:px-6 border border-white/60"
+                key={faq.question}
+                value={`faq-${index}`}
+                className="rounded-xl border border-[#f3bdd1] bg-white/80 px-5 sm:px-6"
               >
-                <AccordionTrigger className="font-playfair text-base sm:text-lg font-semibold text-black text-left hover:no-underline py-5">
+                <AccordionTrigger className="py-5 text-left font-playfair text-base font-semibold text-[#23121a] hover:no-underline sm:text-lg">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="font-helvetica text-sm sm:text-base text-black/70 leading-relaxed pb-5">
+                <AccordionContent className="pb-5 font-helvetica text-sm leading-relaxed text-[#4d3340] sm:text-base">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -963,273 +532,47 @@ export default function LoverNeverEnds() {
         </div>
       </section>
 
-      {/* ===================== REGISTRATION FORM ===================== */}
-      <section
-        id="registration-form"
-        className="py-16 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#F1E6DB] to-[#FFE4EE]"
-      >
-        <div className="container mx-auto max-w-3xl">
-          <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 sm:p-12 md:p-16 border border-white/60 shadow-xl">
-            <div className="text-center mb-10">
-              <p className="font-playfair text-suelyn-pink text-sm sm:text-base uppercase tracking-widest mb-4">
-                Step 1 of 2
-              </p>
-              <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-4">
-                Share Your Details
-              </h2>
-              <p className="font-helvetica text-base sm:text-lg text-black/60">
-                Let us know who you are and which package you're interested in. Then pay your
-                registration fee below to secure your spot.
-              </p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
-                  <label className="block font-inter text-sm font-semibold text-black mb-2">
-                    Full Name <span className="text-suelyn-pink">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.fullName}
-                    onChange={(e) => handleFormChange("fullName", e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white/80 font-helvetica text-black focus:outline-none focus:ring-2 focus:ring-suelyn-pink/50 transition-all"
-                    placeholder="Your full name"
-                  />
-                </div>
-                <div>
-                  <label className="block font-inter text-sm font-semibold text-black mb-2">
-                    Spouse / Partner Name
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.partnerName}
-                    onChange={(e) => handleFormChange("partnerName", e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white/80 font-helvetica text-black focus:outline-none focus:ring-2 focus:ring-suelyn-pink/50 transition-all"
-                    placeholder="Partner's name"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
-                  <label className="block font-inter text-sm font-semibold text-black mb-2">
-                    Email Address <span className="text-suelyn-pink">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => handleFormChange("email", e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white/80 font-helvetica text-black focus:outline-none focus:ring-2 focus:ring-suelyn-pink/50 transition-all"
-                    placeholder="you@example.com"
-                  />
-                </div>
-                <div>
-                  <label className="block font-inter text-sm font-semibold text-black mb-2">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => handleFormChange("phone", e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white/80 font-helvetica text-black focus:outline-none focus:ring-2 focus:ring-suelyn-pink/50 transition-all"
-                    placeholder="(555) 123-4567"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block font-inter text-sm font-semibold text-black mb-2">
-                  Package Selection <span className="text-suelyn-pink">*</span>
-                </label>
-                <select
-                  required
-                  value={formData.packageSelection}
-                  onChange={(e) => handleFormChange("packageSelection", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white/80 font-helvetica text-black focus:outline-none focus:ring-2 focus:ring-suelyn-pink/50 transition-all appearance-none"
-                >
-                  <option value="">Select your package</option>
-                  {packages.map((pkg) => (
-                    <option key={pkg.name} value={pkg.name}>
-                      {pkg.name} — {pkg.price}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block font-inter text-sm font-semibold text-black mb-2">
-                  Emergency Contact
-                </label>
-                <input
-                  type="text"
-                  value={formData.emergencyContact}
-                  onChange={(e) => handleFormChange("emergencyContact", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white/80 font-helvetica text-black focus:outline-none focus:ring-2 focus:ring-suelyn-pink/50 transition-all"
-                  placeholder="Name and phone number"
-                />
-              </div>
-
-              <div>
-                <label className="block font-inter text-sm font-semibold text-black mb-2">
-                  Payment Plan Request
-                </label>
-                <textarea
-                  rows={3}
-                  value={formData.paymentPlanRequest}
-                  onChange={(e) => handleFormChange("paymentPlanRequest", e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white/80 font-helvetica text-black focus:outline-none focus:ring-2 focus:ring-suelyn-pink/50 transition-all resize-none"
-                  placeholder="Describe your preferred payment arrangement (if applicable)"
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-suelyn-pink text-white py-4 rounded-full font-inter font-semibold text-base sm:text-lg hover:bg-suelyn-pink/90 transition-all shadow-lg hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? "Submitting..." : "Submit My Details"}
-              </button>
-            </form>
-
-            {/* Step 2: Registration Fee */}
-            <div className="mt-10 pt-10 border-t border-black/10">
-              <div className="text-center mb-6">
-                <p className="font-playfair text-suelyn-pink text-sm sm:text-base uppercase tracking-widest mb-2">
-                  Step 2 of 2
-                </p>
-                <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-black mb-2">
-                  Pay Your Registration Fee
-                </h3>
-                <p className="font-helvetica text-sm sm:text-base text-black/60 max-w-lg mx-auto">
-                  This non-refundable fee secures your spot. Package balance is due by August 31st, 2026.
-                </p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a
-                  href={REGISTRATION_LINKS.singles}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto bg-suelyn-pink text-white px-8 py-4 rounded-full font-inter font-semibold text-base sm:text-lg hover:bg-suelyn-pink/90 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-center"
-                >
-                  Register Here — Singles $100 USD
-                </a>
-                <a
-                  href={REGISTRATION_LINKS.couples}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto bg-[#FFAC24] text-[#111111] px-8 py-4 rounded-full font-inter font-semibold text-base sm:text-lg hover:bg-[#e69920] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-center"
-                >
-                  Register Here — Couples $180 USD
-                </a>
-              </div>
-
-              <p className="text-center font-helvetica text-xs text-black/40 mt-4">
-                Registration fee is non-refundable. You'll receive next steps via email within 24 hours.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===================== PAYMENT PLAN ===================== */}
-      <section className="py-16 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#F1E6DB]">
-        <div className="container mx-auto max-w-3xl text-center">
-          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 sm:p-12 border border-white/60">
-            <h3 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-6">
-              Flexible Payment Options
-            </h3>
-            <p className="font-helvetica text-base sm:text-lg text-black/70 leading-relaxed mb-4">
-              Flexible payment options are available for select packages, making this
-              transformational experience more accessible.
-            </p>
-            <p className="font-helvetica text-base sm:text-lg text-black/70 leading-relaxed mb-6">
-              <strong>All payments are due by August 31st, 2026.</strong>
-            </p>
-            <p className="font-helvetica text-base sm:text-lg text-black/70 leading-relaxed">
-              For additional details regarding payment arrangements, please contact the
-              SueLyn Empowered Living team directly at{" "}
-              <a
-                href="mailto:suegriffiths.author@gmail.com"
-                className="text-suelyn-pink hover:underline font-semibold"
-              >
-                suegriffiths.author@gmail.com
-              </a>
-              .
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ===================== POLICIES ===================== */}
-      <section className="py-16 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#F1E6DB] to-[#FFE4EE]">
-        <div className="container mx-auto max-w-3xl">
-          <div className="text-center mb-10">
-            <h3 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-4">
-              Retreat Policies & Terms
-            </h3>
-          </div>
-          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 sm:p-10 border border-white/60 space-y-4">
-            {[
-              "Registration fees are non-refundable.",
-              "Payment plans must be completed by August 31, 2026.",
-              "Speakers and schedule are subject to change if necessary.",
-              "Participants consent to event photography and video coverage for promotional purposes.",
-              "You will be required to sign an NDA. This will be sent after your registration fee is received and your retreat form is completed.",
-            ].map((policy) => (
-              <div key={policy} className="flex items-start gap-3">
-                <div className="w-2 h-2 rounded-full bg-suelyn-pink flex-shrink-0 mt-2" />
-                <p className="font-helvetica text-sm sm:text-base text-black/70">{policy}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===================== FINAL CTA ===================== */}
-      <section className="py-16 sm:py-20 md:py-28 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#F84988]">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Your Relationship Deserves Intentional Investment
+      {/* Final CTA */}
+      <section className="px-4 pb-28 sm:pb-32">
+        <div className="container mx-auto max-w-4xl overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#F84988] via-[#FF7A59] to-[#FFAC24] p-8 text-center text-white shadow-2xl sm:p-12">
+          <h2 className="font-playfair text-3xl font-bold sm:text-4xl md:text-5xl">
+            Maybe You've Been Waiting for a Sign to Begin.
           </h2>
-          <p className="font-helvetica text-base sm:text-lg md:text-xl text-white/90 leading-relaxed max-w-3xl mx-auto mb-4">
-            This is your opportunity to pause, reconnect, heal, and grow together
-            intentionally.
-          </p>
-          <p className="font-playfair text-xl sm:text-2xl md:text-3xl text-white font-bold mb-10">
-            Spaces are limited.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button
-              onClick={scrollToRegistration}
-              className="bg-white text-suelyn-pink px-10 py-4 rounded-full font-inter font-bold text-base sm:text-lg hover:bg-white/90 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5"
-            >
-              Register Now
-            </button>
-            <a
-              href="mailto:suegriffiths.author@gmail.com"
-              className="bg-white/10 backdrop-blur-sm text-white border border-white/30 px-10 py-4 rounded-full font-inter font-semibold text-base sm:text-lg hover:bg-white/20 transition-all"
-            >
-              Contact Us
-            </a>
+          <div className="mx-auto mt-6 max-w-2xl space-y-2 font-helvetica text-sm text-white/90 sm:text-base">
+            <p>To heal what keeps showing up.</p>
+            <p>To confront the pattern.</p>
+            <p>To realign.</p>
+            <p>To rebuild.</p>
+            <p>To step into purpose.</p>
+            <p>
+              To make a different decision for yourself, your relationship or the generations
+              coming behind you.
+            </p>
           </div>
+          <p className="mx-auto mt-8 max-w-xl font-playfair text-lg italic text-white sm:text-xl">
+            You don't have to figure out the entire journey today. You just have to take the
+            first step.
+          </p>
+          <p className="mt-8 font-helvetica text-sm uppercase tracking-[0.18em] text-white/80">
+            Join us {EVENT_DATE_LABEL} for
+          </p>
+          <h3 className="mt-3 font-charm text-4xl font-bold sm:text-5xl">{EVENT_TITLE}</h3>
+          <p className="mt-2 font-playfair text-lg text-white/90">
+            Online. Interactive. Transformational.
+          </p>
+          <p className="mt-4 font-playfair text-2xl font-bold">{EVENT_PRICE_PER_PERSON}</p>
+          <div className="mt-8">
+            <RegisterButton label="Register Now" variant="white" />
+          </div>
+          <p className="mt-6 font-helvetica text-xs text-white/70">
+            Looking for coaching pathways?{" "}
+            <Link to="/coaching" className="underline underline-offset-2 hover:text-white">
+              Explore Strategic Coaching
+            </Link>
+          </p>
         </div>
       </section>
 
-      {/* ===================== STICKY MOBILE CTA ===================== */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-gradient-to-t from-black/80 to-transparent md:hidden">
-        <button
-          onClick={scrollToRegistration}
-          className="w-full bg-suelyn-pink text-white py-3.5 rounded-full font-inter font-bold text-base shadow-xl active:scale-[0.98] transition-transform"
-        >
-          Reserve Your Spot
-        </button>
-      </div>
-
-      {/* ===================== FOOTER ===================== */}
       <Footer />
     </div>
   );

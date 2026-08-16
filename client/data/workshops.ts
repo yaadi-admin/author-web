@@ -53,6 +53,8 @@ const DATE_PATTERNS = [
   "MMM d, yyyy",
   "MMM do yyyy",
   "MMM d yyyy",
+  "MMMM yyyy",
+  "MMM yyyy",
   "MM/dd/yyyy",
   "M/d/yyyy",
   "dd/MM/yyyy",
@@ -96,6 +98,11 @@ export const getWorkshopTemporalStatus = (
   const parsedDate = parseWorkshopDate(workshop.date);
   const comparisonDate = startOfDay(referenceDate);
 
+  // Explicit coming-soon items stay in the current lineup even without a date.
+  if (workshop.comingSoon && !parsedDate) {
+    return "upcoming";
+  }
+
   if (!parsedDate) {
     return "undated";
   }
@@ -106,33 +113,34 @@ export const getWorkshopTemporalStatus = (
 export const sortWorkshopsByRelevance = (items: Workshop[]): Workshop[] => {
   const referenceDate = startOfDay(new Date());
 
+  const bucket = (workshop: Workshop): number => {
+    const status = getWorkshopTemporalStatus(workshop, referenceDate);
+    if (status === "upcoming") return 0;
+    if (status === "undated") return 1;
+    return 2; // past last
+  };
+
   return [...items].sort((left, right) => {
+    const leftBucket = bucket(left);
+    const rightBucket = bucket(right);
+
+    if (leftBucket !== rightBucket) {
+      return leftBucket - rightBucket;
+    }
+
     const leftDate = parseWorkshopDate(left.date);
     const rightDate = parseWorkshopDate(right.date);
 
     if (leftDate && rightDate) {
-      const leftIsPast = leftDate.getTime() < referenceDate.getTime();
-      const rightIsPast = rightDate.getTime() < referenceDate.getTime();
-
-      if (leftIsPast !== rightIsPast) {
-        return leftIsPast ? 1 : -1;
-      }
-
-      if (leftIsPast) {
+      // Upcoming: soonest first. Past: most recent first.
+      if (leftBucket === 2) {
         return rightDate.getTime() - leftDate.getTime();
       }
-
       return leftDate.getTime() - rightDate.getTime();
     }
 
-    if (leftDate) {
-      return -1;
-    }
-
-    if (rightDate) {
-      return 1;
-    }
-
+    if (leftDate) return -1;
+    if (rightDate) return 1;
     return right.id - left.id;
   });
 };

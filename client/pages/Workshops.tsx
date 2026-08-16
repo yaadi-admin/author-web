@@ -1,9 +1,11 @@
 import Header from "../components/Header";
+import { Link } from "react-router-dom";
 import {
   useState,
   useEffect,
   useCallback,
   useRef,
+  useMemo,
   type ChangeEvent,
   type FormEvent,
 } from "react";
@@ -21,6 +23,14 @@ import {
 import { footerPictures } from "./Index";
 import Footer from "./footer";
 import type { CoachingActionLinks } from "@shared/api";
+import {
+  EVENT_DATE_LABEL,
+  EVENT_FORMAT_LABEL,
+  EVENT_PATH,
+  EVENT_PRICE_LABEL,
+  EVENT_TAGLINE,
+  EVENT_TITLE,
+} from "../lib/retreat-config";
 import {
   ArrowRight,
   CalendarDays,
@@ -130,12 +140,143 @@ const getWorkshopActionLabel = (workshop: Workshop) => {
   return "View Details";
 };
 
+function WorkshopCard({ workshop }: { workshop: Workshop }) {
+  const badge = getWorkshopBadge(workshop);
+  const temporalStatus = getWorkshopTemporalStatus(workshop);
+
+  return (
+    <article className="rounded-[2rem] border border-[#edbfd0] bg-white/95 p-4 shadow-[0_24px_80px_rgba(95,18,49,0.12)] backdrop-blur-sm sm:p-6 md:p-8">
+      <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-8">
+        <div className="overflow-hidden rounded-[1.5rem] border border-[#f2c3d4] bg-[#fff3f8]">
+          <img
+            src={workshop.image}
+            alt={workshop.title}
+            className="h-full min-h-[280px] w-full object-contain"
+          />
+        </div>
+
+        <div className="flex flex-col justify-between">
+          <div>
+            <div className="mb-4 flex flex-wrap items-center gap-3">
+              <span
+                className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold ${badge.className}`}
+              >
+                <CheckCircle2 className="h-4 w-4" />
+                {badge.label}
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#f3d3de] bg-[#fff8fb] px-4 py-2 text-sm font-semibold text-[#5d1532]">
+                <CalendarDays className="h-4 w-4" />
+                {workshop.date}
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#f1e0b0] bg-[#fff5d9] px-4 py-2 text-sm font-semibold text-[#7a4b00]">
+                <Ticket className="h-4 w-4" />
+                {temporalStatus === "past"
+                  ? "Archive still visible"
+                  : workshop.isActive
+                    ? "Public and ready"
+                    : "Preview available"}
+              </span>
+            </div>
+
+            <h3 className="font-playfair text-3xl font-semibold leading-tight text-[#23121a] sm:text-4xl">
+              {workshop.title}
+            </h3>
+
+            <p className="mt-4 font-helvetica text-base leading-8 text-[#4d3340] sm:text-lg">
+              {workshop.description}
+            </p>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              <div className="rounded-2xl border border-[#f4cad8] bg-[#fff8fb] p-4">
+                <div className="mb-2 flex items-center gap-2 text-[#9b2452]">
+                  <CalendarDays className="h-4 w-4" />
+                  <span className="text-sm font-semibold uppercase tracking-[0.18em]">
+                    Date
+                  </span>
+                </div>
+                <p className="font-helvetica text-sm leading-6 text-[#2d1b23]">
+                  {workshop.date}
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-[#f4cad8] bg-[#fff8fb] p-4">
+                <div className="mb-2 flex items-center gap-2 text-[#9b2452]">
+                  <Clock3 className="h-4 w-4" />
+                  <span className="text-sm font-semibold uppercase tracking-[0.18em]">
+                    Status
+                  </span>
+                </div>
+                <p className="font-helvetica text-sm leading-6 text-[#2d1b23]">
+                  {temporalStatus === "past"
+                    ? "Past engagement kept visible for social proof."
+                    : workshop.isActive
+                      ? "Current event with live registration."
+                      : "Visible now, with more details to follow."}
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-[#f4cad8] bg-[#fff8fb] p-4">
+                <div className="mb-2 flex items-center gap-2 text-[#9b2452]">
+                  <Users className="h-4 w-4" />
+                  <span className="text-sm font-semibold uppercase tracking-[0.18em]">
+                    Engagement
+                  </span>
+                </div>
+                <p className="font-helvetica text-sm leading-6 text-[#2d1b23]">
+                  Stronger event metadata and action styling for mobile visitors.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {canOpenWorkshopUrl(workshop) && (
+            <div className="mt-6 flex flex-wrap items-center gap-4">
+              <button
+                onClick={() => openInNewTab(workshop.url)}
+                className="inline-flex items-center gap-2 rounded-full bg-[#111111] px-6 py-3 font-helvetica text-sm font-semibold text-white transition-colors hover:bg-[#F84988] sm:text-base"
+              >
+                {getWorkshopActionLabel(workshop)}
+                <ArrowRight className="h-4 w-4" />
+              </button>
+              <a
+                href={workshop.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-helvetica text-sm font-semibold text-[#9b2452] underline-offset-4 hover:underline"
+              >
+                Open external event link
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+}
+
 export default function Workshops() {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const [workshopData, setWorkshopData] = useState<Workshop[]>([]);
   const [isLoadingWorkshops, setIsLoadingWorkshops] = useState(true);
   const [workshopsError, setWorkshopsError] = useState("");
+
+  const upcomingWorkshops = useMemo(
+    () =>
+      workshopData.filter(
+        (workshop) => getWorkshopTemporalStatus(workshop) !== "past",
+      ),
+    [workshopData],
+  );
+
+  const pastWorkshops = useMemo(
+    () =>
+      workshopData.filter(
+        (workshop) => getWorkshopTemporalStatus(workshop) === "past",
+      ),
+    [workshopData],
+  );
 
   const [coachingIntakeForm, setCoachingIntakeForm] = useState<CoachingIntakeFormState>(
     initialCoachingIntakeForm,
@@ -383,19 +524,70 @@ export default function Workshops() {
         </div>
       </section>
 
+      {/* ===================== LOVE NEVER ENDS FEATURED ===================== */}
+      <section className="bg-[#ffe6ef] px-4 py-8 sm:py-10">
+        <div className="container mx-auto max-w-6xl">
+          <Link to={EVENT_PATH} className="block group">
+            <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#F84988] via-[#FF7A59] to-[#FFAC24] p-4 sm:p-6 md:p-8 shadow-[0_24px_80px_rgba(95,18,49,0.2)] transition-all duration-300 group-hover:shadow-[0_32px_100px_rgba(95,18,49,0.3)]">
+              <div className="absolute inset-0 opacity-15">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3" />
+                <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#741C82] rounded-full blur-3xl transform -translate-x-1/3 translate-y-1/3" />
+              </div>
+              <div className="relative z-10 grid lg:grid-cols-[1.05fr_1fr] gap-6 items-center">
+                <div className="order-2 lg:order-1">
+                  <div className="overflow-hidden rounded-xl sm:rounded-2xl shadow-xl ring-2 ring-white/25 transition-all duration-500 group-hover:ring-white/45 group-hover:scale-[1.01] bg-black/10">
+                    <img
+                      src="/love-never-ends/hero.jpg"
+                      alt="Love Never Ends: The First Step"
+                      className="w-full h-auto object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+
+                <div className="order-1 lg:order-2 text-center lg:text-left">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-semibold uppercase tracking-widest text-white mb-4">
+                    <Sparkles className="h-4 w-4" />
+                    {EVENT_DATE_LABEL}
+                  </div>
+                  <h2 className="font-charm text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-none mb-3">
+                    {EVENT_TITLE}
+                  </h2>
+                  <p className="font-playfair text-base sm:text-lg md:text-xl text-white/90 max-w-lg mb-2">
+                    {EVENT_TAGLINE}
+                  </p>
+                  <p className="font-helvetica text-sm text-white/85 mb-6">
+                    {EVENT_FORMAT_LABEL} · {EVENT_PRICE_LABEL} per person
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start items-center">
+                    <span className="bg-white text-[#F84988] px-6 sm:px-8 py-3 rounded-full font-inter font-semibold text-sm sm:text-base shadow-lg">
+                      View Event Details
+                    </span>
+                    <span className="text-white font-inter font-medium text-sm flex items-center gap-2">
+                      Register now
+                      <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </div>
+      </section>
+
       <section className="bg-[#ffe6ef] px-4 py-12 sm:py-16 md:py-20">
         <div className="container mx-auto max-w-6xl">
           <div className="mb-10 text-center sm:mb-14">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#f3bdd1] bg-white px-4 py-2 text-sm font-semibold text-[#9b2452] shadow-sm">
               <CalendarDays className="h-4 w-4" />
-              Most current at the top. Past events remain in the lineup.
+              Upcoming events first. Past events at the bottom.
             </div>
             <h2 className="font-playfair text-4xl font-semibold text-[#23121a] sm:text-5xl md:text-6xl">
               Workshops & Events
             </h2>
             <p className="mx-auto mt-4 max-w-3xl font-helvetica text-base leading-7 text-[#4d3340] sm:text-lg">
-              Every engagement now reads with stronger contrast and clearer status, so the page
-              feels published, current, and easy to trust on mobile.
+              Current and upcoming engagements lead the page. Past events stay visible below
+              for social proof.
             </p>
           </div>
 
@@ -432,124 +624,42 @@ export default function Workshops() {
           )}
 
           {!isLoadingWorkshops && workshopData.length > 0 && (
-            <div className="space-y-8">
-              {workshopData.map((workshop) => {
-                const badge = getWorkshopBadge(workshop);
-                const temporalStatus = getWorkshopTemporalStatus(workshop);
+            <div className="space-y-12">
+              {upcomingWorkshops.length > 0 && (
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3">
+                    <h3 className="font-playfair text-2xl font-semibold text-[#23121a] sm:text-3xl">
+                      Upcoming & Current
+                    </h3>
+                    <span className="rounded-full bg-[#F84988] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+                      {upcomingWorkshops.length}
+                    </span>
+                  </div>
+                  <div className="space-y-8">
+                    {upcomingWorkshops.map((workshop) => (
+                      <WorkshopCard key={workshop.id} workshop={workshop} />
+                    ))}
+                  </div>
+                </div>
+              )}
 
-                return (
-                  <article
-                    key={workshop.id}
-                    className="rounded-[2rem] border border-[#edbfd0] bg-white/95 p-4 shadow-[0_24px_80px_rgba(95,18,49,0.12)] backdrop-blur-sm sm:p-6 md:p-8"
-                  >
-                    <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-8">
-                      <div className="overflow-hidden rounded-[1.5rem] border border-[#f2c3d4] bg-[#fff3f8]">
-                        <img
-                          src={workshop.image}
-                          alt={workshop.title}
-                          className="h-full min-h-[280px] w-full object-contain"
-                        />
-                      </div>
-
-                      <div className="flex flex-col justify-between">
-                        <div>
-                          <div className="mb-4 flex flex-wrap items-center gap-3">
-                            <span
-                              className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold ${badge.className}`}
-                            >
-                              <CheckCircle2 className="h-4 w-4" />
-                              {badge.label}
-                            </span>
-                            <span className="inline-flex items-center gap-2 rounded-full border border-[#f3d3de] bg-[#fff8fb] px-4 py-2 text-sm font-semibold text-[#5d1532]">
-                              <CalendarDays className="h-4 w-4" />
-                              {workshop.date}
-                            </span>
-                            <span className="inline-flex items-center gap-2 rounded-full border border-[#f1e0b0] bg-[#fff5d9] px-4 py-2 text-sm font-semibold text-[#7a4b00]">
-                              <Ticket className="h-4 w-4" />
-                              {temporalStatus === "past"
-                                ? "Archive still visible"
-                                : workshop.isActive
-                                  ? "Public and ready"
-                                  : "Preview available"}
-                            </span>
-                          </div>
-
-                          <h3 className="font-playfair text-3xl font-semibold leading-tight text-[#23121a] sm:text-4xl">
-                            {workshop.title}
-                          </h3>
-
-                          <p className="mt-4 font-helvetica text-base leading-8 text-[#4d3340] sm:text-lg">
-                            {workshop.description}
-                          </p>
-
-                          <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                            <div className="rounded-2xl border border-[#f4cad8] bg-[#fff8fb] p-4">
-                              <div className="mb-2 flex items-center gap-2 text-[#9b2452]">
-                                <CalendarDays className="h-4 w-4" />
-                                <span className="text-sm font-semibold uppercase tracking-[0.18em]">
-                                  Date
-                                </span>
-                              </div>
-                              <p className="font-helvetica text-sm leading-6 text-[#2d1b23]">
-                                {workshop.date}
-                              </p>
-                            </div>
-
-                            <div className="rounded-2xl border border-[#f4cad8] bg-[#fff8fb] p-4">
-                              <div className="mb-2 flex items-center gap-2 text-[#9b2452]">
-                                <Clock3 className="h-4 w-4" />
-                                <span className="text-sm font-semibold uppercase tracking-[0.18em]">
-                                  Status
-                                </span>
-                              </div>
-                              <p className="font-helvetica text-sm leading-6 text-[#2d1b23]">
-                                {temporalStatus === "past"
-                                  ? "Past engagement kept visible for social proof."
-                                  : workshop.isActive
-                                    ? "Current event with live registration."
-                                    : "Visible now, with more details to follow."}
-                              </p>
-                            </div>
-
-                            <div className="rounded-2xl border border-[#f4cad8] bg-[#fff8fb] p-4">
-                              <div className="mb-2 flex items-center gap-2 text-[#9b2452]">
-                                <Users className="h-4 w-4" />
-                                <span className="text-sm font-semibold uppercase tracking-[0.18em]">
-                                  Engagement
-                                </span>
-                              </div>
-                              <p className="font-helvetica text-sm leading-6 text-[#2d1b23]">
-                                Stronger event metadata and action styling for mobile visitors.
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        {canOpenWorkshopUrl(workshop) && (
-                          <div className="mt-6 flex flex-wrap items-center gap-4">
-                            <button
-                              onClick={() => openInNewTab(workshop.url)}
-                              className="inline-flex items-center gap-2 rounded-full bg-[#111111] px-6 py-3 font-helvetica text-sm font-semibold text-white transition-colors hover:bg-[#F84988] sm:text-base"
-                            >
-                              {getWorkshopActionLabel(workshop)}
-                              <ArrowRight className="h-4 w-4" />
-                            </button>
-                            <a
-                              href={workshop.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 font-helvetica text-sm font-semibold text-[#9b2452] underline-offset-4 hover:underline"
-                            >
-                              Open external event link
-                              <ExternalLink className="h-4 w-4" />
-                            </a>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </article>
-                );
-              })}
+              {pastWorkshops.length > 0 && (
+                <div className="space-y-6 border-t border-[#f3bdd1] pt-10">
+                  <div className="flex items-center gap-3">
+                    <h3 className="font-playfair text-2xl font-semibold text-[#23121a] sm:text-3xl">
+                      Past Engagements
+                    </h3>
+                    <span className="rounded-full border border-[#f3bdd1] bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#9b2452]">
+                      {pastWorkshops.length}
+                    </span>
+                  </div>
+                  <div className="space-y-8">
+                    {pastWorkshops.map((workshop) => (
+                      <WorkshopCard key={workshop.id} workshop={workshop} />
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>

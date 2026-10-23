@@ -7,11 +7,11 @@ export type CoachingPathwayId =
 
 /** Per-pathway payment links. Registration is sent after payment is received. */
 export const coachingPaymentUrls: Record<CoachingPathwayId, string> = {
-  "identity-reset": "https://secure.ezeepayments.com/?PgxnCzx",
-  "survival-to-wholeness": "https://secure.ezeepayments.com/?dBNwin3",
-  "purpose-alignment": "https://secure.ezeepayments.com/?zeTrzlE",
-  "covenant-preparedness": "https://secure.ezeepayments.com/?tnFwoYT",
-  "family-enrichment": "https://secure.ezeepayments.com/?xv8poUf",
+  "identity-reset": "https://secure.ezeepayments.com/?onGJKQP",
+  "survival-to-wholeness": "https://secure.ezeepayments.com/?naqkq6Q",
+  "purpose-alignment": "https://secure.ezeepayments.com/?vPcFJbf",
+  "covenant-preparedness": "https://secure.ezeepayments.com/?Bqqzabp",
+  "family-enrichment": "https://secure.ezeepayments.com/?hjqqVwP",
 };
 
 export interface CoachingPathway {
@@ -48,7 +48,7 @@ export const coachingPathways: CoachingPathway[] = [
     ],
     duration: "4 Sessions",
     sessionLength: "90 Minutes Each",
-    investment: "USD $200",
+    investment: "USD $500",
     ctaLabel: "Begin The Identity Reset",
   },
   {
@@ -68,7 +68,7 @@ export const coachingPathways: CoachingPathway[] = [
     ],
     duration: "6 Sessions",
     sessionLength: "90 Minutes Each",
-    investment: "USD $300",
+    investment: "USD $800",
     note: "All coaching journeys begin with The Identity Reset, which provides the essential foundation for deeper healing and transformation before progressing into this pathway.",
     ctaLabel: "Choose This Pathway",
     ctaNote: "Your journey will begin with The Identity Reset.",
@@ -91,7 +91,7 @@ export const coachingPathways: CoachingPathway[] = [
     ],
     duration: "10 Sessions",
     sessionLength: "90 Minutes Each",
-    investment: "USD $500",
+    investment: "USD $1,000",
     note: "All coaching journeys begin with The Identity Reset, ensuring you have a strong personal foundation before entering this specialized coaching pathway.",
     ctaLabel: "Choose This Pathway",
     ctaNote: "Your journey will begin with The Identity Reset.",
@@ -114,7 +114,7 @@ export const coachingPathways: CoachingPathway[] = [
     ],
     duration: "12 Sessions",
     sessionLength: "90 Minutes Each",
-    investment: "USD $600",
+    investment: "USD $1,200",
     note: "All coaching journeys begin with The Identity Reset, providing the emotional and personal foundation necessary for healthy relationships.",
     ctaLabel: "Choose This Pathway",
     ctaNote: "Your journey will begin with The Identity Reset.",
@@ -136,7 +136,7 @@ export const coachingPathways: CoachingPathway[] = [
     ],
     duration: "16 Sessions",
     sessionLength: "90 Minutes Each",
-    investment: "USD $800",
+    investment: "USD $1,500",
     note: "All coaching journeys begin with The Identity Reset, creating a healthy personal foundation that strengthens every family relationship.",
     ctaLabel: "Choose This Pathway",
     ctaNote: "Your journey will begin with The Identity Reset.",

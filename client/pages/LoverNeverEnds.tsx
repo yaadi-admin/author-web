@@ -7,23 +7,19 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useCountdown } from "../hooks/use-countdown";
 import {
-  EVENT_DATE,
   EVENT_DATE_LABEL,
   EVENT_FORMAT_LABEL,
-  EVENT_PRICE_LABEL,
   EVENT_PRICE_PER_PERSON,
-  EVENT_REGISTRATION_URL,
   EVENT_TAGLINE,
   EVENT_TITLE,
 } from "../lib/retreat-config";
 import {
   ArrowRight,
   BookOpen,
+  CalendarCheck,
   HeartHandshake,
   MessagesSquare,
-  Sparkles,
   Users,
 } from "lucide-react";
 
@@ -66,12 +62,12 @@ const voices = [
 const experiences = [
   {
     title: "Interactive Sessions",
-    body: "You're not coming just to listen. Expect opportunities to engage, respond, reflect and participate.",
+    body: "Participants didn't come just to listen. They had opportunities to engage, respond, reflect and participate.",
     icon: MessagesSquare,
   },
   {
     title: "Practical Tools & Insights",
-    body: "Take what you learn beyond October 17 with practical strategies you can begin applying to your life and relationships.",
+    body: "Participants took what they learned beyond October 17 with practical strategies they could begin applying to their lives and relationships.",
     icon: BookOpen,
   },
   {
@@ -108,89 +104,71 @@ const whoIsThisFor = [
 
 const faqs = [
   {
-    question: "Is Love Never Ends: The First Step a webinar?",
+    question: "Is registration still open?",
     answer:
-      "No. The First Step is an online interactive experience. In addition to sessions led by our Featured Voices, the experience will incorporate engagement activities, guided reflection, and breakout sessions.",
+      "No. Love Never Ends: The First Step took place on Saturday, October 17, 2026, and registration is now closed. This page is kept as an archive of the experience.",
   },
   {
-    question: "Is this only for married couples?",
+    question: "Was Love Never Ends: The First Step a webinar?",
     answer:
-      "No. The experience is designed for individuals and couples. Conversations will explore individual healing, relationships, generational patterns, purpose, restoration and alignment.",
+      "No. The First Step was an online interactive experience. In addition to sessions led by our Featured Voices, the experience incorporated engagement activities, guided reflection, and breakout sessions.",
   },
   {
-    question: "Is the experience faith-based?",
+    question: "Was this only for married couples?",
     answer:
-      "Yes. Love Never Ends is rooted in faith-based principles and the belief that healing, restoration, and transformation are possible. The experience is designed to create a welcoming space for people who are ready to grow, reflect, and take meaningful steps forward.",
+      "No. The experience was designed for individuals and couples. Conversations explored individual healing, relationships, generational patterns, purpose, restoration and alignment.",
   },
   {
-    question: "Will I receive a workbook?",
+    question: "Was the experience faith-based?",
     answer:
-      "Yes. Registered participants will receive a digital conference workbook featuring exercises, reflection questions and practical tools connected to the Featured Voice sessions.",
+      "Yes. Love Never Ends is rooted in faith-based principles and the belief that healing, restoration, and transformation are possible. The experience was designed to create a welcoming space for people who were ready to grow, reflect, and take meaningful steps forward.",
   },
   {
-    question: "Will there be breakout sessions?",
+    question: "Did participants receive a workbook?",
     answer:
-      "Yes. Breakout sessions form part of the interactive experience and will provide opportunities for deeper reflection, conversation and engagement.",
+      "Yes. Registered participants received a digital conference workbook featuring exercises, reflection questions and practical tools connected to the Featured Voice sessions.",
   },
   {
-    question: "How much does registration cost?",
-    answer: "Registration is $65 USD per person.",
+    question: "Were there breakout sessions?",
+    answer:
+      "Yes. Breakout sessions formed part of the interactive experience and provided opportunities for deeper reflection, conversation and engagement.",
   },
   {
-    question: "Where will the conference be held?",
+    question: "How much did registration cost?",
+    answer: "Registration was $65 USD per person.",
+  },
+  {
+    question: "Where was the conference held?",
     answer:
-      "The experience is fully online. Registered participants will receive access instructions and additional conference information before the event.",
+      "The experience was held fully online. Registered participants received access instructions and additional conference information before the event.",
   },
 ];
 
-function RegisterButton({
-  label = "Register Now",
-  variant = "pink",
-}: {
-  label?: string;
-  variant?: "pink" | "white";
-}) {
-  const styles =
+function ArchiveLinks({ variant = "pink" }: { variant?: "pink" | "white" }) {
+  const primary =
     variant === "white"
       ? "bg-white text-[#741C82] hover:bg-white/90"
       : "bg-[#F84988] text-white hover:bg-[#e03a7a]";
+  const secondary =
+    variant === "white"
+      ? "border border-white/60 text-white hover:bg-white/10"
+      : "border border-[#F84988] text-[#F84988] hover:bg-[#F84988]/10";
 
   return (
-    <a
-      href={EVENT_REGISTRATION_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-inter text-sm sm:text-base font-semibold shadow-lg transition-all hover:shadow-xl ${styles}`}
-    >
-      {label}
-      <ArrowRight className="h-4 w-4" />
-    </a>
-  );
-}
-
-function CountdownStrip() {
-  const countdown = useCountdown(EVENT_DATE);
-
-  return (
-    <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-      {[
-        { value: countdown.days, label: "Days" },
-        { value: countdown.hours, label: "Hours" },
-        { value: countdown.minutes, label: "Minutes" },
-        { value: countdown.seconds, label: "Seconds" },
-      ].map((item) => (
-        <div
-          key={item.label}
-          className="min-w-[68px] rounded-2xl bg-white/15 px-3 py-3 text-center backdrop-blur-sm sm:min-w-[88px] sm:px-4"
-        >
-          <div className="font-playfair text-2xl font-bold text-white sm:text-3xl">
-            {String(item.value).padStart(2, "0")}
-          </div>
-          <div className="font-helvetica text-[10px] uppercase tracking-wider text-white/70 sm:text-xs">
-            {item.label}
-          </div>
-        </div>
-      ))}
+    <div className="flex flex-col items-center gap-3 sm:flex-row">
+      <Link
+        to="/workshops"
+        className={`inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-inter text-sm font-semibold shadow-lg transition-all hover:shadow-xl sm:text-base ${primary}`}
+      >
+        View Upcoming Engagements
+        <ArrowRight className="h-4 w-4" />
+      </Link>
+      <Link
+        to="/coaching"
+        className={`inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-inter text-sm font-semibold transition-all sm:text-base ${secondary}`}
+      >
+        Explore Strategic Coaching
+      </Link>
     </div>
   );
 }
@@ -199,19 +177,6 @@ export default function LoverNeverEnds() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-gradient-to-b from-[#FFF0F6] via-[#FFE4EE] to-[#FFF8EB]">
       <Header whiteText={false} />
-
-      {/* Sticky CTA */}
-      <div className="fixed bottom-4 left-4 right-4 z-40 flex justify-center pointer-events-none sm:bottom-6">
-        <a
-          href={EVENT_REGISTRATION_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-[#111111] px-6 py-3 font-inter text-sm font-semibold text-white shadow-[0_18px_50px_rgba(17,17,17,0.35)] transition hover:bg-[#F84988] sm:px-8 sm:text-base"
-        >
-          Register Now — {EVENT_PRICE_LABEL}
-          <ArrowRight className="h-4 w-4" />
-        </a>
-      </div>
 
       {/* Hero */}
       <section className="relative overflow-hidden pt-24 pb-10 sm:pb-16">
@@ -225,8 +190,8 @@ export default function LoverNeverEnds() {
           <div className="grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
             <div className="order-2 text-center text-white lg:order-1 lg:text-left">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em]">
-                <Sparkles className="h-4 w-4" />
-                {EVENT_DATE_LABEL}
+                <CalendarCheck className="h-4 w-4" />
+                Event Concluded — {EVENT_DATE_LABEL}
               </div>
               <h1 className="font-charm text-4xl font-bold leading-none sm:text-5xl md:text-6xl lg:text-7xl">
                 {EVENT_TITLE}
@@ -245,32 +210,35 @@ export default function LoverNeverEnds() {
                   first step.
                 </p>
                 <p>
-                  Love Never Ends: The First Step is a dynamic online interactive experience
+                  Love Never Ends: The First Step was a dynamic online interactive experience
                   created for individuals and couples ready to examine the patterns shaping
                   their lives, relationships, and legacy.
                 </p>
                 <p>
                   Through transformational conversations, practical tools, guided reflection,
-                  and meaningful interaction, four powerful Voices will lead you through
+                  and meaningful interaction, four powerful Voices led participants through
                   conversations around generational restoration, purpose and alignment,
                   individual healing, relationships, and positioning for what comes next.
                 </p>
                 <p className="font-playfair text-base italic text-white sm:text-lg">
-                  This isn't a webinar where you simply log in and listen. Come prepared to
-                  engage. To reflect. To participate. And most importantly, to take your
-                  first step.
+                  This wasn't a webinar where participants simply logged in and listened. They
+                  came prepared to engage. To reflect. To participate. And most importantly, to
+                  take their first step.
                 </p>
               </div>
 
-              <div className="mt-8">
-                <CountdownStrip />
+              <div className="mt-8 rounded-2xl border border-white/25 bg-white/15 p-5 text-center backdrop-blur-sm lg:text-left">
+                <p className="font-playfair text-xl font-semibold text-white">
+                  This event has concluded.
+                </p>
+                <p className="mt-1 font-helvetica text-sm text-white/85">
+                  Registration is closed. Thank you to everyone who joined us for The First
+                  Step — this page remains as a record of the experience.
+                </p>
               </div>
 
-              <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
-                <RegisterButton label="Register Now" />
-                <p className="font-playfair text-lg font-semibold text-white">
-                  {EVENT_PRICE_PER_PERSON}
-                </p>
+              <div className="mt-6 flex justify-center lg:justify-start">
+                <ArchiveLinks variant="white" />
               </div>
             </div>
 
@@ -305,11 +273,11 @@ export default function LoverNeverEnds() {
               experience bringing people together from wherever they are.
             </p>
             <p>
-              Throughout the experience, you won't simply hear from our Featured Voices.
-              You'll be invited into the conversation through reflection, practical
-              exercises, breakout sessions, and intentional moments designed to help you
-              examine where you are, what may be holding you back, and what your next step
-              could look like.
+              Throughout the experience, participants didn't simply hear from our Featured
+              Voices. They were invited into the conversation through reflection, practical
+              exercises, breakout sessions, and intentional moments designed to help them
+              examine where they are, what may be holding them back, and what their next
+              step could look like.
             </p>
             <p className="font-playfair text-lg italic text-[#741C82] sm:text-xl">
               Transformation doesn't happen simply because we heard something powerful. It
@@ -369,7 +337,7 @@ export default function LoverNeverEnds() {
       <section className="bg-gradient-to-br from-[#741C82] via-[#F84988] to-[#FFAC24] px-4 py-16 sm:py-20">
         <div className="container mx-auto max-w-6xl">
           <h2 className="mb-10 text-center font-playfair text-3xl font-bold text-white sm:text-4xl md:text-5xl">
-            What You'll Experience
+            What Participants Experienced
           </h2>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {experiences.map((item) => (
@@ -394,7 +362,7 @@ export default function LoverNeverEnds() {
           <div className="rounded-[2rem] border border-[#f3bdd1] bg-white/85 p-8 shadow-xl sm:p-10 md:p-12">
             <div className="text-center">
               <h2 className="font-playfair text-3xl font-bold text-[#23121a] sm:text-4xl md:text-5xl">
-                Your $65 Experience Includes
+                What the Experience Included
               </h2>
             </div>
             <ul className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -410,12 +378,10 @@ export default function LoverNeverEnds() {
                 </li>
               ))}
             </ul>
-            <div className="mt-10 flex flex-col items-center gap-4 text-center">
-              <p className="font-playfair text-2xl font-bold text-[#F84988] sm:text-3xl">
-                {EVENT_PRICE_PER_PERSON}
-              </p>
-              <RegisterButton />
-            </div>
+            <p className="mt-10 text-center font-helvetica text-sm text-[#4d3340] sm:text-base">
+              {EVENT_DATE_LABEL} · {EVENT_FORMAT_LABEL} · Registration was{" "}
+              {EVENT_PRICE_PER_PERSON}
+            </p>
           </div>
         </div>
       </section>
@@ -424,10 +390,10 @@ export default function LoverNeverEnds() {
       <section className="px-4 pb-16 sm:pb-20">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="font-playfair text-3xl font-bold text-[#23121a] sm:text-4xl md:text-5xl">
-            Is Love Never Ends: The First Step For You?
+            Who Love Never Ends: The First Step Was For
           </h2>
           <p className="mx-auto mt-6 max-w-2xl font-helvetica text-base text-[#4d3340] sm:text-lg">
-            This experience isn't only for people whose relationships are in crisis.
+            This experience wasn't only for people whose relationships were in crisis.
           </p>
           <div className="mt-8 space-y-4 text-left">
             {whoIsThisFor.map((line) => (
@@ -443,37 +409,6 @@ export default function LoverNeverEnds() {
             And it's for anyone who knows: Something needs to change—and I'm ready to take
             my first step.
           </p>
-          <div className="mt-8">
-            <RegisterButton label="Yes, I'm Ready — Register Now" />
-          </div>
-        </div>
-      </section>
-
-      {/* Registration conversion */}
-      <section className="px-4 pb-16 sm:pb-20">
-        <div className="container mx-auto max-w-4xl overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#290712] via-[#53112d] to-[#F84988] p-8 text-center text-white shadow-2xl sm:p-12">
-          <p className="font-helvetica text-xs uppercase tracking-[0.22em] text-white/75 sm:text-sm">
-            One Experience. One Investment.
-          </p>
-          <h2 className="mt-4 font-charm text-5xl font-bold sm:text-6xl md:text-7xl">
-            {EVENT_PRICE_LABEL}
-          </h2>
-          <p className="mt-2 font-playfair text-lg text-white/85">Per Person</p>
-          <p className="mx-auto mt-6 max-w-2xl font-helvetica text-sm leading-relaxed text-white/85 sm:text-base">
-            Your registration gives you access to the full Love Never Ends: The First Step
-            Online Interactive Experience, including all Featured Voice sessions, breakout
-            sessions, interactive activities, and your digital conference workbook.
-          </p>
-          <div className="mt-6 space-y-1 font-helvetica text-sm text-white/80">
-            <p>{EVENT_DATE_LABEL}</p>
-            <p>{EVENT_FORMAT_LABEL}</p>
-          </div>
-          <div className="mt-8">
-            <RegisterButton
-              label={`Register Now – ${EVENT_PRICE_LABEL}`}
-              variant="white"
-            />
-          </div>
         </div>
       </section>
 
@@ -485,10 +420,10 @@ export default function LoverNeverEnds() {
           </h2>
           <div className="mt-8 space-y-5 font-helvetica text-base leading-relaxed text-[#4d3340] sm:text-lg">
             <p>
-              Love Never Ends: The First Step is exactly what its name says — the beginning.
+              Love Never Ends: The First Step was exactly what its name says — the beginning.
             </p>
             <p>
-              October marks the official launch of the Love Never Ends Experience and opens
+              October marked the official launch of the Love Never Ends Experience and opened
               the door to a deeper journey of healing, restoration, alignment, and
               intentional relationships.
             </p>
@@ -501,7 +436,7 @@ export default function LoverNeverEnds() {
               More details about the in-person experience will be shared in the months ahead.
             </p>
             <p className="font-playfair text-xl italic text-[#F84988] sm:text-2xl">
-              But every journey begins somewhere. This is The First Step.
+              But every journey begins somewhere. This was The First Step.
             </p>
           </div>
         </div>
@@ -533,7 +468,7 @@ export default function LoverNeverEnds() {
       </section>
 
       {/* Final CTA */}
-      <section className="px-4 pb-28 sm:pb-32">
+      <section className="px-4 pb-20 sm:pb-24">
         <div className="container mx-auto max-w-4xl overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#F84988] via-[#FF7A59] to-[#FFAC24] p-8 text-center text-white shadow-2xl sm:p-12">
           <h2 className="font-playfair text-3xl font-bold sm:text-4xl md:text-5xl">
             Maybe You've Been Waiting for a Sign to Begin.
@@ -554,22 +489,15 @@ export default function LoverNeverEnds() {
             first step.
           </p>
           <p className="mt-8 font-helvetica text-sm uppercase tracking-[0.18em] text-white/80">
-            Join us {EVENT_DATE_LABEL} for
+            Held {EVENT_DATE_LABEL}
           </p>
           <h3 className="mt-3 font-charm text-4xl font-bold sm:text-5xl">{EVENT_TITLE}</h3>
           <p className="mt-2 font-playfair text-lg text-white/90">
             Online. Interactive. Transformational.
           </p>
-          <p className="mt-4 font-playfair text-2xl font-bold">{EVENT_PRICE_PER_PERSON}</p>
-          <div className="mt-8">
-            <RegisterButton label="Register Now" variant="white" />
+          <div className="mt-8 flex justify-center">
+            <ArchiveLinks variant="white" />
           </div>
-          <p className="mt-6 font-helvetica text-xs text-white/70">
-            Looking for coaching pathways?{" "}
-            <Link to="/coaching" className="underline underline-offset-2 hover:text-white">
-              Explore Strategic Coaching
-            </Link>
-          </p>
         </div>
       </section>
 

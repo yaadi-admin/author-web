@@ -71,20 +71,14 @@ function PathwayCard({ pathway, reverse }: { pathway: CoachingPathway; reverse?:
           reverse ? "lg:[&>*:first-child]:order-2" : ""
         }`}
       >
-        {/* Fixed aspect keeps pathway images the same size across all cards */}
-        <div className="relative aspect-[3/2] w-full bg-[#1a0a12]">
+        {/* Pathway posters are portrait and carry their own text, so show them uncropped */}
+        <div className="flex items-center justify-center bg-[#fbf3f8] p-4 sm:p-6">
           <img
             src={pathway.image}
-            alt={pathway.title}
-            className="absolute inset-0 h-full w-full object-cover object-center"
+            alt={`${pathway.title} — Pathway ${pathway.number}`}
+            className="h-auto w-full max-w-md rounded-2xl shadow-lg"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-          <div className="absolute bottom-4 left-4 right-4 lg:bottom-6 lg:left-6">
-            <span className="inline-flex rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#741C82]">
-              Pathway {pathway.number}
-            </span>
-          </div>
         </div>
 
         <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10 space-y-5">
@@ -283,11 +277,11 @@ export default function Coaching() {
                   </a>
                 </div>
               </div>
-              <div className="overflow-hidden rounded-2xl ring-4 ring-white/20 shadow-2xl aspect-[3/2]">
+              <div className="mx-auto w-full max-w-sm overflow-hidden rounded-2xl ring-4 ring-white/20 shadow-2xl">
                 <img
                   src="/coaching/identity-reset.jpg"
                   alt="The Identity Reset"
-                  className="h-full w-full object-cover object-center"
+                  className="h-auto w-full"
                   loading="lazy"
                 />
               </div>

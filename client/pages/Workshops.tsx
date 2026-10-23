@@ -27,7 +27,6 @@ import {
   EVENT_DATE_LABEL,
   EVENT_FORMAT_LABEL,
   EVENT_PATH,
-  EVENT_PRICE_LABEL,
   EVENT_TAGLINE,
   EVENT_TITLE,
 } from "../lib/retreat-config";
@@ -140,7 +139,22 @@ const getWorkshopActionLabel = (workshop: Workshop) => {
   return "View Details";
 };
 
+/** Love Never Ends: The First Step (Oct 17, 2026) — archived here after it concluded. */
+const archivedEventWorkshop: Workshop = {
+  id: -1,
+  date: EVENT_DATE_LABEL,
+  title: `Love Never Ends Experience: ${EVENT_TAGLINE}`,
+  description: `${EVENT_FORMAT_LABEL} for individuals and couples exploring healing, restoration, purpose, and generational patterns, led by four Featured Voices: Minister Suzanna Griffiths, Bishop Dr. Carla Dunbar, Minister Chantaeu Munroe, and Coach Terry Njiru.`,
+  image: "/love-never-ends/hero.jpg",
+  isActive: false,
+  url: "",
+};
+
+const isLoveNeverEndsEntry = (workshop: Workshop) =>
+  /love never ends/i.test(workshop.title) || /kxbc3XX/.test(workshop.url);
+
 function WorkshopCard({ workshop }: { workshop: Workshop }) {
+  const detailsPath = workshop === archivedEventWorkshop ? EVENT_PATH : undefined;
   const badge = getWorkshopBadge(workshop);
   const temporalStatus = getWorkshopTemporalStatus(workshop);
 
@@ -229,7 +243,19 @@ function WorkshopCard({ workshop }: { workshop: Workshop }) {
             </div>
           </div>
 
-          {canOpenWorkshopUrl(workshop) && (
+          {detailsPath && (
+            <div className="mt-6 flex flex-wrap items-center gap-4">
+              <Link
+                to={detailsPath}
+                className="inline-flex items-center gap-2 rounded-full bg-[#111111] px-6 py-3 font-helvetica text-sm font-semibold text-white transition-colors hover:bg-[#F84988] sm:text-base"
+              >
+                View Event
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          )}
+
+          {!detailsPath && canOpenWorkshopUrl(workshop) && (
             <div className="mt-6 flex flex-wrap items-center gap-4">
               <button
                 onClick={() => openInNewTab(workshop.url)}
@@ -262,19 +288,26 @@ export default function Workshops() {
   const [isLoadingWorkshops, setIsLoadingWorkshops] = useState(true);
   const [workshopsError, setWorkshopsError] = useState("");
 
+  // Love Never Ends is shown from the static archive entry, never from a live listing
+  // (which could still link to its registration page).
   const upcomingWorkshops = useMemo(
     () =>
       workshopData.filter(
-        (workshop) => getWorkshopTemporalStatus(workshop) !== "past",
+        (workshop) =>
+          getWorkshopTemporalStatus(workshop) !== "past" && !isLoveNeverEndsEntry(workshop),
       ),
     [workshopData],
   );
 
   const pastWorkshops = useMemo(
     () =>
-      workshopData.filter(
-        (workshop) => getWorkshopTemporalStatus(workshop) === "past",
-      ),
+      sortWorkshopsByRelevance([
+        archivedEventWorkshop,
+        ...workshopData.filter(
+          (workshop) =>
+            getWorkshopTemporalStatus(workshop) === "past" && !isLoveNeverEndsEntry(workshop),
+        ),
+      ]),
     [workshopData],
   );
 
@@ -524,57 +557,6 @@ export default function Workshops() {
         </div>
       </section>
 
-      {/* ===================== LOVE NEVER ENDS FEATURED ===================== */}
-      <section className="bg-[#ffe6ef] px-4 py-8 sm:py-10">
-        <div className="container mx-auto max-w-6xl">
-          <Link to={EVENT_PATH} className="block group">
-            <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#F84988] via-[#FF7A59] to-[#FFAC24] p-4 sm:p-6 md:p-8 shadow-[0_24px_80px_rgba(95,18,49,0.2)] transition-all duration-300 group-hover:shadow-[0_32px_100px_rgba(95,18,49,0.3)]">
-              <div className="absolute inset-0 opacity-15">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3" />
-                <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#741C82] rounded-full blur-3xl transform -translate-x-1/3 translate-y-1/3" />
-              </div>
-              <div className="relative z-10 grid lg:grid-cols-[1.05fr_1fr] gap-6 items-center">
-                <div className="order-2 lg:order-1">
-                  <div className="overflow-hidden rounded-xl sm:rounded-2xl shadow-xl ring-2 ring-white/25 transition-all duration-500 group-hover:ring-white/45 group-hover:scale-[1.01] bg-black/10">
-                    <img
-                      src="/love-never-ends/hero.jpg"
-                      alt="Love Never Ends: The First Step"
-                      className="w-full h-auto object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-
-                <div className="order-1 lg:order-2 text-center lg:text-left">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-semibold uppercase tracking-widest text-white mb-4">
-                    <Sparkles className="h-4 w-4" />
-                    {EVENT_DATE_LABEL}
-                  </div>
-                  <h2 className="font-charm text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-none mb-3">
-                    {EVENT_TITLE}
-                  </h2>
-                  <p className="font-playfair text-base sm:text-lg md:text-xl text-white/90 max-w-lg mb-2">
-                    {EVENT_TAGLINE}
-                  </p>
-                  <p className="font-helvetica text-sm text-white/85 mb-6">
-                    {EVENT_FORMAT_LABEL} · {EVENT_PRICE_LABEL} per person
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start items-center">
-                    <span className="bg-white text-[#F84988] px-6 sm:px-8 py-3 rounded-full font-inter font-semibold text-sm sm:text-base shadow-lg">
-                      View Event Details
-                    </span>
-                    <span className="text-white font-inter font-medium text-sm flex items-center gap-2">
-                      Register now
-                      <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Link>
-        </div>
-      </section>
-
       <section className="bg-[#ffe6ef] px-4 py-12 sm:py-16 md:py-20">
         <div className="container mx-auto max-w-6xl">
           <div className="mb-10 text-center sm:mb-14">
@@ -617,13 +599,7 @@ export default function Workshops() {
             </div>
           )}
 
-          {!isLoadingWorkshops && !workshopsError && workshopData.length === 0 && (
-            <div className="rounded-[1.75rem] border border-[#f3bdd1] bg-white px-6 py-8 text-center text-[#8d2a52] shadow-sm">
-              No engagements have been published yet.
-            </div>
-          )}
-
-          {!isLoadingWorkshops && workshopData.length > 0 && (
+          {!isLoadingWorkshops && (
             <div className="space-y-12">
               {upcomingWorkshops.length > 0 && (
                 <div className="space-y-6">
@@ -647,7 +623,7 @@ export default function Workshops() {
                 <div className="space-y-6 border-t border-[#f3bdd1] pt-10">
                   <div className="flex items-center gap-3">
                     <h3 className="font-playfair text-2xl font-semibold text-[#23121a] sm:text-3xl">
-                      Past Engagements
+                      Past Events
                     </h3>
                     <span className="rounded-full border border-[#f3bdd1] bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#9b2452]">
                       {pastWorkshops.length}

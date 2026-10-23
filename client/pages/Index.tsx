@@ -2,106 +2,6 @@ import Header from '../components/Header';
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { speakingReviews, Review } from '../data/reviews';
 import Footer from './footer';
-import { Link } from 'react-router-dom';
-import { useCountdown } from '../hooks/use-countdown';
-import {
-  EVENT_DATE,
-  EVENT_DATE_LABEL,
-  EVENT_FORMAT_LABEL,
-  EVENT_PATH,
-  EVENT_PRICE_LABEL,
-  EVENT_REGISTRATION_URL,
-  EVENT_TAGLINE,
-  EVENT_TITLE,
-} from '../lib/retreat-config';
-import { Sparkles, ArrowRight } from 'lucide-react';
-
-function RetreatPromoBanner() {
-  const countdown = useCountdown(EVENT_DATE);
-
-  return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-br from-[#F84988] via-[#FF7A59] to-[#FFAC24]">
-      <div className="absolute inset-0 opacity-25 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#741C82] rounded-full blur-[120px]" />
-      </div>
-
-      <div className="relative z-10 container mx-auto px-4 py-10 sm:py-14 md:py-18">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div className="order-2 lg:order-1">
-            <Link to={EVENT_PATH} className="block group">
-              <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl ring-4 ring-white/20 transition-all duration-500 group-hover:shadow-[0_32px_100px_rgba(248,73,136,0.35)] group-hover:ring-white/35 group-hover:scale-[1.02] bg-black/10">
-                <img
-                  src="/love-never-ends/hero.jpg"
-                  alt="Love Never Ends: The First Step"
-                  className="w-full h-auto object-cover"
-                  loading="eager"
-                />
-              </div>
-            </Link>
-          </div>
-
-          <div className="order-1 lg:order-2 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs sm:text-sm font-semibold uppercase tracking-widest text-white/95 mb-5">
-              <Sparkles className="h-4 w-4" />
-              Upcoming — {EVENT_DATE_LABEL}
-            </div>
-
-            <h2 className="font-charm text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-none mb-3">
-              {EVENT_TITLE}
-            </h2>
-            <p className="font-playfair text-base sm:text-lg md:text-xl text-white/90 mb-2">
-              {EVENT_TAGLINE}
-            </p>
-            <p className="font-helvetica text-sm text-white/80 mb-8">
-              {EVENT_FORMAT_LABEL} · {EVENT_PRICE_LABEL} per person
-            </p>
-
-            <div className="flex justify-center lg:justify-start gap-2 sm:gap-4 mb-8">
-              {[
-                { value: countdown.days, label: "Days" },
-                { value: countdown.hours, label: "Hours" },
-                { value: countdown.minutes, label: "Minutes" },
-                { value: countdown.seconds, label: "Seconds" },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="bg-white/15 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-5 sm:py-3 md:px-6 md:py-4 min-w-[60px] sm:min-w-[80px] md:min-w-[90px]"
-                >
-                  <div className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white">
-                    {String(item.value).padStart(2, "0")}
-                  </div>
-                  <div className="font-inter text-[10px] sm:text-xs md:text-sm text-white/70 uppercase tracking-wider">
-                    {item.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 items-center justify-center lg:justify-start">
-              <a
-                href={EVENT_REGISTRATION_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-inter text-sm font-semibold text-[#F84988] shadow-lg transition hover:bg-white/90"
-              >
-                Register Now
-                <ArrowRight className="h-4 w-4" />
-              </a>
-              <Link
-                to={EVENT_PATH}
-                className="inline-flex items-center gap-2 text-white font-inter font-semibold text-xs sm:text-sm uppercase tracking-wider hover:text-white/80 transition-colors"
-              >
-                Learn More
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 export const footerPictures = [
   "https://firebasestorage.googleapis.com/v0/b/suelyn-e82e4.firebasestorage.app/o/WhatsApp%20Image%202025-08-12%20at%2011.13.42.jpeg?alt=media&token=b8d6e1a3-f9c8-4f9f-9922-e1845f387b52",
@@ -254,9 +154,6 @@ export default function Index() {
                 <a href="/workshops" className="font-helvetica text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl text-black hover:text-suelyn-pink transition">WORKSHOPS</a>
               </li>
               <li>
-                <a href="/love-never-ends" className="font-helvetica text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl text-black hover:text-suelyn-pink transition">LOVE NEVER ENDS</a>
-              </li>
-              <li>
                 <a href="/foundation" className="font-helvetica text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl text-black hover:text-suelyn-pink transition">FOUNDATION</a>
               </li>
             </ul>
@@ -273,9 +170,6 @@ export default function Index() {
             Empowered Living
           </h2>
         </div>
-
-      {/* ===================== LOVE NEVER ENDS PROMO ===================== */}
-      <RetreatPromoBanner />
 
       {/* Mission Statement Section */}
       <section className="py-6 sm:py-8 md:py-12 lg:py-16 px-4 bg-gradient-to-b from-[#FFE4EE] to-[#FFE4EE] mt-[5%]">
